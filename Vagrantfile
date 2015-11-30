@@ -17,7 +17,7 @@ vconfig = YAML::load_file(vagrant_config)
 Vagrant.configure("2") do |config|
 
   hostname = vconfig['drupal_domain']
-  config.vm.box = "DrupalMel/box"
+  config.vm.box = "DrupalMel/beetbox"
   config.vm.hostname = hostname
   config.vm.network :private_network, ip: vconfig['vagrant_ip']
   config.ssh.insert_key = false
