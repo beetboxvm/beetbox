@@ -32,20 +32,20 @@ Vagrant.configure("2") do |config|
     config.vm.synced_folder "./ansible", "/ansible",
       type: "nfs",
       id: "ansible"
-    debug_mode = "-vvv"
+    debug_mode = "BEETBOX_DEBUG=1"
   end
 
   # Upload vagrant.config.yml
   config.vm.provision "vagrant_config", type: "file" do |s|
    s.source = vagrant_config
-   s.destination = "/ansible/project.config.yml"
+   s.destination = "/ansible/vagrant.config.yml"
   end
 
   # Provision box
 
   config.vm.provision "ansible", type: "shell" do |s|
     s.privileged = true
-    s.inline = "ANSIBLE_FORCE_COLOR=1 PYTHONUNBUFFERED=1 ansible-playbook #{debug_mode} /ansible/playbook.yml"
+    s.inline = "#{debug_mode} chmod +x /ansible/build.sh && /ansible/build.sh"
   end
 
   # VirtualBox.

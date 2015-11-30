@@ -2,7 +2,12 @@
 
 .vagrant/
 docroot/
+
+# Prevent Ansible related files.
+
 ansible/project.config.yml
+ansible/vagrant.config.yml
+ansible/roles/
 
 # Prevent miscellaneous/system files.
 

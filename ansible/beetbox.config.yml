@@ -38,8 +38,8 @@ drupal_install_profile: standard
 drupal_enable_modules: []
 drupal_account_name: admin
 drupal_account_pass: admin
-drupal_mysql_user: root
-drupal_mysql_password: beet
+drupal_mysql_user: drupal
+drupal_mysql_password: drupal
 drupal_mysql_database: beetbox
 
 # Drush site install
@@ -52,6 +52,26 @@ drush_makefile_path: /vagrant/drupal.make.yml
 # Symlinks
 symlinks: no
 
+# Apache config.
+apache_vhosts:
+  - servername: "{{ drupal_domain }}"
+    documentroot: "{{ drupal_core_path }}"
+apache_mods_enabled:
+  - expires.load
+  - ssl.load
+  - rewrite.load
+
+# Databases
+mysql_databases:
+  - name: "{{ drupal_mysql_database }}"
+    encoding: utf8
+    collation: utf8_general_ci
+mysql_users:
+  - name: "{{ drupal_mysql_user }}"
+    host: "%"
+    password: "{{ drupal_mysql_password }}"
+    priv: "{{ drupal_mysql_database }}.*:ALL"
+
 # Comment out any extra utilities you don't want to install.
 installed_extras:
   - adminer
@@ -63,6 +83,9 @@ installed_extras:
   - xhprof
   - selenium
   - drupal-console
+  # - nginx
+  # - nodejs
+  # - ruby
   # - solr
 
 # Add any extra packages you'd like to install.
@@ -82,10 +105,18 @@ firewall_allowed_tcp_ports:
   - "8080"
   - "8443"
   - "8983"
+firewall_log_dropped_packets: false
 
 # Varnish config
 varnish_listen_port: 81
 varnish_storage: "malloc,256m"
+
+# Nodejs config
+nodejs_version: "0.12"
+nodejs_npm_global_packages: []
+
+# Ruby config
+ruby_install_gems: []
 
 # Apache config
 apache_remove_default_vhost: true
@@ -96,25 +127,35 @@ apache_vhosts:
 
 # PHP config
 php_version: "5.6"
-php_memory_limit: "256M"
+php_memory_limit: "192M"
 php_display_errors: "On"
+php_display_startup_errors: "On"
+php_enable_php_fpm: 1
 php_realpath_cache_size: "1024K"
 php_sendmail_path: "/usr/sbin/ssmtp -t"
 php_opcache_enabled_in_ini: true
-php_opcache_memory_consumption: "128"
+php_opcache_memory_consumption: "192"
 php_opcache_max_accelerated_files: 4096
+php_max_input_vars: "4000"
+
+# Composer config
+composer_path: /usr/bin/composer
+composer_home_path: '/home/vagrant/.composer'
+# composer_global_packages:
+#   - { name: phpunit/phpunit, release: '@stable' }
 
 # Drush config
 drush_version: "8.0.0-rc4"
+drush_composer_cli_options: "--prefer-dist --no-interaction"
 
 # MySQL Config
-mysql_root_password: beet
-mysql_databases:
-  - name: beetbox
-    encoding: utf8
-    collation: utf8_general_ci
+mysql_root_password: root
+mysql_slow_query_log_enabled: true
+mysql_slow_query_time: 2
+mysql_wait_timeout: 300
+adminer_install_filename: index.php
 
-# XDebug config. XDebug is disabled by default for better performance.
+# XDebug config.
 php_xdebug_default_enable: 1
 php_xdebug_coverage_enable: 1
 php_xdebug_cli_enable: 1
@@ -123,3 +164,14 @@ php_xdebug_remote_connect_back: 1
 # Use PHPSTORM for PHPStorm, sublime.xdebug for Sublime Text.
 php_xdebug_idekey: PHPSTORM
 php_xdebug_max_nesting_level: 256
+
+# Solr config.
+solr_version: "4.10.4"
+solr_xms: "64M"
+solr_xmx: "128M"
+
+# Selenium config.
+selenium_version: 2.46.0
+
+# Other config.
+known_hosts_path: ~/.ssh/known_hosts
