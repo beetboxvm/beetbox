@@ -13,8 +13,10 @@
     - include: tasks/init-debian.yml
 
   roles:
+    # Essential roles.
     - geerlingguy.firewall
     - geerlingguy.git
+    - geerlingguy.postfix
     - geerlingguy.apache
     - geerlingguy.mysql
     - geerlingguy.php
@@ -29,6 +31,7 @@
     - { role: geerlingguy.php-xdebug, when: '"xdebug" in installed_extras' }
     - { role: geerlingguy.php-xhprof, when: '"xhprof" in installed_extras' }
     - { role: geerlingguy.adminer, when: '"adminer" in installed_extras' }
+    - { role: geerlingguy.drupal-console, when: '"drupal-console" in installed_extras' }
     - { role: geerlingguy.pimpmylog, when: '"pimpmylog" in installed_extras' }
     - { role: geerlingguy.daemonize, when: '"mailhog" in installed_extras' }
     - { role: geerlingguy.mailhog, when: '"mailhog" in installed_extras' }
