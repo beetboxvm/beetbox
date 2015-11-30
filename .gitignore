@@ -1,0 +1,10 @@
+# Prevent Vagrant related files.
+
+.vagrant/
+docroot/
+ansible/project.config.yml
+
+# Prevent miscellaneous/system files.
+
+.DS_Store
+.idea

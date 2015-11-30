@@ -1,0 +1,51 @@
+---
+- name: Update apt cache if needed.
+  apt: update_cache=yes cache_valid_time=86400
+
+- name: Get software for Python-based control.
+  apt: "name={{ item }} state=installed"
+  with_items:
+    - curl
+    - python-apt
+    - python-pycurl
+    - build-essential
+
+- name: Disable the ufw firewall (since we use a simple iptables firewall).
+  service: name=ufw state=stopped
+
+- name: Install postfix so Drupal can send emails.
+  apt: name=postfix state=installed
+
+- set_fact: php_ppa=ppa:ondrej/php5
+  when: php_version == '5.5'
+
+- set_fact: php_ppa=ppa:ondrej/php5-5.6
+  when: php_version == '5.6'
+
+- name: Add repository for PHP.
+  apt_repository: repo="{{ php_ppa }}"
+  register: php_repository
+
+- name: Purge repository for PHP.
+  apt_repository: "repo={{ item }} state=absent"
+  when: "php_ppa != item and php_repository.changed"
+  with_items:
+    - ppa:ondrej/php5
+    - ppa:ondrej/php5-5.6
+
+- name: Purge php packages.
+  apt: name={{ item }} state=absent
+  when: php_repository.changed
+  with_items:
+    - php5
+    - libapache2-mod-php5
+    - php5-mcrypt
+    - php5-cli
+    - php5-common
+    - php5-curl
+    - php5-dev
+    - php5-fpm
+    - php5-gd
+    - php-pear
+    - php-apc
+    - libpcre3-dev

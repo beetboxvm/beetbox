@@ -1,0 +1,125 @@
+---
+# Ansible Galaxy roles
+galaxy_roles:
+  - arknoll.selenium
+  - geerlingguy.adminer
+  - geerlingguy.apache
+  - geerlingguy.composer
+  - geerlingguy.daemonize
+  - geerlingguy.drupal-console
+  - geerlingguy.drush
+  - geerlingguy.firewall
+  - geerlingguy.git
+  - geerlingguy.java
+  - geerlingguy.mailhog
+  - geerlingguy.memcached
+  - geerlingguy.mysql
+  - geerlingguy.nginx
+  - geerlingguy.nodejs
+  - geerlingguy.php
+  - geerlingguy.php-memcached
+  - geerlingguy.php-mysql
+  - geerlingguy.php-pecl
+  - geerlingguy.php-xdebug
+  - geerlingguy.php-xhprof
+  - geerlingguy.pimpmylog
+  - geerlingguy.postfix
+  - geerlingguy.repo-remi
+  - geerlingguy.ruby
+  - geerlingguy.security
+  - geerlingguy.solr
+  - geerlingguy.varnish
+
+# Drupal settings
+drupal_domain: "beetbox.local"
+drupal_core_path: "/drupal"
+drupal_site_name: "Beetbox"
+drupal_install_profile: standard
+drupal_enable_modules: []
+drupal_account_name: admin
+drupal_account_pass: admin
+drupal_mysql_user: root
+drupal_mysql_password: beet
+drupal_mysql_database: beetbox
+
+# Drush site install
+install_site: false
+
+# Make file config
+build_makefile: false
+drush_makefile_path: /vagrant/drupal.make.yml
+
+# Symlinks
+symlinks: no
+
+# Comment out any extra utilities you don't want to install.
+installed_extras:
+  - adminer
+  - mailhog
+  - memcached
+  - pimpmylog
+  - varnish
+  - xdebug
+  - xhprof
+  - selenium
+  - drupal-console
+  # - solr
+
+# Add any extra packages you'd like to install.
+extra_packages:
+  - imagemagick
+  - unzip
+
+# Firewall config
+firewall_allowed_tcp_ports:
+  - "22"
+  - "25"
+  - "80"
+  - "81"
+  - "443"
+  - "4444"
+  - "8025"
+  - "8080"
+  - "8443"
+  - "8983"
+
+# Varnish config
+varnish_listen_port: 81
+varnish_storage: "malloc,256m"
+
+# Apache config
+apache_remove_default_vhost: true
+apache_listen_port: 80
+apache_vhosts:
+  - servername: "beetbox.local"
+    documentroot: "/drupal"
+
+# PHP config
+php_version: "5.6"
+php_memory_limit: "256M"
+php_display_errors: "On"
+php_realpath_cache_size: "1024K"
+php_sendmail_path: "/usr/sbin/ssmtp -t"
+php_opcache_enabled_in_ini: true
+php_opcache_memory_consumption: "128"
+php_opcache_max_accelerated_files: 4096
+
+# Drush config
+drush_version: "8.0.0-rc4"
+
+# MySQL Config
+mysql_root_password: beet
+mysql_databases:
+  - name: beetbox
+    encoding: utf8
+    collation: utf8_general_ci
+
+# XDebug config. XDebug is disabled by default for better performance.
+php_xdebug_default_enable: 1
+php_xdebug_coverage_enable: 1
+php_xdebug_cli_enable: 1
+php_xdebug_remote_enable: 1
+php_xdebug_remote_connect_back: 1
+# Use PHPSTORM for PHPStorm, sublime.xdebug for Sublime Text.
+php_xdebug_idekey: PHPSTORM
+php_xdebug_max_nesting_level: 256
