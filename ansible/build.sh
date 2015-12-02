@@ -4,6 +4,7 @@
 touch /ansible/beetbox.config.yml
 touch /ansible/project.config.yml
 touch /ansible/vagrant.config.yml
+touch /ansible/local.config.yml
 
 # Set environment variables.
 export ANSIBLE_FORCE_COLOR=1

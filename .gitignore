@@ -8,6 +8,7 @@ docroot/
 ansible/project.config.yml
 ansible/vagrant.config.yml
 ansible/roles/
+local.config.yml
 
 # Prevent miscellaneous/system files.
 

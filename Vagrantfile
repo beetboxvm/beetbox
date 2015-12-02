@@ -41,8 +41,16 @@ Vagrant.configure("2") do |config|
    s.destination = "/ansible/vagrant.config.yml"
   end
 
-  # Provision box
+  # Upload local.config.yml
+  local_config = "#{dir}/local.config.yml"
+  if File.exist?(local_config)
+    config.vm.provision "local_config", type: "file" do |s|
+     s.source = local_config
+     s.destination = "/ansible/local.config.yml"
+    end
+  end
 
+  # Provision box
   config.vm.provision "ansible", type: "shell" do |s|
     s.privileged = true
     s.inline = "#{debug_mode} chmod +x /ansible/build.sh && /ansible/build.sh"

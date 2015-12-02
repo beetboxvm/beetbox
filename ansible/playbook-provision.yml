@@ -8,6 +8,7 @@
     - beetbox.config.yml
     - project.config.yml
     - vagrant.config.yml
+    - local.config.yml
 
   pre_tasks:
     - include: tasks/init-debian.yml
