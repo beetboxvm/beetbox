@@ -1,0 +1,35 @@
+---
+- hosts: localhost
+  connection: local
+  user: root
+  become: yes
+
+  vars_files:
+    - beetbox.config.yml
+    - project.config.yml
+    - vagrant.config.yml
+    - local.config.yml
+
+  vars:
+    beetbox_repo: https://github.com/thom8/beetbox.git
+    beetbox_home: /beetbox
+
+  tasks:
+
+    - name: Check for updates.
+      git:
+        repo: "{{ beetbox_repo }}"
+        dest: "{{ beetbox_home }}"
+        accept_hostkey: yes
+        update: yes
+        force: yes
+      when: beetbox_keep_updated and (not ansible_debug)
+
+    - name: Set ownership of beetbox directory.
+      file:
+        path: "{{ beetbox_home }}"
+        owner: vagrant
+        group: vagrant
+        recurse: yes
+        state: directory
+      when: (not ansible_debug)

@@ -17,8 +17,8 @@
     # Essential roles.
     - geerlingguy.firewall
     - geerlingguy.git
-    - geerlingguy.postfix
     - geerlingguy.apache
+    - geerlingguy.nginx
     - geerlingguy.mysql
     - geerlingguy.php
     - geerlingguy.php-pecl
@@ -35,8 +35,8 @@
     - { role: geerlingguy.drupal-console, when: '"drupal-console" in installed_extras' }
     - { role: geerlingguy.pimpmylog, when: '"pimpmylog" in installed_extras' }
     - { role: geerlingguy.daemonize, when: '"mailhog" in installed_extras' }
+    - { role: geerlingguy.postfix, when: '"postfix" in installed_extras' }
     - { role: geerlingguy.mailhog, when: '"mailhog" in installed_extras' }
-    - { role: geerlingguy.nginx, when: '"nginx" in installed_extras' }
     - { role: geerlingguy.nodejs, when: '"nodejs" in installed_extras' }
     - { role: geerlingguy.ruby, when: '"ruby" in installed_extras' }
     - { role: geerlingguy.java, when: '"solr" in installed_extras or "selenium" in installed_extras' }

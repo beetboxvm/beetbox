@@ -7,6 +7,7 @@ docroot/
 
 ansible/project.config.yml
 ansible/vagrant.config.yml
+ansible/local.config.yml
 ansible/roles/
 local.config.yml
 

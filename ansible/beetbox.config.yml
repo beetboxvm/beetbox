@@ -1,4 +1,8 @@
 ---
+# Beetbox config.
+beetbox_keep_updated: no
+ansible_debug: no
+
 # Ansible Galaxy roles
 galaxy_roles:
   - arknoll.selenium

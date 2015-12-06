@@ -11,7 +11,7 @@
     - local.config.yml
 
   vars:
-    role_dir: /ansible/roles
+    role_dir: roles
 
   tasks:
 
