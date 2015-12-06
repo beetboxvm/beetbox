@@ -29,7 +29,7 @@ Vagrant.configure("2") do |config|
     id: "drupal"
 
   if vconfig['ansible_debug']
-    config.vm.synced_folder "./ansible", "/ansible",
+    config.vm.synced_folder "./ansible", "/beetbox/ansible",
       type: "nfs",
       id: "ansible"
     debug_mode = "BEETBOX_DEBUG=1"
@@ -38,7 +38,7 @@ Vagrant.configure("2") do |config|
   # Upload vagrant.config.yml
   config.vm.provision "vagrant_config", type: "file" do |s|
    s.source = vagrant_config
-   s.destination = "/ansible/vagrant.config.yml"
+   s.destination = "/beetbox/ansible/vagrant.config.yml"
   end
 
   # Upload local.config.yml
@@ -46,14 +46,14 @@ Vagrant.configure("2") do |config|
   if File.exist?(local_config)
     config.vm.provision "local_config", type: "file" do |s|
      s.source = local_config
-     s.destination = "/ansible/local.config.yml"
+     s.destination = "/beetbox/ansible/local.config.yml"
     end
   end
 
   # Provision box
   config.vm.provision "ansible", type: "shell" do |s|
     s.privileged = true
-    s.inline = "#{debug_mode} chmod +x /ansible/build.sh && /ansible/build.sh"
+    s.inline = "#{debug_mode} chmod +x /beetbox/ansible/build.sh && /beetbox/ansible/build.sh"
   end
 
   # VirtualBox.
