@@ -129,6 +129,9 @@ apache_vhosts:
   - servername: "beetbox.local"
     documentroot: "/drupal"
 
+# Nginx config.
+nginx_php_fpm: /var/run/php5-fpm.sock
+
 # PHP config
 php_version: "5.6"
 php_memory_limit: "192M"
