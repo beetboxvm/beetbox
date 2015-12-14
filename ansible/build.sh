@@ -16,8 +16,5 @@ export PYTHONUNBUFFERED=1
 # Check for updates.
 ansible-playbook "$currentDir/playbook-update.yml" -i 'localhost,'
 
-# Install role dependancies.
-ansible-playbook "$currentDir/playbook-roles.yml" -i 'localhost,'
-
 # Provision VM.
 ansible-playbook "$currentDir/playbook-provision.yml" -i 'localhost,'
