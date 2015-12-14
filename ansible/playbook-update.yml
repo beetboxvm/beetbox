@@ -11,8 +11,9 @@
     - local.config.yml
 
   vars:
-    beetbox_repo: https://github.com/thom8/beetbox.git
+    beetbox_repo: https://github.com/DrupalMel/beetbox.git
     beetbox_home: /beetbox
+    role_dir: roles
 
   tasks:
 
@@ -33,3 +34,15 @@
         recurse: yes
         state: directory
       when: (not ansible_debug)
+
+    - name: Install Galaxy roles
+      command: >
+        ansible-galaxy install {{ item.role }} -p {{ role_dir }} {{ item.update }}
+        creates={{ role_dir }}/{{ item.role }}/meta/main.yml
+      with_items: galaxy_roles
+
+    - name: Update Galaxy roles
+      command: >
+        ansible-galaxy install {{ item.role }} -p {{ role_dir }} --force --ignore-errors
+      when: item.force_update is defined
+      with_items: galaxy_roles

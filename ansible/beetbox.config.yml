@@ -5,34 +5,33 @@ ansible_debug: no
 
 # Ansible Galaxy roles
 galaxy_roles:
-  - arknoll.selenium
-  - geerlingguy.adminer
-  - geerlingguy.apache
-  - geerlingguy.composer
-  - geerlingguy.daemonize
-  - geerlingguy.drupal-console
-  - geerlingguy.drush
-  - geerlingguy.firewall
-  - geerlingguy.git
-  - geerlingguy.java
-  - geerlingguy.mailhog
-  - geerlingguy.memcached
-  - geerlingguy.mysql
-  - geerlingguy.nginx
-  - geerlingguy.nodejs
-  - geerlingguy.php
-  - geerlingguy.php-memcached
-  - geerlingguy.php-mysql
-  - geerlingguy.php-pecl
-  - geerlingguy.php-xdebug
-  - geerlingguy.php-xhprof
-  - geerlingguy.pimpmylog
-  - geerlingguy.postfix
-  - geerlingguy.repo-remi
-  - geerlingguy.ruby
-  - geerlingguy.security
-  - geerlingguy.solr
-  - geerlingguy.varnish
+  - { name: arknoll.selenium }
+  - { name: geerlingguy.adminer }
+  - { name: geerlingguy.apache }
+  - { name: geerlingguy.composer }
+  - { name: geerlingguy.daemonize }
+  - { name: geerlingguy.drupal-console }
+  - { name: geerlingguy.drush }
+  - { name: geerlingguy.firewall }
+  - { name: geerlingguy.git }
+  - { name: geerlingguy.java }
+  - { name: geerlingguy.mailhog }
+  - { name: geerlingguy.memcached }
+  - { name: geerlingguy.mysql }
+  - { name: geerlingguy.nginx }
+  - { name: geerlingguy.nodejs }
+  - { name: geerlingguy.php }
+  - { name: geerlingguy.php-memcached }
+  - { name: geerlingguy.php-mysql }
+  - { name: geerlingguy.php-pecl }
+  - { name: geerlingguy.php-xdebug }
+  - { name: geerlingguy.php-xhprof }
+  - { name: geerlingguy.pimpmylog }
+  - { name: geerlingguy.postfix }
+  - { name: geerlingguy.ruby }
+  - { name: geerlingguy.security }
+  - { name: geerlingguy.solr }
+  - { name: geerlingguy.varnish }
 
 # Drupal settings
 drupal_domain: "beetbox.local"
