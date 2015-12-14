@@ -24,10 +24,12 @@ galaxy_roles:
   - { name: geerlingguy.php-memcached }
   - { name: geerlingguy.php-mysql }
   - { name: geerlingguy.php-pecl }
+  - { name: geerlingguy.php-redis }
   - { name: geerlingguy.php-xdebug }
   - { name: geerlingguy.php-xhprof }
   - { name: geerlingguy.pimpmylog }
   - { name: geerlingguy.postfix }
+  - { name: geerlingguy.redis }
   - { name: geerlingguy.ruby }
   - { name: geerlingguy.security }
   - { name: geerlingguy.solr }
@@ -90,6 +92,7 @@ installed_extras:
   # - nodejs
   # - ruby
   # - solr
+  # - redis
 
 # Add any extra packages you'd like to install.
 extra_packages:
