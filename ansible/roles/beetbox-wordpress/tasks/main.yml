@@ -17,9 +17,9 @@
 - name: Generate WordPress wp-config.php file.
   command: >
     {{ wp_cli_bin_path }} core config
-    --dbname={{ drupal_mysql_database }}
-    --dbuser={{ drupal_mysql_user }}
-    --dbpass={{ drupal_mysql_password }}
+    --dbname={{ beetbox_mysql_database }}
+    --dbuser={{ beetbox_mysql_user }}
+    --dbpass={{ beetbox_mysql_password }}
     --allow-root
     chdir={{ beetbox_docroot }}
     creates={{ beetbox_docroot }}/wp-config.php
