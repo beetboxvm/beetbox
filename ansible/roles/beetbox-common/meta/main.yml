@@ -1,0 +1,28 @@
+---
+dependencies:
+  - { role: geerlingguy.firewall}
+  - { role: geerlingguy.git }
+  - { role: geerlingguy.apache }
+  - { role: geerlingguy.nginx }
+  - { role: geerlingguy.mysql }
+  - { role: geerlingguy.php }
+  - { role: geerlingguy.php-pecl }
+  - { role: geerlingguy.php-mysql }
+
+  # Conditionally-installed roles.
+  - { role: geerlingguy.memcached, when: '"memcached" in installed_extras' }
+  - { role: geerlingguy.php-memcached, when: '"memcached" in installed_extras' }
+  - { role: geerlingguy.php-xdebug, when: '"xdebug" in installed_extras' }
+  - { role: geerlingguy.php-xhprof, when: '"xhprof" in installed_extras' }
+  - { role: geerlingguy.adminer, when: '"adminer" in installed_extras' }
+  - { role: geerlingguy.pimpmylog, when: '"pimpmylog" in installed_extras' }
+  - { role: geerlingguy.daemonize, when: '"mailhog" in installed_extras' }
+  - { role: geerlingguy.postfix, when: '"postfix" in installed_extras' }
+  - { role: geerlingguy.mailhog, when: '"mailhog" in installed_extras' }
+  - { role: geerlingguy.nodejs, when: '"nodejs" in installed_extras' }
+  - { role: geerlingguy.redis, when: '"redis" in installed_extras' }
+  - { role: geerlingguy.php-redis, when: '"redis" in installed_extras' }
+  - { role: geerlingguy.ruby, when: '"ruby" in installed_extras' }
+  - { role: geerlingguy.java, when: '"solr" in installed_extras or "selenium" in installed_extras' }
+  - { role: arknoll.selenium, when: '"selenium" in installed_extras' }
+  - { role: geerlingguy.varnish, when: '"varnish" in installed_extras' }

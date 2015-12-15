@@ -1,7 +1,11 @@
 ---
 # Beetbox config.
+beetbox_project: drupal
 beetbox_keep_updated: no
 ansible_debug: no
+beetbox_domain: "beetbox.local"
+beetbox_docroot: "/www"
+beetbox_site_name: "Beetbox"
 
 # Ansible Galaxy roles
 galaxy_roles:
@@ -36,58 +40,63 @@ galaxy_roles:
   - { name: geerlingguy.varnish }
 
 # Drupal settings
-drupal_domain: "beetbox.local"
-drupal_core_path: "/drupal"
-drupal_site_name: "Beetbox"
 drupal_install_profile: standard
 drupal_enable_modules: []
 drupal_account_name: admin
 drupal_account_pass: admin
-drupal_mysql_user: drupal
-drupal_mysql_password: drupal
-drupal_mysql_database: beetbox
 
 # Drush site install
-install_site: false
+drupal_install_site: false
 
 # Make file config
-build_makefile: false
-drush_makefile_path: /vagrant/drupal.make.yml
+drupal_build_makefile: false
+drupal_makefile_path: /vagrant/drupal.make.yml
+
+# Wordpress settings
+wp_account_name: admin
+wp_account_pass: admin
+wp_account_email: admin@beetbox.local
+wp_download_core: no
+wp_locale: ''
+wp_install_site: no
 
 # Symlinks
 symlinks: no
 
 # Apache config.
 apache_vhosts:
-  - servername: "{{ drupal_domain }}"
-    documentroot: "{{ drupal_core_path }}"
+  - servername: "{{ beetbox_domain }}"
+    documentroot: "{{ beebox_docroot }}"
 apache_mods_enabled:
   - expires.load
   - ssl.load
   - rewrite.load
 
 # Databases
+beetbox_mysql_user: beetbox
+beetbox_mysql_password: beetbox
+beetbox_mysql_database: beetbox
 mysql_databases:
-  - name: "{{ drupal_mysql_database }}"
+  - name: "{{ beetbox_mysql_database }}"
     encoding: utf8
     collation: utf8_general_ci
 mysql_users:
-  - name: "{{ drupal_mysql_user }}"
+  - name: "{{ beetbox_mysql_user }}"
     host: "%"
-    password: "{{ drupal_mysql_password }}"
-    priv: "{{ drupal_mysql_database }}.*:ALL"
+    password: "{{ beetbox_mysql_password }}"
+    priv: "{{ beetbox_mysql_database }}.*:ALL"
 
 # Comment out any extra utilities you don't want to install.
 installed_extras:
   - adminer
   - mailhog
   - memcached
-  - pimpmylog
-  - varnish
   - xdebug
   - xhprof
   - selenium
   - drupal-console
+  # - varnish
+  # - pimpmylog
   # - nginx
   # - nodejs
   # - ruby
