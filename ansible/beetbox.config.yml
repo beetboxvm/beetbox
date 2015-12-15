@@ -38,6 +38,7 @@ galaxy_roles:
   - { name: geerlingguy.security }
   - { name: geerlingguy.solr }
   - { name: geerlingguy.varnish }
+  - { name: heskethm.wp-cli }
 
 # Drupal settings
 drupal_install_profile: standard
