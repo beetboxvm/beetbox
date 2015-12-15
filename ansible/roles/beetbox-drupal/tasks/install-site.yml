@@ -2,7 +2,7 @@
 - name: Check if site is already installed.
   command: >
     {{ drush_path }} status bootstrap
-    chdir={{ drupal_core_path }}
+    chdir={{ beetbox_docroot }}
   register: drupal_site_installed
   failed_when: false
   changed_when: false
@@ -11,11 +11,11 @@
 - name: Install Drupal with drush.
   command: >
     {{ drush_path }} site-install {{ drupal_install_profile | default('standard') }} -y
-    --site-name="{{ drupal_site_name }}"
+    --site-name="{{ beetbox_site_name }}"
     --account-name={{ drupal_account_name }}
     --account-pass={{ drupal_account_pass }}
-    --db-url=mysql://{{ drupal_mysql_user }}:{{ drupal_mysql_password }}@localhost/{{ mysql_databases[0].name }}
-    chdir={{ drupal_core_path }}
+    --db-url=mysql://{{ beetbox_mysql_user }}:{{ beetbox_mysql_password }}@localhost/{{ beetbox_mysql_database }}
+    chdir={{ beetbox_docroot }}
   notify: restart webserver
   when: "'Successful' not in drupal_site_installed.stdout"
   sudo: no
@@ -23,6 +23,6 @@
 - name: Install configured modules with drush.
   command: >
     {{ drush_path }} pm-enable -y {{ drupal_enable_modules | join(" ") }}
-    chdir={{ drupal_core_path }}
+    chdir={{ beetbox_docroot }}
   when: "'Successful' not in drupal_site_installed.stdout"
   sudo: no

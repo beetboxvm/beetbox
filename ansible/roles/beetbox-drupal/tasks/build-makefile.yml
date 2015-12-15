@@ -1,7 +1,7 @@
 ---
 - name: Ensure drupal_core_path directory exists.
   file:
-    path: "{{ drupal_core_path }}"
+    path: "{{ beetbox_docroot }}"
     state: directory
     mode: 0775
   sudo: no
@@ -9,7 +9,7 @@
 
 - name: Generate Drupal site with drush makefile.
   command: >
-    {{ drush_path }} make -y {{ drush_makefile_path }} --no-gitinfofile
-    chdir={{ drupal_core_path }}
+    {{ drush_path }} make -y {{ drupal_makefile_path }} --no-gitinfofile
+    chdir={{ beetbox_docroot }}
   when: drupal_site.stat.exists == false
   sudo: no

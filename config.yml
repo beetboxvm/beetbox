@@ -4,19 +4,21 @@ vagrant_ip: 192.168.88.88
 vagrant_memory: 1024
 vagrant_cpus: 2
 
+# Beetbox settings.
+beetbox_domain: "beetbox.local"
+beetbox_docroot: "/www/docroot"
+beetbox_site_name: "Beetbox"
+
 # Drupal settings.
-drupal_domain: "beetbox.local"
-drupal_core_path: "/drupal/docroot"
-drupal_site_name: "Beetbox"
 drupal_account_name: admin
 drupal_account_pass: admin
-drush_makefile_path: /drupal/drupal8.make.yml
-build_makefile: true
-install_site: true
+drupal_makefile_path: /drupal/drupal8.make.yml
+drupal_build_makefile: true
+drupal_install_site: true
 
 # Apache config.
 apache_vhosts:
-  - {servername: "{{ drupal_domain }}", documentroot: "{{ drupal_core_path }}"}
+  - {servername: "{{ beetbox_domain }}", documentroot: "{{ beetbox_docroot }}"}
 
 # Ansible debug.
 ansible_debug: no

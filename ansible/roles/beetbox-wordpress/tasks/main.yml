@@ -1,0 +1,36 @@
+---
+- name: Check if site is already installed.
+  command: >
+    {{ wp_cli_bin_path }} core is-installed
+    chdir={{ beetbox_docroot }}
+  register: wp_site_installed
+  failed_when: false
+  changed_when: false
+
+- name: Download WordPress core.
+  command: >
+    {{ wp_cli_bin_path }} core download
+    --path={{ beetbox_docroot }}
+    --allow-root
+    creates={{ beetbox_docroot }}/wp-content/index.php
+
+- name: Generate WordPress wp-config.php file.
+  command: >
+    {{ wp_cli_bin_path }} core config
+    --dbname={{ drupal_mysql_database }}
+    --dbuser={{ drupal_mysql_user }}
+    --dbpass={{ drupal_mysql_password }}
+    --allow-root
+    chdir={{ beetbox_docroot }}
+    creates={{ beetbox_docroot }}/wp-config.php
+
+- name: Create the WordPress tables in the database.
+  command: >
+    {{ wp_cli_bin_path }} core install
+    --url={{ beetbox_domain }}
+    --title={{ beetbox_site_name }}
+    --admin_user={{ wp_account_name }}
+    --admin_password={{ wp_account_pass }}
+    --admin_email={{ wp_account_email }}
+    --allow-root
+    chdir={{ beetbox_docroot }}

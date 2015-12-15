@@ -16,7 +16,7 @@ vconfig = YAML::load_file(vagrant_config)
 
 Vagrant.configure("2") do |config|
 
-  hostname = vconfig['drupal_domain']
+  hostname = vconfig['beetbox_domain']
   config.vm.box = "DrupalMel/beetbox"
   config.vm.hostname = hostname
   config.vm.network :private_network, ip: vconfig['vagrant_ip']
@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
   config.ssh.forward_agent = true
 
   # Synced folders.
-  config.vm.synced_folder ".", "/drupal",
+  config.vm.synced_folder ".", "/www",
     type: "nfs",
     id: "drupal"
 
