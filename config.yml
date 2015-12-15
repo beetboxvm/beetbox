@@ -12,7 +12,7 @@ beetbox_site_name: "Beetbox"
 # Drupal settings.
 drupal_account_name: admin
 drupal_account_pass: admin
-drupal_makefile_path: /drupal/drupal8.make.yml
+drupal_makefile_path: /www/drupal8.make.yml
 drupal_build_makefile: true
 drupal_install_site: true
 

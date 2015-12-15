@@ -5,8 +5,8 @@
 
   # Build makefile if configured.
   - include: build-makefile.yml
-    when: build_makefile
+    when: drupal_build_makefile
 
   # Install site if configured.
   - include: install-site.yml
-    when: install_site
+    when: drupal_install_site
