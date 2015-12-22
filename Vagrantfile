@@ -42,13 +42,13 @@ Vagrant.configure("2") do |config|
 
       # Multidev hostname/network
       if vconfig['beetbox_mode'] == 'multidev'
-        hostname = "#{branch}.#{hostname}"
+        node.vm.hostname = "#{branch}.#{hostname}"
         node.vm.network :private_network, :ip => "0.0.0.0", :auto_network => true
       else
+        node.vm.hostname = hostname
         node.vm.network :private_network, ip: vconfig['vagrant_ip']
       end
 
-      node.vm.hostname = hostname
       node.ssh.insert_key = false
       node.ssh.forward_agent = true
 
