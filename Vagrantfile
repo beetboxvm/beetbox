@@ -3,7 +3,7 @@
 
 require 'yaml'
 
-Vagrant.require_version '>= 1.7.4'
+Vagrant.require_version '>= 1.8.0'
 
 dir = File.dirname(File.expand_path(__FILE__))
 vagrant_config = "#{dir}/config.yml"
@@ -90,6 +90,7 @@ Vagrant.configure("2") do |config|
         v.name = hostname
         v.memory = vconfig['vagrant_memory']
         v.cpus = vconfig['vagrant_cpus']
+        v.linked_clone = true
         v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
         v.customize ["modifyvm", :id, "--ioapic", "on"]
       end
