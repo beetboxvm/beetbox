@@ -31,6 +31,7 @@ Vagrant.configure("2") do |config|
     raise 'Multidev mode requires auto_network plugin.' unless Vagrant.has_plugin?('vagrant-auto_network')
 
     branches = %x(git branch | tr -d '* ').split(/\n/).reject(&:empty?)
+    branches.unshift("beetbox")
     current_branch = %x(git branch | grep '*' | tr -d '* \n')
   end
 
@@ -87,7 +88,7 @@ Vagrant.configure("2") do |config|
 
       # VirtualBox.
       node.vm.provider :virtualbox do |v|
-        v.name = node.vm.hostname
+        v.name = "#{node.vm.hostname}.#{Time.now.to_i}"
         v.memory = vconfig['vagrant_memory']
         v.cpus = vconfig['vagrant_cpus']
         v.linked_clone = true
