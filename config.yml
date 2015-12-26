@@ -21,4 +21,4 @@ apache_vhosts:
   - {servername: "{{ beetbox_domain }}", documentroot: "{{ beetbox_docroot }}"}
 
 # Ansible debug.
-ansible_debug: no
+beetbox_debug: yes

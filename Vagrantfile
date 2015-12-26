@@ -57,11 +57,11 @@ Vagrant.configure("2") do |config|
         type: "nfs",
         id: "drupal"
 
-      if vconfig['ansible_debug']
+      if vconfig['beetbox_debug']
         node.vm.synced_folder "./ansible", "/beetbox/ansible",
           type: "nfs",
           id: "ansible"
-        debug_mode = "BEETBOX_DEBUG=1"
+        debug_mode = "BEETBOX_DEBUG=true"
       end
 
       # Upload vagrant.config.yml
@@ -82,7 +82,7 @@ Vagrant.configure("2") do |config|
       # Provision box
       node.vm.provision "ansible", type: "shell" do |s|
         s.privileged = true
-        s.inline = "#{debug_mode} chmod +x /beetbox/ansible/build.sh && /beetbox/ansible/build.sh"
+        s.inline = "chmod +x /beetbox/ansible/build.sh && #{debug_mode} /beetbox/ansible/build.sh"
       end
 
       # VirtualBox.
