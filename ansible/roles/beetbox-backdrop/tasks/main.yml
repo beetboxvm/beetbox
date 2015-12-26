@@ -1,0 +1,12 @@
+---
+  - name: Check if Backdrop is already set up.
+    stat: "path={{ beetbox_docroot }}/index.php"
+    register: backdrop_site
+
+  # Check out backdrop project.
+  - include: checkout-project.yml
+    when: backdrop_checkout
+
+  # Install site if configured.
+  - include: install-site.yml
+    when: backdrop_install_site

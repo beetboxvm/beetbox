@@ -1,0 +1,9 @@
+---
+backdrop_checkout: false
+backdrop_repo: "https://github.com/backdrop/backdrop.git"
+backdrop_version: "1.2.2"
+backdrop_checkout_depth: 1
+backdrop_install_profile: standard
+backdrop_account_name: admin
+backdrop_account_pass: admin
+backdrop_install_site: true

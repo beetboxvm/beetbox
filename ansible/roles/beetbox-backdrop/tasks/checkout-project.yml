@@ -1,0 +1,16 @@
+---
+- name: Ensure beetbox_docroot directory exists.
+  file:
+    path: "{{ beetbox_docroot }}"
+    state: directory
+    mode: 0775
+  sudo: no
+  when: backdrop_site.stat.exists == false
+
+- name: Checkout backdrop project.
+  git:
+    repo: "{{ backdrop_repo }}"
+    dest: "{{ beetbox_docroot }}"
+    version: "{{ backdrop_version }}"
+    depth: "{{ backdrop_checkout_depth }}"
+  when: backdrop_site.stat.exists == false
