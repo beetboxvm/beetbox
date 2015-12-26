@@ -10,11 +10,6 @@
     - vagrant.config.yml
     - local.config.yml
 
-  vars:
-    beetbox_repo: https://github.com/DrupalMel/beetbox.git
-    beetbox_home: /beetbox
-    role_dir: roles
-
   tasks:
 
     - name: Check for updates.
@@ -24,7 +19,7 @@
         accept_hostkey: yes
         update: yes
         force: yes
-      when: beetbox_keep_updated and (not ansible_debug)
+      when: beetbox_keep_updated and (not beetbox_debug)
 
     - name: Set ownership of beetbox directory.
       file:
@@ -33,16 +28,16 @@
         group: vagrant
         recurse: yes
         state: directory
-      when: (not ansible_debug)
+      when: (not beetbox_debug)
 
     - name: Install Galaxy roles
       command: >
-        ansible-galaxy install {{ item.name }} -p {{ role_dir }}
-        creates={{ role_dir }}/{{ item.name }}/meta/main.yml
+        ansible-galaxy install {{ item.name }} -p {{ beetbox_role_dir }}
+        creates={{ beetbox_role_dir }}/{{ item.name }}/meta/main.yml
       with_items: galaxy_roles
 
     - name: Update Galaxy roles
       command: >
-        ansible-galaxy install {{ item.name }} -p {{ role_dir }} --force --ignore-errors
+        ansible-galaxy install {{ item.name }} -p {{ beetbox_role_dir }} --force --ignore-errors
       when: item.force_update is defined
       with_items: galaxy_roles

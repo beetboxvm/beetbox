@@ -1,5 +1,8 @@
 ---
 # Beetbox config.
+beetbox_repo: https://github.com/DrupalMel/beetbox.git
+beetbox_home: /beetbox
+beetbox_role_dir: roles
 beetbox_project: drupal
 beetbox_keep_updated: no
 beetbox_debug: no
