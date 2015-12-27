@@ -12,6 +12,7 @@
 
 - name: Disable the ufw firewall (since we use a simple iptables firewall).
   service: name=ufw state=stopped
+  failed_when: false
 
 - set_fact: php_ppa=ppa:ondrej/php5
   when: php_version == '5.5'
@@ -50,3 +51,12 @@
     - php-pear
     - php-apc
     - libpcre3-dev
+
+- name: Set SSH home directory.
+  lineinfile:
+    dest: /home/vagrant/.bashrc
+    state: present
+    create: yes
+    regexp: "^SSH_HOME="
+    line: "SSH_HOME={{ beetbox_docroot }} && [ -e $SSH_HOME ] && cd $SSH_HOME"
+  when: beetbox_docroot is defined

@@ -13,8 +13,11 @@ touch "$currentDir/local.config.yml"
 export ANSIBLE_FORCE_COLOR=1
 export PYTHONUNBUFFERED=1
 
+# Enable debug mode.
+[[ $BEETBOX_DEBUG ]] && DEBUG="-vvv" || DEBUG=""
+
 # Check for updates.
-ansible-playbook "$currentDir/playbook-update.yml" -i 'localhost,'
+ansible-playbook $DEBUG "$currentDir/playbook-update.yml" -i 'localhost,'
 
 # Provision VM.
-ansible-playbook "$currentDir/playbook-provision.yml" -i 'localhost,'
+ansible-playbook $DEBUG "$currentDir/playbook-provision.yml" -i 'localhost,'

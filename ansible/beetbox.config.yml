@@ -1,10 +1,13 @@
 ---
 # Beetbox config.
+beetbox_repo: https://github.com/DrupalMel/beetbox.git
+beetbox_home: /beetbox
+beetbox_role_dir: roles
 beetbox_project: drupal
 beetbox_keep_updated: no
-ansible_debug: no
+beetbox_debug: no
 beetbox_domain: "beetbox.local"
-beetbox_docroot: "/www"
+beetbox_docroot: "/www/{{ beetbox_project }}"
 beetbox_site_name: "Beetbox"
 
 # Ansible Galaxy roles
@@ -40,35 +43,16 @@ galaxy_roles:
   - { name: geerlingguy.varnish }
   - { name: heskethm.wp-cli }
 
-# Drupal settings
-drupal_install_profile: standard
-drupal_enable_modules: []
-drupal_account_name: admin
-drupal_account_pass: admin
-
-# Drush site install
-drupal_install_site: false
-
-# Make file config
-drupal_build_makefile: false
-drupal_makefile_path: /vagrant/drupal.make.yml
-
-# Wordpress settings
-wp_account_name: admin
-wp_account_pass: admin
-wp_account_email: admin@beetbox.local
-wp_download_core: no
-wp_locale: ''
-wp_install_site: no
-
 # Symlinks
 symlinks: no
 
 # Apache config.
+apache_daemon: apache2
 apache_vhosts:
   - servername: "{{ beetbox_domain }}"
     documentroot: "{{ beebox_docroot }}"
 apache_mods_enabled:
+  - authn_core.load
   - expires.load
   - ssl.load
   - rewrite.load
@@ -123,6 +107,10 @@ firewall_allowed_tcp_ports:
   - "8983"
 firewall_log_dropped_packets: false
 
+# git config.
+git_packages:
+  - git
+
 # Varnish config
 varnish_listen_port: 81
 varnish_storage: "malloc,256m"
@@ -168,7 +156,7 @@ drush_version: "8.0.0-rc4"
 drush_composer_cli_options: "--prefer-dist --no-interaction"
 
 # MySQL Config
-mysql_root_password: root
+mysql_root_password: ""
 mysql_slow_query_log_enabled: true
 mysql_slow_query_time: 2
 mysql_wait_timeout: 300

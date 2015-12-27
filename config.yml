@@ -20,5 +20,5 @@ drupal_install_site: true
 apache_vhosts:
   - {servername: "{{ beetbox_domain }}", documentroot: "{{ beetbox_docroot }}"}
 
-# Ansible debug.
-ansible_debug: no
+# Beetbox debug.
+beetbox_debug: no

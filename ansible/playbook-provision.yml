@@ -15,6 +15,7 @@
 
   roles:
     - { role: beetbox-common }
+    - { role: beetbox-backdrop, when: beetbox_project == 'backdrop' }
     - { role: beetbox-drupal, when: beetbox_project == 'drupal' }
     - { role: beetbox-wordpress, when: beetbox_project == 'wordpress' }
 
