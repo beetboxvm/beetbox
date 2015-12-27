@@ -12,6 +12,11 @@
 
   tasks:
 
+    - name: Create vagrant user.
+      user:
+        name: vagrant
+        shell: /bin/bash
+
     - name: Check for updates.
       git:
         repo: "{{ beetbox_repo }}"

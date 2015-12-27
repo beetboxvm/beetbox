@@ -6,6 +6,9 @@ beetbox_role_dir: roles
 beetbox_project: drupal
 beetbox_keep_updated: no
 beetbox_debug: no
+beetbox_domain: "beetbox.local"
+beetbox_docroot: "/www/{{ beetbox_project }}"
+beetbox_site_name: "Beetbox"
 
 # Ansible Galaxy roles
 galaxy_roles:
@@ -49,6 +52,7 @@ apache_vhosts:
   - servername: "{{ beetbox_domain }}"
     documentroot: "{{ beebox_docroot }}"
 apache_mods_enabled:
+  - authn_core.load
   - expires.load
   - ssl.load
   - rewrite.load
@@ -103,6 +107,10 @@ firewall_allowed_tcp_ports:
   - "8983"
 firewall_log_dropped_packets: false
 
+# git config.
+git_packages:
+  - git
+
 # Varnish config
 varnish_listen_port: 81
 varnish_storage: "malloc,256m"
@@ -148,7 +156,7 @@ drush_version: "8.0.0-rc4"
 drush_composer_cli_options: "--prefer-dist --no-interaction"
 
 # MySQL Config
-mysql_root_password: root
+mysql_root_password: ""
 mysql_slow_query_log_enabled: true
 mysql_slow_query_time: 2
 mysql_wait_timeout: 300

@@ -12,6 +12,7 @@
 
 - name: Disable the ufw firewall (since we use a simple iptables firewall).
   service: name=ufw state=stopped
+  failed_when: false
 
 - set_fact: php_ppa=ppa:ondrej/php5
   when: php_version == '5.5'

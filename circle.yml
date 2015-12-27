@@ -1,0 +1,24 @@
+---
+general:
+  build_dir: ansible
+machine:
+  python:
+    version: 2.7.6
+dependencies:
+  pre:
+    - sudo pip install ansible
+    - sudo apt-get update
+    - sudo apt-get purge apache2 php5-cli mysql-common mysql-server
+    - sudo rm -rf /etc/apache2/mods-enabled/*
+    - sudo mkdir -p /www
+    - sudo chmod +x build.sh
+    - sudo cp ~/beetbox/drupal8.make.yml /www/drupal8.make.yml
+    - sudo ./build.sh
+test:
+  override:
+    # Drupal
+    - sudo cp ~/beetbox/config.yml ~/beetbox/ansible/vagrant.config.yml && sudo ./build.sh
+    # Backdrop
+    - sudo cp ~/beetbox/tests/backdrop.config.yml ~/beetbox/ansible/vagrant.config.yml && sudo ./build.sh
+    # Wordpress
+    - sudo cp ~/beetbox/tests/wordpress.config.yml ~/beetbox/ansible/vagrant.config.yml && sudo ./build.sh
