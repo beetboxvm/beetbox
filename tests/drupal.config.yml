@@ -1,0 +1,12 @@
+---
+# Beetbox settings.
+beetbox_project: "drupal"
+beetbox_docroot: "/www/docroot/{{ beetbox_project }}/web"
+beetbox_mysql_database: "{{ beetbox_project }}"
+
+# Drupal settings.
+drupal_account_name: admin
+drupal_account_pass: admin
+drupal_build_composer: yes
+drupal_composer_root: "/www/docroot/{{ beetbox_project }}"
+drupal_install_site: true
