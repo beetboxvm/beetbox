@@ -1,5 +1,5 @@
 ---
-- name: Ensure drupal_core_path directory exists.
+- name: Ensure beetbox_docroot directory exists.
   file:
     path: "{{ beetbox_docroot }}"
     state: directory

@@ -1,0 +1,22 @@
+---
+- name: Ensure drupal_composer_root directory exists.
+  file:
+    path: "{{ drupal_composer_root }}"
+    state: directory
+    mode: 0775
+  sudo: no
+  when: drupal_site.stat.exists == false
+
+- name: Generate Drupal site with composer.
+  command: >
+    {{ composer_path }} create-project drupal-composer/drupal-project:{{ drupal_composer_version }} {{ drupal_composer_root }} --stability dev --no-interaction
+  notify: restart webserver
+  when: not drupal_site.stat.exists
+  sudo: no
+
+- name: Install dependencies with composer require.
+  command: >
+    {{ composer_path }} require {{ item }}
+    chdir={{ drupal_composer_root }}
+  with_items: drupal_composer_dependencies
+  sudo: no
