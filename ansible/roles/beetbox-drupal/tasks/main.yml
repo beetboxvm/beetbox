@@ -1,12 +1,16 @@
 ---
-  - name: Check if Drupal is already set up.
-    stat: "path={{ beetbox_docroot }}/index.php"
-    register: drupal_site
+- name: Check if Drupal is already set up.
+  stat: "path={{ beetbox_docroot }}/index.php"
+  register: drupal_site
 
-  # Build makefile if configured.
-  - include: build-makefile.yml
-    when: drupal_build_makefile
+# Build makefile if configured.
+- include: build-makefile.yml
+  when: drupal_build_makefile and not drupal_build_composer
 
-  # Install site if configured.
-  - include: install-site.yml
-    when: drupal_install_site
+# Build drupal composer if configured
+- include: build-composer.yml
+  when: drupal_build_composer and not drupal_build_makefile
+
+# Install site if configured.
+- include: install-site.yml
+  when: drupal_install_site
