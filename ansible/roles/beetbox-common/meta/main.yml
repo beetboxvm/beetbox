@@ -8,6 +8,7 @@ dependencies:
   - { role: geerlingguy.php }
   - { role: geerlingguy.php-pecl }
   - { role: geerlingguy.php-mysql }
+  - { role: geerlingguy.composer }
 
   # Conditionally-installed roles.
   - { role: geerlingguy.memcached, when: '"memcached" in installed_extras' }
