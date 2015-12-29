@@ -1,5 +1,6 @@
 # Prevent Vagrant related files.
 
+.bundle/
 .vagrant/
 docroot/
 

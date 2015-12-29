@@ -5,8 +5,9 @@ vagrant_memory: 1024
 vagrant_cpus: 2
 
 # Beetbox settings.
+beetbox_project: drupal
 beetbox_domain: "beetbox.local"
-beetbox_docroot: "/www/docroot"
+beetbox_docroot: "/www/docroot/{{ beetbox_project }}"
 beetbox_site_name: "Beetbox"
 
 # Drupal settings.

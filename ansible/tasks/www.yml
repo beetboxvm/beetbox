@@ -11,6 +11,14 @@
 - name: Ensure vagrant user is in admin group.
   user: "name=vagrant append=yes groups=admin"
 
+- name: Ensure vagrant home directory is present.
+  file:
+    path: "/home/vagrant/"
+    state: directory
+    owner: vagrant
+    group: vagrant
+    recurse: true
+
 - name: Ensure www-data user is in dialout group (Debian).
   user: "name=www-data append=yes groups=dialout"
   when: ansible_os_family == 'Debian'

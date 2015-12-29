@@ -20,5 +20,7 @@ test:
     - sudo cp ~/beetbox/config.yml ~/beetbox/ansible/vagrant.config.yml && sudo ./build.sh
     # Backdrop
     - sudo cp ~/beetbox/tests/backdrop.config.yml ~/beetbox/ansible/vagrant.config.yml && sudo ./build.sh
+    # Silverstripe
+    - sudo cp ~/beetbox/tests/silverstripe.config.yml ~/beetbox/ansible/vagrant.config.yml && sudo ./build.sh
     # Wordpress
     - sudo cp ~/beetbox/tests/wordpress.config.yml ~/beetbox/ansible/vagrant.config.yml && sudo ./build.sh

@@ -1,6 +1,5 @@
 ---
 dependencies:
-  - { role: geerlingguy.composer }
   - { role: geerlingguy.drush }
 
   # Conditionally-installed roles.

@@ -1,0 +1,11 @@
+---
+# Beetbox settings.
+beetbox_project: "silverstripe"
+beetbox_docroot: "/www/{{ beetbox_project }}"
+beetbox_mysql_database: "{{ beetbox_project }}"
+
+# Silverstripe settings.
+ss_create_project: yes
+ss_account_name: admin
+ss_account_pass: admin
+ss_install_site: yes
