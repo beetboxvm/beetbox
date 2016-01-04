@@ -2,6 +2,7 @@
 - name: Check if WordPress is already installed.
   command: >
     {{ wp_cli_bin_path }} core is-installed
+    --allow-root
     chdir={{ beet_root }}
   register: wp_site_installed
   failed_when: false
@@ -34,3 +35,4 @@
     --admin_email={{ wp_account_email }}
     --allow-root
     chdir={{ beet_root }}
+  when: wp_site_installed.rc != 0
