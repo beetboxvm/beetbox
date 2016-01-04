@@ -1,4 +1,4 @@
-# Beetbox - Drupal development on Vagrant
+# Beetbox - Drupal development on Vagrant [![Circle CI](https://circleci.com/gh/drupalmel/beetbox.svg?style=svg)](https://circleci.com/gh/drupalmel/beetbox)
 
 ## Overview
 
