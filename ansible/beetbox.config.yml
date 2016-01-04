@@ -56,6 +56,7 @@ galaxy_roles:
   - { name: heskethm.wp-cli }
   - { name: thomtoogood.beetbox-backdrop }
   - { name: thomtoogood.beetbox-cakephp }
+  - { name: thomtoogood.beetbox-concrete5 }
   - { name: thomtoogood.beetbox-kohana }
   - { name: thomtoogood.beetbox-modx }
   - { name: thomtoogood.beetbox-silverstripe }
