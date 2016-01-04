@@ -1,4 +1,11 @@
 ---
+#
+# Beetbox VM configuration.
+#
+# Settigns below related to the Ansible roles from Galaxy.
+# Copy any of these settings to the custom config file to override.
+#
+
 # Beetbox config.
 beetbox_repo: https://github.com/DrupalMel/beetbox.git
 beetbox_home: /beetbox
@@ -9,8 +16,11 @@ beetbox_debug: no
 beetbox_domain: "beetbox.local"
 beetbox_docroot: "/www/{{ beetbox_project }}"
 beetbox_site_name: "Beetbox"
+beetbox_mysql_user: beetbox
+beetbox_mysql_password: beetbox
+beetbox_mysql_database: beetbox
 
-# Ansible Galaxy roles
+# Ansible Galaxy roles.
 galaxy_roles:
   - { name: arknoll.selenium }
   - { name: geerlingguy.adminer }
@@ -43,7 +53,7 @@ galaxy_roles:
   - { name: geerlingguy.varnish }
   - { name: heskethm.wp-cli }
 
-# Symlinks
+# Symlinks.
 symlinks: no
 
 # Apache config.
@@ -57,10 +67,7 @@ apache_mods_enabled:
   - ssl.load
   - rewrite.load
 
-# Databases
-beetbox_mysql_user: beetbox
-beetbox_mysql_password: beetbox
-beetbox_mysql_database: beetbox
+# Databases.
 mysql_databases:
   - name: "{{ beetbox_mysql_database }}"
     encoding: utf8
@@ -71,7 +78,8 @@ mysql_users:
     password: "{{ beetbox_mysql_password }}"
     priv: "{{ beetbox_mysql_database }}.*:ALL"
 
-# Comment out any extra utilities you don't want to install.
+# Extra utilities form provided roles.
+# Comment out the ones that do not need to be installed.
 installed_extras:
   - adminer
   - mailhog
@@ -88,12 +96,12 @@ installed_extras:
   # - solr
   # - redis
 
-# Add any extra packages you'd like to install.
+# Extra packages.
 extra_packages:
   - imagemagick
   - unzip
 
-# Firewall config
+# Firewall config.
 firewall_allowed_tcp_ports:
   - "22"
   - "25"
@@ -111,18 +119,18 @@ firewall_log_dropped_packets: false
 git_packages:
   - git
 
-# Varnish config
+# Varnish config.
 varnish_listen_port: 81
 varnish_storage: "malloc,256m"
 
-# Nodejs config
+# Nodejs config.
 nodejs_version: "0.12"
 nodejs_npm_global_packages: []
 
-# Ruby config
+# Ruby config.
 ruby_install_gems: []
 
-# Apache config
+# Apache config.
 apache_remove_default_vhost: true
 apache_listen_port: 80
 apache_vhosts:
@@ -132,7 +140,7 @@ apache_vhosts:
 # Nginx config.
 nginx_php_fpm: /var/run/php5-fpm.sock
 
-# PHP config
+# PHP config.
 php_version: "5.6"
 php_memory_limit: "192M"
 php_display_errors: "On"
@@ -145,17 +153,18 @@ php_opcache_memory_consumption: "192"
 php_opcache_max_accelerated_files: 4096
 php_max_input_vars: "4000"
 
-# Composer config
+# Composer config.
 composer_path: /usr/bin/composer
 composer_home_path: '/home/vagrant/.composer'
+# Composer global packages.
 # composer_global_packages:
 #   - { name: phpunit/phpunit, release: '@stable' }
 
-# Drush config
+# Drush config.
 drush_version: "8.0.0-rc4"
 drush_composer_cli_options: "--prefer-dist --no-interaction"
 
-# MySQL Config
+# MySQL config.
 mysql_root_password: ""
 mysql_slow_query_log_enabled: true
 mysql_slow_query_time: 2
@@ -168,9 +177,10 @@ php_xdebug_coverage_enable: 1
 php_xdebug_cli_enable: 1
 php_xdebug_remote_enable: 1
 php_xdebug_remote_connect_back: 1
-# Use PHPSTORM for PHPStorm, sublime.xdebug for Sublime Text.
-php_xdebug_idekey: PHPSTORM
 php_xdebug_max_nesting_level: 256
+# IDE key for debug.
+php_xdebug_idekey: PHPSTORM
+# php_xdebug_idekey: sublime.xdebug
 
 # Solr config.
 solr_version: "4.10.4"
