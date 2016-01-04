@@ -13,14 +13,14 @@ if !File.exist?(vagrant_config)
 end
 
 vconfig = YAML::load_file(vagrant_config)
-hostname = vconfig['beetbox_domain']
+hostname = vconfig['beet_domain']
 branches = ['beetbox']
 current_branch = 'beetbox'
 
 Vagrant.configure("2") do |config|
 
   # Multidev config.
-  if vconfig['beetbox_mode'] == 'multidev'
+  if vconfig['beet_mode'] == 'multidev'
 
     # Check for plugins and attempt to install if not.
     %x(vagrant plugin install vagrant-hostsupdater) unless Vagrant.has_plugin?('vagrant-hostsupdater')
@@ -42,7 +42,7 @@ Vagrant.configure("2") do |config|
       node.vm.box = "DrupalMel/beetbox"
 
       # Multidev hostname/network
-      if vconfig['beetbox_mode'] == 'multidev'
+      if vconfig['beet_mode'] == 'multidev'
         node.vm.hostname = "#{branch}.#{hostname}"
         node.vm.network :private_network, :ip => "0.0.0.0", :auto_network => true
       else
@@ -58,7 +58,7 @@ Vagrant.configure("2") do |config|
         type: "nfs",
         id: "drupal"
 
-      if vconfig['beetbox_debug']
+      if vconfig['beet_debug']
         node.vm.synced_folder "./ansible", "/beetbox/ansible",
           type: "nfs",
           id: "ansible"

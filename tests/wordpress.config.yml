@@ -1,12 +1,12 @@
 ---
 # Beetbox settings.
-beetbox_project: "wordpress"
-beetbox_docroot: "/www/{{ beetbox_project }}"
-beetbox_mysql_database: "{{ beetbox_project }}"
+beet_project: "wordpress"
+beet_root: "/www/{{ beet_project }}"
+beet_mysql_database: "{{ beet_project }}"
 
 # Wordpress settings.
+wp_download_core: yes
+wp_install_site: yes
 wp_account_name: admin
 wp_account_pass: admin
 wp_account_email: "admin@beetbox.local"
-wp_download_core: yes
-wp_install_site: yes

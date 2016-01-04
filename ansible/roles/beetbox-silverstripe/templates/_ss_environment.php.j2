@@ -4,9 +4,9 @@ define('SS_ENVIRONMENT_TYPE', '{{ ss_env_type }}');
 
 /* Database connection */
 define('SS_DATABASE_SERVER', 'localhost');
-define('SS_DATABASE_NAME', '{{ beetbox_mysql_database }}');
-define('SS_DATABASE_USERNAME', '{{ beetbox_mysql_user }}');
-define('SS_DATABASE_PASSWORD', '{{ beetbox_mysql_password }}');
+define('SS_DATABASE_NAME', '{{ beet_mysql_database }}');
+define('SS_DATABASE_USERNAME', '{{ beet_mysql_user }}');
+define('SS_DATABASE_PASSWORD', '{{ beet_mysql_password }}');
 
 /* Configure a default username and password to access the CMS on all sites in this environment. */
 define('SS_DEFAULT_ADMIN_USERNAME', '{{ ss_account_name }}');
@@ -14,4 +14,4 @@ define('SS_DEFAULT_ADMIN_PASSWORD', '{{ ss_account_pass }}');
 
 global $_FILE_TO_URL_MAPPING;
 
-$_FILE_TO_URL_MAPPING['{{ beetbox_docroot }}'] = 'http://{{ beetbox_domain }}';
+$_FILE_TO_URL_MAPPING['{{ beet_root }}'] = 'http://{{ beet_domain }}';

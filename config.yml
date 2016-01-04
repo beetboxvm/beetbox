@@ -5,21 +5,57 @@ vagrant_memory: 1024
 vagrant_cpus: 2
 
 # Beetbox settings.
-beetbox_project: drupal
-beetbox_domain: "beetbox.local"
-beetbox_docroot: "/www/docroot/{{ beetbox_project }}"
-beetbox_site_name: "Beetbox"
+beet_project: drupal
+beet_domain: "beetbox.local"
+beet_root: "/www/projects/{{ beet_project }}"
+beet_web: "{{ beet_root }}"
+beet_site_name: "Beetbox"
 
 # Drupal settings.
+drupal_build_makefile: yes
+drupal_makefile_path: /www/drupal8.make.yml
+drupal_install_site: yes
 drupal_account_name: admin
 drupal_account_pass: admin
-drupal_makefile_path: /www/drupal8.make.yml
-drupal_build_makefile: true
-drupal_install_site: true
+
+#
+# Examples.
+#
+
+# Backdrop.
+#beet_project: backdrop
+#backdrop_checkout: yes
+#backdrop_version: "1.2.2"
+#backdrop_install_site: yes
+#backdrop_account_name: admin
+#backdrop_account_pass: admin
+
+# Drupal composer.
+#beet_root: "/www/projects/{{ beet_project }}-composer"
+#beet_web: "{{ beet_root }}/web"
+#drupal_build_makefile: no
+#drupal_build_composer: yes
+#drupal_account_name: admin
+#drupal_account_pass: admin
+
+# Silverstripe.
+#beet_project: silverstripe
+#ss_create_project: yes
+#ss_install_site: yes
+#ss_account_name: admin
+#ss_account_pass: admin
+
+# WordPress.
+#beet_project: wordpress
+#wp_download_core: yes
+#wp_install_site: yes
+#wp_account_name: admin
+#wp_account_pass: admin
+#wp_account_email: "admin@beetbox.local"
 
 # Apache config.
 apache_vhosts:
-  - {servername: "{{ beetbox_domain }}", documentroot: "{{ beetbox_docroot }}"}
+  - {servername: "{{ beet_domain }}", documentroot: "{{ beet_web }}"}
 
 # Beetbox debug.
-beetbox_debug: no
+beet_debug: no

@@ -7,6 +7,5 @@ drupal_install_site: no
 drupal_build_makefile: no
 drupal_makefile_path: /vagrant/drupal.make.yml
 drupal_build_composer: no
-drupal_composer_dir: "/www/docroot/{{ beetbox_project }}"
 drupal_composer_version: "8.x-dev"
 drupal_composer_dependencies: []

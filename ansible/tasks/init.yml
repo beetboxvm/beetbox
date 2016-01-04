@@ -38,19 +38,15 @@
 - name: Purge php packages.
   apt: name={{ item }} state=absent
   when: php_repository.changed
-  with_items:
-    - php5
-    - libapache2-mod-php5
-    - php5-mcrypt
-    - php5-cli
-    - php5-common
-    - php5-curl
-    - php5-dev
-    - php5-fpm
-    - php5-gd
-    - php-pear
-    - php-apc
-    - libpcre3-dev
+  with_items: php_packages
+
+- name: Ensure beet_root directory exists.
+  file:
+    path: "{{ beet_root }}"
+    state: directory
+    mode: 0775
+  become: no
+  when: beet_root is defined
 
 - name: Set SSH home directory.
   lineinfile:
@@ -58,5 +54,6 @@
     state: present
     create: yes
     regexp: "^SSH_HOME="
-    line: "SSH_HOME={{ beetbox_docroot }} && [ -e $SSH_HOME ] && cd $SSH_HOME"
-  when: beetbox_docroot is defined
+    line: "SSH_HOME={{ beet_ssh_home }} && [ -e $SSH_HOME ] && cd $SSH_HOME"
+  become: no
+  when: beet_ssh_home is defined

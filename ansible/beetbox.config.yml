@@ -7,18 +7,20 @@
 #
 
 # Beetbox config.
-beetbox_repo: https://github.com/DrupalMel/beetbox.git
-beetbox_home: /beetbox
-beetbox_role_dir: roles
-beetbox_project: drupal
-beetbox_keep_updated: no
-beetbox_debug: no
-beetbox_domain: "beetbox.local"
-beetbox_docroot: "/www/{{ beetbox_project }}"
-beetbox_site_name: "Beetbox"
-beetbox_mysql_user: beetbox
-beetbox_mysql_password: beetbox
-beetbox_mysql_database: beetbox
+beet_repo: https://github.com/DrupalMel/beetbox.git
+beet_home: /beetbox
+beet_role_dir: roles
+beet_project: drupal
+beet_keep_updated: no
+beet_debug: no
+beet_domain: "beetbox.local"
+beet_root: "/www/{{ beet_project }}"
+beet_web: "{{ beet_root }}"
+beet_ssh_home: "{{ beet_root }}"
+beet_site_name: "Beetbox"
+beet_mysql_user: beetbox
+beet_mysql_password: beetbox
+beet_mysql_database: "beetbox_{{ beet_project }}"
 
 # Ansible Galaxy roles.
 galaxy_roles:
@@ -59,8 +61,8 @@ symlinks: no
 # Apache config.
 apache_daemon: apache2
 apache_vhosts:
-  - servername: "{{ beetbox_domain }}"
-    documentroot: "{{ beebox_docroot }}"
+  - servername: "{{ beet_domain }}"
+    documentroot: "{{ beet_web }}"
 apache_mods_enabled:
   - authn_core.load
   - expires.load
@@ -69,14 +71,14 @@ apache_mods_enabled:
 
 # Databases.
 mysql_databases:
-  - name: "{{ beetbox_mysql_database }}"
+  - name: "{{ beet_mysql_database }}"
     encoding: utf8
     collation: utf8_general_ci
 mysql_users:
-  - name: "{{ beetbox_mysql_user }}"
+  - name: "{{ beet_mysql_user }}"
     host: "%"
-    password: "{{ beetbox_mysql_password }}"
-    priv: "{{ beetbox_mysql_database }}.*:ALL"
+    password: "{{ beet_mysql_password }}"
+    priv: "{{ beet_mysql_database }}.*:ALL"
 
 # Extra utilities form provided roles.
 # Comment out the ones that do not need to be installed.
@@ -143,6 +145,7 @@ nginx_php_fpm: /var/run/php5-fpm.sock
 # PHP config.
 php_version: "5.6"
 php_memory_limit: "192M"
+php_date_timezone: "Australia/Melbourne"
 php_display_errors: "On"
 php_display_startup_errors: "On"
 php_enable_php_fpm: 1
@@ -152,6 +155,19 @@ php_opcache_enabled_in_ini: true
 php_opcache_memory_consumption: "192"
 php_opcache_max_accelerated_files: 4096
 php_max_input_vars: "4000"
+php_packages:
+  - php5
+  - libapache2-mod-php5
+  - php5-mcrypt
+  - php5-cli
+  - php5-common
+  - php5-curl
+  - php5-dev
+  - php5-fpm
+  - php5-gd
+  - php-pear
+  - php-apc
+  - libpcre3-dev
 
 # Composer config.
 composer_path: /usr/bin/composer
@@ -174,7 +190,7 @@ adminer_install_filename: index.php
 # XDebug config.
 php_xdebug_default_enable: 1
 php_xdebug_coverage_enable: 1
-php_xdebug_cli_enable: 1
+php_xdebug_cli_enable: 0
 php_xdebug_remote_enable: 1
 php_xdebug_remote_connect_back: 1
 php_xdebug_max_nesting_level: 256
