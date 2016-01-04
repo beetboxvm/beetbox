@@ -1,7 +1,0 @@
----
-wp_account_name: admin
-wp_account_pass: admin
-wp_account_email: admin@beetbox.local
-wp_download_core: no
-wp_locale: ""
-wp_install_site: no

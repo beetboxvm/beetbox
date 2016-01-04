@@ -1,8 +1,0 @@
----
-ss_create_project: no
-ss_version: ""
-ss_env_type: dev
-ss_account_name: admin
-ss_account_pass: admin
-ss_install_site: no
-ss_sake_path: /framework/sake

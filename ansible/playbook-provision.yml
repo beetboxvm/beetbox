@@ -15,10 +15,10 @@
 
   roles:
     - { role: beetbox-common }
-    - { role: beetbox-backdrop, when: beet_project == 'backdrop' }
+    - { role: thomtoogood.beetbox-backdrop, when: beet_project == 'backdrop' }
     - { role: beetbox-drupal, when: beet_project == 'drupal' }
-    - { role: beetbox-silverstripe, when: beet_project == 'silverstripe' }
-    - { role: beetbox-wordpress, when: beet_project == 'wordpress' }
+    - { role: thomtoogood.beetbox-silverstripe, when: beet_project == 'silverstripe' }
+    - { role: thomtoogood.beetbox-wordpress, when: beet_project == 'wordpress' }
 
   tasks:
     - include: tasks/extras.yml
