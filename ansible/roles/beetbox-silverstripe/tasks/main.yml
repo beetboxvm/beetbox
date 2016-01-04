@@ -1,19 +1,11 @@
 ---
 - name: Check if Silverstripe is already set up.
-  stat: "path={{ beetbox_docroot }}/index.php"
+  stat: "path={{ beet_root }}/index.php"
   register: ss_site
-
-- name: Ensure beetbox_docroot directory exists.
-  file:
-    path: "{{ beetbox_docroot }}"
-    state: directory
-    mode: 0775
-  sudo: no
-  when: not ss_site.stat.exists
 
 - name: Create new Silverstripe project
   command: >
-    {{ composer_path }} create-project silverstripe/installer {{ beetbox_docroot }} {{ ss_version }}
+    {{ composer_path }} create-project silverstripe/installer {{ beet_root }} {{ ss_version }}
   notify: restart webserver
   when: ss_create_project and not ss_site.stat.exists
   sudo: no
@@ -21,17 +13,17 @@
 - name: Copy the Silverstripe config file.
   template:
     src: _ss_environment.php.j2
-    dest: "{{ beetbox_docroot }}/_ss_environment.php"
+    dest: "{{ beet_root }}/_ss_environment.php"
   notify: restart webserver
   when: ss_install_site
 
 - name: Check if Silverstripe sake is available.
-  stat: "path={{ beetbox_docroot }}{{ ss_sake_path }}"
+  stat: "path={{ beet_root }}{{ ss_sake_path }}"
   register: ss_sake
 
 - name: Copy sake to a globally-accessible location.
   copy:
-    src: "{{ beetbox_docroot }}{{ ss_sake_path }}"
+    src: "{{ beet_root }}{{ ss_sake_path }}"
     dest: /usr/bin/sake
     mode: 0755
   when: ss_sake.stat.exists

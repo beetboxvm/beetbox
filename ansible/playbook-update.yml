@@ -19,30 +19,30 @@
 
     - name: Check for updates.
       git:
-        repo: "{{ beetbox_repo }}"
-        dest: "{{ beetbox_home }}"
+        repo: "{{ beet_repo }}"
+        dest: "{{ beet_home }}"
         accept_hostkey: yes
         update: yes
         force: yes
-      when: beetbox_keep_updated and (not beetbox_debug)
+      when: beet_keep_updated and (not beet_debug)
 
     - name: Set ownership of beetbox directory.
       file:
-        path: "{{ beetbox_home }}"
+        path: "{{ beet_home }}"
         owner: vagrant
         group: vagrant
         recurse: yes
         state: directory
-      when: (not beetbox_debug)
+      when: (not beet_debug)
 
     - name: Install Galaxy roles
       command: >
-        ansible-galaxy install {{ item.name }} -p {{ beetbox_role_dir }}
-        creates={{ beetbox_role_dir }}/{{ item.name }}/meta/main.yml
+        ansible-galaxy install {{ item.name }} -p {{ beet_role_dir }}
+        creates={{ beet_role_dir }}/{{ item.name }}/meta/main.yml
       with_items: galaxy_roles
 
     - name: Update Galaxy roles
       command: >
-        ansible-galaxy install {{ item.name }} -p {{ beetbox_role_dir }} --force --ignore-errors
+        ansible-galaxy install {{ item.name }} -p {{ beet_role_dir }} --force --ignore-errors
       when: item.force_update is defined
       with_items: galaxy_roles

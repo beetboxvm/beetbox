@@ -1,8 +1,8 @@
 ---
 # Beetbox settings.
-beetbox_project: "backdrop"
-beetbox_docroot: "/www/{{ beetbox_project }}"
-beetbox_mysql_database: "{{ beetbox_project }}"
+beet_project: backdrop
+beet_root: "/www/{{ beet_project }}"
+beet_mysql_database: "{{ beet_project }}"
 
 # Backdrop settings.
 backdrop_checkout: yes

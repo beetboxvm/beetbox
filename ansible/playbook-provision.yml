@@ -11,14 +11,14 @@
     - local.config.yml
 
   pre_tasks:
-    - include: tasks/init-debian.yml
+    - include: tasks/init.yml
 
   roles:
     - { role: beetbox-common }
-    - { role: beetbox-backdrop, when: beetbox_project == 'backdrop' }
-    - { role: beetbox-drupal, when: beetbox_project == 'drupal' }
-    - { role: beetbox-silverstripe, when: beetbox_project == 'silverstripe' }
-    - { role: beetbox-wordpress, when: beetbox_project == 'wordpress' }
+    - { role: beetbox-backdrop, when: beet_project == 'backdrop' }
+    - { role: beetbox-drupal, when: beet_project == 'drupal' }
+    - { role: beetbox-silverstripe, when: beet_project == 'silverstripe' }
+    - { role: beetbox-wordpress, when: beet_project == 'wordpress' }
 
   tasks:
     - include: tasks/extras.yml

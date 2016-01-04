@@ -1,15 +1,6 @@
 ---
-- name: Ensure beetbox_docroot directory exists.
-  file:
-    path: "{{ beetbox_docroot }}"
-    state: directory
-    mode: 0775
-  sudo: no
-  when: drupal_site.stat.exists == false
-
 - name: Generate Drupal site with drush makefile.
   command: >
     {{ drush_path }} make -y {{ drupal_makefile_path }} --no-gitinfofile
-    chdir={{ beetbox_docroot }}
-  when: drupal_site.stat.exists == false
-  sudo: no
+    chdir={{ beet_root }}
+  when: not drupal_site.stat.exists

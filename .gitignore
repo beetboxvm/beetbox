@@ -2,7 +2,7 @@
 
 .bundle/
 .vagrant/
-docroot/
+projects/
 
 # Prevent Ansible related files.
 
