@@ -6,7 +6,6 @@ vagrant_cpus: 2
 
 # Beetbox settings.
 beet_project: drupal
-beet_keep_updated: yes
 beet_domain: "beetbox.local"
 beet_root: "/www/projects/{{ beet_project }}"
 beet_web: "{{ beet_root }}"
@@ -37,6 +36,16 @@ drupal_account_pass: admin
 #beet_mysql_database: "my_app"
 #beet_mysql_user: "my_app"
 #beet_mysql_password: "secret"
+
+# Concrete5.
+#beet_project: concrete5
+#beet_web: "{{ beet_root }}/web"
+#c5_checkout: yes
+#c5_version: "5.7.5.3"
+#c5_install: yes
+#c5_admin_mail: "admin@example.com"
+#c5_admin_password: password
+#php_short_open_tag: yes
 
 # Drupal composer.
 #beet_root: "/www/projects/{{ beet_project }}-composer"
