@@ -6,7 +6,6 @@ vagrant_cpus: 2
 
 # Beetbox settings.
 beet_project: drupal
-beet_keep_updated: yes
 beet_domain: "beetbox.local"
 beet_root: "/www/projects/{{ beet_project }}"
 beet_web: "{{ beet_root }}"
