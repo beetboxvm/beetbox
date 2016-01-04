@@ -1,9 +1,0 @@
----
-- name: Checkout backdrop project.
-  git:
-    repo: "{{ backdrop_repo }}"
-    dest: "{{ beet_root }}"
-    version: "{{ backdrop_version }}"
-    depth: "{{ backdrop_checkout_depth }}"
-    accept_hostkey: yes
-  when: not backdrop_site.stat.exists

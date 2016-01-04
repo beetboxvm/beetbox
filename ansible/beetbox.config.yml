@@ -54,6 +54,9 @@ galaxy_roles:
   - { name: geerlingguy.solr }
   - { name: geerlingguy.varnish }
   - { name: heskethm.wp-cli }
+  - { name: thomtoogood.beetbox-backdrop }
+  - { name: thomtoogood.beetbox-silverstripe }
+  - { name: thomtoogood.beetbox-wordpress }
 
 # Symlinks.
 symlinks: no
