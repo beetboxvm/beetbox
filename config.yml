@@ -6,6 +6,7 @@ vagrant_cpus: 2
 
 # Beetbox settings.
 beet_project: drupal
+beet_keep_updated: yes
 beet_domain: "beetbox.local"
 beet_root: "/www/projects/{{ beet_project }}"
 beet_web: "{{ beet_root }}"
@@ -30,6 +31,13 @@ drupal_account_pass: admin
 #backdrop_account_name: admin
 #backdrop_account_pass: admin
 
+# CakePHP.
+#beet_project: cakephp
+#cake_create_project: yes
+#beet_mysql_database: "my_app"
+#beet_mysql_user: "my_app"
+#beet_mysql_password: "secret"
+
 # Drupal composer.
 #beet_root: "/www/projects/{{ beet_project }}-composer"
 #beet_web: "{{ beet_root }}/web"
@@ -38,12 +46,33 @@ drupal_account_pass: admin
 #drupal_account_name: admin
 #drupal_account_pass: admin
 
+# Kohana.
+#beet_project: kohana
+#kohana_checkout: yes
+#kohana_version: "v3.3.4"
+#kohana_configure: yes
+#kohana_remove_install: yes
+
+# Modx.
+#beet_project: modx
+#modx_checkout: yes
+#modx_version: "2.x"
+#modx_install_site: yes
+#modx_account_name: admin
+#modx_account_pass: admin
+
 # Silverstripe.
 #beet_project: silverstripe
 #ss_create_project: yes
 #ss_install_site: yes
 #ss_account_name: admin
 #ss_account_pass: admin
+
+# Slim.
+#beet_project: slim
+#slim_create_new: yes
+#slim_add_example: yes
+#slim_add_htaccess: yes
 
 # WordPress.
 #beet_project: wordpress

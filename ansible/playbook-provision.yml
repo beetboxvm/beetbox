@@ -15,9 +15,13 @@
 
   roles:
     - { role: beetbox-common }
-    - { role: thomtoogood.beetbox-backdrop, when: beet_project == 'backdrop' }
     - { role: beetbox-drupal, when: beet_project == 'drupal' }
+    - { role: thomtoogood.beetbox-backdrop, when: beet_project == 'backdrop' }
+    - { role: thomtoogood.beetbox-cakephp, when: beet_project == 'cakephp' }
+    - { role: thomtoogood.beetbox-kohana, when: beet_project == 'kohana' }
+    - { role: thomtoogood.beetbox-modx, when: beet_project == 'modx' }
     - { role: thomtoogood.beetbox-silverstripe, when: beet_project == 'silverstripe' }
+    - { role: thomtoogood.beetbox-slim, when: beet_project == 'slim' }
     - { role: thomtoogood.beetbox-wordpress, when: beet_project == 'wordpress' }
 
   tasks:
