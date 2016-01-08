@@ -50,7 +50,7 @@
 
 - name: Set SSH home directory.
   lineinfile:
-    dest: /home/vagrant/.bashrc
+    dest: "/home/vagrant/.bashrc"
     state: present
     create: yes
     regexp: "^SSH_HOME="
