@@ -10,5 +10,4 @@ if [ ! -d "$BEETBOX_HOME" ]; then
   git clone https://github.com/drupalmel/beetbox.git $BEETBOX_HOME
 fi
 
-sudo mkdir -p /www
 sudo $BEETBOX_HOME/ansible/build.sh

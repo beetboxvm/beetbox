@@ -6,10 +6,10 @@ machine:
     BEETBOX_HOME: /home/ubuntu/beetbox
 dependencies:
   pre:
-    - chmod +x ~/beetbox/tests/dependencies.sh
-    - ~/beetbox/tests/dependencies.sh
+    - chmod +x $BEETBOX_HOME/tests/dependencies.sh
+    - $BEETBOX_HOME/tests/dependencies.sh
 test:
   override:
-    - sudo cp ~/beetbox/drupal8.make.yml /www/drupal8.make.yml
-    - sudo cp ~/beetbox/config.yml ~/beetbox/ansible/vagrant.config.yml
-    - sudo ~/beetbox/ansible/build.sh
+    - sudo cp -rf $BEETBOX_HOME/* /www
+    - sudo cp $BEETBOX_HOME/config.yml $BEETBOX_HOME/ansible/vagrant.config.yml
+    - sudo $BEETBOX_HOME/ansible/build.sh
