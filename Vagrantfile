@@ -19,20 +19,23 @@ current_branch = 'beetbox'
 
 Vagrant.configure("2") do |config|
 
-  # Multidev config.
-  if vconfig['beet_mode'] == 'multidev'
+  # Check plugins are installed
+  if vconfig['beet_mode'] == 'multidev' || vconfig['vagrant_ip'] == "0.0.0.0"
 
     # Check for plugins and attempt to install if not.
     %x(vagrant plugin install vagrant-hostsupdater) unless Vagrant.has_plugin?('vagrant-hostsupdater')
     %x(vagrant plugin install vagrant-auto_network) unless Vagrant.has_plugin?('vagrant-auto_network')
+    raise 'Your config requires hostsupdater plugin.' unless Vagrant.has_plugin?('vagrant-hostsupdater')
+    raise 'Your config requires auto_network plugin.' unless Vagrant.has_plugin?('vagrant-auto_network')
 
-    # Check plugins are installed
-    raise 'Multidev mode requires hostsupdater plugin.' unless Vagrant.has_plugin?('vagrant-hostsupdater')
-    raise 'Multidev mode requires auto_network plugin.' unless Vagrant.has_plugin?('vagrant-auto_network')
-
-    branches = %x(git branch | tr -d '* ').split(/\n/).reject(&:empty?)
-    branches.unshift("beetbox")
-    current_branch = %x(git branch | grep '*' | tr -d '* \n')
+    # Multidev config.
+    if vconfig['beet_mode'] == 'multidev'
+      branches = %x(git branch | tr -d '* ').split(/\n/).reject(&:empty?)
+      branches.unshift("beetbox")
+      current_branch = %x(git branch | grep '*' | tr -d '* \n')
+      vconfig['vagrant_ip'] = "0.0.0.0"
+      branch_prefix = true
+    end
   end
 
   branches.each do |branch|
@@ -40,18 +43,16 @@ Vagrant.configure("2") do |config|
     config.vm.define branch, autostart: active_node, primary: active_node do |node|
 
       node.vm.box = "DrupalMel/beetbox"
-
-      # Multidev hostname/network
-      if vconfig['beet_mode'] == 'multidev'
-        node.vm.hostname = "#{branch}.#{hostname}"
-        node.vm.network :private_network, :ip => "0.0.0.0", :auto_network => true
-      else
-        node.vm.hostname = hostname
-        node.vm.network :private_network, ip: vconfig['vagrant_ip']
-      end
-
+      node.vm.hostname = (branch_prefix) ? "#{branch}.#{hostname}" : hostname
       node.ssh.insert_key = false
       node.ssh.forward_agent = true
+
+      # Network config.
+      if vconfig['vagrant_ip'] == "0.0.0.0"
+        node.vm.network :private_network, :ip => "0.0.0.0", :auto_network => true
+      else
+        node.vm.network :private_network, ip: vconfig['vagrant_ip']
+      end
 
       # Synced folders.
       node.vm.synced_folder ".", "/www",

@@ -1,9 +1,12 @@
 ---
 - name: Generate Drupal site with composer.
   command: >
-    {{ composer_path }} create-project drupal-composer/drupal-project:{{ drupal_composer_version }} {{ beet_root }}
+    {{ composer_path }} create-project
+    drupal-composer/drupal-project:{{ drupal_composer_version }} {{ beet_root }}
+    --prefer-dist
     --stability dev
     --no-interaction
+    --profile
   notify: restart webserver
   when: not drupal_site.stat.exists
 
