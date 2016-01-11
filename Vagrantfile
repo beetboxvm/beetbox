@@ -13,6 +13,13 @@ if !File.exist?(vagrant_config)
 end
 
 vconfig = YAML::load_file(vagrant_config)
+# Replace variables in YAML config.
+vconfig.each do |key, value|
+  while vconfig[key].is_a?(String) && vconfig[key].match(/{{ .* }}/)
+    vconfig[key] = vconfig[key].gsub(/{{ (.*) }}/) { |match| match = vconfig[$1] }
+  end
+end
+
 hostname = vconfig['beet_domain']
 branches = ['beetbox']
 current_branch = 'beetbox'
@@ -133,7 +140,7 @@ ALIAS
     da.uri = hostname
     da.ip = vconfig['vagrant_ip']
     da.key = "#{Dir.home}/.vagrant.d/insecure_private_key"
-    da.root = vconfig['beet_root'].gsub(/{{ (.*) }}/) { |match| match = vconfig[$1] }
+    da.root = vconfig['beet_web']
     alias_file << ERB.new(template).result(da.template_binding)
     alias_file.close
   end
