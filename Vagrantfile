@@ -6,7 +6,8 @@ require 'yaml'
 Vagrant.require_version '>= 1.8.0'
 
 dir = File.dirname(File.expand_path(__FILE__))
-vagrant_config = "#{dir}/config.yml"
+config_dir = '.beetbox/'
+vagrant_config = "#{dir}/#{config_dir}config.yml"
 
 if !File.exist?(vagrant_config)
   raise 'Vagrant configuration file config.yml not found!'
