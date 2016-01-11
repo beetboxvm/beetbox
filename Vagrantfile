@@ -8,12 +8,20 @@ Vagrant.require_version '>= 1.8.0'
 dir = File.dirname(File.expand_path(__FILE__))
 config_dir = '.beetbox/'
 vagrant_config = "#{dir}/#{config_dir}config.yml"
+local_config = "#{dir}/#{config_dir}local.config.yml"
 
 if !File.exist?(vagrant_config)
   raise 'Vagrant configuration file config.yml not found!'
 end
 
 vconfig = YAML::load_file(vagrant_config)
+
+# Merge local.config.yml
+if File.exist?(local_config)
+  lconfig = YAML::load_file(local_config)
+  vconfig = vconfig.merge lconfig
+end
+
 # Replace variables in YAML config.
 vconfig.each do |key, value|
   while vconfig[key].is_a?(String) && vconfig[key].match(/{{ .* }}/)
@@ -141,7 +149,7 @@ ALIAS
     da.uri = hostname
     da.ip = vconfig['vagrant_ip']
     da.key = "#{Dir.home}/.vagrant.d/insecure_private_key"
-    da.root = vconfig['beet_web']
+    da.root = "/drupal/docroot"
     alias_file << ERB.new(template).result(da.template_binding)
     alias_file.close
   end
