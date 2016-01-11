@@ -14,7 +14,14 @@ if !File.exist?(vagrant_config)
   raise 'Vagrant configuration file config.yml not found!'
 end
 
-vconfig = YAML::load_file(vagrant_config)
+# Default vagrant config.
+vconfig = {
+  'vagrant_ip' => '192.168.88.88',
+  'vagrant_memory' => 1024,
+  'vagrant_cpus' => 2
+}
+
+vconfig = vconfig.merge YAML::load_file(vagrant_config)
 
 # Merge local.config.yml
 if File.exist?(local_config)
