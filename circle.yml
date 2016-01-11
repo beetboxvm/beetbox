@@ -11,5 +11,5 @@ dependencies:
 test:
   override:
     - sudo cp -rf $BEETBOX_HOME/* /www
-    - sudo cp $BEETBOX_HOME/config.yml $BEETBOX_HOME/ansible/vagrant.config.yml
+    - sudo cp $BEETBOX_HOME/.beetbox/config.yml $BEETBOX_HOME/ansible/vagrant.config.yml
     - sudo $BEETBOX_HOME/ansible/build.sh
