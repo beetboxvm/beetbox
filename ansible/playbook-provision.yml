@@ -13,6 +13,10 @@
   pre_tasks:
     - include: tasks/init.yml
 
+    # Create known_hosts.
+    - include: tasks/known-hosts.yml
+      when: known_hosts
+
   roles:
     - { role: beetbox-common }
     - { role: beetbox-drupal, when: beet_project == 'drupal' }
