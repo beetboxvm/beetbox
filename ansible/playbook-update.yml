@@ -21,6 +21,7 @@
       git:
         repo: "{{ beet_repo }}"
         dest: "{{ beet_home }}"
+        version: "{{ beet_version }}"
         accept_hostkey: yes
         update: yes
         force: yes
