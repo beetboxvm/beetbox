@@ -67,6 +67,9 @@ galaxy_roles:
 # Symlinks.
 symlinks: no
 
+# Known hosts.
+known_hosts: no
+
 # Apache config.
 apache_daemon: apache2
 apache_vhosts:
