@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo pip install ansible
+sudo pip install ansible==1.9.4
 sudo apt-get update
 sudo apt-get purge apache2 php5-cli mysql-common mysql-server
 sudo rm -rf /etc/apache2/mods-enabled/*
