@@ -42,23 +42,22 @@ current_branch = 'beetbox'
 
 Vagrant.configure("2") do |config|
 
-  # Check plugins are installed
-  if vconfig['beet_mode'] == 'multidev' || vconfig['vagrant_ip'] == "0.0.0.0"
+  # Multidev config.
+  if vconfig['beet_mode'] == 'multidev'
+    branches = %x(git branch | tr -d '* ').split(/\n/).reject(&:empty?)
+    branches.unshift("beetbox")
+    current_branch = %x(git branch | grep '*' | tr -d '* \n')
+    vconfig['vagrant_ip'] = "0.0.0.0"
+    branch_prefix = true
+  end
 
+  # Check for plugins and attempt to install if not (Windows only).
+  if vconfig['vagrant_ip'] == "0.0.0.0" && Vagrant::Util::Platform.windows?
     # Check for plugins and attempt to install if not.
     %x(vagrant plugin install vagrant-hostsupdater) unless Vagrant.has_plugin?('vagrant-hostsupdater')
     %x(vagrant plugin install vagrant-auto_network) unless Vagrant.has_plugin?('vagrant-auto_network')
     raise 'Your config requires hostsupdater plugin.' unless Vagrant.has_plugin?('vagrant-hostsupdater')
     raise 'Your config requires auto_network plugin.' unless Vagrant.has_plugin?('vagrant-auto_network')
-
-    # Multidev config.
-    if vconfig['beet_mode'] == 'multidev'
-      branches = %x(git branch | tr -d '* ').split(/\n/).reject(&:empty?)
-      branches.unshift("beetbox")
-      current_branch = %x(git branch | grep '*' | tr -d '* \n')
-      vconfig['vagrant_ip'] = "0.0.0.0"
-      branch_prefix = true
-    end
   end
 
   branches.each do |branch|
@@ -71,8 +70,10 @@ Vagrant.configure("2") do |config|
       node.ssh.forward_agent = true
 
       # Network config.
-      if vconfig['vagrant_ip'] == "0.0.0.0"
+      if vconfig['vagrant_ip'] == "0.0.0.0" && Vagrant::Util::Platform.windows?
         node.vm.network :private_network, :ip => "0.0.0.0", :auto_network => true
+      elsif vconfig['vagrant_ip'] == "0.0.0.0"
+        node.vm.network :private_network, :type => "dhcp"
       else
         node.vm.network :private_network, ip: vconfig['vagrant_ip']
       end
@@ -132,7 +133,7 @@ if File.directory?("#{Dir.home}/.drush")
   else
     require 'erb'
     class DrushAlias
-      attr_accessor :hostname, :uri, :ip, :key, :root
+      attr_accessor :hostname, :uri, :key, :root
       def template_binding
         binding
       end
@@ -143,7 +144,7 @@ if File.directory?("#{Dir.home}/.drush")
 
 $aliases['<%= @hostname %>'] = array(
    'uri' => '<%= @uri %>',
-   'remote-host' => '<%= @ip %>',
+   'remote-host' => '<%= @uri %>',
    'remote-user' => 'vagrant',
    'ssh-options' => '-i <%= @key %> -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no',
    'root' => '<%= @root %>',
@@ -154,7 +155,6 @@ ALIAS
     da = DrushAlias.new
     da.hostname = hostname
     da.uri = hostname
-    da.ip = vconfig['vagrant_ip']
     da.key = "#{Dir.home}/.vagrant.d/insecure_private_key"
     da.root = vconfig['beet_web']
     alias_file << ERB.new(template).result(da.template_binding)
