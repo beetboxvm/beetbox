@@ -54,6 +54,7 @@ galaxy_roles:
   - { name: geerlingguy.solr }
   - { name: geerlingguy.varnish }
   - { name: heskethm.wp-cli }
+  - { name: pwelch.avahi }
   - { name: thomtoogood.beetbox-backdrop }
   - { name: thomtoogood.beetbox-cakephp }
   - { name: thomtoogood.beetbox-concrete5 }
@@ -123,6 +124,8 @@ firewall_allowed_tcp_ports:
   - "8080"
   - "8443"
   - "8983"
+firewall_allowed_udp_ports:
+  - "5353"
 firewall_log_dropped_packets: false
 
 # git config.
