@@ -8,6 +8,7 @@
 
 # Beetbox config.
 beet_repo: https://github.com/DrupalMel/beetbox.git
+beet_version: "HEAD"
 beet_home: /beetbox
 beet_role_dir: roles
 beet_project: drupal
