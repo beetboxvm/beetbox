@@ -156,7 +156,7 @@ ALIAS
     da.uri = hostname
     da.ip = vconfig['vagrant_ip']
     da.key = "#{Dir.home}/.vagrant.d/insecure_private_key"
-    da.root = "/drupal/docroot"
+    da.root = vconfig['beet_web']
     alias_file << ERB.new(template).result(da.template_binding)
     alias_file.close
   end
