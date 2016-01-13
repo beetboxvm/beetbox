@@ -1,6 +1,25 @@
 ---
 - name: Generate Drupal site with drush makefile.
   command: >
-    {{ drush_path }} make -y {{ drupal_makefile_path }} --no-gitinfofile
+    {{ drush_path }} make -y {{ drupal_makefile_path }} --no-gitinfofile {% if drupal_distro %}--no-recursion{% endif %}
     chdir={{ beet_root }}
   when: not drupal_site.stat.exists
+
+- name: Remove built distribution profile directory.
+  file:
+    path: "{{ beet_root }}/profiles/{{ drupal_distro }}"
+    state: absent
+  when: not drupal_site.stat.exists and drupal_distro
+
+- name: Symlink distribution profile directory to root directory.
+  file:
+    src: "../.."
+    dest: "{{ beet_root }}/profiles/{{ drupal_distro }}"
+    state: link
+  when: not drupal_site.stat.exists and drupal_distro
+
+- name: Build distribution profile makefile.
+  command: >
+    {{ drush_path }} make -y {{ drupal_distro_makefile }} --no-gitinfofile --no-core --contrib-destination=./
+    chdir={{ beet_root }}/profiles/{{ drupal_distro }}
+  when: not drupal_site.stat.exists and drupal_distro
