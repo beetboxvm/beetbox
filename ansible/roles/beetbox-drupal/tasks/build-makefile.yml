@@ -6,8 +6,9 @@
   when: not drupal_site.stat.exists
 
 - name: Remove built distribution profile directory.
-  command: >
-    rm -rf {{ beet_root }}/profiles/{{ drupal_distro }}
+  file:
+    path: "{{ beet_root }}/profiles/{{ drupal_distro }}"
+    state: absent
   when: not drupal_site.stat.exists and drupal_distro
 
 - name: Symlink distribution profile directory to root directory.
