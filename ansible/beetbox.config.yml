@@ -196,7 +196,7 @@ composer_home_group: vagrant
 
 # Drush config.
 drush_version: "8.0.2"
-drush_keep_updated: yes
+drush_keep_updated: "{{ beet_keep_updated }}"
 drush_composer_cli_options: "--prefer-dist --no-interaction"
 
 # MySQL config.
