@@ -195,7 +195,8 @@ composer_home_group: vagrant
 #   - { name: phpunit/phpunit, release: '@stable' }
 
 # Drush config.
-drush_version: "8.0.0-rc4"
+drush_version: "8.0.2"
+drush_keep_updated: yes
 drush_composer_cli_options: "--prefer-dist --no-interaction"
 
 # MySQL config.
