@@ -16,7 +16,7 @@ end
 
 # Default vagrant config.
 vconfig = {
-  'vagrant_ip' => '192.168.88.88',
+  'vagrant_ip' => '0.0.0.0',
   'vagrant_memory' => 1024,
   'vagrant_cpus' => 2
 }
