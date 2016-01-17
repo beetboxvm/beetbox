@@ -145,6 +145,7 @@ nodejs_version: "0.12"
 nodejs_npm_global_packages: []
 
 # Ruby config.
+ruby_install_gems_user: "vagrant"
 ruby_install_gems: []
 
 # Apache config.
