@@ -28,6 +28,7 @@ galaxy_roles:
   - { name: arknoll.selenium }
   - { name: geerlingguy.adminer }
   - { name: geerlingguy.apache }
+  - { name: geerlingguy.apache-php-fpm }
   - { name: geerlingguy.composer }
   - { name: geerlingguy.daemonize }
   - { name: geerlingguy.drupal-console }
