@@ -3,6 +3,7 @@ dependencies:
   - { role: geerlingguy.firewall}
   - { role: geerlingguy.git }
   - { role: geerlingguy.apache }
+  - { role: geerlingguy.apache-php-fpm }
   - { role: geerlingguy.nginx }
   - { role: geerlingguy.mysql }
   - { role: geerlingguy.php }
