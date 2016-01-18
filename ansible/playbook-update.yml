@@ -35,15 +35,3 @@
         recurse: yes
         state: directory
       when: (not beet_debug)
-
-    - name: Install Galaxy roles
-      command: >
-        ansible-galaxy install {{ item.name }} -p {{ beet_role_dir }}
-        creates={{ beet_role_dir }}/{{ item.name }}/meta/main.yml
-      with_items: galaxy_roles
-
-    - name: Update Galaxy roles
-      command: >
-        ansible-galaxy install {{ item.name }} -p {{ beet_role_dir }} --force --ignore-errors
-      when: item.force_update is defined
-      with_items: galaxy_roles
