@@ -16,6 +16,9 @@ end
 
 # Default vagrant config.
 vconfig = {
+  'beet_home' => '/beetbox',
+  'beet_root' => '/var/beetbox',
+  'beet_web' => '/var/beetbox/docroot',
   'vagrant_ip' => '0.0.0.0',
   'vagrant_memory' => 1024,
   'vagrant_cpus' => 2
@@ -79,12 +82,12 @@ Vagrant.configure("2") do |config|
       end
 
       # Synced folders.
-      node.vm.synced_folder ".", "/www",
+      node.vm.synced_folder ".", vconfig['beet_root'],
         type: "nfs",
         id: "drupal"
 
       if vconfig['beet_debug']
-        node.vm.synced_folder "./ansible", "/beetbox/ansible",
+        node.vm.synced_folder "./ansible", "#{vconfig['beet_home']}/ansible",
           type: "nfs",
           id: "ansible"
         debug_mode = "BEETBOX_DEBUG=true"
