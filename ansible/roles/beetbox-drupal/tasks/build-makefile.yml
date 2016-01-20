@@ -5,18 +5,23 @@
     chdir={{ beet_root }}
   when: not drupal_site.stat.exists
 
-- name: Remove built distribution profile directory.
+- name: Remove built distribution files/directories.
   file:
-    path: "{{ beet_root }}/profiles/{{ drupal_distro }}"
+    path: "{{ beet_root }}/profiles/{{ drupal_distro }}/{{ item }}"
     state: absent
   when: not drupal_site.stat.exists and drupal_distro
+  with_items: "{{ lookup('pipe', 'ls -A ' + beet_root + '/profiles/' + drupal_distro).split() }}"
 
-- name: Symlink distribution profile directory to root directory.
+# @TODO - This makes an assumption of the root Vagrant share which is not yet
+#         configurable. Make configurable and use variable.
+- name: Symlink distribution files/directories.
   file:
-    src: "../.."
-    dest: "{{ beet_root }}/profiles/{{ drupal_distro }}"
+    src: "../../../{{ item }}"
+    dest: "{{ beet_root }}/profiles/{{ drupal_distro }}/{{ item }}"
     state: link
-  when: not drupal_site.stat.exists and drupal_distro
+    force: yes
+  with_items: "{{ lookup('pipe', 'ls -A /www').split() }}"
+  when: not drupal_site.stat.exists and drupal_distro and item != 'docroot'
 
 - name: Build distribution profile makefile.
   command: >
