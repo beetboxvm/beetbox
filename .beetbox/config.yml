@@ -7,13 +7,13 @@ vagrant_cpus: 2
 # Beetbox settings.
 beet_project: drupal
 beet_domain: "beetbox.local"
-beet_root: "/www/projects/{{ beet_project }}"
-beet_web: "{{ beet_root }}"
+beet_root: "/var/beetbox"
+beet_web: "{{ beet_root }}/projects/{{ beet_project }}"
 beet_site_name: "Beetbox"
 
 # Drupal settings.
 drupal_build_makefile: yes
-drupal_makefile_path: /www/drupal8.make.yml
+drupal_makefile_path: "{{ beet_root }}/drupal8.make.yml"
 drupal_install_site: yes
 drupal_account_name: admin
 drupal_account_pass: admin
