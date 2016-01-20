@@ -9,8 +9,8 @@
   file:
     path: "{{ beet_root }}/profiles/{{ drupal_distro }}/{{ item }}"
     state: absent
+  with_items: "{% if drupal_distro %}{{ lookup('pipe', 'ls -A ' + beet_root + '/profiles/' + drupal_distro).split() }}{% endif %}"
   when: not drupal_site.stat.exists and drupal_distro
-  with_items: "{{ lookup('pipe', 'ls -A ' + beet_root + '/profiles/' + drupal_distro).split() }}"
 
 # @TODO - This makes an assumption of the root Vagrant share which is not yet
 #         configurable. Make configurable and use variable.
