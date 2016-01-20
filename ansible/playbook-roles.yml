@@ -1,0 +1,25 @@
+---
+- hosts: localhost
+  connection: local
+  user: root
+  become: yes
+
+  vars_files:
+    - beetbox.config.yml
+    - project.config.yml
+    - vagrant.config.yml
+    - local.config.yml
+
+  tasks:
+
+    - name: Install Galaxy roles
+      command: >
+        ansible-galaxy install {{ item.name }} -p {{ beet_role_dir }}
+        creates={{ beet_role_dir }}/{{ item.name }}/meta/main.yml
+      with_items: galaxy_roles
+
+    - name: Update Galaxy roles
+      command: >
+        ansible-galaxy install {{ item.name }} -p {{ beet_role_dir }} --force --ignore-errors
+      when: item.force_update is defined
+      with_items: galaxy_roles

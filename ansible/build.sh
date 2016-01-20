@@ -19,5 +19,8 @@ export PYTHONUNBUFFERED=1
 # Check for updates.
 ansible-playbook $DEBUG "$currentDir/playbook-update.yml" -i 'localhost,'
 
+# Install ansible galaxy roles.
+ansible-playbook $DEBUG "$currentDir/playbook-roles.yml" -i 'localhost,'
+
 # Provision VM.
 ansible-playbook $DEBUG "$currentDir/playbook-provision.yml" -i 'localhost,'
