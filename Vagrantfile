@@ -18,7 +18,9 @@ end
 vconfig = {
   'vagrant_ip' => '0.0.0.0',
   'vagrant_memory' => 1024,
-  'vagrant_cpus' => 2
+  'vagrant_cpus' => 2,
+  'beet_home' => '/beetbox',
+  'beet_base' => '/var/beetbox'
 }
 
 vconfig = vconfig.merge YAML::load_file(vagrant_config)
@@ -32,7 +34,7 @@ end
 # Replace variables in YAML config.
 vconfig.each do |key, value|
   while vconfig[key].is_a?(String) && vconfig[key].match(/{{ .* }}/)
-    vconfig[key] = vconfig[key].gsub(/{{ (.*) }}/) { |match| match = vconfig[$1] }
+    vconfig[key] = vconfig[key].gsub(/{{ (.*?) }}/) { |match| match = vconfig[$1] }
   end
 end
 
@@ -79,12 +81,12 @@ Vagrant.configure("2") do |config|
       end
 
       # Synced folders.
-      node.vm.synced_folder ".", "/www",
+      node.vm.synced_folder ".", vconfig['beet_base'],
         type: "nfs",
         id: "drupal"
 
       if vconfig['beet_debug']
-        node.vm.synced_folder "./ansible", "/beetbox/ansible",
+        node.vm.synced_folder "./ansible", "#{vconfig['beet_home']}/ansible",
           type: "nfs",
           id: "ansible"
         debug_mode = "BEETBOX_DEBUG=true"
@@ -93,7 +95,7 @@ Vagrant.configure("2") do |config|
       # Upload vagrant.config.yml
       node.vm.provision "vagrant_config", type: "file" do |s|
        s.source = vagrant_config
-       s.destination = "/beetbox/ansible/vagrant.config.yml"
+       s.destination = "#{vconfig['beet_home']}/ansible/vagrant.config.yml"
       end
 
       # Upload local.config.yml
@@ -101,14 +103,14 @@ Vagrant.configure("2") do |config|
       if File.exist?(local_config)
         node.vm.provision "local_config", type: "file" do |s|
          s.source = local_config
-         s.destination = "/beetbox/ansible/local.config.yml"
+         s.destination = "#{vconfig['beet_home']}/ansible/local.config.yml"
         end
       end
 
       # Provision box
       node.vm.provision "ansible", type: "shell" do |s|
         s.privileged = true
-        s.inline = "chmod +x /beetbox/ansible/build.sh && #{debug_mode} /beetbox/ansible/build.sh"
+        s.inline = "chmod +x #{vconfig['beet_home']}/ansible/build.sh && #{debug_mode} #{vconfig['beet_home']}/ansible/build.sh"
       end
 
       # VirtualBox.
@@ -156,7 +158,7 @@ ALIAS
     da.hostname = hostname
     da.uri = hostname
     da.key = "#{Dir.home}/.vagrant.d/insecure_private_key"
-    da.root = vconfig['beet_web']
+    da.root = vconfig['beet_web'] ||= vconfig['beet_root'] ||= vconfig['beet_base']
     alias_file << ERB.new(template).result(da.template_binding)
     alias_file.close
   end

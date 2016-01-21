@@ -3,13 +3,14 @@ machine:
   python:
     version: 2.7.6
   environment:
-    BEETBOX_HOME: /home/ubuntu/beetbox
+    BEET_HOME: /home/ubuntu/beetbox
+    BEET_BASE: /var/beetbox
 dependencies:
   pre:
-    - chmod +x $BEETBOX_HOME/tests/dependencies.sh
-    - $BEETBOX_HOME/tests/dependencies.sh
+    - chmod +x $BEET_HOME/tests/dependencies.sh
+    - $BEET_HOME/tests/dependencies.sh
 test:
   override:
-    - sudo cp -rf $BEETBOX_HOME/* /www
-    - sudo cp $BEETBOX_HOME/.beetbox/config.yml $BEETBOX_HOME/ansible/vagrant.config.yml
-    - sudo $BEETBOX_HOME/ansible/build.sh
+    - sudo cp -rf $BEET_HOME/* $BEET_BASE
+    - sudo cp $BEET_HOME/.beetbox/config.yml $BEET_HOME/ansible/vagrant.config.yml
+    - sudo $BEET_HOME/ansible/build.sh

@@ -20,7 +20,7 @@
     dest: "{{ beet_root }}/profiles/{{ drupal_distro }}/{{ item }}"
     state: link
     force: yes
-  with_items: "{{ lookup('pipe', 'ls -A /www').split() }}"
+  with_items: "{{ lookup('pipe', 'ls -A ' + beet_base ).split() }}"
   when: not drupal_site.stat.exists and drupal_distro and item != 'docroot'
 
 - name: Build distribution profile makefile.

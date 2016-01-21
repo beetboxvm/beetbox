@@ -15,7 +15,8 @@ beet_project: drupal
 beet_keep_updated: no
 beet_debug: no
 beet_domain: "beetbox.local"
-beet_root: "/www/{{ beet_project }}"
+beet_base: "/var/beetbox"
+beet_root: "{{ beet_base }}"
 beet_web: "{{ beet_root }}"
 beet_ssh_home: "{{ beet_root }}"
 beet_site_name: "Beetbox"
