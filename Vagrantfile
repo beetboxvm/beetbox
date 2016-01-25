@@ -99,7 +99,6 @@ Vagrant.configure("2") do |config|
       end
 
       # Upload local.config.yml
-      local_config = "#{dir}/local.config.yml"
       if File.exist?(local_config)
         node.vm.provision "local_config", type: "file" do |s|
          s.source = local_config
