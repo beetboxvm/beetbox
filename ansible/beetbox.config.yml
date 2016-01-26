@@ -75,6 +75,8 @@ known_hosts: no
 
 # Apache config.
 apache_daemon: apache2
+apache_remove_default_vhost: true
+apache_listen_port: 80
 apache_vhosts:
   - servername: "{{ beet_domain }}"
     documentroot: "{{ beet_web }}"
@@ -149,13 +151,6 @@ nodejs_npm_global_packages: []
 # Ruby config.
 ruby_install_gems_user: "vagrant"
 ruby_install_gems: []
-
-# Apache config.
-apache_remove_default_vhost: true
-apache_listen_port: 80
-apache_vhosts:
-  - servername: "beetbox.local"
-    documentroot: "/drupal"
 
 # Nginx config.
 nginx_php_fpm: /var/run/php5-fpm.sock

@@ -7,7 +7,6 @@ vagrant_cpus: 2
 # Beetbox settings.
 beet_project: drupal
 beet_domain: "beetbox.local"
-beet_base: "/var/beetbox"
 beet_root: "{{ beet_base }}/projects/{{ beet_project }}"
 beet_site_name: "Beetbox"
 
@@ -17,6 +16,9 @@ drupal_makefile_path: "{{ beet_base }}/drupal8.make.yml"
 drupal_install_site: yes
 drupal_account_name: admin
 drupal_account_pass: admin
+
+# Beetbox debug.
+beet_debug: no
 
 #
 # Examples.
@@ -90,10 +92,3 @@ drupal_account_pass: admin
 #wp_account_name: admin
 #wp_account_pass: admin
 #wp_account_email: "admin@beetbox.local"
-
-# Apache config.
-apache_vhosts:
-  - {servername: "{{ beet_domain }}", documentroot: "{{ beet_web }}"}
-
-# Beetbox debug.
-beet_debug: no
