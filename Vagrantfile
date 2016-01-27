@@ -10,18 +10,22 @@ config_dir = '.beetbox/'
 vagrant_config = "#{dir}/#{config_dir}config.yml"
 local_config = "#{dir}/#{config_dir}local.config.yml"
 
-if !File.exist?(vagrant_config)
-  raise 'Vagrant configuration file config.yml not found!'
-end
-
 # Default vagrant config.
 vconfig = {
   'vagrant_ip' => '0.0.0.0',
   'vagrant_memory' => 1024,
   'vagrant_cpus' => 2,
   'beet_home' => '/beetbox',
-  'beet_base' => '/var/beetbox'
+  'beet_base' => '/var/beetbox',
+  'beet_domain' => 'beetbox.local'
 }
+
+if !File.exist?(vagrant_config)
+  # Create default config file.
+  require 'fileutils'
+  FileUtils::mkdir_p config_dir
+  File.open(vagrant_config, "w+") {|f| f.write("---\nbeet_domain: #{vconfig['beet_domain']}\n") }
+end
 
 vconfig = vconfig.merge YAML::load_file(vagrant_config)
 
