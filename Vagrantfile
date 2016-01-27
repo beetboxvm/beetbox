@@ -67,6 +67,7 @@ Vagrant.configure("2") do |config|
     config.vm.define branch, autostart: active_node, primary: active_node do |node|
 
       node.vm.box = "DrupalMel/beetbox"
+      node.vm.box_version = ">= 0.1.18"
       node.vm.hostname = (branch_prefix) ? "#{branch}.#{hostname}" : hostname
       node.ssh.insert_key = false
       node.ssh.forward_agent = true
