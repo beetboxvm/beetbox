@@ -10,7 +10,7 @@
 beet_repo: https://github.com/DrupalMel/beetbox.git
 beet_version: "HEAD"
 beet_home: /beetbox
-beet_role_dir: roles
+beet_role_dir: "{{ beet_home }}/ansible/roles"
 beet_project: drupal
 beet_keep_updated: no
 beet_debug: no
