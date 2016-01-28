@@ -155,6 +155,11 @@ ruby_install_gems: []
 
 # Nginx config.
 nginx_php_fpm: /var/run/php5-fpm.sock
+nginx_hosts:
+  - listen: "{{ (beet_webserver == 'nginx') | ternary('80','82') }}"
+    server_name: "{{ beet_domain }}"
+    root: "{{ beet_web }}"
+    is_php: true
 
 # PHP config.
 php_version: "5.6"
