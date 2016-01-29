@@ -5,10 +5,10 @@ require 'yaml'
 
 Vagrant.require_version '>= 1.8.0'
 
-dir = File.dirname(File.expand_path(__FILE__))
+cwd = File.dirname(File.expand_path(__FILE__))
 config_dir = '.beetbox/'
-vagrant_config = "#{dir}/#{config_dir}config.yml"
-local_config = "#{dir}/#{config_dir}local.config.yml"
+vagrant_config = "#{cwd}/#{config_dir}config.yml"
+local_config = "#{cwd}/#{config_dir}local.config.yml"
 
 # Default vagrant config.
 vconfig = {
@@ -17,7 +17,7 @@ vconfig = {
   'vagrant_cpus' => 2,
   'beet_home' => '/beetbox',
   'beet_base' => '/var/beetbox',
-  'beet_domain' => 'beetbox.local'
+  'beet_domain' => cwd.split('/').last.gsub(/[\._]/, '-') + ".local"
 }
 
 if !File.exist?(vagrant_config)
