@@ -15,3 +15,16 @@ test:
     - sudo cp -rf $BEET_HOME/* $BEET_BASE
     - sudo cp ~/$CIRCLE_PROJECT_REPONAME/.beetbox/config.yml $BEET_HOME/ansible/vagrant.config.yml
     - sudo $BEET_HOME/ansible/build.sh
+deployment:
+  dev:
+    branch: dev
+    owner: drupalmel
+    commands:
+      - chmod +x ~/$CIRCLE_PROJECT_REPONAME/tests/deploy.sh
+      - BEET_VERSION="0.1.$CIRCLE_BUILD_NUM" BEET_BOX=beetbox-dev ~/$CIRCLE_PROJECT_REPONAME/tests/deploy.sh
+  release:
+    tag: /[0-9]+\.[0-9]+\.[0-9]+/
+    owner: drupalmel
+    commands:
+      - chmod +x ~/$CIRCLE_PROJECT_REPONAME/tests/deploy.sh
+      - BEET_VERSION="$CIRCLE_TAG" BEET_BOX=beetbox-dev ~/$CIRCLE_PROJECT_REPONAME/tests/deploy.sh
