@@ -1,6 +1,6 @@
 {
   "variables": {
-    "version": "0.1.{{env `ATLAS_BUILD_NUMBER`}}",
+    "version": "BEET_VERSION",
     "atlas_username": "{{env `ATLAS_BUILD_USERNAME`}}",
     "atlas_name": "{{env `ATLAS_BUILD_NAME`}}",
     "ssh_name": "vagrant",
