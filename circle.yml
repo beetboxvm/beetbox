@@ -14,7 +14,7 @@ test:
   override:
     - sudo cp -rf $BEET_HOME/* $BEET_BASE
     - sudo cp ~/$CIRCLE_PROJECT_REPONAME/.beetbox/config.yml $BEET_HOME/ansible/vagrant.config.yml
-    - sudo $BEET_HOME/ansible/build.sh
+    - sudo su -c $BEET_HOME/ansible/build.sh
 deployment:
   dev:
     branch: dev
