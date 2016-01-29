@@ -27,4 +27,4 @@ deployment:
     owner: drupalmel
     commands:
       - chmod +x ~/$CIRCLE_PROJECT_REPONAME/tests/deploy.sh
-      - BEET_VERSION="$CIRCLE_TAG" BEET_BOX=beetbox-dev ~/$CIRCLE_PROJECT_REPONAME/tests/deploy.sh
+      - BEET_VERSION="$CIRCLE_TAG" BEET_BOX=beetbox ~/$CIRCLE_PROJECT_REPONAME/tests/deploy.sh
