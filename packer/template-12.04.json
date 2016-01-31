@@ -69,6 +69,10 @@
       {
         "type": "vagrant",
         "compression_level": 9,
+        "vagrantfile_template": "includes/Vagrantfile",
+        "include": [
+          "includes/drush.alias.erb"
+        ],
         "output": "{{user `atlas_username`}}-{{user `atlas_name`}}-{{.Provider}}.box"
       },
       {
