@@ -14,7 +14,8 @@ cwd = nil
 vagrantfile = ENV['VAGRANT_VAGRANTFILE'] || 'Vagrantfile'
 if id != nil
   require 'json'
-  JSON.parse(File.read("#{Dir.home}/.vagrant.d/data/machine-index/index"))['machines'].each do |hash, data|
+  vagrant_home = ENV['VAGRANT_HOME'] || "#{Dir.home}/.vagrant.d"
+  JSON.parse(File.read("#{vagrant_home}/data/machine-index/index"))['machines'].each do |hash, data|
     if hash[0..6] == id
       cwd = data['vagrantfile_path']
       vagrantfile = data['vagrantfile_name'] != nil ? data['vagrantfile_name'] : vagrantfile
