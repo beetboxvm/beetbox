@@ -8,6 +8,7 @@ vagrant_cpus: 2
 beet_project: drupal
 beet_domain: "beetbox.local"
 beet_root: "{{ beet_base }}/projects/{{ beet_project }}"
+beet_mysql_database: "beetbox_{{ beet_project }}"
 beet_site_name: "Beetbox"
 
 # Drupal settings.
