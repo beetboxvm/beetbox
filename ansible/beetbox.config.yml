@@ -23,7 +23,7 @@ beet_site_name: "Beetbox"
 beet_webserver: apache
 beet_mysql_user: beetbox
 beet_mysql_password: beetbox
-beet_mysql_database: "beetbox_{{ beet_project }}"
+beet_mysql_database: "beetbox"
 
 # Ansible Galaxy roles.
 galaxy_roles:
