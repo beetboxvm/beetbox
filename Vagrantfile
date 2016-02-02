@@ -7,7 +7,7 @@ Vagrant.require_version '>= 1.8.0'
 
 cwd = File.dirname(File.expand_path(__FILE__))
 config_dir = '.beetbox/'
-vagrant_config = "#{cwd}/#{config_dir}config.yml"
+project_config = "#{cwd}/#{config_dir}config.yml"
 local_config = "#{cwd}/#{config_dir}local.config.yml"
 
 # Default vagrant config.
@@ -20,19 +20,20 @@ vconfig = {
   'beet_domain' => cwd.split('/').last.gsub(/[\._]/, '-') + ".local"
 }
 
-if !File.exist?(vagrant_config)
+if !File.exist?(project_config)
   # Create default config file.
   require 'fileutils'
   FileUtils::mkdir_p config_dir
-  File.open(vagrant_config, "w+") {|f| f.write("---\nbeet_domain: #{vconfig['beet_domain']}\n") }
+  File.open(project_config, "w+") {|f| f.write("---\nbeet_domain: #{vconfig['beet_domain']}\n") }
 end
 
-vconfig = vconfig.merge YAML::load_file(vagrant_config)
+pconfig = YAML::load_file(project_config) || nil
+vconfig = vconfig.merge pconfig if !pconfig.nil?
 
 # Merge local.config.yml
 if File.exist?(local_config)
-  lconfig = YAML::load_file(local_config)
-  vconfig = vconfig.merge lconfig
+  lconfig = YAML::load_file(local_config) || nil
+  vconfig = vconfig.merge lconfig if !lconfig.nil?
 end
 
 # Replace variables in YAML config.
@@ -98,8 +99,8 @@ Vagrant.configure("2") do |config|
       end
 
       # Upload vagrant.config.yml
-      node.vm.provision "vagrant_config", type: "file" do |s|
-       s.source = vagrant_config
+      node.vm.provision "project_config", type: "file" do |s|
+       s.source = project_config
        s.destination = "#{vconfig['beet_home']}/ansible/vagrant.config.yml"
       end
 
