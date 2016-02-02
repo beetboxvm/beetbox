@@ -1,5 +1,7 @@
 # Beetbox - Drupal development on Vagrant [![Circle CI](https://circleci.com/gh/drupalmel/beetbox.svg?style=svg)](https://circleci.com/gh/drupalmel/beetbox)
 
+[![Join the chat at https://gitter.im/drupalmel/beetbox](https://badges.gitter.im/drupalmel/beetbox.svg)](https://gitter.im/drupalmel/beetbox?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## Overview
 
 Beetbox is a Vagrant configuration that provides your team with a versatile development environment for Drupal projects using Virtualbox for VMs (virtual machines).
