@@ -1,17 +1,17 @@
-# Beetbox - Drupal development on Vagrant
+# Beetbox - The CMS L*MP stack
 
-Beetbox is a Vagrant configuration that provides your team with a versatile development environment for Drupal projects using Virtualbox for VMs (virtual machines).
+Beetbox is a Vagrant configuration that provides your team with a versatile development environment for L*MP projects.
 
-The project has a defined set of default configuration attributes so it will work without any custom configuration. All customisation comes in the form of overrides as undefined attributes will revert to the default.
+The project has a predefined set of default configuration attributes so it can work without any custom configuration, therefore any customisation ocomes in the form of overrides as undefined attributes will revert to their default setting.
 
 [![Circle CI](https://circleci.com/gh/drupalmel/beetbox.svg?style=svg)](https://circleci.com/gh/drupalmel/beetbox) [![Documentation Status](https://readthedocs.org/projects/beetbox/badge/?version=latest)](http://beetbox.readthedocs.org/en/latest/?badge=latest)
 
 
 ## Features
 
-* Support for different VMs per branch.
+* Support for different VMs per git branch.
 * Takes advantage of Vagrant 1.8's linked clones support to manage VMs for speed and disk efficiency.
-* Uses ansible 2 for provision but it's not required on the host machine.
+* Uses ansible 2 for provisioning but it's not required on the host machine.
 
 
 ## Requirements
@@ -33,8 +33,29 @@ vagrant init DrupalMel/beetbox
 vagrant up
 ```
 
-After which you can install the site at http://drupal-8-0-2.local/install.php
+After which you can install the site at [http://drupal-8-0-2.local/install.php](http://drupal-8-0-2.local/install.php)
 
+### Default Database
+
+#### MySQL 
+
+- Hostname: localhost or 127.0.0.1
+- Username: beetbox
+- Password: beetbox
+- Database: beetbox
+
+## Integration
+
+Beetbox offers a few integration options.
+ 
+See. [integration](integration.md)
+
+## Configuration
+
+All customisation is done via a YAML configuration file at `.beetbox/config.yml`. If this file doesn't exist it is automatically created the first time you start up the VM.
+Configuration is applied hierarchically so any attribute set in your project config file will override a lower level default setting.
+ 
+See. [configuration](configuration.md)
 
 ## Support
 
