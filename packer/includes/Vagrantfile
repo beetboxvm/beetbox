@@ -37,7 +37,7 @@ end
 # @TODO - Add secondary check that parses the Vagrantfile if the MD5 is changed.
 if cwd != nil && Digest::MD5.file("#{cwd}/#{vagrantfile}").hexdigest == "abef0f6a03cc23bb3da842cd1d12aa50"
   config_dir = '.beetbox/'
-  vagrant_config = "#{cwd}/#{config_dir}config.yml"
+  project_config = "#{cwd}/#{config_dir}config.yml"
   local_config = "#{cwd}/#{config_dir}local.config.yml"
 
   # Default vagrant config.
@@ -50,20 +50,21 @@ if cwd != nil && Digest::MD5.file("#{cwd}/#{vagrantfile}").hexdigest == "abef0f6
     'beet_domain' => cwd.split('/').last.gsub(/[\._]/, '-') + ".local"
   }
 
-  if !File.exist?(vagrant_config)
+  if !File.exist?(project_config)
     # Create default config file.
     require 'fileutils'
     FileUtils::mkdir_p config_dir
-    File.open(vagrant_config, "w+") {|f| f.write("---\nbeet_domain: #{vconfig['beet_domain']}\n") }
+    File.open(project_config, "w+") {|f| f.write("---\nbeet_domain: #{vconfig['beet_domain']}\n") }
   end
 
   require 'yaml'
-  vconfig = vconfig.merge YAML::load_file(vagrant_config)
+  pconfig = YAML::load_file(project_config) || nil
+  vconfig = vconfig.merge pconfig if !pconfig.nil?
 
   # Merge local.config.yml
   if File.exist?(local_config)
-    lconfig = YAML::load_file(local_config)
-    vconfig = vconfig.merge lconfig
+    lconfig = YAML::load_file(local_config) || nil
+    vconfig = vconfig.merge lconfig if !lconfig.nil?
   end
 
   # Replace variables in YAML config.
@@ -114,8 +115,8 @@ if cwd != nil && Digest::MD5.file("#{cwd}/#{vagrantfile}").hexdigest == "abef0f6
     end
 
     # Upload vagrant.config.yml
-    config.vm.provision "vagrant_config", type: "file" do |s|
-     s.source = vagrant_config
+    config.vm.provision "project_config", type: "file" do |s|
+     s.source = project_config
      s.destination = "#{vconfig['beet_home']}/ansible/vagrant.config.yml"
     end
 
