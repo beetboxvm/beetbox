@@ -35,15 +35,6 @@ vagrant up
 
 After which you can install the site at [http://drupal-8-0-2.local/install.php](http://drupal-8-0-2.local/install.php)
 
-### Default Database
-
-#### MySQL 
-
-- Hostname: localhost or 127.0.0.1
-- Username: beetbox
-- Password: beetbox
-- Database: beetbox
-
 ## Integration
 
 Beetbox offers a few integration options.
