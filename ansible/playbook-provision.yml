@@ -37,3 +37,10 @@
     # Create symlinks.
     - include: tasks/create-symlinks.yml
       when: symlinks
+
+    - name: Create welcome message.
+      template:
+        src: ../templates/welcome.txt.j2
+        dest: "/home/vagrant/welcome.txt"
+        force: yes
+        mode: 0644

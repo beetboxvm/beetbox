@@ -17,3 +17,12 @@
 - include: install-site.yml
   when: drupal_install_site
   become: no
+
+- name: Generate drush login URL.
+  command: >
+    {{ drush_path }} --uri=http://{{ beet_domain }}/ user-login
+    chdir={{ beet_root }}
+  register: drupal_drush_login
+  when: drupal_site.stat.exists
+  changed_when: false
+  failed_when: false
