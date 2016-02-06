@@ -11,6 +11,7 @@ touch "$currentDir/local.config.yml"
 
 # Set environment variables.
 export ANSIBLE_FORCE_COLOR=1
+export DISPLAY_SKIPPED_HOSTS=False
 export PYTHONUNBUFFERED=1
 
 # Enable debug mode.
