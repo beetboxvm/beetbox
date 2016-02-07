@@ -31,6 +31,12 @@ Login link: {{ drupal_drush_login.stdout }}
 {% endif %}
 {% endif %}
 
+Developer Tools
+------------------------------------------------------------
+{% if ('"mailhog" in installed_extras') %}
+Mailhog: http://{{ beet_domain }}:8025/
+{% endif %}
+
 ------------------------------------------------------------
 Documentation: http://beetbox.readthedocs.org/en/dev/
 ------------------------------------------------------------
