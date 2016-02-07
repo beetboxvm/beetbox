@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # Install ansible and remove default packages.
 sudo pip install ansible==2.0.0.2

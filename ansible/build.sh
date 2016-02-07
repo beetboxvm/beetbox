@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # Current directory.
 currentDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"

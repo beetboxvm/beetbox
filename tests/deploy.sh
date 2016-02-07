@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # Install packer.
 wget https://releases.hashicorp.com/packer/0.8.6/packer_0.8.6_linux_amd64.zip
