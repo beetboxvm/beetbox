@@ -1,7 +1,6 @@
 ---
 - hosts: localhost
   connection: local
-  user: root
   become: yes
 
   vars_files:
@@ -41,6 +40,7 @@
     - name: Create welcome message.
       template:
         src: ../templates/welcome.txt.j2
-        dest: "/home/vagrant/welcome.txt"
+        dest: "~/welcome.txt"
         force: yes
         mode: 0644
+      become: no

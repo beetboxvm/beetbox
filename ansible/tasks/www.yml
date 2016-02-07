@@ -8,20 +8,25 @@
     - admin
     - dialout
 
-- name: Ensure vagrant user is in admin group.
-  user: "name=vagrant append=yes groups=admin"
+- name: Ensure {{ beet_user }} user is in admin group.
+  user:
+    name: "{{ beet_user }}"
+    append: yes
+    groups: "admin"
 
 - name: Ensure vagrant home directory is present.
   file:
-    path: "/home/vagrant/"
+    path: "/home/{{ beet_user }}/"
     state: directory
-    owner: vagrant
-    group: vagrant
+    owner: "{{ beet_user }}"
+    group: "{{ beet_user }}"
     recurse: true
 
-- name: Ensure www-data user is in dialout group (Debian).
-  user: "name=www-data append=yes groups=dialout"
-  when: ansible_os_family == 'Debian'
+- name: Ensure www-data user is in dialout group.
+  user:
+    name: "www-data"
+    append: yes
+    groups: "dialout"
 
 - name: Set nicer permissions on Apache log directory.
   file:

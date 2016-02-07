@@ -1,7 +1,6 @@
 ---
 - hosts: localhost
   connection: local
-  user: root
   become: yes
 
   vars_files:
@@ -12,10 +11,12 @@
 
   tasks:
 
-    - name: Create vagrant user.
+    - name: Create {{ beet_user }} user.
       user:
-        name: vagrant
+        name: "{{ beet_user }}"
         shell: /bin/bash
+        createhome: yes
+        home: "/home/{{ beet_user }}"
 
     - name: Check for updates.
       git:
@@ -27,11 +28,19 @@
         force: yes
       when: beet_keep_updated and (not beet_debug)
 
-    - name: Set ownership of beetbox directory.
+    - name: Set ownership of beet_home directory.
       file:
         path: "{{ beet_home }}"
-        owner: vagrant
-        group: vagrant
+        owner: "{{ beet_user }}"
+        group: "{{ beet_user }}"
         recurse: yes
         state: directory
-      when: (not beet_debug)
+      failed_when: false
+
+    - name: Set ownership of beet_base directory.
+      file:
+        path: "{{ beet_base }}"
+        owner: "{{ beet_user }}"
+        group: "{{ beet_user }}"
+        state: directory
+      failed_when: false

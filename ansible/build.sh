@@ -27,5 +27,5 @@ ansible-playbook $DEBUG "$currentDir/playbook-roles.yml" -i 'localhost,'
 ansible-playbook $DEBUG "$currentDir/playbook-provision.yml" -i 'localhost,'
 
 # Print welcome message.
-touch /home/vagrant/welcome.txt
-cat /home/vagrant/welcome.txt
+touch ~/welcome.txt
+cat ~/welcome.txt
