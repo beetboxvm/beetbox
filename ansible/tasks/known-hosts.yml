@@ -5,3 +5,4 @@
     name: "{{ item }}"
     key: "{{ lookup('pipe', 'ssh-keyscan -t rsa ' + item) }}"
   with_items: "{{ known_hosts }}"
+  become: no

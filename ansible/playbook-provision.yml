@@ -39,7 +39,7 @@
 
     - name: Create welcome message.
       template:
-        src: ../templates/welcome.txt.j2
+        src: templates/welcome.txt.j2
         dest: "~/welcome.txt"
         force: yes
         mode: 0644

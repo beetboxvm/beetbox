@@ -9,6 +9,7 @@ sudo rm -rf /etc/apache2/mods-enabled/*
 # Create BEET_BASE if it doesn't exist.
 if [ ! -d "$BEET_BASE" ]; then
   sudo mkdir -p $BEET_BASE
+  sudo chown -R $BEET_USER:$BEET_USER $BEET_HOME
 fi
 
 # Clone beetbox if BEET_HOME doesn't exist.

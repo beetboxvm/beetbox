@@ -5,6 +5,7 @@ machine:
   environment:
     BEET_HOME: /beetbox
     BEET_BASE: /var/beetbox
+    BEET_USER: ubuntu
 dependencies:
   pre:
     - sudo cp -rf ~/$CIRCLE_PROJECT_REPONAME $BEET_HOME

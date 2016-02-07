@@ -51,7 +51,7 @@
 
 - name: Set SSH home directory.
   lineinfile:
-    dest: "/home/vagrant/.bashrc"
+    dest: "/home/{{ beet_user }}/.bashrc"
     state: present
     create: yes
     regexp: "^SSH_HOME="
