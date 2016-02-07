@@ -1,7 +1,6 @@
 ---
 - hosts: localhost
   connection: local
-  user: root
   become: yes
 
   vars_files:
@@ -15,7 +14,7 @@
     - name: Install Galaxy roles
       command: >
         ansible-galaxy install {{ item.name }} -p {{ beet_role_dir }}
-        creates={{ beet_role_dir }}/{{ item.name }}/meta/main.yml
+        creates={{ beet_role_dir }}/{{ item.name }}
       with_items: galaxy_roles
 
     - name: Update Galaxy roles

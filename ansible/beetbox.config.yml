@@ -9,13 +9,14 @@
 # Beetbox config.
 beet_repo: https://github.com/DrupalMel/beetbox.git
 beet_version: "HEAD"
-beet_home: /beetbox
+beet_home: "{{ lookup('env','BEET_HOME') | default('/beetbox',true) }}"
 beet_role_dir: "{{ beet_home }}/ansible/roles"
 beet_project: drupal
 beet_keep_updated: no
 beet_debug: no
 beet_domain: "beetbox.local"
-beet_base: "/var/beetbox"
+beet_user: "{{ lookup('env','BEET_USER') | default('vagrant',true) }}"
+beet_base: "{{ lookup('env','BEET_BASE') | default('/var/beetbox',true) }}"
 beet_root: "{{ beet_base }}"
 beet_web: "{{ beet_root }}"
 beet_ssh_home: "{{ beet_root }}"
@@ -192,9 +193,8 @@ php_packages:
 # Composer config.
 composer_path: /usr/bin/composer
 composer_home_path: '/home/vagrant/.composer'
-composer_home_owner: vagrant
-composer_home_group: vagrant
-# Composer global packages.
+composer_home_owner: "{{ beet_user }}"
+composer_home_group: "{{ beet_user }}"
 # composer_global_packages:
 #   - { name: phpunit/phpunit, release: '@stable' }
 
