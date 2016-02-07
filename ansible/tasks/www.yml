@@ -1,7 +1,4 @@
 ---
-# Originally I tried adding to the www group, but because Ansible uses one SSH
-# connection, that broke the initial provisioning, since groups aren't refreshed
-# without a new session or log off/log on.
 - name: Ensure necessary groups exist.
   group: "name={{ item }} state=present"
   with_items:
@@ -35,7 +32,11 @@
     mode: 0755
     recurse: true
 
-- name: Copy Nginx vhosts into place.
+- name: Check for default nginx vhosts.
+  stat: "path={{ nginx_vhost_path }}//{{ beet_domain }}.conf"
+  register: nginx_default_vhost_conf
+
+- name: Copy default Nginx vhosts into place.
   template:
     src: ../templates/nginx-vhost.conf.j2
     dest: "{{ nginx_vhost_path }}/{{ item.server_name }}.conf"
@@ -45,4 +46,4 @@
     mode: 0644
   with_items: nginx_hosts
   notify: restart nginx
-  when: nginx_hosts is defined
+  when: not nginx_default_vhost_conf.stat.exists
