@@ -30,3 +30,7 @@
 # Add nginx conf.
 - include: nginx.yml
   when: beet_webserver == 'nginx'
+
+# Install uploadprogress PECL library.
+- include: uploadprogress.yml
+  when: drupal_uploadprogress_enable

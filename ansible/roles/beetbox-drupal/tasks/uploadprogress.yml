@@ -1,0 +1,15 @@
+---
+- name: Install uploadprogress PECL library.
+  pear:
+    name: pecl/uploadprogress
+    state: present
+
+- name: Add php extension config for uploadprogress.
+  template:
+    src: uploadprogress.ini.j2
+    dest: "{{ php_extension_conf_path }}/uploadprogress.ini"
+    owner: root
+    group: root
+    force: yes
+    mode: 0644
+  notify: restart webserver

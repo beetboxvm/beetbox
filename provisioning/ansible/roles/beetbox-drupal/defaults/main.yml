@@ -11,3 +11,4 @@ drupal_makefile_path: /vagrant/drupal.make.yml
 drupal_build_composer: no
 drupal_composer_version: "8.x-dev"
 drupal_composer_dependencies: []
+drupal_uploadprogress_enable: no
