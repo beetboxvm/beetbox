@@ -1,7 +1,9 @@
 #!/bin/bash -e
 
-# Install ansible and remove default packages.
-sudo pip install ansible==2.0.0.2
+# Install ansible.
+pip install ansible==2.0.0.2
+
+# Remove default packages.
 sudo apt-get update
 sudo apt-get purge apache2 php5-cli mysql-common mysql-server
 sudo rm -rf /etc/apache2/mods-enabled/*
