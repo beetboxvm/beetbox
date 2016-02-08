@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   connection: local
-  become: yes
+  become: no
 
   vars_files:
     - beetbox.config.yml
