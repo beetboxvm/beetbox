@@ -5,19 +5,11 @@
     - admin
     - dialout
 
-- name: Ensure {{ beet_user }} user is in admin group.
+- name: "Ensure {{ beet_user }} user is in admin group."
   user:
     name: "{{ beet_user }}"
     append: yes
     groups: "admin"
-
-- name: Ensure vagrant home directory is present.
-  file:
-    path: "/home/{{ beet_user }}/"
-    state: directory
-    owner: "{{ beet_user }}"
-    group: "{{ beet_user }}"
-    recurse: true
 
 - name: Ensure www-data user is in dialout group.
   user:

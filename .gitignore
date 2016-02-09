@@ -6,6 +6,7 @@ projects/
 
 # Prevent Ansible related files.
 
+.beetbox/installed
 ansible/project.config.yml
 ansible/vagrant.config.yml
 ansible/local.config.yml

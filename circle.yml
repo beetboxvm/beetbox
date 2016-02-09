@@ -9,8 +9,8 @@ machine:
 dependencies:
   pre:
     - sudo cp -rf ~/$CIRCLE_PROJECT_REPONAME $BEET_HOME
-    - sudo chmod +x $BEET_HOME/tests/dependencies.sh
-    - $BEET_HOME/tests/dependencies.sh
+    - sudo chmod +x $BEET_HOME/packer/scripts/beetbox.sh
+    - $BEET_HOME/packer/scripts/beetbox.sh
 test:
   override:
     - sudo cp -rf $BEET_HOME/* $BEET_BASE
@@ -28,6 +28,6 @@ deployment:
     owner: drupalmel
     commands:
       - chmod +x ~/$CIRCLE_PROJECT_REPONAME/tests/deploy.sh
-      - BEET_VERSION="$CIRCLE_TAG" BEET_BOX=beetbox BEET_TEMPLATE=template.json ~/$CIRCLE_PROJECT_REPONAME/tests/deploy.sh
-      - BEET_VERSION="$CIRCLE_TAG" BEET_BOX=beetbox-14.04 BEET_TEMPLATE=template-14.04.json ~/$CIRCLE_PROJECT_REPONAME/tests/deploy.sh
-      - BEET_VERSION="$CIRCLE_TAG" BEET_BOX=beetbox-12.04 BEET_TEMPLATE=template-12.04.json ~/$CIRCLE_PROJECT_REPONAME/tests/deploy.sh
+      - BEET_VERSION="$CIRCLE_TAG" BEET_BOX=beetbox BEET_TEMPLATE=template.json ~/$CIRCLE_PROJECT_REPONAME/packer/scripts/deploy.sh
+      - BEET_VERSION="$CIRCLE_TAG" BEET_BOX=beetbox-14.04 BEET_TEMPLATE=template-14.04.json ~/$CIRCLE_PROJECT_REPONAME/packer/scripts/deploy.sh
+      - BEET_VERSION="$CIRCLE_TAG" BEET_BOX=beetbox-12.04 BEET_TEMPLATE=template-12.04.json ~/$CIRCLE_PROJECT_REPONAME/packer/scripts/deploy.sh

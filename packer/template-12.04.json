@@ -5,8 +5,7 @@
     "atlas_name": "{{env `ATLAS_BUILD_NAME`}}",
     "ssh_name": "vagrant",
     "ssh_pass": "vagrant",
-    "hostname": "beetbox.local",
-    "ansible_staging_dir": "/beetbox/ansible"
+    "hostname": "beetbox.local"
   },
   "builders": [
     {
@@ -43,25 +42,11 @@
         "scripts/base.sh",
         "scripts/vagrant.sh",
         "scripts/virtualbox.sh",
-        "scripts/ansible.sh",
-        "scripts/beetbox.sh"
-      ],
-      "execute_command": "echo 'vagrant' | sudo -S '{{.Path}}'"
-    },
-    {
-      "type": "shell",
-      "execute_command": "sudo bash '{{.Path}}'",
-      "inline": [
-        "chown -R {{user `ssh_name`}}:{{user `ssh_pass`}} {{user `ansible_staging_dir`}}"
-      ]
-    },
-    {
-      "type": "shell",
-      "scripts": [
+        "scripts/beetbox.sh",
         "scripts/cleanup.sh",
         "scripts/zerodisk.sh"
       ],
-      "execute_command": "echo 'vagrant' | sudo -S bash '{{.Path}}'"
+      "execute_command": "echo '{{user `ssh_pass`}}' | sudo -E -S sh '{{.Path}}'"
     }
   ],
   "post-processors": [
