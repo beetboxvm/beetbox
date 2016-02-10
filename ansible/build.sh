@@ -1,30 +1,37 @@
 #!/bin/bash -e
 
-# Current directory.
-currentDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# Set BEET_HOME.
+BEET_HOME=${BEET_HOME:="/beetbox"}
 
-# Create default config files.
-touch "$currentDir/beetbox.config.yml"
-touch "$currentDir/project.config.yml"
-touch "$currentDir/vagrant.config.yml"
-touch "$currentDir/local.config.yml"
+# Source environment variables
+BEET_SH="$BEET_HOME/packer/scripts/beetbox.sh"
+[ -f "$BEET_SH" ] && . $BEET_SH
 
 # Set environment variables.
-export ANSIBLE_FORCE_COLOR=1
-export DISPLAY_SKIPPED_HOSTS=False
-export PYTHONUNBUFFERED=1
+export ANSIBLE_FORCE_COLOR=${ANSIBLE_FORCE_COLOR:=1}
+export DISPLAY_SKIPPED_HOSTS=${DISPLAY_SKIPPED_HOSTS:=False}
+export ANSIBLE_DEPRECATION_WARNINGS=${ANSIBLE_DEPRECATION_WARNINGS:=False}
+export PYTHONUNBUFFERED=${PYTHONUNBUFFERED:=1}
+export ANSIBLE_HOME="$BEET_HOME/ansible"
+export ANSIBLE_INVENTORY="'localhost,'"
 
 # Enable debug mode.
-[[ $BEETBOX_DEBUG ]] && DEBUG="-vvv" || DEBUG=""
+if [ $BEETBOX_DEBUG ]; then
+  export DEPRECATION_WARNINGS=True
+  export ANSIBLE_DEBUG="-vvv"
+fi
+
+# Create default config files.
+ansible-playbook $ANSIBLE_DEBUG "$ANSIBLE_HOME/playbook-config.yml" -i $ANSIBLE_INVENTORY
 
 # Check for updates.
-ansible-playbook $DEBUG "$currentDir/playbook-update.yml" -i 'localhost,'
+ansible-playbook $ANSIBLE_DEBUG "$ANSIBLE_HOME/playbook-update.yml" -i $ANSIBLE_INVENTORY
 
 # Install ansible galaxy roles.
-ansible-playbook $DEBUG "$currentDir/playbook-roles.yml" -i 'localhost,'
+ansible-playbook $ANSIBLE_DEBUG "$ANSIBLE_HOME/playbook-roles.yml" -i $ANSIBLE_INVENTORY
 
 # Provision VM.
-ansible-playbook $DEBUG "$currentDir/playbook-provision.yml" -i 'localhost,'
+ansible-playbook $ANSIBLE_DEBUG "$ANSIBLE_HOME/playbook-provision.yml" -i $ANSIBLE_INVENTORY
 
 # Print welcome message.
 touch ~/welcome.txt
