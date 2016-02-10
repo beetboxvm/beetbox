@@ -236,5 +236,8 @@ solr_xmx: "128M"
 # Selenium config.
 selenium_version: 2.46.0
 
+# Mailhog.
+mailhog_daemonize_bin_path: /usr/sbin/daemonize
+
 # Other config.
 known_hosts_path: ~/.ssh/known_hosts
