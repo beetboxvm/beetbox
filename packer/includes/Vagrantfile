@@ -129,9 +129,10 @@ if cwd != nil && Digest::MD5.file("#{cwd}/#{vagrantfile}").hexdigest == "abef0f6
     end
 
     # Provision box
-    config.vm.provision "ansible", type: "shell" do |s|
-      s.privileged = true
-      s.inline = "chmod +x #{vconfig['beet_home']}/ansible/build.sh && #{debug_mode} #{vconfig['beet_home']}/ansible/build.sh"
+    build_sh = "#{vconfig['beet_home']}/ansible/build.sh"
+    node.vm.provision "ansible", type: "shell" do |s|
+      s.privileged = false
+      s.inline = "sudo chmod +x #{build_sh} && sudo -H #{build_sh}"
     end
 
     # VirtualBox.
