@@ -58,6 +58,7 @@ galaxy_roles:
   - { name: geerlingguy.security }
   - { name: geerlingguy.solr }
   - { name: geerlingguy.varnish }
+  - { name: hashbangcode.pantheon-cli }
   - { name: heskethm.wp-cli }
   - { name: pwelch.avahi }
   - { name: thomtoogood.beetbox-backdrop }
