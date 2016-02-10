@@ -83,6 +83,12 @@ apache_listen_port: "{{ (beet_webserver == 'apache') | ternary('80','82') }}"
 apache_vhosts:
   - servername: "{{ beet_domain }}"
     documentroot: "{{ beet_web }}"
+apache_listen_port_ssl: "{{ (beet_webserver == 'apache') | ternary('443','444') }}"
+apache_vhosts_ssl:
+  - servername: "{{ beet_domain }}"
+    documentroot: "{{ beet_web }}"
+    certificate_file: "/etc/ssl/certs/ssl-cert-snakeoil.pem"
+    certificate_key_file: "/etc/ssl/private/ssl-cert-snakeoil.key"
 apache_mods_enabled:
   - authn_core.load
   - expires.load
