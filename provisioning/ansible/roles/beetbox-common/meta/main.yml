@@ -2,6 +2,7 @@
 dependencies:
   - { role: geerlingguy.firewall}
   - { role: geerlingguy.git }
+  - { role: geerlingguy.postfix }
   - { role: geerlingguy.apache }
   - { role: geerlingguy.apache-php-fpm }
   - { role: geerlingguy.nginx }
@@ -20,7 +21,6 @@ dependencies:
   - { role: geerlingguy.adminer, when: '"adminer" in installed_extras' }
   - { role: geerlingguy.pimpmylog, when: '"pimpmylog" in installed_extras' }
   - { role: geerlingguy.daemonize, when: '"mailhog" in installed_extras' }
-  - { role: geerlingguy.postfix, when: '"postfix" in installed_extras' }
   - { role: geerlingguy.mailhog, when: '"mailhog" in installed_extras' }
   - { role: geerlingguy.nodejs, when: '"nodejs" in installed_extras' }
   - { role: geerlingguy.redis, when: '"redis" in installed_extras' }
