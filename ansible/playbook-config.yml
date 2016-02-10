@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   connection: local
-  become: no
+  become: yes
 
   vars:
     beet_user: "{{ lookup('env','BEET_USER') | default('vagrant',true) }}"
@@ -17,7 +17,6 @@
     - name: Create default config files.
       file:
         path: "{{ ansible_home }}/{{ item }}"
-        owner: "{{ beet_user }}"
-        group: "{{ beet_user }}"
         state: touch
       with_items: conf_files
+      failed_when: false
