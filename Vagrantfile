@@ -113,9 +113,10 @@ Vagrant.configure("2") do |config|
       end
 
       # Provision box
+      build_sh = "#{vconfig['beet_home']}/ansible/build.sh"
       node.vm.provision "ansible", type: "shell" do |s|
         s.privileged = false
-        s.inline = "chmod +x #{vconfig['beet_home']}/ansible/build.sh && #{debug_mode} #{vconfig['beet_home']}/ansible/build.sh"
+        s.inline = "sudo chmod +x #{build_sh} && sudo -H #{build_sh}"
       end
 
       # VirtualBox.
