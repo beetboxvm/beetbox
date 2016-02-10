@@ -10,14 +10,20 @@ BEET_BRANCH=${BEET_BRANCH:="master"}
 
 if [ ! -f "$BEET_HOME/.beetbox/installed" ]; then
 
+  # Remove default circle CI packages.
+  if [ "$CIRCLECI" == "true" ]; then
+    echo "Removing default circle CI packages"
+    sudo apt-get -qq update
+    sudo apt-get -y purge apache2 php5-cli mysql-common mysql-server mysql-common
+    sudo apt-get -y autoremove
+    sudo apt-get -y autoclean
+    sudo rm -rf /etc/apache2/mods-enabled/*
+    sudo rm -rf /var/lib/mysql
+  fi
+
   # Install ansible.
   sudo apt-get -y install python-pip python-dev
   sudo -H pip install ansible==$ANSIBLE_VERSION
-
-  # Remove default packages.
-  sudo apt-get -qq update
-  sudo apt-get -y purge apache2 php5-cli mysql-common mysql-server
-  sudo rm -rf /etc/apache2/mods-enabled/*
 
   # Clone beetbox if BEET_HOME doesn't exist.
   if [ ! -d "$BEET_HOME" ]; then

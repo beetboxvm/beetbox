@@ -1,7 +1,7 @@
 ---
 machine:
-  python:
-    version: 2.7.6
+  hosts:
+    beetbox.local: 127.0.0.1
   environment:
     BEET_HOME: /beetbox
     BEET_BASE: /var/beetbox
