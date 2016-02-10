@@ -1,8 +1,10 @@
 #!/bin/bash -e
 
 # Install packer.
-wget https://releases.hashicorp.com/packer/0.8.6/packer_0.8.6_linux_amd64.zip
-unzip packer_0.8.6_linux_amd64.zip -d ~/packer
+if [ ! -f "~/packer/packer" ]; then
+  wget https://releases.hashicorp.com/packer/0.8.6/packer_0.8.6_linux_amd64.zip
+  unzip packer_0.8.6_linux_amd64.zip -d ~/packer
+fi
 
 # Trigger new build.
 cd ~/$CIRCLE_PROJECT_REPONAME/packer
