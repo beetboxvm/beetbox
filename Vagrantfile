@@ -12,6 +12,8 @@ local_config = "#{cwd}/#{config_dir}local.config.yml"
 
 # Default vagrant config.
 vconfig = {
+  'vagrant_box' => 'DrupalMel/beetbox',
+  'vagrant_box_version' => '>= 0.1.18',
   'vagrant_ip' => '0.0.0.0',
   'vagrant_memory' => 1024,
   'vagrant_cpus' => 2,
@@ -71,8 +73,8 @@ Vagrant.configure("2") do |config|
     active_node = (branch == current_branch) ? true : false
     config.vm.define branch, autostart: active_node, primary: active_node do |node|
 
-      node.vm.box = "DrupalMel/beetbox"
-      node.vm.box_version = ">= 0.1.18"
+      node.vm.box = vconfig['vagrant_box']
+      node.vm.box_version = vconfig['vagrant_box_version']
       node.vm.hostname = (branch_prefix) ? "#{branch}.#{hostname}" : hostname
       node.ssh.insert_key = false
       node.ssh.forward_agent = true
@@ -89,34 +91,34 @@ Vagrant.configure("2") do |config|
       # Synced folders.
       node.vm.synced_folder ".", vconfig['beet_base'],
         type: "nfs",
-        id: "drupal"
+        id: "beetbox"
 
       if vconfig['beet_debug']
-        node.vm.synced_folder "./ansible", "#{vconfig['beet_home']}/ansible",
+        node.vm.synced_folder "./provisioning", "#{vconfig['beet_home']}/provisioning",
           type: "nfs",
-          id: "ansible"
+          id: "debug"
         debug_mode = "BEETBOX_DEBUG=true"
       end
 
       # Upload vagrant.config.yml
       node.vm.provision "project_config", type: "file" do |s|
        s.source = project_config
-       s.destination = "#{vconfig['beet_home']}/ansible/vagrant.config.yml"
+       s.destination = "~/vagrant.config.yml"
       end
 
       # Upload local.config.yml
       if File.exist?(local_config)
         node.vm.provision "local_config", type: "file" do |s|
          s.source = local_config
-         s.destination = "#{vconfig['beet_home']}/ansible/local.config.yml"
+         s.destination = "~/local.config.yml"
         end
       end
 
       # Provision box
-      build_sh = "#{vconfig['beet_home']}/ansible/build.sh"
+      beet_sh = "#{vconfig['beet_home']}/provisioning/beetbox.sh"
       node.vm.provision "ansible", type: "shell" do |s|
         s.privileged = false
-        s.inline = "sudo chmod +x #{build_sh} && sudo -H #{build_sh}"
+        s.inline = "sudo chmod +x #{beet_sh} && #{debug_mode} sudo -H #{beet_sh}"
       end
 
       # VirtualBox.

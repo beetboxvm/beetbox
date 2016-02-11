@@ -7,6 +7,6 @@ if [ ! -f "~/packer/packer" ]; then
 fi
 
 # Trigger new build.
-cd ~/$CIRCLE_PROJECT_REPONAME/packer
+cd ~/$CIRCLE_PROJECT_REPONAME/provisioning
 sed -i "s/BEET_VERSION/$BEET_VERSION/" $BEET_TEMPLATE
 ~/packer/packer push -token=$ATLAS_TOKEN -name="DrupalMel/$BEET_BOX" $BEET_TEMPLATE
