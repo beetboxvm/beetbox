@@ -26,11 +26,14 @@ deployment:
     owner: drupalmel
     commands:
       - chmod +x $BEET_HOME/$BEET_DEPLOY ; $BEET_HOME/$BEET_DEPLOY
+      - BEET_BOX=beet/dev $BEET_HOME/$BEET_DEPLOY
   release:
     tag: /[0-9]+\.[0-9]+\.[0-9]+/
     owner: drupalmel
     commands:
-      - chmod +x $BEET_HOME/$BEET_DEPLOY
-      - $BEET_HOME/$BEET_DEPLOY
+      - chmod +x $BEET_HOME/$BEET_DEPLOY ; $BEET_HOME/$BEET_DEPLOY
+      - BEET_BOX=beet/box $BEET_HOME/$BEET_DEPLOY
       - BEET_TEMPLATE=template-14.04.json $BEET_HOME/$BEET_DEPLOY
+      - BEET_BOX=beet/box-14.04 BEET_TEMPLATE=template-14.04.json $BEET_HOME/$BEET_DEPLOY
       - BEET_TEMPLATE=template-12.04.json $BEET_HOME/$BEET_DEPLOY
+      - BEET_BOX=beet/box-12.04 BEET_TEMPLATE=template-12.04.json $BEET_HOME/$BEET_DEPLOY
