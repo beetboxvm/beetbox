@@ -8,6 +8,7 @@
   with_items:
     - curl
     - python-apt
+    - python-httplib2
     - python-pycurl
     - build-essential
 

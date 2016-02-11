@@ -25,6 +25,7 @@ beet_webserver: apache
 beet_mysql_user: beetbox
 beet_mysql_password: beetbox
 beet_mysql_database: "beetbox"
+beet_run_tests: no
 
 # Ansible Galaxy roles.
 galaxy_roles:
