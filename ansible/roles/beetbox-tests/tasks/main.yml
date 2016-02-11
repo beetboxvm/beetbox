@@ -1,0 +1,16 @@
+---
+- name: Test webserver is responding on port 80.
+  uri:
+    url: "http://{{ beet_domain }}/"
+    status_code: 200
+
+- name: Test webserver is responding on port 443.
+  uri:
+    url: "https://{{ beet_domain }}/"
+    validate_certs: no
+    status_code: 200
+
+- name: Test mailhog is responding on port 8025.
+  uri:
+    url: "http://{{ beet_domain }}:8025/"
+    status_code: 200

@@ -34,6 +34,9 @@ ansible-playbook $ANSIBLE_DEBUG "$ANSIBLE_HOME/playbook-roles.yml" -i $ANSIBLE_I
 # Provision VM.
 ansible-playbook $ANSIBLE_DEBUG "$ANSIBLE_HOME/playbook-provision.yml" -i $ANSIBLE_INVENTORY
 
+# Run tests on Circle CI.
+[ "$CIRCLECI" == "true" ] && ansible-playbook $ANSIBLE_DEBUG "$ANSIBLE_HOME/playbook-tests.yml" -i $ANSIBLE_INVENTORY
+
 # Print welcome message.
 touch ~/welcome.txt
 cat ~/welcome.txt

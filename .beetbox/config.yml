@@ -21,6 +21,9 @@ drupal_account_pass: admin
 # Beetbox debug.
 beet_debug: no
 
+# Beetbox tests.
+beet_run_tests: yes
+
 #
 # Examples.
 #
