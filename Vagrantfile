@@ -97,7 +97,7 @@ Vagrant.configure("2") do |config|
         node.vm.synced_folder "./provisioning", "#{vconfig['beet_home']}/provisioning",
           type: "nfs",
           id: "debug"
-        debug_mode = "BEETBOX_DEBUG=true"
+        debug_mode = "BEET_DEBUG=true"
       end
 
       # Upload vagrant.config.yml

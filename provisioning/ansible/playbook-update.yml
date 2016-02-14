@@ -9,6 +9,9 @@
     - vagrant.config.yml
     - local.config.yml
 
+  vars:
+    beet_update: no
+
   tasks:
 
     - name: Create {{ beet_user }} user.
@@ -18,6 +21,18 @@
         createhome: yes
         home: "/home/{{ beet_user }}"
 
+    - set_fact:
+        beet_update: yes
+      when: "{{ beet_repo != 'https://github.com/DrupalMel/beetbox.git' }}"
+
+    - set_fact:
+        beet_update: yes
+      when: "{{ beet_version != 'master' }}"
+
+    - set_fact:
+        beet_update: no
+      when: beet_debug
+
     - name: Check for updates.
       git:
         repo: "{{ beet_repo }}"
@@ -26,4 +41,21 @@
         accept_hostkey: yes
         update: yes
         force: yes
-      when: beet_keep_updated and (not beet_debug)
+      when: beet_update
+
+    - name: Set ownership of beet_home directory.
+      file:
+        path: "{{ beet_home }}"
+        owner: "{{ beet_user }}"
+        group: "{{ beet_user }}"
+        recurse: yes
+        state: directory
+      failed_when: false
+
+    - name: Set ownership of beet_base directory.
+      file:
+        path: "{{ beet_base }}"
+        owner: "{{ beet_user }}"
+        group: "{{ beet_user }}"
+        state: directory
+      failed_when: false

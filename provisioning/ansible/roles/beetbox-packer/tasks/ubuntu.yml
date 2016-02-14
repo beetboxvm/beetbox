@@ -1,0 +1,42 @@
+---
+- name: Ensure apt cache is updated.
+  apt: update_cache=yes cache_valid_time=3600
+
+- name: Ensure correct kernel headers are installed.
+  shell: "apt-get -y install linux-headers-$(uname -r)"
+
+- name: Disable release upgrade prompt.
+  lineinfile:
+    dest: /etc/update-manager/release-upgrades
+    regexp: "^Prompt"
+    line: "Prompt=never"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Disbale failsafe boot.
+  lineinfile:
+    dest: /etc/init/rc-sysinit.conf
+    regexp: "^start on"
+    line: "start on (filesystem) or failsafe-boot"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Add configuration to update apt cache on boot.
+  copy:
+    src: refresh-apt.conf
+    dest: /etc/init/refresh-apt.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Configure SSH daemon.
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+  with_items:
+    - { regexp: '^UseDNS', line: 'UseDNS no' }
+    - { regexp: '^GSSAPIAuthentication', line: 'GSSAPIAuthentication no' }

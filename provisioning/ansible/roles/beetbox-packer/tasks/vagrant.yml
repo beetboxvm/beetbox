@@ -1,0 +1,42 @@
+---
+- name: Create vagrant user.
+  user:
+    name: vagrant
+    shell: /bin/bash
+    createhome: yes
+    home: "/home/vagrant"
+
+- name: Set up sudo.
+  lineinfile:
+    dest: /etc/sudoers.d/vagrant
+    state: present
+    create: yes
+    regexp: "^vagrant ALL"
+    line: "vagrant ALL=(ALL) NOPASSWD:ALL"
+    validate: "visudo -cf %s"
+    mode: 0440
+
+- name: Configure Vagrant .ssh directory.
+  file:
+    path: /home/vagrant/.ssh
+    state: directory
+    owner: vagrant
+    group: vagrant
+    mode: 0700
+
+- name: Get Vagrant's public key.
+  get_url:
+    url: https://github.com/mitchellh/vagrant/raw/master/keys/vagrant.pub
+    dest: /home/vagrant/.ssh/authorized_keys
+    owner: vagrant
+    group: vagrant
+    mode: 0600
+
+- name: Fix stdin not being a tty.
+  lineinfile:
+    dest: /root/.profile
+    regexp: "^mesg n"
+    line: "tty -s && mesg n"
+    owner: root
+    group: root
+    mode: 0644
