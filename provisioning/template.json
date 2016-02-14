@@ -1,0 +1,101 @@
+{
+  "variables": {
+    "version": "BEET_VERSION",
+    "atlas_username": "{{env `ATLAS_BUILD_USERNAME`}}",
+    "atlas_name": "{{env `ATLAS_BUILD_NAME`}}",
+    "hostname": "beetbox.local",
+    "ssh_name": "vagrant",
+    "ssh_pass": "vagrant",
+    "beet_repo": "https://github.com/DrupalMel/beetbox.git",
+    "beet_version": "master",
+    "beet_tag": "",
+    "iso_url": "http://releases.ubuntu.com/trusty/ubuntu-14.04.3-server-amd64.iso",
+    "iso_checksum": "a3b345908a826e262f4ea1afeb357fd09ec0558cf34e6c9112cead4bb55ccdfb"
+  },
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "boot_command": [
+        "<esc><esc><enter><wait>",
+        "/install/vmlinuz auto",
+        " console-setup/ask_detect=false",
+        " console-setup/layoutcode=us",
+        " console-setup/modelcode=pc105",
+        " debconf/frontend=noninteractive",
+        " debian-installer=en_US",
+        " fb=false",
+        " initrd=/install/initrd.gz",
+        " kbd-chooser/method=us",
+        " keyboard-configuration/layout=USA",
+        " keyboard-configuration/variant=USA",
+        " locale=en_US",
+        " netcfg/get_domain=vm",
+        " netcfg/get_hostname={{ user `hostname` }}",
+        " noapic",
+        " passwd/user-fullname={{ user `ssh_name` }}",
+        " passwd/user-password={{ user `ssh_pass` }}",
+        " passwd/user-password-again={{ user `ssh_pass` }}",
+        " passwd/username={{ user `ssh_name` }}",
+        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg",
+        " -- ",
+        "<enter>"
+      ],
+      "boot_wait": "10s",
+      "guest_os_type": "Ubuntu_64",
+      "hard_drive_interface": "sata",
+      "http_directory": "packer/http",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "sha256",
+      "iso_url": "{{user `iso_url`}}",
+      "output_directory": "output-{{ user `vm_name` }}-virtualbox-iso",
+      "ssh_username": "{{user `ssh_name`}}",
+      "ssh_password": "{{user `ssh_pass`}}",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "shutdown_command": "echo '{{ user `ssh_pass` }}'|sudo -S shutdown -P now",
+      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+      "virtualbox_version_file": ".vbox_version",
+      "vm_name": "beetbox_{{user `version`}}"
+    }
+  ],
+  "provisioners": [
+    {
+      "environment_vars": [
+        "SSH_USERNAME={{user `ssh_username`}}",
+        "SSH_PASSWORD={{user `ssh_password`}}",
+        "BEET_REPO={{user `beet_repo`}}",
+        "BEET_VERSION={{user `beet_version`}}"
+      ],
+      "type": "shell",
+      "scripts": [
+        "beetbox.sh",
+        "packer/scripts/minimize.sh",
+        "packer/scripts/cleanup.sh"
+      ],
+      "execute_command": "echo '{{user `ssh_pass`}}' | {{.Vars}} sudo -S -E bash '{{.Path}}'"
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "vagrant",
+        "compression_level": 9,
+        "vagrantfile_template": "packer/includes/Vagrantfile",
+        "include": [
+          "packer/includes/drush.alias.erb"
+        ],
+        "output": "{{user `atlas_username`}}-{{user `atlas_name`}}-{{.Provider}}.box"
+      },
+      {
+        "type": "atlas",
+        "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
+        "artifact_type": "vagrant.box",
+        "metadata": {
+          "provider": "virtualbox",
+          "created_at": "{{timestamp}}",
+          "version": "{{user `version`}}"
+        }
+      }
+    ]
+  ]
+}

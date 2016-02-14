@@ -3,31 +3,34 @@ machine:
   hosts:
     beetbox.local: 127.0.0.1
   environment:
+    BEET_BOX: DrupalMel/beetbox
     BEET_HOME: /beetbox
     BEET_BASE: /var/beetbox
     BEET_USER: ubuntu
+    BEET_DEPLOY: ~/$CIRCLE_PROJECT_REPONAME/provisioning/deploy.sh
+    INSTALL_PACKER: true
 dependencies:
   pre:
     - sudo cp -rf ~/$CIRCLE_PROJECT_REPONAME $BEET_HOME
-    - sudo chmod +x $BEET_HOME/packer/scripts/beetbox.sh
-    - $BEET_HOME/packer/scripts/beetbox.sh
+    - sudo chmod +x $BEET_HOME/provisioning/beetbox.sh
+    - $BEET_HOME/provisioning/beetbox.sh
 test:
   override:
     - sudo cp -rf $BEET_HOME/* $BEET_BASE
-    - sudo cp ~/$CIRCLE_PROJECT_REPONAME/.beetbox/config.yml $BEET_HOME/ansible/vagrant.config.yml
-    - $BEET_HOME/ansible/build.sh
+    - sudo cp ~/$CIRCLE_PROJECT_REPONAME/.beetbox/config.yml $BEET_HOME/provisioning/ansible/vagrant.config.yml
+    - $BEET_HOME/provisioning/beetbox.sh
 deployment:
   dev:
     branch: dev
     owner: drupalmel
     commands:
-      - chmod +x ~/$CIRCLE_PROJECT_REPONAME/packer/scripts/deploy.sh
-      - BEET_VERSION="0.1.$CIRCLE_BUILD_NUM" BEET_BOX=beetbox-dev BEET_TEMPLATE=template.json ~/$CIRCLE_PROJECT_REPONAME/packer/scripts/deploy.sh
+      - chmod +x $BEET_DEPLOY
+      - $BEET_DEPLOY
   release:
     tag: /[0-9]+\.[0-9]+\.[0-9]+/
     owner: drupalmel
     commands:
-      - chmod +x ~/$CIRCLE_PROJECT_REPONAME/packer/scripts/deploy.sh
-      - BEET_VERSION="$CIRCLE_TAG" BEET_BOX=beetbox BEET_TEMPLATE=template.json ~/$CIRCLE_PROJECT_REPONAME/packer/scripts/deploy.sh
-      - BEET_VERSION="$CIRCLE_TAG" BEET_BOX=beetbox-14.04 BEET_TEMPLATE=template-14.04.json ~/$CIRCLE_PROJECT_REPONAME/packer/scripts/deploy.sh
-      - BEET_VERSION="$CIRCLE_TAG" BEET_BOX=beetbox-12.04 BEET_TEMPLATE=template-12.04.json ~/$CIRCLE_PROJECT_REPONAME/packer/scripts/deploy.sh
+      - chmod +x $BEET_DEPLOY
+      - BEET_VERSION="$CIRCLE_TAG" $BEET_DEPLOY
+      - BEET_VERSION="$CIRCLE_TAG" BEET_TEMPLATE=template-14.04.json $BEET_DEPLOY
+      - BEET_VERSION="$CIRCLE_TAG" BEET_TEMPLATE=template-12.04.json $BEET_DEPLOY

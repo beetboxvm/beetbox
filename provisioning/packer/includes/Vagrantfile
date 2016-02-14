@@ -105,34 +105,34 @@ if cwd != nil && Digest::MD5.file("#{cwd}/#{vagrantfile}").hexdigest == "abef0f6
     # Synced folders.
     config.vm.synced_folder ".", vconfig['beet_base'],
       type: "nfs",
-      id: "drupal"
+      id: "beetbox"
 
     if vconfig['beet_debug']
-      config.vm.synced_folder "./ansible", "#{vconfig['beet_home']}/ansible",
+      config.vm.synced_folder "./provisioning", "#{vconfig['beet_home']}/provisioning",
         type: "nfs",
-        id: "ansible"
+        id: "debug"
       debug_mode = "BEETBOX_DEBUG=true"
     end
 
     # Upload vagrant.config.yml
     config.vm.provision "project_config", type: "file" do |s|
      s.source = project_config
-     s.destination = "#{vconfig['beet_home']}/ansible/vagrant.config.yml"
+     s.destination = "~/vagrant.config.yml"
     end
 
     # Upload local.config.yml
     if File.exist?(local_config)
       config.vm.provision "local_config", type: "file" do |s|
        s.source = local_config
-       s.destination = "#{vconfig['beet_home']}/ansible/local.config.yml"
+       s.destination = "~/local.config.yml"
       end
     end
 
     # Provision box
-    build_sh = "#{vconfig['beet_home']}/ansible/build.sh"
-    node.vm.provision "ansible", type: "shell" do |s|
+    beet_sh = "#{vconfig['beet_home']}/provisioning/beetbox.sh"
+    config.vm.provision "ansible", type: "shell" do |s|
       s.privileged = false
-      s.inline = "sudo chmod +x #{build_sh} && sudo -H #{build_sh}"
+      s.inline = "sudo chmod +x #{beet_sh} && #{debug_mode} sudo -H #{beet_sh}"
     end
 
     # VirtualBox.

@@ -1,0 +1,40 @@
+---
+- hosts: localhost
+  connection: local
+  become: yes
+
+  vars:
+    beet_user: "{{ lookup('env','BEET_USER') | default('vagrant',true) }}"
+    ansible_home: "{{ lookup('env','ANSIBLE_HOME') | default('/beetbox/provisioning/ansible',true) }}"
+    conf_files:
+      - beetbox.config.yml
+      - project.config.yml
+      - vagrant.config.yml
+      - local.config.yml
+
+  tasks:
+
+    - name: Copy config files from home directory.
+      copy:
+        src: "/home/{{ beet_user }}/{{ item }}"
+        dest: "{{ ansible_home }}/{{ item }}"
+        owner: "{{ beet_user }}"
+        group: "{{ beet_user }}"
+        force: yes
+      with_items: conf_files
+      failed_when: false
+
+    - name: Create absent config files.
+      file:
+        path: "{{ ansible_home }}/{{ item }}"
+        state: touch
+      with_items: conf_files
+
+    - name: "Ensure {{ beet_user }} has ownership of {{ ansible_home }}."
+      file:
+        path: "{{ ansible_home }}"
+        owner: "{{ beet_user }}"
+        group: "{{ beet_user }}"
+        state: directory
+        force: yes
+      failed_when: false

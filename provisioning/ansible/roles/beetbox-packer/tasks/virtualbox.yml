@@ -1,0 +1,38 @@
+---
+- name: Get VirtualBox version.
+  shell: cat /home/vagrant/.vbox_version
+  register: virtualbox_version
+
+- name: Check for VirtualBox guest additions ISO.
+  stat: "path=/home/vagrant/VBoxGuestAdditions_{{ virtualbox_version.stdout }}.iso"
+  register: virtualbox_iso
+
+- name: Download VirtualBox guest additions ISO.
+  get_url:
+    url: "http://download.virtualbox.org/virtualbox/{{ virtualbox_version.stdout }}/VBoxGuestAdditions_{{ virtualbox_version.stdout }}.iso"
+    dest: "/home/vagrant/VBoxGuestAdditions_{{ virtualbox_version.stdout }}.iso"
+  when: not virtualbox_iso.stat.exists
+
+- name: Mount VirtualBox guest additions ISO.
+  mount:
+    name: /tmp/vbox
+    src: "/home/vagrant/VBoxGuestAdditions_{{ virtualbox_version.stdout }}.iso"
+    opts: loop
+    state: mounted
+    fstype: iso9660
+
+- name: Run VirtualBox guest additions installation.
+  shell: sh /tmp/vbox/VBoxLinuxAdditions.run
+  failed_when: false
+
+- name: Unmount VirtualBox guest additions ISO.
+  mount:
+    name: /tmp/vbox
+    src: "/home/vagrant/VBoxGuestAdditions_{{ virtualbox_version.stdout }}.iso"
+    state: absent
+    fstype: iso9660
+
+- name: Delete VirtualBox guest additions ISO.
+  file:
+    path: "/home/vagrant/VBoxGuestAdditions_{{ virtualbox_version.stdout }}.iso"
+    state: absent
