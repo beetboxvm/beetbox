@@ -1,13 +1,13 @@
 {
   "variables": {
-    "version": "BEET_VERSION",
+    "version": "ATLAS_VERSION",
     "atlas_username": "{{env `ATLAS_BUILD_USERNAME`}}",
     "atlas_name": "{{env `ATLAS_BUILD_NAME`}}",
     "hostname": "beetbox.local",
     "ssh_name": "vagrant",
     "ssh_pass": "vagrant",
     "beet_repo": "https://github.com/DrupalMel/beetbox.git",
-    "beet_version": "master",
+    "beet_version": "BEET_VERSION",
     "iso_url": "http://releases.ubuntu.com/trusty/ubuntu-14.04.3-server-amd64.iso",
     "iso_checksum": "a3b345908a826e262f4ea1afeb357fd09ec0558cf34e6c9112cead4bb55ccdfb"
   },
