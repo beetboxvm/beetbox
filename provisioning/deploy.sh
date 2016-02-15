@@ -1,4 +1,4 @@
-#!/bin/bash -eu
+#!/bin/bash -e
 
 # Set default environment variables.
 ATLAS_BOX="$BEET_BOX-dev"
