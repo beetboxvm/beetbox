@@ -7,7 +7,7 @@ machine:
     BEET_HOME: /beetbox
     BEET_BASE: /var/beetbox
     BEET_USER: ubuntu
-    BEET_DEPLOY: ~/$CIRCLE_PROJECT_REPONAME/provisioning/deploy.sh
+    BEET_DEPLOY: /home/$BEET_USER/$CIRCLE_PROJECT_REPONAME/provisioning/deploy.sh
     INSTALL_PACKER: true
 dependencies:
   pre:
