@@ -59,3 +59,7 @@
     line: "SSH_HOME={{ beet_ssh_home }} && [ -e $SSH_HOME ] && cd $SSH_HOME"
   become: no
   when: beet_ssh_home is defined
+
+# Create known_hosts.
+- include: tasks/known-hosts.yml
+  when: known_hosts

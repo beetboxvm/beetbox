@@ -1,5 +1,6 @@
 ---
 dependencies:
+  - { role: beetbox-init }
   - { role: geerlingguy.firewall}
   - { role: geerlingguy.git }
   - { role: geerlingguy.apache }
