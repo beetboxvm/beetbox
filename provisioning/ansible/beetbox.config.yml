@@ -61,14 +61,14 @@ galaxy_roles:
   - { name: hashbangcode.pantheon-cli }
   - { name: heskethm.wp-cli }
   - { name: pwelch.avahi }
-  - { name: thomtoogood.beetbox-backdrop }
-  - { name: thomtoogood.beetbox-cakephp }
-  - { name: thomtoogood.beetbox-concrete5 }
-  - { name: thomtoogood.beetbox-kohana }
-  - { name: thomtoogood.beetbox-modx }
-  - { name: thomtoogood.beetbox-silverstripe }
-  - { name: thomtoogood.beetbox-slim }
-  - { name: thomtoogood.beetbox-wordpress }
+  - { name: beetboxvm.backdrop }
+  - { name: beetboxvm.cakephp }
+  - { name: beetboxvm.concrete5 }
+  - { name: beetboxvm.kohana }
+  - { name: beetboxvm.modx }
+  - { name: beetboxvm.silverstripe }
+  - { name: beetboxvm.slim }
+  - { name: beetboxvm.wordpress }
 
 # Symlinks.
 symlinks: no

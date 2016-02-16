@@ -19,14 +19,14 @@
   roles:
     - { role: beetbox-common }
     - { role: beetbox-drupal, when: beet_project == 'drupal' }
-    - { role: thomtoogood.beetbox-backdrop, when: beet_project == 'backdrop' }
-    - { role: thomtoogood.beetbox-cakephp, when: beet_project == 'cakephp' }
-    - { role: thomtoogood.beetbox-concrete5, when: beet_project == 'concrete5' }
-    - { role: thomtoogood.beetbox-kohana, when: beet_project == 'kohana' }
-    - { role: thomtoogood.beetbox-modx, when: beet_project == 'modx' }
-    - { role: thomtoogood.beetbox-silverstripe, when: beet_project == 'silverstripe' }
-    - { role: thomtoogood.beetbox-slim, when: beet_project == 'slim' }
-    - { role: thomtoogood.beetbox-wordpress, when: beet_project == 'wordpress' }
+    - { role: beetboxvm.backdrop, when: beet_project == 'backdrop' }
+    - { role: beetboxvm.cakephp, when: beet_project == 'cakephp' }
+    - { role: beetboxvm.concrete5, when: beet_project == 'concrete5' }
+    - { role: beetboxvm.kohana, when: beet_project == 'kohana' }
+    - { role: beetboxvm.modx, when: beet_project == 'modx' }
+    - { role: beetboxvm.silverstripe, when: beet_project == 'silverstripe' }
+    - { role: beetboxvm.slim, when: beet_project == 'slim' }
+    - { role: beetboxvm.wordpress, when: beet_project == 'wordpress' }
 
   tasks:
     - include: tasks/extras.yml
