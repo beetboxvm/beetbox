@@ -13,7 +13,7 @@ beet_home: "{{ lookup('env','BEET_HOME') | default('/beetbox',true) }}"
 beet_role_dir: "{{ beet_home }}/provisioning/ansible/roles"
 beet_project: drupal
 beet_debug: no
-beet_domain: "beetbox.local"
+beet_domain: "{{ ansible_hostname }}.local"
 beet_user: "{{ lookup('env','BEET_USER') | default('vagrant',true) }}"
 beet_base: "{{ lookup('env','BEET_BASE') | default('/var/beetbox',true) }}"
 beet_root: "{{ beet_base }}"
