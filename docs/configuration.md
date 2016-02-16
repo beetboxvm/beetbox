@@ -13,7 +13,7 @@ php_date_timezone: "Antarctica/South_Pole"
 
 The full list of ansible roles beetbox implements is here: [https://github.com/drupalmel/beetbox/blob/master/provisioning/ansible/beetbox.config.yml#L29](https://github.com/drupalmel/beetbox/blob/master/provisioning/ansible/beetbox.config.yml#L29)
 
-Beetbox itself has a predefined set of configuration: https://github.com/drupalmel/beetbox/blob/master/ansible/beetbox.config.yml
+Beetbox itself has a predefined set of configuration: https://github.com/drupalmel/beetbox/blob/master/provisioning/ansible/beetbox.config.yml
 so not all attributes are defined inside roles and in some cases role attributes have already been overridden, however your project config will **always** override these settings.
 
 When overriding complex values, such as lists, it is necessarry to include all values; i.e. there is no merging of overidden and default values.
