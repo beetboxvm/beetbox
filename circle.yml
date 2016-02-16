@@ -32,5 +32,5 @@ deployment:
     commands:
       - chmod +x $BEET_HOME/$BEET_DEPLOY
       - $BEET_HOME/$BEET_DEPLOY
-      - BEET_TEMPLATE=template-14.04.json $BEET_HOME/$BEET_DEPLOY
-      - BEET_TEMPLATE=template-12.04.json $BEET_HOME/$BEET_DEPLOY
+      - BEET_BOX=DrupalMel/beetbox-14.04 BEET_TEMPLATE=template-14.04.json $BEET_HOME/$BEET_DEPLOY
+      - BEET_BOX=DrupalMel/beetbox-12.04 BEET_TEMPLATE=template-12.04.json $BEET_HOME/$BEET_DEPLOY
