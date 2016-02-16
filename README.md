@@ -39,7 +39,7 @@ After which you can install the site at [http://drupal-8-0-2.local/install.php](
 
 ## Documentation
 
-http://beetbox.readthedocs.org/en/dev/
+http://beetbox.rtfd.org
 
 ## Support
 

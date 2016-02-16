@@ -16,16 +16,15 @@ Whilst we use Circle CI the same concept could be applied to other CI providers.
 ```
 ---
 machine:
-  python:
-    version: 2.7.6
   environment:
-    BEETBOX_HOME: /home/ubuntu/beetbox
-    BEETBOX_DEPENDENCIES: https://raw.githubusercontent.com/drupalmel/beetbox/master/tests/dependencies.sh
+    BEET_HOME: /beetbox
+    BEET_USER: ubuntu
+    BEET_DEPENDENCIES: https://raw.githubusercontent.com/drupalmel/beetbox/master/provisioning/beetbox.sh
 dependencies:
   pre:
-    - curl -fsSL $BEETBOX_DEPENDENCIES | bash
-    - sudo cp ~/$CIRCLE_PROJECT_REPONAME/.beetbox/config.yml ~/beetbox/ansible/vagrant.config.yml
-    - sudo su -c ~/beetbox/ansible/build.sh
+    - curl -fsSL $BEET_DEPENDENCIES | bash
+    - sudo cp ~/$CIRCLE_PROJECT_REPONAME/.beetbox/config.yml $BEET_HOME/provisioning/ansible/vagrant.config.yml
+    - $BEET_HOME/provisioning/beetbox.sh
 test:
   override:
     #- /path/to/tests.sh
