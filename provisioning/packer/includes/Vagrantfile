@@ -88,7 +88,7 @@ if cwd != nil && Digest::MD5.file("#{cwd}/#{vagrantfile}").hexdigest == "ef550c4
     end
 
     config.vm.box = "beet/box"
-    config.vm.box_version = ">= 0.1.18"
+    config.vm.box_version = ">= 0.2.0"
     config.vm.hostname = hostname
     config.ssh.insert_key = false
     config.ssh.forward_agent = true
