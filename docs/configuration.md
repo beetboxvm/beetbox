@@ -11,9 +11,9 @@ so any of these YAML attributes could be imported into your project `config.yml`
 php_date_timezone: "Antarctica/South_Pole"
 ```
 
-The full list of ansible roles beetbox implements is here: [https://github.com/drupalmel/beetbox/blob/master/provisioning/ansible/beetbox.config.yml#L29](https://github.com/drupalmel/beetbox/blob/master/provisioning/ansible/beetbox.config.yml#L29)
+The full list of ansible roles beetbox implements is here: [https://github.com/beetboxvm/beetbox/blob/master/provisioning/ansible/beetbox.config.yml#L29](https://github.com/beetboxvm/beetbox/blob/master/provisioning/ansible/beetbox.config.yml#L29)
 
-Beetbox itself has a predefined set of configuration: https://github.com/drupalmel/beetbox/blob/master/provisioning/ansible/beetbox.config.yml
+Beetbox itself has a predefined set of configuration: https://github.com/beetboxvm/beetbox/blob/master/provisioning/ansible/beetbox.config.yml
 so not all attributes are defined inside roles and in some cases role attributes have already been overridden, however your project config will **always** override these settings.
 
 When overriding complex values, such as lists, it is necessarry to include all values; i.e. there is no merging of overidden and default values.
@@ -24,7 +24,7 @@ Beetbox
 -----------------
 Variable | Default  | Description
 --------------------- | ---------     | ----------
-`beet_repo`           | `https://github.com/DrupalMel/beetbox.git` | git project URL
+`beet_repo`           | `https://github.com/beetboxvm/beetbox.git` | git project URL
 `beet_version`        | `HEAD` | git project version
 `beet_home`           | `/beetbox` | path to beetbox repo inside VM
 `beet_role_dir`       | `/beetbox/ansible/roles` | path to ansible roles inside VM

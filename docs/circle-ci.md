@@ -19,7 +19,7 @@ machine:
   environment:
     BEET_HOME: /beetbox
     BEET_USER: ubuntu
-    BEET_DEPENDENCIES: https://raw.githubusercontent.com/drupalmel/beetbox/master/provisioning/beetbox.sh
+    BEET_DEPENDENCIES: https://raw.githubusercontent.com/beetboxvm/beetbox/master/provisioning/beetbox.sh
 dependencies:
   pre:
     - curl -fsSL $BEET_DEPENDENCIES | bash

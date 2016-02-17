@@ -7,7 +7,7 @@
 #
 
 # Beetbox config.
-beet_repo: "{{ lookup('env','BEET_REPO') | default('https://github.com/DrupalMel/beetbox.git',true) }}"
+beet_repo: "{{ lookup('env','BEET_REPO') | default('https://github.com/beetboxvm/beetbox.git',true) }}"
 beet_version: "{{ lookup('env','BEET_VERSION') | default('master',true) }}"
 beet_home: "{{ lookup('env','BEET_HOME') | default('/beetbox',true) }}"
 beet_role_dir: "{{ beet_home }}/provisioning/ansible/roles"

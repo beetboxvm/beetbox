@@ -12,7 +12,7 @@ local_config = "#{cwd}/#{config_dir}local.config.yml"
 
 # Default vagrant config.
 vconfig = {
-  'vagrant_box' => 'DrupalMel/beetbox',
+  'vagrant_box' => 'beet/box',
   'vagrant_box_version' => '>= 0.1.18',
   'vagrant_ip' => '0.0.0.0',
   'vagrant_memory' => 1024,
@@ -116,7 +116,7 @@ Vagrant.configure("2") do |config|
 
       # Provision box
       beet_sh = "#{vconfig['beet_home']}/provisioning/beetbox.sh"
-      remote_sh = "https://raw.githubusercontent.com/drupalmel/beetbox/master/provisioning/beetbox.sh"
+      remote_sh = "https://raw.githubusercontent.com/beetboxvm/beetbox/master/provisioning/beetbox.sh"
       local_provision = "sudo chmod +x #{beet_sh} && sudo -H #{beet_sh}"
       remote_provision = "sudo apt-get -qq update && curl -fsSL #{remote_sh} | sudo bash"
       node.vm.provision "ansible", type: "shell" do |s|

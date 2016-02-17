@@ -3,7 +3,7 @@ machine:
   hosts:
     beetbox.local: 127.0.0.1
   environment:
-    BEET_BOX: DrupalMel/beetbox
+    BEET_BOX: beet/box
     BEET_HOME: /beetbox
     BEET_BASE: /var/beetbox
     BEET_USER: ubuntu
@@ -23,14 +23,13 @@ test:
 deployment:
   dev:
     branch: master
-    owner: drupalmel
+    owner: beetboxvm
     commands:
       - chmod +x $BEET_HOME/$BEET_DEPLOY ; $BEET_HOME/$BEET_DEPLOY
   release:
     tag: /[0-9]+\.[0-9]+\.[0-9]+/
-    owner: drupalmel
+    owner: beetboxvm
     commands:
       - chmod +x $BEET_HOME/$BEET_DEPLOY
       - $BEET_HOME/$BEET_DEPLOY
-      - BEET_BOX=DrupalMel/beetbox-14.04 BEET_TEMPLATE=template-14.04.json $BEET_HOME/$BEET_DEPLOY
-      - BEET_BOX=DrupalMel/beetbox-12.04 BEET_TEMPLATE=template-12.04.json $BEET_HOME/$BEET_DEPLOY
+      - BEET_BOX=beet/box-14.04 BEET_TEMPLATE=template-14.04.json $BEET_HOME/$BEET_DEPLOY

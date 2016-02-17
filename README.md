@@ -4,7 +4,7 @@ Beetbox is a Vagrant configuration that provides your team with a versatile deve
 
 The project has a predefined set of default configuration attributes so it can work without any custom configuration, therefore any customisation comes in the form of overrides as undefined attributes will revert to their default setting.
 
-[![Circle CI](https://circleci.com/gh/drupalmel/beetbox.svg?style=svg)](https://circleci.com/gh/drupalmel/beetbox) [![Documentation Status](https://readthedocs.org/projects/beetbox/badge/?version=latest)](http://beetbox.readthedocs.org/en/latest/?badge=latest)
+[![Circle CI](https://circleci.com/gh/beetboxvm/beetbox.svg?style=svg)](https://circleci.com/gh/beetboxvm/beetbox) [![Documentation Status](https://readthedocs.org/projects/beetbox/badge/?version=stable)](http://beetbox.readthedocs.org/en/stable/?badge=stable)
 
 
 ## Features
@@ -28,13 +28,13 @@ The project has a predefined set of default configuration attributes so it can w
 To get a simple Drupal site up and running with Beetbox, run the following commands:
 
 ```
-drush dl drupal-8.0.2
-cd drupal-8.0.2
-vagrant init DrupalMel/beetbox
+drush dl drupal-8.0.3
+cd drupal-8.0.3
+vagrant init beet/box
 vagrant up
 ```
 
-After which you can install the site at [http://drupal-8-0-2.local/install.php](http://drupal-8-0-2.local/install.php)
+After which you can install the site at [http://drupal-8-0-3.local/install.php](http://drupal-8-0-3.local/install.php)
 
 
 ## Documentation
@@ -43,8 +43,8 @@ http://beetbox.rtfd.org
 
 ## Support
 
-* Feature requests should be created on [FeatHub](http://feathub.com/drupalmel/beetbox)
-* Bugs should be reported in the [GitHub Beetbox Issue Queue](https://github.com/drupalmel/beetbox/issues)
+* Feature requests should be created on [FeatHub](http://feathub.com/beetboxvm/beetbox)
+* Bugs should be reported in the [GitHub Beetbox Issue Queue](https://github.com/beetboxvm/beetbox/issues)
 * Use pull requests (PRs) to contribute to Beetbox.
 
 
