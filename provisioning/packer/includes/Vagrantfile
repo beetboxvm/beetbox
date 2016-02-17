@@ -35,7 +35,7 @@ end
 
 # Ensure project Vagrantfile hasn't been customized.
 # @TODO - Add secondary check that parses the Vagrantfile if the MD5 is changed.
-if cwd != nil && Digest::MD5.file("#{cwd}/#{vagrantfile}").hexdigest == "abef0f6a03cc23bb3da842cd1d12aa50"
+if cwd != nil && Digest::MD5.file("#{cwd}/#{vagrantfile}").hexdigest == "ef550c44b71ef09513fe24c4b564c8a9"
   config_dir = '.beetbox/'
   project_config = "#{cwd}/#{config_dir}config.yml"
   local_config = "#{cwd}/#{config_dir}local.config.yml"
@@ -87,7 +87,7 @@ if cwd != nil && Digest::MD5.file("#{cwd}/#{vagrantfile}").hexdigest == "abef0f6
       raise 'Your config requires auto_network plugin.' unless Vagrant.has_plugin?('vagrant-auto_network')
     end
 
-    config.vm.box = "DrupalMel/beetbox"
+    config.vm.box = "beet/box"
     config.vm.box_version = ">= 0.1.18"
     config.vm.hostname = hostname
     config.ssh.insert_key = false
