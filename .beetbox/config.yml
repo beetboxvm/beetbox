@@ -54,7 +54,7 @@ beet_run_tests: yes
 #php_short_open_tag: yes
 
 # Drupal composer.
-#beet_root: "/www/projects/{{ beet_project }}-composer"
+#beet_root: "{{ beet_base }}/projects/{{ beet_project }}-composer"
 #beet_web: "{{ beet_root }}/web"
 #drupal_build_makefile: no
 #drupal_build_composer: yes
