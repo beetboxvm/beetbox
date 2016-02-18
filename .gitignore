@@ -11,7 +11,7 @@ provisioning/ansible/project.config.yml
 provisioning/ansible/vagrant.config.yml
 provisioning/ansible/local.config.yml
 provisioning/ansible/roles/*
-!provisioning/ansible/roles/beetbox*
+!provisioning/ansible/roles/beetbox-*
 .beetbox/local.config.yml
 
 # Prevent Packer related files.
