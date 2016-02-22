@@ -6,6 +6,12 @@
     createhome: yes
     home: "/home/vagrant"
 
+- name: Ensure necessary groups exist.
+  group: "name={{ item }} state=present"
+  with_items:
+    - admin
+    - dialout
+
 - name: Set up sudo.
   lineinfile:
     dest: /etc/sudoers.d/vagrant

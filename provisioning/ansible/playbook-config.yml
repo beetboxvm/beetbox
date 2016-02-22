@@ -17,7 +17,7 @@
     - name: Copy config files from home directory.
       copy:
         src: "/home/{{ beet_user }}/{{ item }}"
-        dest: "{{ ansible_home }}/{{ item }}"
+        dest: "{{ ansible_home }}/config/{{ item }}"
         owner: "{{ beet_user }}"
         group: "{{ beet_user }}"
         force: yes
@@ -26,7 +26,7 @@
 
     - name: Create absent config files.
       file:
-        path: "{{ ansible_home }}/{{ item }}"
+        path: "{{ ansible_home }}/config/{{ item }}"
         state: touch
       with_items: conf_files
 

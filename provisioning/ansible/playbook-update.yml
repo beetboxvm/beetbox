@@ -4,10 +4,10 @@
   become: yes
 
   vars_files:
-    - beetbox.config.yml
-    - project.config.yml
-    - vagrant.config.yml
-    - local.config.yml
+    - config/beetbox.config.yml
+    - config/project.config.yml
+    - config/vagrant.config.yml
+    - config/local.config.yml
 
   vars:
     beet_update: no
@@ -20,6 +20,12 @@
         shell: /bin/bash
         createhome: yes
         home: "/home/{{ beet_user }}"
+
+    - name: "Ensure {{ beet_user }} user is in admin group."
+      user:
+        name: "{{ beet_user }}"
+        append: yes
+        groups: "admin"
 
     - set_fact:
         beet_update: yes

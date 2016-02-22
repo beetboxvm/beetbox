@@ -1,0 +1,13 @@
+---
+- name: Ensure www-data user is in dialout group.
+  user:
+    name: "www-data"
+    append: yes
+    groups: "dialout"
+
+- name: Set nicer permissions on Apache log directory.
+  file:
+    path: "/var/log/{{ apache_daemon }}"
+    state: directory
+    mode: 0755
+    recurse: true
