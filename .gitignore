@@ -7,12 +7,12 @@ projects/
 # Prevent Ansible related files.
 
 .beetbox/installed
-provisioning/ansible/project.config.yml
-provisioning/ansible/vagrant.config.yml
-provisioning/ansible/local.config.yml
+provisioning/ansible/config/*
+!provisioning/ansible/config/beetbox.config.yml
 provisioning/ansible/roles/*
 !provisioning/ansible/roles/beetbox-*
-.beetbox/local.config.yml
+.beetbox/*
+!.beetbox/config.yml
 
 # Prevent Packer related files.
 

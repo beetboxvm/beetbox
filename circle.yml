@@ -17,8 +17,8 @@ dependencies:
     - $BEET_HOME/$BEET_PROVISION
 test:
   override:
-    - sudo cp -rf $BEET_HOME/* $BEET_BASE
-    - sudo cp ~/$CIRCLE_PROJECT_REPONAME/.beetbox/config.yml $BEET_HOME/provisioning/ansible/vagrant.config.yml
+    - sudo cp -rf ~/$CIRCLE_PROJECT_REPONAME/* $BEET_BASE
+    - sudo cp ~/$CIRCLE_PROJECT_REPONAME/.beetbox/config.yml ~/vagrant.config.yml
     - $BEET_HOME/$BEET_PROVISION
 deployment:
   dev:
@@ -30,6 +30,5 @@ deployment:
     tag: /[0-9]+\.[0-9]+\.[0-9]+/
     owner: beetboxvm
     commands:
-      - chmod +x $BEET_HOME/$BEET_DEPLOY
-      - $BEET_HOME/$BEET_DEPLOY
+      - chmod +x $BEET_HOME/$BEET_DEPLOY ; $BEET_HOME/$BEET_DEPLOY
       - BEET_BOX=beet/box-14.04 BEET_TEMPLATE=template-14.04.json $BEET_HOME/$BEET_DEPLOY

@@ -1,0 +1,16 @@
+---
+- name: Check for default nginx vhosts.
+  stat: "path={{ nginx_vhost_path }}//{{ beet_domain }}.conf"
+  register: nginx_default_vhost_conf
+
+- name: Copy default Nginx vhosts into place.
+  template:
+    src: nginx-vhost.conf.j2
+    dest: "{{ nginx_vhost_path }}/{{ item.server_name }}.conf"
+    force: yes
+    owner: root
+    group: root
+    mode: 0644
+  with_items: nginx_hosts
+  notify: restart nginx
+  when: not nginx_default_vhost_conf.stat.exists
