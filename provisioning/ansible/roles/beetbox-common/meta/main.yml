@@ -6,6 +6,7 @@ dependencies:
   - { role: geerlingguy.apache-php-fpm }
   - { role: geerlingguy.nginx }
   - { role: geerlingguy.mysql }
+  - { role: beetbox-php-ppa }
   - { role: geerlingguy.php }
   - { role: geerlingguy.php-pecl }
   - { role: geerlingguy.php-mysql }
@@ -14,7 +15,7 @@ dependencies:
 
   # Conditionally-installed roles.
   - { role: geerlingguy.memcached, when: '"memcached" in installed_extras' }
-  - { role: geerlingguy.php-memcached, when: '"memcached" in installed_extras' }
+  - { role: geerlingguy.php-memcached, when: ('"memcached" in installed_extras') and (php_version != '7.0') }
   - { role: geerlingguy.php-xdebug, when: '"xdebug" in installed_extras' }
   - { role: geerlingguy.php-xhprof, when: '"xhprof" in installed_extras' }
   - { role: geerlingguy.adminer, when: '"adminer" in installed_extras' }
