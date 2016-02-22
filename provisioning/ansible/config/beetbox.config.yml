@@ -28,7 +28,7 @@ beet_run_tests: no
 
 # Ansible Galaxy roles.
 galaxy_roles:
-  - { name: arknoll.selenium }
+  - { name: beetboxvm.selenium }
   - { name: geerlingguy.adminer }
   - { name: geerlingguy.apache }
   - { name: geerlingguy.apache-php-fpm }
