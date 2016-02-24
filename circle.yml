@@ -15,6 +15,7 @@ dependencies:
     - sudo cp -rf ~/$CIRCLE_PROJECT_REPONAME $BEET_HOME
     - sudo chmod +x $BEET_HOME/$BEET_PROVISION
     - $BEET_HOME/$BEET_PROVISION
+    - sudo $BEET_HOME/provisioning/packer/scripts/minimize.sh
 test:
   override:
     - sudo cp -rf ~/$CIRCLE_PROJECT_REPONAME/* $BEET_BASE
