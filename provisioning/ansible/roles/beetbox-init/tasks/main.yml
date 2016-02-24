@@ -16,32 +16,6 @@
   service: name=ufw state=stopped
   failed_when: false
 
-- set_fact: php_ppa=ppa:ondrej/php5
-  when: php_version == '5.5'
-
-- set_fact: php_ppa=ppa:ondrej/php5-5.6
-  when: php_version == '5.6'
-
-- set_fact: php_ppa=ppa:ondrej/php-7.0
-  when: php_version == '7.0'
-
-- name: Add repository for PHP.
-  apt_repository: repo="{{ php_ppa }}"
-  register: php_repository
-
-- name: Purge repository for PHP.
-  apt_repository: "repo={{ item }} state=absent"
-  when: "php_ppa != item and php_repository.changed"
-  with_items:
-    - ppa:ondrej/php5
-    - ppa:ondrej/php5-5.6
-    - ppa:ondrej/php-7.0
-
-- name: Purge php packages.
-  apt: name={{ item }} state=absent
-  when: php_repository.changed
-  with_items: php_packages
-
 - name: Ensure beet_root directory exists.
   file:
     path: "{{ beet_root }}"

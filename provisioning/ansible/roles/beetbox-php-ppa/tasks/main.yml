@@ -1,0 +1,41 @@
+---
+- set_fact: php_ppa=ppa:ondrej/php5
+  when: php_version == '5.5'
+
+- set_fact: php_ppa=ppa:ondrej/php5-5.6
+  when: php_version == '5.6'
+
+- set_fact: php_ppa=ppa:ondrej/php-7.0
+  when: php_version == '7.0'
+
+- name: Add repository for PHP.
+  apt_repository: repo="{{ php_ppa }}"
+  register: php_repository
+
+- name: Purge repository for PHP.
+  apt_repository: "repo={{ item }} state=absent"
+  when: "php_ppa != item and php_repository.changed"
+  with_items:
+    - ppa:ondrej/php5
+    - ppa:ondrej/php5-5.6
+    - ppa:ondrej/php-7.0
+
+- name: Purge php packages.
+  apt: name={{ item }} state=absent
+  when: php_repository.changed
+  with_items: purge_php_packages
+
+- name: Set default PHP 7 packages.
+  set_fact:
+    php_packages: "{{ __php7_packages }}"
+  when: (php_version == '7.0') and ('php5' in php_packages)
+
+- name: Set default PHP 7 mysql package.
+  set_fact:
+    php_mysql_package: "{{ __php7_mysql_package }}"
+  when: (php_version == '7.0') and (php_mysql_package is not defined)
+
+- name: Set default PHP 7 fpm daemon.
+  set_fact:
+    php_fpm_daemon: "{{ __php7_fpm_daemon }}"
+  when: (php_version == '7.0') and (php_fpm_daemon is not defined)
