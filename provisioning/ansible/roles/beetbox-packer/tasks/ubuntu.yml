@@ -40,3 +40,7 @@
   with_items:
     - { regexp: '^UseDNS', line: 'UseDNS no' }
     - { regexp: '^GSSAPIAuthentication', line: 'GSSAPIAuthentication no' }
+
+- name: Disable the ufw firewall (since we use a simple iptables firewall).
+  command: >
+    ufw disable
