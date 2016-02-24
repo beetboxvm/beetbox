@@ -12,8 +12,8 @@ beet_mysql_database: "beetbox_{{ beet_project }}"
 beet_site_name: "Beetbox"
 
 # Drupal settings.
+drupal_create_makefile: yes
 drupal_build_makefile: yes
-drupal_makefile_path: "{{ beet_base }}/drupal8.make.yml"
 drupal_install_site: yes
 drupal_account_name: admin
 drupal_account_pass: admin
