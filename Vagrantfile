@@ -19,8 +19,19 @@ vconfig = {
   'vagrant_cpus' => 2,
   'beet_home' => '/beetbox',
   'beet_base' => '/var/beetbox',
-  'beet_domain' => cwd.split('/').last.gsub(/[\._]/, '-') + ".local"
+  'beet_domain' => cwd.split('/').last.gsub(/[\._]/, '-') + ".local",
+  'beet_webserver' => 'apache',
 }
+
+# Default hosts.
+vconfig['apache_vhosts'] = [
+  [ 'servername' => "#{vconfig['beet_domain']}" ],
+  [ 'servername' => "adminer.#{vconfig['beet_domain']}" ]
+]
+vconfig['nginx_hosts'] = [
+  [ 'server_name' => "#{vconfig['beet_domain']}" ],
+  [ 'server_name' => "adminer.#{vconfig['beet_domain']}" ]
+]
 
 if !File.exist?(project_config)
   # Create default config file.
@@ -49,7 +60,34 @@ hostname = vconfig['beet_domain']
 branches = ['beetbox']
 current_branch = 'beetbox'
 
+# If a hostsfile manager plugin is installed, add all server names as aliases.
+aliases = []
+blacklist = [hostname, vconfig['vagrant_ip']]
+if vconfig['beet_webserver'] == "apache"
+  vconfig['apache_vhosts'].each do |host|
+    unless blacklist.include?(host[0]['servername'])
+      aliases.push(host[0]['servername'])
+    end
+    aliases.concat(host[0]['serveralias'].split()) if host[0]['serveralias']
+  end
+else
+  vconfig['nginx_hosts'].each do |host|
+    unless blacklist.include?(host[0]['server_name'])
+      aliases.push(host[0]['server_name'])
+    end
+  end
+end
+
 Vagrant.configure("2") do |config|
+
+  # Hosts file plugins.
+  if Vagrant.has_plugin?("vagrant-hostsupdater")
+    config.hostsupdater.aliases = aliases.uniq
+  elsif Vagrant.has_plugin?("vagrant-hostmanager")
+    config.hostmanager.enabled = true
+    config.hostmanager.manage_host = true
+    config.hostmanager.aliases = aliases.uniq
+  end
 
   # Multidev config.
   if vconfig['beet_mode'] == 'multidev'

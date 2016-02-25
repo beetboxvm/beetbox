@@ -33,6 +33,9 @@ Login link: {{ drupal_drush_login.stdout }}
 
 Developer Tools
 ------------------------------------------------------------
+{% if ('"adminer" in installed_extras') %}
+Adminer: http://adminer.{{ beet_domain }}/?username=root&db={{ beet_mysql_database }}
+{% endif %}
 {% if ('"mailhog" in installed_extras') %}
 Mailhog: http://{{ beet_domain }}:8025/
 {% endif %}

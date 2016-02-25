@@ -14,6 +14,8 @@ beet_role_dir: "{{ beet_home }}/provisioning/ansible/roles"
 beet_project: drupal
 beet_debug: no
 beet_domain: "{{ ansible_hostname }}.local"
+beet_aliases:
+  - "adminer.{{ beet_domain }}"
 beet_user: "{{ lookup('env','BEET_USER') | default('vagrant',true) }}"
 beet_base: "{{ lookup('env','BEET_BASE') | default('/var/beetbox',true) }}"
 beet_root: "{{ beet_base }}"
@@ -126,6 +128,8 @@ apache_listen_port: "{{ (beet_webserver == 'apache') | ternary('80','82') }}"
 apache_vhosts:
   - servername: "{{ beet_domain }}"
     documentroot: "{{ beet_web }}"
+  - servername: "adminer.{{ beet_domain }}"
+    documentroot: "{{ adminer_install_dir }}"
 apache_listen_port_ssl: "{{ (beet_webserver == 'apache') | ternary('443','444') }}"
 apache_vhosts_ssl:
   - servername: "{{ beet_domain }}"
@@ -205,12 +209,17 @@ ruby_install_gems_user: "vagrant"
 ruby_install_gems: []
 
 # Nginx config.
+nginx_listen_port: "{{ (beet_webserver == 'nginx') | ternary('80','82') }}"
 nginx_php_fpm: /var/run/php5-fpm.sock
 nginx_remove_default_vhost: true
 nginx_hosts:
-  - listen: "{{ (beet_webserver == 'nginx') | ternary('80','82') }}"
+  - listen: "{{ nginx_listen_port }}"
     server_name: "{{ beet_domain }}"
     root: "{{ beet_web }}"
+    is_php: true
+  - listen: "{{ nginx_listen_port }}"
+    server_name: "adminer.{{ beet_domain }}"
+    root: "{{ adminer_install_dir }}"
     is_php: true
 
 # PHP config.
