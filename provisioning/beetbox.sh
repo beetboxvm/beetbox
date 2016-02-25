@@ -36,6 +36,7 @@ beetbox_setup()
     sudo apt-get -y autoclean
     sudo rm -rf /etc/apache2/mods-enabled/*
     sudo rm -rf /var/lib/mysql
+    sudo rm -rf /opt/circleci/.phpenv
   fi
 
   # Install ansible.
