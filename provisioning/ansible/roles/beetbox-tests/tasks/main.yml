@@ -1,4 +1,12 @@
 ---
+- name: Test ansible is running as beet_user.
+  shell: >
+    whoami
+  register: beet_ansible_user
+  become: no
+  changed_when: false
+  failed_when: beet_ansible_user.stdout != beet_user
+
 - name: Test webserver is responding on port 80.
   uri:
     url: "http://{{ beet_domain }}/"

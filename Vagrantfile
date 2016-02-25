@@ -117,7 +117,7 @@ Vagrant.configure("2") do |config|
       # Provision box
       beet_sh = "#{vconfig['beet_home']}/provisioning/beetbox.sh"
       remote_sh = "https://raw.githubusercontent.com/beetboxvm/beetbox/master/provisioning/beetbox.sh"
-      local_provision = "sudo chmod +x #{beet_sh} && sudo -H #{debug_mode} #{beet_sh}"
+      local_provision = "sudo chmod +x #{beet_sh} && #{debug_mode} #{beet_sh}"
       remote_provision = "sudo apt-get -qq update && curl -fsSL #{remote_sh} | sudo bash"
       node.vm.provision "ansible", type: "shell" do |s|
         s.privileged = false
