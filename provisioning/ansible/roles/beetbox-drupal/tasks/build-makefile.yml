@@ -10,6 +10,7 @@
     {{ drush_path }} make -y {{ drupal_makefile_path }} --no-gitinfofile {% if drupal_distro %}--no-recursion{% endif %}
     chdir={{ beet_root }}
   when: not drupal_site.stat.exists
+  become: no
 
 - name: Remove built distribution files/directories.
   file:
@@ -34,3 +35,4 @@
     {{ drush_path }} make -y {{ drupal_distro_makefile }} --no-gitinfofile --no-core --contrib-destination=./
     chdir={{ beet_root }}/profiles/{{ drupal_distro }}
   when: not drupal_site.stat.exists and drupal_distro
+  become: no
