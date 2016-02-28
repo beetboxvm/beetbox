@@ -10,4 +10,12 @@
     path: "/var/log/{{ apache_daemon }}"
     state: directory
     mode: 0755
-    recurse: true
+    recurse: yes
+
+- name: Set tmp folder permissions.
+  file:
+    path: "/tmp"
+    state: directory
+    owner: root
+    group: root
+    mode: 01777
