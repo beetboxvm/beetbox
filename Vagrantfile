@@ -61,12 +61,13 @@ Vagrant.configure("2") do |config|
   end
 
   # Check for plugins and attempt to install if not (Windows only).
-  if vconfig['vagrant_ip'] == "0.0.0.0" && Vagrant::Util::Platform.windows?
-    # Check for plugins and attempt to install if not.
+  if Vagrant::Util::Platform.windows?
     %x(vagrant plugin install vagrant-hostsupdater) unless Vagrant.has_plugin?('vagrant-hostsupdater')
-    %x(vagrant plugin install vagrant-auto_network) unless Vagrant.has_plugin?('vagrant-auto_network')
     raise 'Your config requires hostsupdater plugin.' unless Vagrant.has_plugin?('vagrant-hostsupdater')
-    raise 'Your config requires auto_network plugin.' unless Vagrant.has_plugin?('vagrant-auto_network')
+    if vconfig['vagrant_ip'] == "0.0.0.0"
+      %x(vagrant plugin install vagrant-auto_network) unless Vagrant.has_plugin?('vagrant-auto_network')
+      raise 'Your config requires auto_network plugin.' unless Vagrant.has_plugin?('vagrant-auto_network')
+    end
   end
 
   branches.each do |branch|
