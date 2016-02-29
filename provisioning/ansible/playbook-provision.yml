@@ -28,3 +28,12 @@
     - { role: beetbox-symlinks, when: symlinks }
     - { role: beetbox-php-nginx }
     - { role: beetbox-welcome }
+
+  tasks:
+    - name: Set ownership of beet_user home directory.
+      file:
+        path: "/home/{{ beet_user }}"
+        state: directory
+        owner: "{{ beet_user }}"
+        group: "{{ beet_user }}"
+        recurse: yes
