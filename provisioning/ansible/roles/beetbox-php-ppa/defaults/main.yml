@@ -20,8 +20,10 @@ purge_php_packages:
   - php7.0-dev
   - php7.0-fpm
   - php7.0-gd
+  - php7.0-mbstring
   - php7.0-json
   - php7.0-opcache
+  - php7.0-xml
   - libpcre3-dev
 __php7_packages:
   - php7.0
@@ -32,8 +34,10 @@ __php7_packages:
   - php7.0-dev
   - php7.0-fpm
   - php7.0-gd
+  - php7.0-mbstring
   - php7.0-json
   - php7.0-opcache
+  - php7.0-xml
   - libpcre3-dev
 __php7_mysql_package: php7.0-mysql
 __php7_fpm_daemon: php7.0-fpm
