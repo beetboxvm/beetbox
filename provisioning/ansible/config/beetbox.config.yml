@@ -104,7 +104,7 @@ mysql_users:
   - name: "{{ beet_mysql_user }}"
     host: "%"
     password: "{{ beet_mysql_password }}"
-    priv: "{{ beet_mysql_database }}.*:ALL"
+    priv: "*.*:ALL"
 
 # Extra utilities form provided roles.
 # Comment out the ones that do not need to be installed.
