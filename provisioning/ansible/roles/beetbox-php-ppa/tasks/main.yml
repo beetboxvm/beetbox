@@ -5,7 +5,7 @@
 - set_fact: php_ppa=ppa:ondrej/php5-5.6
   when: php_version == '5.6'
 
-- set_fact: php_ppa=ppa:ondrej/php-7.0
+- set_fact: php_ppa=ppa:ondrej/php
   when: php_version == '7.0'
 
 - name: Add repository for PHP.
