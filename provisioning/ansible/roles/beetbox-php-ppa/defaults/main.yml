@@ -41,3 +41,4 @@ __php7_packages:
   - libpcre3-dev
 __php7_mysql_package: php7.0-mysql
 __php7_fpm_daemon: php7.0-fpm
+__php7_fpm_pool_conf_path: "/etc/php/7.0/fpm/pool.d/www.conf"

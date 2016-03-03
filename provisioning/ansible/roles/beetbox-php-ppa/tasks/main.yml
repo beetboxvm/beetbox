@@ -39,3 +39,8 @@
   set_fact:
     php_fpm_daemon: "{{ __php7_fpm_daemon }}"
   when: (php_version == '7.0') and (php_fpm_daemon is not defined)
+
+- name: Set default PHP 7 fpm pool conf path.
+  set_fact:
+    php_fpm_daemon: "{{ __php7_fpm_pool_conf_path }}"
+  when: (php_version == '7.0') and (php_fpm_pool_conf_path is not defined)
