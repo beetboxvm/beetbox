@@ -84,7 +84,7 @@ beetbox_play roles
 beetbox_play provision
 
 # Run tests on Circle CI.
-[ "$CIRCLECI" == "true" ] && beetbox_play tests
+([ "$CIRCLECI" == "true" ] || [ "$BEET_DEBUG" == "true" ]) && beetbox_play tests
 
 # Print welcome message.
 touch ~/welcome.txt
