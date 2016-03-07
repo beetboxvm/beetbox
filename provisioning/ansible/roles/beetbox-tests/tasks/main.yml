@@ -22,3 +22,10 @@
   uri:
     url: "http://{{ beet_domain }}:8025/"
     status_code: 200
+
+- name: Test xdebug is available.
+  shell: >
+    php -m
+  register: php_modules
+  changed_when: false
+  failed_when: "'xdebug' not in php_modules.stdout"
