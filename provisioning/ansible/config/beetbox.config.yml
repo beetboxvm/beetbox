@@ -183,7 +183,6 @@ php_opcache_enabled_in_ini: true
 php_opcache_memory_consumption: "192"
 php_opcache_max_accelerated_files: 4096
 php_max_input_vars: "4000"
-php_extension_conf_path: "/etc/php5/apache2/conf.d"
 php_packages:
   - php5
   - libapache2-mod-php5
