@@ -2,7 +2,7 @@
 
 # Set default environment variables.
 ATLAS_BOX="beet/dev"
-ATLAS_VERSION=${BEET_VERSION:-"0.1.$CIRCLE_BUILD_NUM"}
+ATLAS_VERSION=${BEET_VERSION:-"0.2.$CIRCLE_BUILD_NUM"}
 BUILD_VERSION=${CIRCLE_BRANCH:-"master"}
 BEET_TEMPLATE=${BEET_TEMPLATE:-"template.json"}
 PACKER_HOME=${PACKER_HOME:-"$BEET_HOME/provisioning"}
