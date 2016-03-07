@@ -113,7 +113,7 @@ installed_extras:
   - mailhog
   - memcached
   - xdebug
-  # - xhprof
+  - xhprof
   - selenium
   - drupal-console
   # - varnish
