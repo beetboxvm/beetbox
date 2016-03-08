@@ -1,0 +1,47 @@
+---
+- name: Download and untar uploadprogress.
+  unarchive:
+    src: "https://github.com/php/pecl-php-uploadprogress/archive/master.tar.gz"
+    dest: "{{ workspace }}"
+    copy: no
+
+- name: Build uploadprogress.
+  shell: >
+    {{ item }}
+    chdir={{ workspace }}/pecl-php-uploadprogress-master
+    creates={{ workspace }}/pecl-php-uploadprogress-master/modules/uploadprogress.so
+  with_items:
+    - phpize
+    - ./configure
+    - make
+  notify: restart webserver
+
+- name: Ensure uploadprogress module path exists.
+  file:
+    path: "{{ php_uploadprogress_module_path }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- debug: msg="{{ workspace }}/pecl-php-uploadprogress-master/modules/uploadprogress.so"
+
+- name: Move uploadprogress module into place.
+  copy:
+    src: "{{ workspace }}/pecl-php-uploadprogress-master/modules/uploadprogress.so"
+    dest: "{{ php_uploadprogress_module_path }}/uploadprogress.so"
+    owner: root
+    group: root
+    mode: 0755
+  notify: restart webserver
+
+- name: Add php extension config for uploadprogress.
+  template:
+    src: uploadprogress.ini.j2
+    dest: "{{ item }}/{{ php_uploadprogress_config_filename }}"
+    owner: root
+    group: root
+    force: yes
+    mode: 0644
+  with_items: "{{ php_extension_conf_paths }}"
+  notify: restart webserver

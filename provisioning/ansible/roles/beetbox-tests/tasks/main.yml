@@ -29,3 +29,10 @@
   register: php_modules
   changed_when: false
   failed_when: "'xdebug' not in php_modules.stdout"
+
+- name: Test uploadprogress is available.
+  shell: >
+    php -m
+  register: php_modules
+  changed_when: false
+  failed_when: "'uploadprogress' not in php_modules.stdout"
