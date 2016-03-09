@@ -9,6 +9,8 @@ machine:
     BEET_USER: ubuntu
     BEET_DEPLOY: provisioning/deploy.sh
     BEET_PROVISION: provisioning/beetbox.sh
+    VAGRANT_INIT: true
+    UBUNTU_INIT: true
     INSTALL_PACKER: true
 dependencies:
   pre:

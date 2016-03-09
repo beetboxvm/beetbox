@@ -7,4 +7,4 @@
     circleci: "{{ lookup('env','CIRCLECI') == 'true' | ternary(yes,no) }}"
 
   roles:
-    - { role: beetbox-packer }
+    - { role: beetbox-setup }
