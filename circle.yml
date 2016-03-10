@@ -6,7 +6,6 @@ machine:
     BEET_BOX: beet/box
     BEET_HOME: /beetbox
     BEET_BASE: /var/beetbox
-    BEET_USER: ubuntu
     BEET_DEPLOY: provisioning/deploy.sh
     BEET_PROVISION: provisioning/beetbox.sh
     VAGRANT_INIT: true
