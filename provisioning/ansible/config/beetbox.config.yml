@@ -28,47 +28,88 @@ beet_run_tests: no
 
 # Ansible Galaxy roles.
 galaxy_roles:
-  - { name: beetboxvm.selenium }
-  - { name: geerlingguy.adminer }
-  - { name: geerlingguy.apache }
-  - { name: geerlingguy.apache-php-fpm }
-  - { name: geerlingguy.composer }
-  - { name: geerlingguy.daemonize }
-  - { name: geerlingguy.drupal-console }
-  - { name: geerlingguy.drush }
-  - { name: geerlingguy.firewall }
-  - { name: geerlingguy.git }
-  - { name: geerlingguy.java }
-  - { name: geerlingguy.mailhog }
-  - { name: geerlingguy.memcached }
-  - { name: geerlingguy.mysql }
-  - { name: geerlingguy.nginx }
-  - { name: geerlingguy.nodejs }
-  - { name: geerlingguy.php }
-  - { name: geerlingguy.php-memcached }
-  - { name: geerlingguy.php-mysql }
-  - { name: geerlingguy.php-pecl }
-  - { name: geerlingguy.php-redis }
-  - { name: geerlingguy.php-xdebug }
-  - { name: geerlingguy.php-xhprof }
-  - { name: geerlingguy.pimpmylog }
-  - { name: geerlingguy.postfix }
-  - { name: geerlingguy.redis }
-  - { name: geerlingguy.ruby }
-  - { name: geerlingguy.security }
-  - { name: geerlingguy.solr }
-  - { name: geerlingguy.varnish }
-  - { name: hashbangcode.pantheon-cli }
-  - { name: heskethm.wp-cli }
-  - { name: pwelch.avahi }
-  - { name: beetboxvm.backdrop }
-  - { name: beetboxvm.cakephp }
-  - { name: beetboxvm.concrete5 }
-  - { name: beetboxvm.kohana }
-  - { name: beetboxvm.modx }
-  - { name: beetboxvm.silverstripe }
-  - { name: beetboxvm.slim }
-  - { name: beetboxvm.wordpress }
+  - name: beetboxvm.backdrop
+    repo: https://github.com/beetboxvm/ansible-role-beetbox-backdrop.git
+  - name: beetboxvm.cakephp
+    repo: https://github.com/beetboxvm/ansible-role-beetbox-cakephp.git
+  - name: beetboxvm.concrete5
+    repo: https://github.com/beetboxvm/ansible-role-beetbox-concrete5.git
+  - name: beetboxvm.kohana
+    repo: https://github.com/beetboxvm/ansible-role-beetbox-kohana.git
+  - name: beetboxvm.modx
+    repo: https://github.com/beetboxvm/ansible-role-beetbox-modx.git
+  - name: beetboxvm.silverstripe
+    repo: https://github.com/beetboxvm/ansible-role-beetbox-silverstripe.git
+  - name: beetboxvm.selenium
+    repo: https://github.com/beetboxvm/ansible-role-selenium.git
+  - name: beetboxvm.slim
+    repo: https://github.com/beetboxvm/ansible-role-beetbox-slim.git
+  - name: beetboxvm.wordpress
+    repo: https://github.com/beetboxvm/ansible-role-beetbox-wordpress.git
+  - name: geerlingguy.adminer
+    repo: https://github.com/geerlingguy/ansible-role-adminer.git
+  - name: geerlingguy.apache
+    repo: https://github.com/geerlingguy/ansible-role-apache.git
+  - name: geerlingguy.apache-php-fpm
+    repo: https://github.com/geerlingguy/ansible-role-apache-php-fpm.git
+  - name: geerlingguy.composer
+    repo: https://github.com/geerlingguy/ansible-role-composer.git
+  - name: geerlingguy.daemonize
+    repo: https://github.com/geerlingguy/ansible-role-daemonize.git
+  - name: geerlingguy.drupal-console
+    repo: https://github.com/geerlingguy/ansible-role-drupal-console.git
+  - name: geerlingguy.drush
+    repo: https://github.com/geerlingguy/ansible-role-drush.git
+  - name: geerlingguy.firewall
+    repo: https://github.com/geerlingguy/ansible-role-firewall.git
+  - name: geerlingguy.git
+    repo: https://github.com/geerlingguy/ansible-role-git.git
+  - name: geerlingguy.java
+    repo: https://github.com/geerlingguy/ansible-role-java.git
+  - name: geerlingguy.mailhog
+    repo: https://github.com/geerlingguy/ansible-role-mailhog.git
+  - name: geerlingguy.memcached
+    repo: https://github.com/geerlingguy/ansible-role-memcached.git
+  - name: geerlingguy.mysql
+    repo: https://github.com/geerlingguy/ansible-role-mysql.git
+  - name: geerlingguy.nginx
+    repo: https://github.com/geerlingguy/ansible-role-nginx.git
+  - name: geerlingguy.nodejs
+    repo: https://github.com/geerlingguy/ansible-role-nodejs.git
+  - name: geerlingguy.php
+    repo: https://github.com/geerlingguy/ansible-role-php.git
+  - name: geerlingguy.php-memcached
+    repo: https://github.com/geerlingguy/ansible-role-php-memcached.git
+  - name: geerlingguy.php-mysql
+    repo: https://github.com/geerlingguy/ansible-role-php-mysql.git
+  - name: geerlingguy.php-pecl
+    repo: https://github.com/geerlingguy/ansible-role-php-pecl.git
+  - name: geerlingguy.php-redis
+    repo: https://github.com/geerlingguy/ansible-role-php-redis.git
+  - name: geerlingguy.php-xdebug
+    repo: https://github.com/geerlingguy/ansible-role-php-xdebug.git
+  - name: geerlingguy.php-xhprof
+    repo: https://github.com/geerlingguy/ansible-role-php-xhprof.git
+  - name: geerlingguy.pimpmylog
+    repo: https://github.com/geerlingguy/ansible-role-pimpmylog.git
+  - name: geerlingguy.postfix
+    repo: https://github.com/geerlingguy/ansible-role-postfix.git
+  - name: geerlingguy.redis
+    repo: https://github.com/geerlingguy/ansible-role-redis.git
+  - name: geerlingguy.ruby
+    repo: https://github.com/geerlingguy/ansible-role-ruby.git
+  - name: geerlingguy.security
+    repo: https://github.com/geerlingguy/ansible-role-security.git
+  - name: geerlingguy.solr
+    repo: https://github.com/geerlingguy/ansible-role-solr.git
+  - name: geerlingguy.varnish
+    repo: https://github.com/geerlingguy/ansible-role-varnish.git
+  - name: hashbangcode.pantheon-cli
+    repo: https://github.com/hashbangcode/ansible-role-pantheon-cli.git
+  - name: heskethm.wp-cli
+    repo: https://github.com/heskethm/ansible-role-wp-cli.git
+  - name: pwelch.avahi
+    repo: https://github.com/pwelch/ansible-avahi.git
 
 # Symlinks.
 symlinks: no
