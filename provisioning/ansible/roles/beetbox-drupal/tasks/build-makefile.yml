@@ -4,6 +4,7 @@
     src: drupal.make.yml.j2
     dest: "{{ drupal_makefile_path }}"
   when: drupal_create_makefile
+  become: no
 
 - name: Generate Drupal site with drush makefile.
   command: >
