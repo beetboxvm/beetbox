@@ -6,7 +6,7 @@ drupal_account_pass: admin
 drupal_install_site: no
 drupal_create_makefile: no
 drupal_build_makefile: no
-drupal_makefile_path: "/home/vagrant/beetbox.make.yml"
+drupal_makefile_path: "~/beetbox.make.yml"
 drupal_distro: no
 drupal_distro_makefile: /vagrant/drupal-org.make.yml
 drupal_build_composer: no

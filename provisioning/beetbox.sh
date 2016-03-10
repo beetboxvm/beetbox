@@ -1,7 +1,7 @@
 #!/bin/bash -eu
 
 # Set default environment variables.
-ANSIBLE_VERSION=${ANSIBLE_VERSION:-"2.0.0.2"}
+ANSIBLE_VERSION=${ANSIBLE_VERSION:-"2.0.1.0"}
 BEET_HOME=${BEET_HOME:-"/beetbox"}
 BEET_BASE=${BEET_BASE:-"/var/beetbox"}
 BEET_USER=${BEET_USER:-"vagrant"}
