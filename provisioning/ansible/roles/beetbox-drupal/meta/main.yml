@@ -1,5 +1,6 @@
 ---
 dependencies:
+  - { role: beetbox-upload-progress }
   - { role: geerlingguy.drush }
 
   # Conditionally-installed roles.
