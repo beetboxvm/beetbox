@@ -9,6 +9,12 @@
     - config/vagrant.config.yml
     - config/local.config.yml
 
+  pre_tasks:
+
+    - include: "{{ item }}"
+      with_fileglob:
+        - "{{ beet_custom_pre_tasks }}"
+
   roles:
     - { role: beetbox-init }
     - { role: beetbox-known-hosts, when: known_hosts }
@@ -30,6 +36,7 @@
     - { role: beetbox-welcome }
 
   tasks:
+
     - name: Set ownership of beet_user home directory.
       file:
         path: "/home/{{ beet_user }}"
@@ -37,3 +44,7 @@
         owner: "{{ beet_user }}"
         group: "{{ beet_user }}"
         recurse: yes
+
+    - include: "{{ item }}"
+      with_fileglob:
+        - "{{ beet_custom_pre_tasks }}"
