@@ -1,0 +1,5 @@
+dependencies:
+  - { role: beetbox-vagrant, when: "{{ lookup('env','VAGRANT_INIT') == 'true' }}"}
+  - { role: beetbox-ubuntu, when: "{{ lookup('env','UBUNTU_INIT') == 'true' }}"}
+  - { role: beetbox-virtualbox, when: "{{ lookup('env','VIRTUALBOX_INIT') == 'true' }}"}
+  - { role: beetbox-packer, when: "{{ lookup('env','INSTALL_PACKER') == 'true' }}"}

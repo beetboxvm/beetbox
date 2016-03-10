@@ -56,8 +56,8 @@ beetbox_setup()
   # Check version.
   beetbox_play config && beetbox_play update
 
-  # Packer setup.
-  beetbox_play packer
+  # Beetbox setup.
+  beetbox_play setup
 
   # Create $BEET_HOME/.beetbox_installed
   touch $BEET_HOME/.beetbox/installed

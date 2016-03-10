@@ -1,18 +1,7 @@
 ---
-# Vagrant setup.
-- include: vagrant.yml
-
-# Ubuntu setup.
-- include: ubuntu.yml
-
-# VirtualBox tools installation.
-- name: Check if VirtualBox is running the guest VM.
-  stat: path=/home/vagrant/.vbox_version
-  register: virtualbox_check
-
-- include: virtualbox.yml
-  when: virtualbox_check.stat.exists
-
-# Install Packer.
-- include: packer.yml
-  when: "{{ lookup('env','INSTALL_PACKER') == 'true' }}"
+- name: Install Packer
+  unarchive:
+    src: "https://releases.hashicorp.com/packer/{{ packer_version }}/packer_{{ packer_version }}_linux_amd64.zip"
+    dest: "{{ packer_install_dir }}"
+    copy: no
+    creates: "{{ packer_install_dir }}/packer"

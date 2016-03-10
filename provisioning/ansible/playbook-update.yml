@@ -21,6 +21,11 @@
         createhome: yes
         home: "/home/{{ beet_user }}"
 
+    - name: Ensure admin group exists.
+      group:
+        name: admin
+        state: present
+
     - name: "Ensure {{ beet_user }} user is in admin group."
       user:
         name: "{{ beet_user }}"
