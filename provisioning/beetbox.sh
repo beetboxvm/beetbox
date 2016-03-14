@@ -21,7 +21,7 @@ export ANSIBLE_REMOTE_TEMP=${ANSIBLE_REMOTE_TEMP:-/tmp}
 # Enable debug mode?
 if [ $BEET_DEBUG = "true" ]; then
   set -x
-  DEPRECATION_WARNINGS=True
+  ANSIBLE_DEPRECATION_WARNINGS=True
   ANSIBLE_DEBUG="-vvv"
 fi
 
@@ -38,6 +38,10 @@ beetbox_setup()
     sudo rm -rf /var/lib/mysql
     sudo rm -rf /opt/circleci/.phpenv
   fi
+
+  # Create BEET_USER and setup sudo.
+  [ -z "$(getent passwd $BEET_USER)" ] && sudo useradd -d /home/$BEET_USER -m $BEET_USER
+  echo "$BEET_USER ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$BEET_USER
 
   # Install ansible.
   sudo apt-get -y install python-pip python-dev
@@ -60,12 +64,12 @@ beetbox_setup()
   beetbox_play setup
 
   # Create $BEET_HOME/.beetbox_installed
-  touch $BEET_HOME/.beetbox/installed
+  sudo touch $BEET_HOME/.beetbox/installed
 }
 
 beetbox_play()
 {
-  ANSIBLE_FORCE_COLOR=1 PYTHONUNBUFFERED=1 ansible-playbook $ANSIBLE_DEBUG "$ANSIBLE_HOME/playbook-$1.yml" -i 'localhost,'
+  sudo su - $BEET_USER -c "ANSIBLE_FORCE_COLOR=1 PYTHONUNBUFFERED=1 ansible-playbook $ANSIBLE_DEBUG $ANSIBLE_HOME/playbook-$1.yml -i 'localhost,'"
 }
 
 # Initialise beetbox.
@@ -87,5 +91,5 @@ beetbox_play provision
 ([ "$CIRCLECI" == "true" ] || [ "$BEET_DEBUG" == "true" ]) && beetbox_play tests
 
 # Print welcome message.
-touch ~/welcome.txt
-cat ~/welcome.txt
+sudo touch $BEET_HOME/.beetbox/welcome.txt
+sudo cat $BEET_HOME/.beetbox/welcome.txt
