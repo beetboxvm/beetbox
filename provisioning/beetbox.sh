@@ -69,7 +69,7 @@ beetbox_setup()
 
 beetbox_play()
 {
-  sudo su - $BEET_USER -c "ANSIBLE_FORCE_COLOR=1 PYTHONUNBUFFERED=1 ansible-playbook $ANSIBLE_DEBUG $ANSIBLE_HOME/playbook-$1.yml -i 'localhost,'"
+  ANSIBLE_FORCE_COLOR=1 PYTHONUNBUFFERED=1 ansible-playbook $ANSIBLE_DEBUG $ANSIBLE_HOME/playbook-$1.yml -i 'localhost,'
 }
 
 # Initialise beetbox.
