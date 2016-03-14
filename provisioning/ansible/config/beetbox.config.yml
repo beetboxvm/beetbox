@@ -25,6 +25,8 @@ beet_mysql_user: beetbox
 beet_mysql_password: beetbox
 beet_mysql_database: "beetbox"
 beet_run_tests: no
+beet_custom_pre_tasks: "{{ beet_base }}/.beetbox/tasks/pre/*"
+beet_custom_post_tasks: "{{ beet_base }}/.beetbox/tasks/post/*"
 
 # Ansible Galaxy roles.
 galaxy_roles:
