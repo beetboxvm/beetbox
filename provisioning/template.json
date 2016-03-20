@@ -65,7 +65,8 @@
         "BEET_REPO={{user `beet_repo`}}",
         "BEET_VERSION={{user `beet_version`}}",
         "VAGRANT_INIT=true",
-        "UBUNTU_INIT=true"
+        "UBUNTU_INIT=true",
+        "VIRTUALBOX_INIT=true"
       ],
       "type": "shell",
       "scripts": [
