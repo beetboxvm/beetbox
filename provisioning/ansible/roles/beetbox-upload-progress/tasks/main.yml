@@ -4,6 +4,7 @@
     src: "https://github.com/php/pecl-php-uploadprogress/archive/master.tar.gz"
     dest: "{{ workspace }}"
     copy: no
+    creates: "{{ workspace }}/pecl-php-uploadprogress-master"
 
 - name: Build uploadprogress.
   shell: >
@@ -24,15 +25,10 @@
     group: root
     mode: 0755
 
-- debug: msg="{{ workspace }}/pecl-php-uploadprogress-master/modules/uploadprogress.so"
-
 - name: Move uploadprogress module into place.
-  copy:
-    src: "{{ workspace }}/pecl-php-uploadprogress-master/modules/uploadprogress.so"
-    dest: "{{ php_uploadprogress_module_path }}/uploadprogress.so"
-    owner: root
-    group: root
-    mode: 0755
+  shell: >
+    cp {{ workspace }}/pecl-php-uploadprogress-master/modules/uploadprogress.so {{ php_uploadprogress_module_path }}/uploadprogress.so
+    creates={{ php_uploadprogress_module_path }}/uploadprogress.so
   notify: restart webserver
 
 - name: Add php extension config for uploadprogress.
