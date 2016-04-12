@@ -175,3 +175,7 @@ ALIAS
     alias_file.close
   end
 end
+
+# Load local Vagrantfile, if exists.
+include_vagrantfile = File.expand_path('../Vagrantfile.local', __FILE__)
+load include_vagrantfile if File.exist?(include_vagrantfile)
