@@ -8,7 +8,7 @@
     "ssh_pass": "vagrant",
     "beet_repo": "https://github.com/DrupalMel/beetbox.git",
     "beet_version": "BUILD_VERSION",
-    "iso_url": "http://releases.ubuntu.com/trusty/ubuntu-14.04.3-server-amd64.iso",
+    "iso_url": "http://releases.ubuntu.com/trusty/ubuntu-14.04.4-server-amd64.iso",
     "iso_checksum": "a3b345908a826e262f4ea1afeb357fd09ec0558cf34e6c9112cead4bb55ccdfb"
   },
   "builders": [
