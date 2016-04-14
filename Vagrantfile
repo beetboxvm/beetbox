@@ -175,3 +175,7 @@ ALIAS
     alias_file.close
   end
 end
+
+# Load local Vagrantfile, if exists.
+include_vagrantfile = "#{cwd}/Vagrantfile.local"
+load include_vagrantfile if File.exist?(include_vagrantfile)
