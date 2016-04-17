@@ -36,3 +36,8 @@
   register: php_modules
   changed_when: false
   failed_when: "'uploadprogress' not in php_modules.stdout"
+
+- name: Test adminer is responding on port 80.
+  uri:
+    url: "http://adminer.{{ beet_domain }}/"
+    status_code: 200
