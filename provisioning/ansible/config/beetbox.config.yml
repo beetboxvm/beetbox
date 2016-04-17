@@ -48,6 +48,8 @@ galaxy_roles:
     repo: https://github.com/beetboxvm/ansible-role-beetbox-slim.git
   - name: beetboxvm.wordpress
     repo: https://github.com/beetboxvm/ansible-role-beetbox-wordpress.git
+  - name: ANXS.postgresql
+    repo: https://github.com/ANXS/postgresql
   - name: geerlingguy.adminer
     repo: https://github.com/geerlingguy/ansible-role-adminer.git
   - name: geerlingguy.apache
@@ -161,6 +163,7 @@ installed_extras:
   - drupal-console
   # - varnish
   # - pimpmylog
+  # - postgresql
   # - nginx
   # - nodejs
   # - ruby
