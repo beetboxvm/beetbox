@@ -205,10 +205,11 @@ ruby_install_gems_user: "vagrant"
 ruby_install_gems: []
 
 # Nginx config.
+nginx_listen_port: "{{ (beet_webserver == 'nginx') | ternary('80','82') }}"
 nginx_php_fpm: /var/run/php5-fpm.sock
 nginx_remove_default_vhost: true
 nginx_hosts:
-  - listen: "{{ (beet_webserver == 'nginx') | ternary('80','82') }}"
+  - listen: "{{ nginx_listen_port }}"
     server_name: "{{ beet_domain }}"
     root: "{{ beet_web }}"
     is_php: true
