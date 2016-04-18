@@ -1,4 +1,13 @@
 ---
+- name: Add domains and aliases to hosts file.
+  lineinfile:
+    dest: /etc/hosts
+    regexp: '^127\.0\.0\.1'
+    line: "127.0.0.1 localhost {{ beet_domain }} {{ beet_aliases | join(' ') }}"
+    owner: root
+    group: root
+    mode: 0644
+
 - name: Update apt cache if needed.
   apt: update_cache=yes cache_valid_time=86400
   failed_when: false
