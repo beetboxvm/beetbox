@@ -19,7 +19,8 @@ vconfig = {
   'vagrant_cpus' => 2,
   'beet_home' => '/beetbox',
   'beet_base' => '/var/beetbox',
-  'beet_domain' => cwd.split('/').last.gsub(/[\._]/, '-') + ".local"
+  'beet_domain' => cwd.split('/').last.gsub(/[\._]/, '-') + ".local",
+  'beet_aliases' => []
 }
 
 if !File.exist?(project_config)
@@ -50,6 +51,15 @@ branches = ['beetbox']
 current_branch = 'beetbox'
 
 Vagrant.configure("2") do |config|
+
+  # Hosts file plugins.
+  if Vagrant.has_plugin?('vagrant-hostsupdater')
+    config.hostsupdater.aliases = vconfig['beet_aliases']
+  elsif Vagrant.has_plugin?('vagrant-hostmanager')
+    config.hostmanager.enabled = true
+    config.hostmanager.manage_host = true
+    config.hostmanager.aliases = vconfig['beet_aliases']
+  end
 
   # Multidev config.
   if vconfig['beet_mode'] == 'multidev'
