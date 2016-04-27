@@ -11,7 +11,7 @@ projects:
     type: "core"
     download:
       # Drupal core branch (e.g. "6.x", "7.x", "8.0.x").
-      branch: "8.0.x"
+      branch: "{{ drupal_make_core_branch }}"
       working-copy: true
 
   # Other modules.

@@ -13,6 +13,12 @@
   when: not drupal_site.stat.exists
   become: no
 
+- name: Install Drupal dependencies with composer.
+  composer:
+    command: install
+    working_dir: "{{ beet_root }}"
+  become: no
+
 - name: Remove built distribution files/directories.
   file:
     path: "{{ beet_root }}/profiles/{{ drupal_distro }}/{{ item }}"
