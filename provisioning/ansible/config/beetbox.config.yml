@@ -242,6 +242,7 @@ php_packages:
   - php5-fpm
   - php5-gd
   - php5-intl
+  - php5-sqlite
   - php-pear
   - php-apc
   - libpcre3-dev
