@@ -45,7 +45,8 @@ beetbox_setup()
 
   # Install ansible.
   sudo apt-get -y install python-pip python-dev
-  sudo -H pip install ansible==$ANSIBLE_VERSION
+  sudo pip install paramiko PyYAML Jinja2 httplib2 six
+  sudo pip install ansible==$ANSIBLE_VERSION
 
   # Clone beetbox if BEET_HOME doesn't exist.
   if [ ! -d "$BEET_HOME" ]; then
