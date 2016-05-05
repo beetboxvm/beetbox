@@ -7,7 +7,7 @@ drupal_install_site: no
 drupal_create_makefile: no
 drupal_build_makefile: no
 drupal_makefile_path: "~/beetbox.make.yml"
-drupal_make_core_branch: "8.1.x"
+drupal_make_core_branch: "8.2.x"
 drupal_distro: no
 drupal_distro_makefile: /vagrant/drupal-org.make.yml
 drupal_build_composer: no
