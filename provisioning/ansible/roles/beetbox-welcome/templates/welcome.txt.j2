@@ -33,7 +33,7 @@ Login link: {{ drupal_drush_login.stdout }}
 
 Developer Tools
 ------------------------------------------------------------
-{% if ('"mailhog" in installed_extras') %}
+{% if (installed_extras_mailhog) %}
 Mailhog: http://{{ beet_domain }}:8025/
 {% endif %}
 

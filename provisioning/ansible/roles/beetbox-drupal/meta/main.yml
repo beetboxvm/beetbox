@@ -4,4 +4,4 @@ dependencies:
   - { role: geerlingguy.drush }
 
   # Conditionally-installed roles.
-  - { role: geerlingguy.drupal-console, when: '"drupal-console" in installed_extras' }
+  - { role: geerlingguy.drupal-console, when: "{{ installed_extras_drupal_console }}" }
