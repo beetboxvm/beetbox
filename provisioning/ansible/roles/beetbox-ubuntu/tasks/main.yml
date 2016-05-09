@@ -13,6 +13,7 @@
     owner: root
     group: root
     mode: 0644
+  failed_when: false
 
 - name: Disbale failsafe boot.
   lineinfile:

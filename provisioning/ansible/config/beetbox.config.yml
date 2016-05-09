@@ -171,6 +171,27 @@ installed_extras:
   # - solr
   # - redis
 
+# Extra utilities form provided roles.
+# Enabled by default.
+installed_extras_adminer: "{{ 'adminer' in installed_extras }}"
+installed_extras_mailhog: "{{ 'mailhog' in installed_extras }}"
+installed_extras_memcached: "{{ 'memcached' in installed_extras }}"
+installed_extras_xdebug: "{{ 'xdebug' in installed_extras }}"
+installed_extras_xhprof: "{{ 'xhprof' in installed_extras }}"
+installed_extras_selenium: "{{ 'selenium' in installed_extras }}"
+installed_extras_drupal_console: "{{ 'drupal-console' in installed_extras }}"
+
+# Disabled by default.
+installed_extras_postfix: "{{ 'postfix' in installed_extras }}"
+installed_extras_pantheon_cli: "{{ 'pantheon-cli' in installed_extras }}"
+installed_extras_varnish: "{{ 'varnish' in installed_extras }}"
+installed_extras_pimpmylog: "{{ 'pimpmylog' in installed_extras }}"
+installed_extras_postgresql: "{{ 'postgresql' in installed_extras }}"
+installed_extras_nodejs: "{{ 'nodejs' in installed_extras }}"
+installed_extras_ruby: "{{ 'ruby' in installed_extras }}"
+installed_extras_solr: "{{ 'solr' in installed_extras }}"
+installed_extras_redis: "{{ 'redis' in installed_extras }}"
+
 # Extra packages.
 extra_packages:
   - imagemagick
