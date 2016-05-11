@@ -1,7 +1,6 @@
 #!/bin/bash -eu
 
 # Set default environment variables.
-ANSIBLE_VERSION=${ANSIBLE_VERSION:-"2.0.1.0"}
 BEET_HOME=${BEET_HOME:-"/beetbox"}
 BEET_BASE=${BEET_BASE:-"/var/beetbox"}
 BEET_USER=${BEET_USER:-"vagrant"}
@@ -37,6 +36,7 @@ beetbox_setup()
     sudo rm -rf /etc/apache2/mods-enabled/*
     sudo rm -rf /var/lib/mysql
     sudo rm -rf /opt/circleci/.phpenv
+    sudo rm -rf /opt/circleci/.pyenv
   fi
 
   # Create BEET_USER and setup sudo.
@@ -44,9 +44,10 @@ beetbox_setup()
   echo "$BEET_USER ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$BEET_USER
 
   # Install ansible.
-  sudo apt-get -y install python-pip python-dev
-  sudo pip install paramiko PyYAML Jinja2 httplib2 six
-  sudo pip install ansible==$ANSIBLE_VERSION
+  sudo apt-get -y install software-properties-common
+  sudo apt-add-repository -y ppa:ansible/ansible
+  sudo apt-get -qq update
+  sudo apt-get -y install ansible
 
   # Clone beetbox if BEET_HOME doesn't exist.
   if [ ! -d "$BEET_HOME" ]; then
