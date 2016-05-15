@@ -252,6 +252,18 @@ php_opcache_enabled_in_ini: true
 php_opcache_memory_consumption: "192"
 php_opcache_max_accelerated_files: 4096
 php_max_input_vars: "4000"
+php_conf_paths:
+  - /etc/php5/fpm
+  - /etc/php5/apache2
+  - /etc/php5/cli
+php_extension_conf_paths:
+  - /etc/php5/fpm/conf.d
+  - /etc/php5/apache2/conf.d
+  - /etc/php5/cli/conf.d
+php_fpm_daemon: php5-fpm
+php_fpm_conf_path: "/etc/php5/fpm"
+php_mysql_package: php5-mysql
+php_memcached_package: php5-memcached
 php_packages:
   - php5
   - libapache2-mod-php5
@@ -299,6 +311,10 @@ php_xdebug_max_nesting_level: 256
 php_xdebug_idekey: PHPSTORM
 # php_xdebug_idekey: sublime.xdebug
 
+# Xhprof config.
+xhprof_download_url: https://github.com/phacility/xhprof/archive/master.tar.gz
+xhprof_download_folder_name: xhprof-master
+
 # Solr config.
 solr_version: "4.10.4"
 solr_xms: "64M"
@@ -312,3 +328,4 @@ mailhog_daemonize_bin_path: /usr/sbin/daemonize
 
 # Other config.
 known_hosts_path: ~/.ssh/known_hosts
+workspace: "{{ beet_home }}/workspace"

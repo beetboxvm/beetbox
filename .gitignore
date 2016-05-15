@@ -13,6 +13,7 @@ provisioning/ansible/roles/*
 !provisioning/ansible/roles/beetbox-*
 .beetbox/*
 !.beetbox/config.yml
+workspace/
 
 # Prevent Packer related files.
 
