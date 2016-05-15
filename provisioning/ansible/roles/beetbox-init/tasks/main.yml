@@ -33,6 +33,14 @@
   become: no
   when: beet_root is defined
 
+- name: Ensure workspace directory exists.
+  file:
+    path: "{{ workspace }}"
+    state: directory
+    mode: 0775
+  become: no
+  when: workspace is defined
+
 - name: Set SSH home directory.
   lineinfile:
     dest: "/home/{{ beet_user }}/.bashrc"
