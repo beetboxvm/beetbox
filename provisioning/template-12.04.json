@@ -6,7 +6,7 @@
     "hostname": "beetbox.local",
     "ssh_name": "vagrant",
     "ssh_pass": "vagrant",
-    "beet_repo": "https://github.com/DrupalMel/beetbox.git",
+    "beet_repo": "https://github.com/beetboxvm/beetbox.git",
     "beet_version": "BUILD_VERSION",
     "iso_url": "http://releases.ubuntu.com/precise/ubuntu-12.04.5-server-amd64.iso",
     "iso_checksum": "af224223de99e2a730b67d7785b657f549be0d63221188e105445f75fb8305c9"

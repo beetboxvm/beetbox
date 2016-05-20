@@ -34,4 +34,3 @@ deployment:
     owner: beetboxvm
     commands:
       - chmod +x $BEET_HOME/$BEET_DEPLOY ; $BEET_HOME/$BEET_DEPLOY
-      - BEET_BOX=beet/box-14.04 BEET_TEMPLATE=template-14.04.json $BEET_HOME/$BEET_DEPLOY
