@@ -186,6 +186,7 @@ installed_extras_selenium: "{{ 'selenium' in installed_extras }}"
 installed_extras_drupal_console: "{{ 'drupal-console' in installed_extras }}"
 
 # Disabled by default.
+installed_extras_firewall: "{{ 'firewall' in installed_extras }}"
 installed_extras_postfix: "{{ 'postfix' in installed_extras }}"
 installed_extras_pantheon_cli: "{{ 'pantheon-cli' in installed_extras }}"
 installed_extras_varnish: "{{ 'varnish' in installed_extras }}"
@@ -203,22 +204,6 @@ extra_packages:
   - imagemagick
   - php5-sqlite
   - unzip
-
-# Firewall config.
-firewall_allowed_tcp_ports:
-  - "22"
-  - "25"
-  - "80"
-  - "81"
-  - "443"
-  - "4444"
-  - "8025"
-  - "8080"
-  - "8443"
-  - "8983"
-firewall_allowed_udp_ports:
-  - "5353"
-firewall_log_dropped_packets: false
 
 # git config.
 git_packages:
