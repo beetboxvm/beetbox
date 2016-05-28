@@ -14,21 +14,28 @@
 
   tasks:
 
+    - name: Check if config files exists
+      stat: "path=/home/{{ beet_user }}/{{ item }}"
+      with_items: "{{ conf_files }}"
+      register: available_conf
+
     - name: Copy config files from home directory.
       copy:
-        src: "/home/{{ beet_user }}/{{ item }}"
-        dest: "{{ ansible_home }}/config/{{ item }}"
+        src: "/home/{{ beet_user }}/{{ item.item }}"
+        dest: "{{ ansible_home }}/config/{{ item.item }}"
         owner: "{{ beet_user }}"
         group: "{{ beet_user }}"
         force: yes
-      with_items: conf_files
-      failed_when: false
+      when: "{{ item.stat.exists }}"
+      with_items: "{{ available_conf.results }}"
+      changed_when: false
 
     - name: Create absent config files.
       file:
         path: "{{ ansible_home }}/config/{{ item }}"
         state: touch
       with_items: conf_files
+      changed_when: false
 
     - name: "Ensure {{ beet_user }} has ownership of {{ ansible_home }}."
       file:
