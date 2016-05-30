@@ -111,20 +111,6 @@ Vagrant.configure("2") do |config|
         debug_mode = "BEET_DEBUG=true"
       end
 
-      # Upload vagrant.config.yml
-      node.vm.provision "project_config", type: "file" do |s|
-       s.source = project_config
-       s.destination = "~/vagrant.config.yml"
-      end
-
-      # Upload local.config.yml
-      if File.exist?(local_config)
-        node.vm.provision "local_config", type: "file" do |s|
-         s.source = local_config
-         s.destination = "~/local.config.yml"
-        end
-      end
-
       # Provision box
       beet_sh = "#{vconfig['beet_home']}/provisioning/beetbox.sh"
       remote_sh = "https://raw.githubusercontent.com/beetboxvm/beetbox/master/provisioning/beetbox.sh"

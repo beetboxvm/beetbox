@@ -4,27 +4,27 @@
   become: yes
 
   vars:
+    beet_base: "{{ lookup('env','BEET_BASE') | default('/var/beetbox',true) }}"
     beet_user: "{{ lookup('env','BEET_USER') | default('vagrant',true) }}"
     ansible_home: "{{ lookup('env','ANSIBLE_HOME') | default('/beetbox/provisioning/ansible',true) }}"
+    conf_dir: "{{ beet_base }}/.beetbox"
     conf_files:
       - beetbox.config.yml
       - project.config.yml
-      - vagrant.config.yml
+      - config.yml
       - local.config.yml
 
   tasks:
 
     - name: Check if config files exists
-      stat: "path=/home/{{ beet_user }}/{{ item }}"
+      stat: "path={{ conf_dir }}/{{ item }}"
       with_items: "{{ conf_files }}"
       register: available_conf
 
     - name: Copy config files from home directory.
       copy:
-        src: "/home/{{ beet_user }}/{{ item.item }}"
+        src: "{{ conf_dir }}/{{ item.item }}"
         dest: "{{ ansible_home }}/config/{{ item.item }}"
-        owner: "{{ beet_user }}"
-        group: "{{ beet_user }}"
         force: yes
       when: "{{ item.stat.exists }}"
       with_items: "{{ available_conf.results }}"

@@ -13,7 +13,7 @@ machine:
     UBUNTU_INIT: true
     INSTALL_PACKER: true
 dependencies:
-  pre:
+  override:
     - sudo cp -rf ~/$CIRCLE_PROJECT_REPONAME $BEET_HOME
     - sudo chmod +x $BEET_HOME/$BEET_PROVISION
     - $BEET_HOME/$BEET_PROVISION
@@ -21,7 +21,6 @@ dependencies:
 test:
   override:
     - sudo cp -rf ~/$CIRCLE_PROJECT_REPONAME/* $BEET_BASE
-    - sudo cp ~/$CIRCLE_PROJECT_REPONAME/.beetbox/config.yml ~/vagrant.config.yml
     - $BEET_HOME/$BEET_PROVISION
 deployment:
   dev:
