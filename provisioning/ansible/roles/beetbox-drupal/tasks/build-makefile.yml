@@ -13,11 +13,11 @@
   when: not drupal_site.stat.exists
   become: no
 
-- stat:
+- name: Install Drupal dependencies with composer.
+  stat:
     path: "{{ beet_root }}/composer.json"
   register: composer_file
-- name: Install Drupal dependencies with composer.
-  composer:
+- composer:
     command: install
     working_dir: "{{ beet_root }}"
   become: no

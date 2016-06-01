@@ -26,9 +26,6 @@ apt-get -y clean
 # Clean up orphaned packages with deborphan
 apt-get -y install deborphan
 
-# Keep php-apc
-deborphan --add-keep php-apc
-
 while [ -n "$(deborphan --guess-all --no-guess-dev --no-guess-python --libdevel)" ]; do
     deborphan --guess-all --no-guess-dev --no-guess-python --libdevel| xargs apt-get -y purge
 done
