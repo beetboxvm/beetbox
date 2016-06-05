@@ -12,7 +12,7 @@ projects:
     download:
       # Drupal core branch (e.g. "6.x", "7.x", "8.0.x").
       branch: "{{ drupal_make_core_branch }}"
-      working-copy: true
+      working-copy: {{ drupal_make_working_copy }}
 
   # Other modules.
   devel: "1.x-dev"
