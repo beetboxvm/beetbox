@@ -99,6 +99,17 @@ Vagrant.configure("2") do |config|
         node.vm.network :private_network, ip: vconfig['vagrant_ip']
       end
 
+      # Vagrant Cachier config.
+      if Vagrant.has_plugin?("vagrant-cachier")
+        # Configure cached packages to be shared between instances of the same base box.
+        # More info on http://fgrehm.viewdocs.io/vagrant-cachier/usage
+        config.cache.scope = :box
+        config.cache.synced_folder_opts = {
+          type: :nfs,
+          mount_options: ['rw', 'vers=3', 'tcp', 'nolock']
+        }
+      end
+
       # Synced folders.
       node.vm.synced_folder ".", vconfig['beet_base'],
         type: "nfs",
