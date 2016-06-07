@@ -51,12 +51,16 @@ galaxy_roles:
     repo: https://github.com/beetboxvm/ansible-role-beetbox-wordpress.git
   - name: ANXS.postgresql
     repo: https://github.com/ANXS/postgresql
+  - name: franklinkim.newrelic
+    repo: https://github.com/weareinteractive/ansible-newrelic.git
   - name: geerlingguy.adminer
     repo: https://github.com/geerlingguy/ansible-role-adminer.git
   - name: geerlingguy.apache
     repo: https://github.com/geerlingguy/ansible-role-apache.git
   - name: geerlingguy.apache-php-fpm
     repo: https://github.com/geerlingguy/ansible-role-apache-php-fpm.git
+  - name: geerlingguy.blackfire
+    repo: https://github.com/geerlingguy/ansible-role-blackfire.git
   - name: geerlingguy.composer
     repo: https://github.com/geerlingguy/ansible-role-composer.git
   - name: geerlingguy.daemonize
@@ -191,6 +195,8 @@ installed_extras_nodejs: "{{ 'nodejs' in installed_extras }}"
 installed_extras_ruby: "{{ 'ruby' in installed_extras }}"
 installed_extras_solr: "{{ 'solr' in installed_extras }}"
 installed_extras_redis: "{{ 'redis' in installed_extras }}"
+installed_extras_blackfire: no
+installed_extras_newrelic: no
 
 # Extra packages.
 extra_packages:
