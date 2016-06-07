@@ -19,11 +19,13 @@ dependencies:
   - { role: geerlingguy.php-memcached, when: "{{ installed_extras_memcached }} and ({{ php_version }}  != '7.0')" }
   - { role: geerlingguy.php-xdebug, when: "{{ installed_extras_xdebug }}" }
   - { role: geerlingguy.php-xhprof, when: "{{ installed_extras_xhprof }}" }
+  - { role: geerlingguy.blackfire, when: "{{ installed_extras_blackfire }}" }
   - { role: geerlingguy.adminer, when: "{{ installed_extras_adminer }}" }
   - { role: geerlingguy.pimpmylog, when: "{{ installed_extras_pimpmylog }}" }
   - { role: geerlingguy.daemonize, when: "{{ installed_extras_mailhog }}" }
   - { role: geerlingguy.postfix, when: "{{ installed_extras_postfix }}" }
   - { role: geerlingguy.mailhog, when: "{{ installed_extras_mailhog }}" }
+  - { role: franklinkim.newrelic, when: "{{ installed_extras_newrelic }}" }
   - { role: geerlingguy.nodejs, when: "{{ installed_extras_nodejs }}" }
   - { role: geerlingguy.redis, when: "{{ installed_extras_redis }}" }
   - { role: geerlingguy.php-redis, when: "{{ installed_extras_redis }}" }
