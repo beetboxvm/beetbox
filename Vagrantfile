@@ -17,6 +17,10 @@ vconfig = {
   'vagrant_ip' => '0.0.0.0',
   'vagrant_memory' => 1024,
   'vagrant_cpus' => 2,
+}
+
+# Default project config.
+pconfig = {
   'beet_home' => '/beetbox',
   'beet_base' => '/var/beetbox',
   'beet_domain' => cwd.split('/').last.gsub(/[\._]/, '-') + ".local",
@@ -27,11 +31,14 @@ if !File.exist?(project_config)
   # Create default config file.
   require 'fileutils'
   FileUtils::mkdir_p config_dir
-  File.open(project_config, "w+") {|f| f.write("---\nbeet_domain: #{vconfig['beet_domain']}\n") }
+  File.open(project_config, 'w+') do |file|
+    file.puts YAML::dump(pconfig)
+  end
+else
+  pconfig = YAML::load_file(project_config)
 end
 
-pconfig = YAML::load_file(project_config) || nil
-vconfig = vconfig.merge pconfig if !pconfig.nil?
+vconfig = vconfig.merge pconfig
 
 # Merge local.config.yml
 if File.exist?(local_config)
