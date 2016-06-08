@@ -282,6 +282,7 @@ php55_packages:
   - php5.5-intl
   - php5.5-mbstring
   - php5.5-xml
+  - libapache2-mod-php5.5
 php56_packages:
   - php5.6
   - php5.6-curl
@@ -291,6 +292,7 @@ php56_packages:
   - php5.6-intl
   - php5.6-mbstring
   - php5.6-xml
+  - libapache2-mod-php5.6
 php70_packages:
   - php7.0
   - php7.0-curl
@@ -300,6 +302,7 @@ php70_packages:
   - php7.0-mbstring
   - php7.0-sqlite3
   - php7.0-xml
+  - libapache2-mod-php7.0
 
 # Composer config.
 composer_path: /usr/bin/composer
