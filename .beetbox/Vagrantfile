@@ -18,7 +18,7 @@ vconfig = {
   'vagrant_cpus' => 2,
   'beet_home' => '/beetbox',
   'beet_base' => '/var/beetbox',
-  'beet_domain' => "#{__dir__}".split('/').last.gsub(/[\._]/, '-') + ".local",
+  'beet_domain' => config_dir.gsub('/.beetbox', '').split('/').last.gsub(/[\._]/, '-') + ".local",
   'beet_aliases' => []
 }
 
