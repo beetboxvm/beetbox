@@ -312,6 +312,9 @@ composer_home_group: "{{ beet_user }}"
 # composer_global_packages:
 #   - { name: phpunit/phpunit, release: '@stable' }
 
+# NodeJS Configuration.
+npm_config_prefix: "~/.npm-global"
+
 # Drush config.
 drush_version: "8.1.2"
 drush_keep_updated: "{{ (drush_version != '8.1.2') }}"
