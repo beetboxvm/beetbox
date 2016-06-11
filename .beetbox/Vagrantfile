@@ -6,6 +6,7 @@ require 'yaml'
 Vagrant.require_version '>= 1.8.0'
 
 config_dir = ENV['BEET_CONFIG_DIR'] || "#{__dir__}/.beetbox"
+project_root = config_dir.gsub('/.beetbox', '')
 project_config = "#{config_dir}/config.yml"
 local_config = "#{config_dir}/local.config.yml"
 
@@ -18,8 +19,9 @@ vconfig = {
   'vagrant_cpus' => 2,
   'beet_home' => '/beetbox',
   'beet_base' => '/var/beetbox',
-  'beet_domain' => config_dir.gsub('/.beetbox', '').split('/').last.gsub(/[\._]/, '-') + ".local",
-  'beet_aliases' => []
+  'beet_domain' => project_root.split('/').last.gsub(/[\._]/, '-') + ".local",
+  'beet_aliases' => [],
+  'drush_create_alias' => true
 }
 
 # Create default config file.
@@ -163,9 +165,11 @@ Vagrant.configure("2") do |config|
 end
 
 # Create local drush alias.
-if File.directory?("#{Dir.home}/.drush")
+if vconfig['drush_create_alias']
 
-  alias_file = "#{Dir.home}/.drush/"+hostname+".aliases.drushrc.php"
+  alias_file = vconfig['drush_alias_file'] || "#{Dir.home}/.drush/"+hostname+".aliases.drushrc.php"
+  alias_file = "#{project_root}/#{vconfig['drush_alias_file']}" if vconfig['drush_alias_file']
+
   if ARGV[0] == "destroy"
     File.delete(alias_file) if File.exist?(alias_file)
   else
@@ -191,7 +195,7 @@ ALIAS
 
     alias_file = File.open(alias_file, "w+")
     da = DrushAlias.new
-    da.hostname = hostname
+    da.hostname = vconfig['drush_alias_name'] || hostname
     da.uri = hostname
     da.key = "#{Dir.home}/.vagrant.d/insecure_private_key"
     da.root = vconfig['beet_web'] ||= vconfig['beet_root'] ||= vconfig['beet_base']
