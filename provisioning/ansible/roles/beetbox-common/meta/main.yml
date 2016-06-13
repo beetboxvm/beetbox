@@ -16,7 +16,7 @@ dependencies:
   # Conditionally-installed roles.
   - { role: ANXS.postgresql, when: "{{ installed_extras_postgresql }}" }
   - { role: geerlingguy.memcached, when: "{{ installed_extras_memcached }}" }
-  - { role: geerlingguy.php-memcached, when: "{{ installed_extras_memcached }} and ({{ php_version }}  != '7.0')" }
+  - { role: geerlingguy.php-memcached, when: "{{ installed_extras_memcached }}" }
   - { role: geerlingguy.php-xdebug, when: "{{ installed_extras_xdebug }}" }
   - { role: geerlingguy.php-xhprof, when: "{{ installed_extras_xhprof }}" }
   - { role: geerlingguy.blackfire, when: "{{ installed_extras_blackfire }}" }

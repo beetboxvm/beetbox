@@ -1,22 +1,38 @@
 ---
-- set_fact:
-    php_ppa: ppa:ondrej/php
-  when: php_version == '5.5' or php_version == '5.6' or php_version == '7.0'
-
 - name: Add repository for PHP.
   apt_repository:
-    repo: "{{ php_ppa }}"
+    repo: "ppa:ondrej/php"
     update_cache: yes
 
 - name: Purge PHP version packages.
   apt:
     name: "{{ item }}"
     state: absent
-  when: "'php{{ php_version }}' != item"
+    purge: yes
+    force: yes
+  when: "'{{ php_version }}' not in item"
   with_items:
-    - php5.5
-    - php5.6
-    - php7.0
+    - "{{ php55_packages }} + {{ php56_packages }} + {{ php70_packages }}"
+  register: php_purge
+
+- name: Purge depreciated memcached package.
+  apt:
+    name: "{{ item }}"
+    state: absent
+    purge: yes
+    force: yes
+  when: php_purge.changed
+  with_items:
+    - "php-memcached"
+
+- name: Purge PHP modules directory.
+  file:
+    path: "{{ item }}"
+    state: absent
+  when: php_purge.changed
+  with_items:
+    - "/usr/lib/php5/modules"
+    - "/usr/lib/php/modules"
 
 - name: Set PHP 5.5 packages.
   set_fact:
@@ -33,6 +49,8 @@
     php_packages: "{{ php70_packages }}"
   when: php_version == '7.0'
 
+# PHP 7 Support
+
 - name: Set default PHP7 mysql package.
   set_fact:
     php_mysql_package: php7.0-mysql
@@ -47,3 +65,13 @@
   set_fact:
     php_fpm_pool_conf_path: "/etc/php/7.0/fpm/pool.d/www.conf"
   when: (php_version == '7.0') and (php_fpm_pool_conf_path is not defined)
+
+- name: Set xhprof_download_url for PHP7.
+  set_fact:
+    xhprof_download_url: https://github.com/RustJason/xhprof/archive/php7.zip
+  when: php_version == '7.0'
+
+- name: Set xhprof_download_folder_name for PHP7.
+  set_fact:
+    xhprof_download_folder_name: xhprof-php7
+  when: php_version == '7.0'
