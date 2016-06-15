@@ -272,6 +272,7 @@ php_extension_conf_paths:
   - "/etc/php/{{ php_version }}/cli/conf.d"
 php_fpm_daemon: "php{{ php_version }}-fpm"
 php_fpm_conf_path: "/etc/php/{{ php_version }}/fpm"
+php_fpm_pool_conf_path: "/etc/php/{{ php_version }}/fpm/pool.d/www.conf"
 php_mysql_package: "php{{ php_version }}-mysql"
 php_memcached_package: "php-memcache"
 php55_packages:

@@ -15,16 +15,6 @@
     - "{{ php55_packages }} + {{ php56_packages }} + {{ php70_packages }}"
   register: php_purge
 
-- name: Purge depreciated memcached package.
-  apt:
-    name: "{{ item }}"
-    state: absent
-    purge: yes
-    force: yes
-  when: php_purge.changed
-  with_items:
-    - "php-memcached"
-
 - name: Purge PHP modules directory.
   file:
     path: "{{ item }}"
@@ -37,41 +27,14 @@
 - name: Set PHP 5.5 packages.
   set_fact:
     php_packages: "{{ php55_packages }}"
-  when: php_version == '5.5'
+  when: "'{{ php_version }}' == '5.5'"
 
 - name: Set PHP 5.6 packages.
   set_fact:
     php_packages: "{{ php56_packages }}"
-  when: php_version == '5.6'
+  when: "'{{ php_version }}' == '5.6'"
 
 - name: Set PHP 7.0 packages.
   set_fact:
     php_packages: "{{ php70_packages }}"
-  when: php_version == '7.0'
-
-# PHP 7 Support
-
-- name: Set default PHP7 mysql package.
-  set_fact:
-    php_mysql_package: php7.0-mysql
-  when: (php_version == '7.0') and (php_mysql_package is not defined)
-
-- name: Set default PHP7 fpm daemon.
-  set_fact:
-    php_fpm_daemon: php7.0-fpm
-  when: (php_version == '7.0') and (php_fpm_daemon is not defined)
-
-- name: Set default PHP7 fpm pool conf path.
-  set_fact:
-    php_fpm_pool_conf_path: "/etc/php/7.0/fpm/pool.d/www.conf"
-  when: (php_version == '7.0') and (php_fpm_pool_conf_path is not defined)
-
-- name: Set xhprof_download_url for PHP7.
-  set_fact:
-    xhprof_download_url: https://github.com/RustJason/xhprof/archive/php7.zip
-  when: php_version == '7.0'
-
-- name: Set xhprof_download_folder_name for PHP7.
-  set_fact:
-    xhprof_download_folder_name: xhprof-php7
-  when: php_version == '7.0'
+  when: "'{{ php_version }}' == '7.0'"

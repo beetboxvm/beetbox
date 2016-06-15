@@ -1,0 +1,14 @@
+---
+- name: Set default PHP7 fpm daemon.
+  set_fact:
+    php_fpm_daemon: php7.0-fpm
+
+- name: Set xhprof_download_url for PHP7.
+  set_fact:
+    xhprof_download_url: https://github.com/RustJason/xhprof/archive/php7.zip
+  when: "{{ xhprof_download_url }} == 'https://github.com/phacility/xhprof/archive/master.tar.gz'"
+
+- name: Set xhprof_download_folder_name for PHP7.
+  set_fact:
+    xhprof_download_folder_name: xhprof-php7
+  when: "{{ xhprof_download_folder_name }} == 'master'"

@@ -7,6 +7,7 @@ dependencies:
   - { role: geerlingguy.nginx }
   - { role: geerlingguy.mysql }
   - { role: beetbox-php-ppa }
+  - { role: beetbox-php-7.0, when: "{{ php_version }} == '7.0'" }
   - { role: geerlingguy.php }
   - { role: geerlingguy.php-pecl }
   - { role: geerlingguy.php-mysql }
