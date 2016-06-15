@@ -7,32 +7,24 @@
   changed_when: false
   failed_when: beet_ansible_user.stdout != beet_user
 
-- name: Test webserver is responding on port 80.
-  uri:
-    url: "http://{{ beet_domain }}/"
-    status_code: 200
-
-- name: Test webserver is responding on port 443.
-  uri:
-    url: "https://{{ beet_domain }}/"
-    validate_certs: no
-    status_code: 200
-
-- name: Test mailhog is responding on port 8025.
-  uri:
-    url: "http://{{ beet_domain }}:8025/"
-    status_code: 200
-
 - name: Test xdebug is available.
   shell: >
     php -m
   register: php_modules
   changed_when: false
   failed_when: "'xdebug' not in php_modules.stdout"
+  when: "{{ installed_extras_xdebug }}"
 
-- name: Test uploadprogress is available.
-  shell: >
-    php -m
-  register: php_modules
-  changed_when: false
-  failed_when: "'uploadprogress' not in php_modules.stdout"
+- name: Test mailhog is responding on port 8025.
+  uri:
+    url: "http://{{ beet_domain }}:8025/"
+    status_code: 200
+  when: "{{ installed_extras_mailhog }}"
+
+- name: Check if beet_project tests exist.
+  stat:
+    path: "{{ beet_role_dir }}/beetbox-tests/tasks/{{ beet_project }}.yml"
+  register: project_tests
+
+- include: "{{ beet_project }}.yml"
+  when: project_tests.stat.exists
