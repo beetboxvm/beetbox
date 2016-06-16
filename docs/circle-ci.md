@@ -23,8 +23,6 @@ machine:
 dependencies:
   pre:
     - curl -fsSL $BEET_DEPENDENCIES | bash
-    - sudo cp ~/$CIRCLE_PROJECT_REPONAME/.beetbox/config.yml $BEET_HOME/provisioning/ansible/vagrant.config.yml
-    - $BEET_HOME/provisioning/beetbox.sh
 test:
   override:
     #- /path/to/tests.sh

@@ -32,7 +32,15 @@ wget https://raw.githubusercontent.com/beetboxvm/beetbox/master/Vagrantfile
 vagrant up
 ```
 
-After which you can install the site at [http://drupal-8-0-3.local/install.php](http://drupal-8-0-3.local/install.php)
+After which you can install the site at [http://drupal-8.1.2.local/install.php](http://drupal-8.1.2.local/install.php)
+
+or add the following to `./beetbox/config.yml` and run `vagrant provision` to automatically install drupal.
+
+```
+drupal_install_site: yes
+drupal_account_name: admin
+drupal_account_pass: admin
+```
 
 ## Integration
 
