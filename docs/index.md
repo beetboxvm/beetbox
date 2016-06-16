@@ -27,9 +27,8 @@ The project has a predefined set of default configuration attributes so it can w
 To get a simple Drupal site up and running with Beetbox, run the following commands:
 
 ```
-drush dl drupal-8.0.3
-cd drupal-8.0.3
-vagrant init beet/box
+drush dl drupal-8.1.2 && cd $_
+wget https://raw.githubusercontent.com/beetboxvm/beetbox/master/Vagrantfile
 vagrant up
 ```
 
@@ -39,9 +38,9 @@ After which you can install the site at [http://drupal-8-0-3.local/install.php](
 
 Beetbox offers a few integration options.
 
-## Configuration
- 
 See. [integration](integration.md)
+
+## Configuration
 
 All customisation is done via a YAML configuration file at `.beetbox/config.yml`. If this file doesn't exist it is automatically created the first time you start up the VM.
 Configuration is applied hierarchically so any attribute set in your project config file will override a lower level default setting.
