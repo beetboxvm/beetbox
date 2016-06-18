@@ -1,0 +1,91 @@
+{
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "boot_command": [
+        "<esc><esc><enter><wait>",
+        "/install/vmlinuz auto",
+        " console-setup/ask_detect=false",
+        " console-setup/layoutcode=us",
+        " console-setup/modelcode=pc105",
+        " debconf/frontend=noninteractive",
+        " debian-installer=en_US",
+        " fb=false",
+        " initrd=/install/initrd.gz",
+        " kbd-chooser/method=us",
+        " keyboard-configuration/layout=USA",
+        " keyboard-configuration/variant=USA",
+        " locale=en_US",
+        " netcfg/get_domain=vm",
+        " netcfg/get_hostname={{ item.hostname }}",
+        " noapic",
+        " passwd/user-fullname={{ item.ssh_name }}",
+        " passwd/user-password={{ item.ssh_pass }}",
+        " passwd/user-password-again={{ item.ssh_pass }}",
+        " passwd/username={{ item.ssh_name }}",
+        " preseed/url=http://{{ '{{' }} .HTTPIP {{ '}}' }}:{{ '{{' }} .HTTPPort {{ '}}' }}/preseed.cfg",
+        " -- ",
+        "<enter>"
+      ],
+      "boot_wait": "10s",
+      "guest_os_type": "Ubuntu_64",
+      "hard_drive_interface": "sata",
+      "http_directory": "packer/http",
+      "iso_checksum": "{{ item.iso_checksum }}",
+      "iso_checksum_type": "sha256",
+      "iso_url": "{{ item.iso_url }}",
+      "output_directory": "output-{{ item.atlas_build_name }}-virtualbox-iso",
+      "ssh_username": "{{ item.ssh_name }}",
+      "ssh_password": "{{ item.ssh_pass }}",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "shutdown_command": "echo '{{ item.ssh_pass }}'|sudo -S shutdown -P now",
+      "guest_additions_path": "VBoxGuestAdditions_{{ '{{' }} .Version {{ '}}' }}.iso",
+      "virtualbox_version_file": ".vbox_version",
+      "vm_name": "beetbox_{{ item.box_version | default(0.0.0,true) }}"
+    }
+  ],
+  "provisioners": [
+    {
+      "environment_vars": [
+        "SSH_USERNAME={{ item.ssh_name }}",
+        "SSH_PASSWORD={{ item.ssh_pass }}",
+        "BEET_REPO={{ beet_repo }}",
+        "BEET_VERSION={{ item.beet_version }}",
+        "VAGRANT_INIT=true",
+        "UBUNTU_INIT=true",
+        "VIRTUALBOX_INIT=true"
+      ],
+      "type": "shell",
+      "scripts": [
+        "beetbox.sh",
+        "packer/scripts/minimize.sh",
+        "packer/scripts/cleanup.sh"
+      ],
+      "execute_command": "echo '{{ item.ssh_pass }}' | {{ '{{' }} .Vars {{ '}}' }} sudo -S -E bash '{{ '{{' }} .Path {{ '}}' }}'"
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "vagrant",
+        "compression_level": 9,
+        "vagrantfile_template": "packer/includes/Vagrantfile",
+        "include": [
+          "packer/includes/drush.alias.erb"
+        ],
+        "output": "{{ item.atlas_username }}-{{ item.atlas_build_name }}-{{ '{{' }} .Provider {{ '}}' }}.box"
+      },
+      {
+        "type": "atlas",
+        "artifact": "{{ item.atlas_username }}/{{ item.atlas_build_name }}",
+        "artifact_type": "vagrant.box",
+        "metadata": {
+          "provider": "virtualbox",
+          "created_at": "{{ '{{' }} timestamp {{ '}}' }}",
+          "version": "{{ item.box_version | default(0.0.0,true) }}"
+        }
+      }
+    ]
+  ]
+}

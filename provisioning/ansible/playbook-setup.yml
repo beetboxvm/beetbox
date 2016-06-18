@@ -3,6 +3,12 @@
   connection: local
   become: yes
 
+  vars_files:
+    - config/beetbox.config.yml
+    - config/project.config.yml
+    - config/config.yml
+    - config/local.config.yml
+
   vars:
     circleci: "{{ lookup('env','CIRCLECI') == 'true' | ternary(yes,no) }}"
 

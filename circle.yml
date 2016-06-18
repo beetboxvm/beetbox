@@ -5,9 +5,7 @@ machine:
   environment:
     BEET_BOX: beet/box
     BEET_HOME: /beetbox
-    BEET_USER: ubuntu
     BEET_BASE: /home/ubuntu/.cache/beetbox/build
-    BEET_DEPLOY: provisioning/deploy.sh
     BEET_PROVISION: provisioning/beetbox.sh
     VAGRANT_INIT: true
     UBUNTU_INIT: true
@@ -29,9 +27,9 @@ deployment:
     branch: master
     owner: beetboxvm
     commands:
-      - chmod +x $BEET_HOME/$BEET_DEPLOY ; $BEET_HOME/$BEET_DEPLOY
+      - cd provisioning && packer push -token=$ATLAS_TOKEN -name="beet/dev" provisioning/beet-dev.json
   release:
     tag: /[0-9]+\.[0-9]+\.[0-9]+/
     owner: beetboxvm
     commands:
-      - chmod +x $BEET_HOME/$BEET_DEPLOY ; $BEET_HOME/$BEET_DEPLOY
+      - cd provisioning && packer push -token=$ATLAS_TOKEN -name="beet/box" provisioning/beet-box.json
