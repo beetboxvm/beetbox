@@ -1,4 +1,8 @@
 ---
+- name: Set hostname.
+  hostname:
+    name: "{{ beet_domain }}"
+
 - name: Add domains and aliases to hosts file.
   lineinfile:
     dest: /etc/hosts

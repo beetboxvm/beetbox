@@ -28,6 +28,8 @@ beetbox_setup()
 {
   # Remove default circle CI packages.
   if [ "$CIRCLECI" == "true" ]; then
+    [ $BEET_BASE == "/var/beetbox" ] && export BEET_BASE="/home/ubuntu/$CIRCLE_PROJECT_REPONAME"
+    [ $BEET_USER == "vagrant" ] && export BEET_USER="ubuntu"
     echo "Removing default circle CI packages"
     sudo apt-get -qq update
     sudo apt-get -y purge apache2 php5-cli mysql-common mysql-server mysql-common

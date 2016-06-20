@@ -75,6 +75,9 @@ if [ "x${swapuuid}" != "x" ]; then
     /sbin/mkswap -U "${swapuuid}" "${swappart}"
 fi
 
+# Delete beet_base.
+rm -rf /var/beetbox
+
 # Run apt-get update before zeroing the disk.
 apt-get update
 
