@@ -2,7 +2,7 @@
 #
 # Beetbox VM configuration.
 #
-# Settigns below related to the Ansible roles from Galaxy.
+# Settings below related to the Ansible roles from Galaxy.
 # Copy any of these settings to the custom config file to override.
 #
 
