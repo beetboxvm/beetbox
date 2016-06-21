@@ -1,6 +1,6 @@
 ---
 dependencies:
-  - { role: geerlingguy.firewall}
+  - { role: geerlingguy.firewall, when: "{{ installed_extras_firewall }}" }
   - { role: geerlingguy.git }
   - { role: geerlingguy.apache }
   - { role: geerlingguy.apache-php-fpm }
