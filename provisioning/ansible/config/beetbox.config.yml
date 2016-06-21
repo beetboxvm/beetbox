@@ -207,6 +207,7 @@ varnish_storage: "malloc,256m"
 nodejs_version: "0.12"
 nodejs_npm_global_packages: []
 nodejs_install_npm_user: "{{ beet_user }}"
+npm_config_prefix: "home/{{ beet_user }}/.npm-global"
 
 # Ruby config.
 ruby_install_gems_user: "vagrant"
@@ -289,14 +290,11 @@ php70_packages:
 
 # Composer config.
 composer_path: /usr/bin/composer
-composer_home_path: '/home/vagrant/.composer'
+composer_home_path: '/home/{{ beet_user }}/.composer'
 composer_home_owner: "{{ beet_user }}"
 composer_home_group: "{{ beet_user }}"
-# composer_global_packages:
-#   - { name: phpunit/phpunit, release: '@stable' }
-
-# NodeJS Configuration.
-npm_config_prefix: "~/.npm-global"
+composer_global_packages:
+  - { name: hirak/prestissimo, release: '^0.3' }
 
 # Drush config.
 drush_version: "8.1.2"
