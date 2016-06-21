@@ -349,3 +349,24 @@ mailhog_daemonize_bin_path: /usr/sbin/daemonize
 # Other config.
 known_hosts_path: ~/.ssh/known_hosts
 workspace: "{{ beet_home }}/workspace/{{ php_version }}"
+
+# Packer config.
+packer_templates:
+  - atlas_username: beet
+    atlas_build_name: dev
+    box_version: "0.2.{{ lookup('env','CIRCLE_BUILD_NUM') | default('0',true) }}"
+    beet_version: master
+    ssh_name: vagrant
+    ssh_pass: vagrant
+    hostname: "beetbox.local"
+    iso_url: "http://releases.ubuntu.com/trusty/ubuntu-14.04.4-server-amd64.iso"
+    iso_checksum: "07e4bb5569814eab41fafac882ba127893e3ff0bdb7ec931c9b2d040e3e94e7a"
+  - atlas_username: beet
+    atlas_build_name: box
+    box_version: "{{ lookup('env','CIRCLE_TAG') | default('0.1.1',true) }}"
+    beet_version: "{{ lookup('env','CIRCLE_TAG') | default('0.1.1',true) }}"
+    ssh_name: vagrant
+    ssh_pass: vagrant
+    hostname: "beetbox.local"
+    iso_url: "http://releases.ubuntu.com/trusty/ubuntu-14.04.4-server-amd64.iso"
+    iso_checksum: "07e4bb5569814eab41fafac882ba127893e3ff0bdb7ec931c9b2d040e3e94e7a"
