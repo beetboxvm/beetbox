@@ -1,7 +1,0 @@
----
-dependencies:
-  - { role: beetbox-upload-progress }
-  - { role: geerlingguy.drush }
-
-  # Conditionally-installed roles.
-  - { role: geerlingguy.drupal-console, when: "{{ installed_extras_drupal_console }}" }

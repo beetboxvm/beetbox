@@ -157,47 +157,31 @@ mysql_users:
     priv: "*.*:ALL"
 
 # Extra utilities form provided roles.
-# Comment out the ones that do not need to be installed.
-installed_extras:
-  - adminer
-  - mailhog
-  - memcached
-  - xdebug
-  - xhprof
-  - selenium
-  - drupal-console
-  # - varnish
-  # - pimpmylog
-  # - postgresql
-  # - nginx
-  # - nodejs
-  # - ruby
-  # - solr
-  # - redis
-
-# Extra utilities form provided roles.
 # Enabled by default.
-installed_extras_adminer: "{{ 'adminer' in installed_extras }}"
-installed_extras_mailhog: "{{ 'mailhog' in installed_extras }}"
-installed_extras_memcached: "{{ 'memcached' in installed_extras }}"
-installed_extras_xdebug: "{{ 'xdebug' in installed_extras }}"
-installed_extras_xhprof: "{{ 'xhprof' in installed_extras }}"
-installed_extras_selenium: "{{ 'selenium' in installed_extras }}"
-installed_extras_drupal_console: "{{ 'drupal-console' in installed_extras }}"
+installed_extras_adminer: yes
+installed_extras_mailhog: yes
+installed_extras_memcached: yes
+installed_extras_xdebug: yes
+installed_extras_xhprof: yes
+installed_extras_selenium: yes
+installed_extras_drupal_console: yes
+installed_extras_drush: yes
+installed_extras_upload_progress: yes
 
 # Disabled by default.
-installed_extras_firewall: "{{ 'firewall' in installed_extras }}"
-installed_extras_postfix: "{{ 'postfix' in installed_extras }}"
-installed_extras_pantheon_cli: "{{ 'pantheon-cli' in installed_extras }}"
-installed_extras_varnish: "{{ 'varnish' in installed_extras }}"
-installed_extras_pimpmylog: "{{ 'pimpmylog' in installed_extras }}"
-installed_extras_postgresql: "{{ 'postgresql' in installed_extras }}"
-installed_extras_nodejs: "{{ 'nodejs' in installed_extras }}"
-installed_extras_ruby: "{{ 'ruby' in installed_extras }}"
-installed_extras_solr: "{{ 'solr' in installed_extras }}"
-installed_extras_redis: "{{ 'redis' in installed_extras }}"
+installed_extras_firewall: no
+installed_extras_postfix: no
+installed_extras_pantheon_cli: no
+installed_extras_varnish: no
+installed_extras_pimpmylog: no
+installed_extras_postgresql: no
+installed_extras_nodejs: no
+installed_extras_ruby: no
+installed_extras_solr: no
+installed_extras_redis: no
 installed_extras_blackfire: no
 installed_extras_newrelic: no
+installed_extras_wp_cli: no
 
 # Extra packages.
 extra_packages:
