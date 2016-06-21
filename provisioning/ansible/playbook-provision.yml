@@ -17,7 +17,7 @@
 
   roles:
     - beetbox-init
-    - { role: beetbox-known-hosts, when: "{{ known_hosts }}" }
+    - { role: beetboxvm.known-hosts, when: "{{ known_hosts }}" }
     - { role: geerlingguy.firewall, when: "{{ installed_extras_firewall }}" }
     - geerlingguy.git
     - geerlingguy.apache
