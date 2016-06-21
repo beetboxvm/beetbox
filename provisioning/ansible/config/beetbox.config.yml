@@ -147,17 +147,23 @@ apache_listen_port: "{{ (beet_webserver == 'apache') | ternary('80','82') }}"
 apache_vhosts:
   - servername: "{{ beet_domain }}"
     documentroot: "{{ beet_web }}"
+    extra_parameters: |
+      ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ beet_web }}"
 apache_listen_port_ssl: "{{ (beet_webserver == 'apache') | ternary('443','444') }}"
 apache_vhosts_ssl:
   - servername: "{{ beet_domain }}"
     documentroot: "{{ beet_web }}"
     certificate_file: "/etc/ssl/certs/ssl-cert-snakeoil.pem"
     certificate_key_file: "/etc/ssl/private/ssl-cert-snakeoil.key"
+    extra_parameters: |
+      ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ beet_web }}"
 apache_mods_enabled:
   - authn_core.load
   - expires.load
   - ssl.load
   - rewrite.load
+  - proxy.load
+  - proxy_fcgi.load
 
 # Databases.
 mysql_databases:
@@ -239,7 +245,6 @@ php_memory_limit: "192M"
 php_date_timezone: "Australia/Melbourne"
 php_display_errors: "On"
 php_display_startup_errors: "On"
-php_enable_php_fpm: 1
 php_realpath_cache_size: "1024K"
 php_sendmail_path: "/usr/sbin/ssmtp -t"
 php_enable_apc: no
@@ -256,9 +261,11 @@ php_extension_conf_paths:
   - "/etc/php/{{ php_version }}/fpm/conf.d"
   - "/etc/php/{{ php_version }}/apache2/conf.d"
   - "/etc/php/{{ php_version }}/cli/conf.d"
+php_enable_php_fpm: true
+php_fpm_listen: "127.0.0.1:9000"
 php_fpm_daemon: "php{{ php_version }}-fpm"
 php_fpm_conf_path: "/etc/php/{{ php_version }}/fpm"
-php_fpm_pool_conf_path: "/etc/php/{{ php_version }}/fpm/pool.d/www.conf"
+php_fpm_pool_conf_path: "{{ php_fpm_conf_path }}/pool.d/www.conf"
 php_mysql_package: "php{{ php_version }}-mysql"
 php_memcached_package: "php-memcache"
 php55_packages:
