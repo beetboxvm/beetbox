@@ -19,7 +19,7 @@
     - { role: beetbox-init }
     - { role: beetbox-known-hosts, when: known_hosts }
     - { role: beetbox-common }
-    - { role: beetbox-drupal, when: beet_project == 'drupal' }
+    - { role: beetboxvm.drupal, when: beet_project == 'drupal' }
     - { role: beetboxvm.backdrop, when: beet_project == 'backdrop' }
     - { role: beetboxvm.cakephp, when: beet_project == 'cakephp' }
     - { role: beetboxvm.concrete5, when: beet_project == 'concrete5' }
