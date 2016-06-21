@@ -16,9 +16,46 @@
         - "{{ beet_custom_pre_tasks }}"
 
   roles:
-    - { role: beetbox-init }
-    - { role: beetbox-known-hosts, when: known_hosts }
-    - { role: beetbox-common }
+    - beetbox-init
+    - { role: beetbox-known-hosts, when: "{{ known_hosts }}" }
+    - { role: geerlingguy.firewall, when: "{{ installed_extras_firewall }}" }
+    - geerlingguy.git
+    - geerlingguy.apache
+    - geerlingguy.apache-php-fpm
+    - geerlingguy.nginx
+    - geerlingguy.mysql
+    - beetbox-php-ppa
+    - { role: beetbox-php-7.0, when: "{{ php_version }} == '7.0'" }
+    - geerlingguy.php
+    - geerlingguy.php-pecl
+    - geerlingguy.php-mysql
+    - geerlingguy.composer
+    - pwelch.avahi
+    - { role: ANXS.postgresql, when: "{{ installed_extras_postgresql }}" }
+    - { role: geerlingguy.memcached, when: "{{ installed_extras_memcached }}" }
+    - { role: geerlingguy.php-memcached, when: "{{ installed_extras_memcached }}" }
+    - { role: geerlingguy.drush, when: "{{ installed_extras_drush }}" }
+    - { role: geerlingguy.drupal-console, when: "{{ installed_extras_drupal_console }}" }
+    - { role: beetbox-upload-progress, when: "{{ installed_extras_upload_progress }}" }
+    - { role: geerlingguy.php-xdebug, when: "{{ installed_extras_xdebug }}" }
+    - { role: geerlingguy.php-xhprof, when: "{{ installed_extras_xhprof }}" }
+    - { role: geerlingguy.blackfire, when: "{{ installed_extras_blackfire }}" }
+    - { role: geerlingguy.adminer, when: "{{ installed_extras_adminer }}" }
+    - { role: geerlingguy.pimpmylog, when: "{{ installed_extras_pimpmylog }}" }
+    - { role: geerlingguy.daemonize, when: "{{ installed_extras_mailhog }}" }
+    - { role: geerlingguy.postfix, when: "{{ installed_extras_postfix }}" }
+    - { role: geerlingguy.mailhog, when: "{{ installed_extras_mailhog }}" }
+    - { role: franklinkim.newrelic, when: "{{ installed_extras_newrelic }}" }
+    - { role: geerlingguy.nodejs, when: "{{ installed_extras_nodejs }}" }
+    - { role: geerlingguy.redis, when: "{{ installed_extras_redis }}" }
+    - { role: geerlingguy.php-redis, when: "{{ installed_extras_redis }}" }
+    - { role: geerlingguy.ruby, when: "{{ installed_extras_ruby }}" }
+    - { role: geerlingguy.java, when: "{{ installed_extras_solr }} or {{ installed_extras_selenium }}" }
+    - { role: geerlingguy.solr, when: "{{ installed_extras_solr }}" }
+    - { role: beetboxvm.selenium, when: "{{ installed_extras_selenium }}" }
+    - { role: geerlingguy.varnish, when: "{{ installed_extras_varnish }}" }
+    - { role: hashbangcode.pantheon-cli, when: "{{ installed_extras_pantheon_cli }}" }
+    - { role: heskethm.wp-cli, when: "{{ installed_extras_wp_cli }}" }
     - { role: beetboxvm.drupal, when: beet_project == 'drupal' }
     - { role: beetboxvm.backdrop, when: beet_project == 'backdrop' }
     - { role: beetboxvm.cakephp, when: beet_project == 'cakephp' }
