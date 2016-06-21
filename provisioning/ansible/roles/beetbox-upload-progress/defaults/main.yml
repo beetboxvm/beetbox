@@ -1,5 +1,0 @@
----
-workspace: /root
-
-php_uploadprogress_module_path: /usr/lib/php5/modules
-php_uploadprogress_config_filename: 20-uploadprogress.ini
