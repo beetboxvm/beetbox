@@ -39,6 +39,8 @@ galaxy_roles:
     repo: https://github.com/beetboxvm/ansible-role-beetbox-concrete5.git
   - name: beetboxvm.drupal
     repo: https://github.com/beetboxvm/ansible-role-beetbox-drupal.git
+  - name: beetboxvm.known-hosts
+    repo: https://github.com/beetboxvm/ansible-role-beetbox-known-hosts.git
   - name: beetboxvm.kohana
     repo: https://github.com/beetboxvm/ansible-role-beetbox-kohana.git
   - name: beetboxvm.modx
