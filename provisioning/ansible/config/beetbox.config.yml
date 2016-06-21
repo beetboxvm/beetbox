@@ -47,8 +47,6 @@ galaxy_roles:
     repo: https://github.com/beetboxvm/ansible-role-beetbox-modx.git
   - name: beetboxvm.silverstripe
     repo: https://github.com/beetboxvm/ansible-role-beetbox-silverstripe.git
-  - name: beetboxvm.selenium
-    repo: https://github.com/beetboxvm/ansible-role-selenium.git
   - name: beetboxvm.slim
     repo: https://github.com/beetboxvm/ansible-role-beetbox-slim.git
   - name: beetboxvm.upload-progress
@@ -125,6 +123,8 @@ galaxy_roles:
     repo: https://github.com/heskethm/ansible-role-wp-cli.git
   - name: pwelch.avahi
     repo: https://github.com/pwelch/ansible-avahi.git
+  - name: arknoll.selenium
+    repo: https://github.com/arknoll/ansible-role-selenium.git
 
 # Symlinks.
 symlinks: no
