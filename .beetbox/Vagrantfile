@@ -5,7 +5,8 @@ require 'yaml'
 
 Vagrant.require_version '>= 1.8.0'
 
-config_dir = ENV['BEET_CONFIG_DIR'] || "#{__dir__}/.beetbox"
+cwd = "#{__dir__}"
+config_dir = ENV['BEET_CONFIG_DIR'] || "#{cwd}/.beetbox"
 project_root = config_dir.gsub('/.beetbox', '')
 project_config = "#{config_dir}/config.yml"
 local_config = "#{config_dir}/local.config.yml"
@@ -191,5 +192,5 @@ ALIAS
 end
 
 # Load local Vagrantfile, if exists.
-include_vagrantfile = "#{__dir__}/Vagrantfile.local"
+include_vagrantfile = "#{cwd}/Vagrantfile.local"
 load include_vagrantfile if File.exist?(include_vagrantfile)
