@@ -1,6 +1,8 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+require 'yaml'
+
 Vagrant.require_version '>= 1.8.0'
 
 # Find the Vagrant ID if supplied.
@@ -35,29 +37,37 @@ end
 
 # Ensure project Vagrantfile hasn't been customized.
 # @TODO - Add secondary check that parses the Vagrantfile if the MD5 is changed.
-if cwd != nil && Digest::MD5.file("#{cwd}/#{vagrantfile}").hexdigest == "ef550c44b71ef09513fe24c4b564c8a9"
-  config_dir = '.beetbox/'
-  project_config = "#{cwd}/#{config_dir}config.yml"
-  local_config = "#{cwd}/#{config_dir}local.config.yml"
+md5s = [
+  "ef550c44b71ef09513fe24c4b564c8a9",
+  "d7016a4bfd74cd7411580491dc3fe376"
+]
+if cwd != nil && md5s.include?(Digest::MD5.file("#{cwd}/#{vagrantfile}").hexdigest)
+  config_dir = ENV['BEET_CONFIG_DIR'] || "#{cwd}/.beetbox"
+  project_root = config_dir.gsub('/.beetbox', '')
+  project_config = "#{config_dir}/config.yml"
+  local_config = "#{config_dir}/local.config.yml"
 
   # Default vagrant config.
   vconfig = {
+    'vagrant_box' => 'beet/box',
+    'vagrant_box_version' => '>= 0.2.7',
     'vagrant_ip' => '0.0.0.0',
     'vagrant_memory' => 1024,
     'vagrant_cpus' => 2,
     'beet_home' => '/beetbox',
     'beet_base' => '/var/beetbox',
-    'beet_domain' => cwd.split('/').last.gsub(/[\._]/, '-') + ".local"
+    'beet_domain' => project_root.split('/').last.gsub(/[\._]/, '-') + ".local",
+    'beet_aliases' => [],
+    'drush_create_alias' => true
   }
 
+  # Create default config file.
   if !File.exist?(project_config)
-    # Create default config file.
     require 'fileutils'
     FileUtils::mkdir_p config_dir
-    File.open(project_config, "w+") {|f| f.write("---\nbeet_domain: #{vconfig['beet_domain']}\n") }
+    open(project_config, "w+") << "---\nbeet_domain: #{vconfig['beet_domain']}\n"
   end
 
-  require 'yaml'
   pconfig = YAML::load_file(project_config) || nil
   vconfig = vconfig.merge pconfig if !pconfig.nil?
 
@@ -78,28 +88,50 @@ if cwd != nil && Digest::MD5.file("#{cwd}/#{vagrantfile}").hexdigest == "ef550c4
 
   Vagrant.configure("2") do |config|
 
-    # Check for plugins and attempt to install if not (Windows only).
-    if vconfig['vagrant_ip'] == "0.0.0.0" && Vagrant::Util::Platform.windows?
-      # Check for plugins and attempt to install if not.
-      %x(vagrant plugin install vagrant-hostsupdater) unless Vagrant.has_plugin?('vagrant-hostsupdater')
-      %x(vagrant plugin install vagrant-auto_network) unless Vagrant.has_plugin?('vagrant-auto_network')
-      raise 'Your config requires hostsupdater plugin.' unless Vagrant.has_plugin?('vagrant-hostsupdater')
-      raise 'Your config requires auto_network plugin.' unless Vagrant.has_plugin?('vagrant-auto_network')
+    # Hosts file plugins.
+    if Vagrant.has_plugin?('vagrant-hostsupdater')
+      config.hostsupdater.aliases = vconfig['beet_aliases']
+    elsif Vagrant.has_plugin?('vagrant-hostmanager')
+      config.hostmanager.enabled = true
+      config.hostmanager.manage_host = true
+      config.hostmanager.aliases = vconfig['beet_aliases']
     end
 
-    config.vm.box = "beet/box"
-    config.vm.box_version = ">= 0.2.0"
+    # Check for plugins and attempt to install if not (Windows only).
+    if Vagrant::Util::Platform.windows?
+      %x(vagrant plugin install vagrant-hostsupdater) unless Vagrant.has_plugin?('vagrant-hostsupdater')
+      raise 'Your config requires hostsupdater plugin.' unless Vagrant.has_plugin?('vagrant-hostsupdater')
+      if vconfig['vagrant_ip'] == "0.0.0.0"
+        %x(vagrant plugin install vagrant-auto_network) unless Vagrant.has_plugin?('vagrant-auto_network')
+        raise 'Your config requires auto_network plugin.' unless Vagrant.has_plugin?('vagrant-auto_network')
+      end
+    end
+
+    config.vm.box = vconfig['vagrant_box']
+    config.vm.box_version = vconfig['vagrant_box_version']
     config.vm.hostname = hostname
     config.ssh.insert_key = false
     config.ssh.forward_agent = true
 
     # Network config.
-    if vconfig['vagrant_ip'] == "0.0.0.0" && Vagrant::Util::Platform.windows?
+    if vconfig['vagrant_ip'] == "0.0.0.0" && Vagrant.has_plugin?('vagrant-auto_network')
       config.vm.network :private_network, :ip => "0.0.0.0", :auto_network => true
     elsif vconfig['vagrant_ip'] == "0.0.0.0"
       config.vm.network :private_network, :type => "dhcp"
     else
       config.vm.network :private_network, ip: vconfig['vagrant_ip']
+    end
+
+    # Vagrant Cachier config.
+    if Vagrant.has_plugin?("vagrant-cachier")
+      # Configure cached packages to be shared between instances of the same base box.
+      # More info on http://fgrehm.viewdocs.io/vagrant-cachier/usage
+      config.cache.scope = :box
+      config.cache.enable :generic, { "drush" => { cache_dir: "/home/vagrant/.drush/cache" }, }
+      config.cache.synced_folder_opts = {
+        type: :nfs,
+        mount_options: ['rw', 'vers=3', 'tcp', 'nolock']
+      }
     end
 
     # Synced folders.
@@ -111,28 +143,17 @@ if cwd != nil && Digest::MD5.file("#{cwd}/#{vagrantfile}").hexdigest == "ef550c4
       config.vm.synced_folder "./provisioning", "#{vconfig['beet_home']}/provisioning",
         type: "nfs",
         id: "debug"
-      debug_mode = "BEETBOX_DEBUG=true"
-    end
-
-    # Upload vagrant.config.yml
-    config.vm.provision "project_config", type: "file" do |s|
-     s.source = project_config
-     s.destination = "~/vagrant.config.yml"
-    end
-
-    # Upload local.config.yml
-    if File.exist?(local_config)
-      config.vm.provision "local_config", type: "file" do |s|
-       s.source = local_config
-       s.destination = "~/local.config.yml"
-      end
+      debug_mode = "BEET_DEBUG=true"
     end
 
     # Provision box
     beet_sh = "#{vconfig['beet_home']}/provisioning/beetbox.sh"
+    remote_sh = "https://raw.githubusercontent.com/beetboxvm/beetbox/master/provisioning/beetbox.sh"
+    local_provision = "sudo chmod +x #{beet_sh} && #{debug_mode} #{beet_sh}"
+    remote_provision = "sudo apt-get -qq update && curl -fsSL #{remote_sh} | sudo bash"
     config.vm.provision "ansible", type: "shell" do |s|
       s.privileged = false
-      s.inline = "sudo chmod +x #{beet_sh} && #{debug_mode} sudo -H #{beet_sh}"
+      s.inline = "if [ -f #{beet_sh} ]; then #{local_provision}; else #{remote_provision}; fi"
     end
 
     # VirtualBox.
@@ -141,14 +162,20 @@ if cwd != nil && Digest::MD5.file("#{cwd}/#{vagrantfile}").hexdigest == "ef550c4
       v.memory = vconfig['vagrant_memory']
       v.cpus = vconfig['vagrant_cpus']
       v.linked_clone = true
-      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-      v.customize ["modifyvm", :id, "--ioapic", "on"]
+      v.customize ["modifyvm", :id,
+        "--natdnshostresolver1", "on",
+        "--ioapic", "on",
+        "--vrde", "off"
+      ]
     end
   end
 
   # Create local drush alias.
-  if File.directory?("#{Dir.home}/.drush")
-    alias_file = "#{Dir.home}/.drush/" + hostname + ".aliases.drushrc.php"
+  if vconfig['drush_create_alias']
+
+    alias_file = vconfig['drush_alias_file'] || "#{Dir.home}/.drush/"+hostname+".aliases.drushrc.php"
+    alias_file = "#{project_root}/#{vconfig['drush_alias_file']}" if vconfig['drush_alias_file']
+
     if ARGV[0] == "destroy"
       File.delete(alias_file) if File.exist?(alias_file)
     else
@@ -160,12 +187,21 @@ if cwd != nil && Digest::MD5.file("#{cwd}/#{vagrantfile}").hexdigest == "ef550c4
         end
       end
 
-      template_file = File.dirname(File.expand_path(__FILE__)) + '/drush.alias.erb'
-      template = File.read(template_file)
+      template = <<ALIAS
+  <?php
+
+  $aliases['<%= @hostname %>'] = array(
+    'uri' => '<%= @uri %>',
+    'remote-host' => '<%= @uri %>',
+    'remote-user' => 'vagrant',
+    'ssh-options' => '-i <%= @key %> -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no',
+    'root' => '<%= @root %>',
+  );
+ALIAS
 
       alias_file = File.open(alias_file, "w+")
       da = DrushAlias.new
-      da.hostname = hostname
+      da.hostname = vconfig['drush_alias_name'] || hostname
       da.uri = hostname
       da.key = "#{Dir.home}/.vagrant.d/insecure_private_key"
       da.root = vconfig['beet_web'] ||= vconfig['beet_root'] ||= vconfig['beet_base']
@@ -173,8 +209,8 @@ if cwd != nil && Digest::MD5.file("#{cwd}/#{vagrantfile}").hexdigest == "ef550c4
       alias_file.close
     end
   end
-end
 
-# Load local Vagrantfile, if exists.
-include_vagrantfile = "#{cwd}/Vagrantfile.local"
-load include_vagrantfile if File.exist?(include_vagrantfile)
+  # Load local Vagrantfile, if exists.
+  include_vagrantfile = "#{cwd}/Vagrantfile.local"
+  load include_vagrantfile if File.exist?(include_vagrantfile)
+end
