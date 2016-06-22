@@ -13,7 +13,7 @@ local_config = "#{config_dir}/local.config.yml"
 # Default vagrant config.
 vconfig = {
   'vagrant_box' => 'beet/box',
-  'vagrant_box_version' => '>= 0.2.0',
+  'vagrant_box_version' => '>= 0.2.7',
   'vagrant_ip' => '0.0.0.0',
   'vagrant_memory' => 1024,
   'vagrant_cpus' => 2,
@@ -122,20 +122,6 @@ Vagrant.configure("2") do |config|
           type: "nfs",
           id: "debug"
         debug_mode = "BEET_DEBUG=true"
-      end
-
-      # Upload vagrant.config.yml
-      node.vm.provision "project_config", type: "file" do |s|
-        s.source = project_config
-        s.destination = "~/vagrant.config.yml"
-      end
-
-      # Upload local.config.yml
-      if File.exist?(local_config)
-        node.vm.provision "local_config", type: "file" do |s|
-          s.source = local_config
-          s.destination = "~/local.config.yml"
-        end
       end
 
       # Provision box
