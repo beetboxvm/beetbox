@@ -81,6 +81,18 @@ Vagrant.configure("2") do |config|
     end
   end
 
+  # Vagrant Cachier config.
+  if Vagrant.has_plugin?("vagrant-cachier")
+    # Configure cached packages to be shared between instances of the same base box.
+    # More info on http://fgrehm.viewdocs.io/vagrant-cachier/usage
+    config.cache.scope = :box
+    config.cache.enable :generic, { "drush" => { cache_dir: "/home/vagrant/.drush/cache" }, }
+    config.cache.synced_folder_opts = {
+      type: :nfs,
+      mount_options: ['rw', 'vers=3', 'tcp', 'nolock']
+    }
+  end
+
   branches.each do |branch|
     active_node = (branch == current_branch) ? true : false
     config.vm.define branch, autostart: active_node, primary: active_node do |node|
@@ -98,18 +110,6 @@ Vagrant.configure("2") do |config|
         node.vm.network :private_network, :type => "dhcp"
       else
         node.vm.network :private_network, ip: vconfig['vagrant_ip']
-      end
-
-      # Vagrant Cachier config.
-      if Vagrant.has_plugin?("vagrant-cachier")
-        # Configure cached packages to be shared between instances of the same base box.
-        # More info on http://fgrehm.viewdocs.io/vagrant-cachier/usage
-        config.cache.scope = :box
-        config.cache.enable :generic, { "drush" => { cache_dir: "/home/vagrant/.drush/cache" }, }
-        config.cache.synced_folder_opts = {
-          type: :nfs,
-          mount_options: ['rw', 'vers=3', 'tcp', 'nolock']
-        }
       end
 
       # Synced folders.
