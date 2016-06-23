@@ -25,7 +25,7 @@ Password: {{ beet_mysql_password }}
 {% if (beet_project == 'drupal') %}
 Drupal
 ------------------------------------------------------------
-Drush alias: @{{ beet_domain }}
+{% if (drush_create_alias) %}Drush alias: @{{ drush_alias_name }}{% endif %}
 {% if (drupal_drush_login.rc == 0) %}
 Login link: {{ drupal_drush_login.stdout }}
 {% endif %}
