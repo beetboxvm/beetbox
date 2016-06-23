@@ -125,6 +125,8 @@ galaxy_roles:
     repo: https://github.com/pwelch/ansible-avahi.git
   - name: arknoll.selenium
     repo: https://github.com/arknoll/ansible-role-selenium.git
+  - name: rvm_io.rvm1-ruby
+    repo: https://github.com/rvm/rvm1-ansible.git
 
 # Symlinks.
 symlinks: no
@@ -183,6 +185,7 @@ installed_extras_pimpmylog: no
 installed_extras_postgresql: no
 installed_extras_nodejs: no
 installed_extras_ruby: no
+installed_extras_rvm: no
 installed_extras_solr: no
 installed_extras_redis: no
 installed_extras_blackfire: no

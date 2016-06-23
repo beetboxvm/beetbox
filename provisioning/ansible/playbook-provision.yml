@@ -50,6 +50,7 @@
     - { role: geerlingguy.redis, when: "{{ installed_extras_redis }}" }
     - { role: geerlingguy.php-redis, when: "{{ installed_extras_redis }}" }
     - { role: geerlingguy.ruby, when: "{{ installed_extras_ruby }}" }
+    - { role: rvm_io.rvm1-ruby, when: "{{ installed_extras_rvm }}" }
     - { role: geerlingguy.java, when: "{{ installed_extras_solr }} or {{ installed_extras_selenium }}" }
     - { role: geerlingguy.solr, when: "{{ installed_extras_solr }}" }
     - { role: arknoll.selenium, when: "{{ installed_extras_selenium }}" }
