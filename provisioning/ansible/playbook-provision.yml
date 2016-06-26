@@ -56,6 +56,7 @@
     - { role: arknoll.selenium, when: "{{ installed_extras_selenium }}" }
     - { role: geerlingguy.varnish, when: "{{ installed_extras_varnish }}" }
     - { role: hashbangcode.pantheon-cli, when: "{{ installed_extras_pantheon_cli }}" }
+    - { role: beetboxvm.phantomjs, when: "{{ installed_extras_phantomjs }}" }
     - { role: heskethm.wp-cli, when: "{{ installed_extras_wp_cli }}" }
     - { role: beetboxvm.drupal, when: beet_project == 'drupal' }
     - { role: beetboxvm.backdrop, when: beet_project == 'backdrop' }
