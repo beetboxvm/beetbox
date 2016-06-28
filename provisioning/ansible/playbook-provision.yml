@@ -70,7 +70,7 @@
     - { role: beetbox-packages }
     - { role: beetbox-web }
     - { role: beetbox-apparmor }
-    - { role: beetbox-symlinks, when: symlinks }
+    - { role: beetboxvm.symlinks, when: symlinks }
     - { role: beetbox-php-nginx }
     - { role: beetbox-welcome }
 
