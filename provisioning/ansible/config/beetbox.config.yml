@@ -51,6 +51,8 @@ galaxy_roles:
     repo: https://github.com/beetboxvm/ansible-role-beetbox-silverstripe.git
   - name: beetboxvm.slim
     repo: https://github.com/beetboxvm/ansible-role-beetbox-slim.git
+  - name: beetboxvm.symlinks
+    repo: https://github.com/beetboxvm/ansible-role-beetbox-symlinks.git
   - name: beetboxvm.upload-progress
     repo: https://github.com/beetboxvm/ansible-role-beetbox-upload-progress.git
   - name: beetboxvm.wordpress
