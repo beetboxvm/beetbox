@@ -10,9 +10,10 @@
     - config/local.config.yml
 
   vars:
-    circleci: "{{ lookup('env','CIRCLECI') == 'true' | ternary(yes,no) }}"
+    circleci: "{{ lookup('env','CIRCLECI') == 'true' }}"
 
   roles:
+    - { role: beetbox-circleci, when: "{{ circleci }}"}
     - { role: beetbox-vagrant, when: "{{ lookup('env','VAGRANT_INIT') == 'true' }}"}
     - { role: beetbox-ubuntu, when: "{{ lookup('env','UBUNTU_INIT') == 'true' }}"}
     - { role: beetbox-virtualbox, when: "{{ lookup('env','VIRTUALBOX_INIT') == 'true' }}"}

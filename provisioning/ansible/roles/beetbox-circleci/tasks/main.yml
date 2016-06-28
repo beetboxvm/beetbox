@@ -1,0 +1,29 @@
+---
+- name: Update apt cache if needed.
+  apt: update_cache=yes cache_valid_time=86400
+  failed_when: false
+
+- name: Purge directories.
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - "/etc/apache2/mods-enabled"
+    - "/var/lib/mysql"
+    - "/opt/circleci/.phpenv"
+    - "/opt/circleci/.pyenv"
+
+- name: Purge Circle CI packages.
+  apt:
+    name: "{{ item }}"
+    state: absent
+    purge: yes
+    force: yes
+    update_cache: yes
+  when: "'{{ php_version }}' not in item"
+  with_items:
+    - apache2
+    - php5-cli
+    - mysql-common
+    - mysql-server
+    - mysql-common

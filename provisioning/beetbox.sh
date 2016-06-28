@@ -32,28 +32,15 @@ fi
 
 beetbox_setup()
 {
-  # Remove default circle CI packages.
-  if [ "$CIRCLECI" == "true" ]; then
-    echo "Removing default circle CI packages"
-    sudo apt-get -qq update
-    sudo apt-get -y purge apache2 php5-cli mysql-common mysql-server mysql-common
-    sudo apt-get -y autoremove
-    sudo apt-get -y autoclean
-    sudo rm -rf /etc/apache2/mods-enabled/*
-    sudo rm -rf /var/lib/mysql
-    sudo rm -rf /opt/circleci/.phpenv
-    sudo rm -rf /opt/circleci/.pyenv
-  fi
-
   # Create BEET_USER and setup sudo.
-  [ -z "$(getent passwd $BEET_USER)" ] && sudo useradd -d /home/$BEET_USER -m $BEET_USER
+  [ -z "$(getent passwd $BEET_USER)" ] && sudo useradd -d /home/$BEET_USER -m $BEET_USER > /dev/null 2>&1
   echo "$BEET_USER ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$BEET_USER
 
   # Install ansible.
-  sudo apt-get -y install software-properties-common
-  sudo apt-add-repository -y ppa:ansible/ansible
+  sudo apt-get -qq -y install software-properties-common
+  sudo apt-add-repository -y ppa:ansible/ansible > /dev/null 2>&1
   sudo apt-get -qq update
-  sudo apt-get -y install ansible
+  sudo apt-get -qq -y install ansible
 
   # Clone beetbox if BEET_HOME doesn't exist.
   if [ ! -d "$BEET_HOME" ]; then
