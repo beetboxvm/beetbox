@@ -45,6 +45,8 @@ galaxy_roles:
     repo: https://github.com/beetboxvm/ansible-role-beetbox-kohana.git
   - name: beetboxvm.modx
     repo: https://github.com/beetboxvm/ansible-role-beetbox-modx.git
+  - name: beetboxvm.packages
+    repo: https://github.com/beetboxvm/ansible-role-beetbox-packages.git
   - name: beetboxvm.phantomjs
     repo: https://github.com/beetboxvm/ansible-role-beetbox-phantomjs.git
   - name: beetboxvm.silverstripe
