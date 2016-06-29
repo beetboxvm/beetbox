@@ -1,8 +1,0 @@
----
-- name: Create welcome message.
-  template:
-    src: templates/welcome.txt.j2
-    dest: "{{ beet_home }}/.beetbox/welcome.txt"
-    force: yes
-    mode: 0644
-  become: no
