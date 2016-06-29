@@ -72,7 +72,6 @@
     - { role: beetbox-apparmor }
     - { role: beetboxvm.symlinks, when: symlinks }
     - { role: beetbox-php-nginx }
-    - { role: beetbox-welcome }
 
   tasks:
 
@@ -87,3 +86,11 @@
     - include: "{{ item }}"
       with_fileglob:
         - "{{ beet_custom_post_tasks }}"
+
+    - name: Create welcome message.
+      template:
+        src: "{{ welcome_template }}"
+        dest: "{{ beet_home }}/.beetbox/welcome.txt"
+        force: yes
+        mode: 0644
+      become: no
