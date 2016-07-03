@@ -152,7 +152,7 @@ Vagrant.configure("2") do |config|
 end
 
 # Create local drush alias.
-if vconfig['drush_create_alias']
+if vconfig['drush_create_alias'] && File.directory?("#{Dir.home}/.drush")
 
   alias_file = vconfig['drush_alias_file'] || "#{Dir.home}/.drush/"+hostname+".aliases.drushrc.php"
   alias_file = "#{project_root}/#{vconfig['drush_alias_file']}" if vconfig['drush_alias_file']
