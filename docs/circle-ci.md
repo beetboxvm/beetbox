@@ -15,14 +15,9 @@ Whilst we use Circle CI the same concept could be applied to other CI providers.
 
 ```
 ---
-machine:
-  environment:
-    BEET_HOME: /beetbox
-    BEET_USER: ubuntu
-    BEET_DEPENDENCIES: https://raw.githubusercontent.com/beetboxvm/beetbox/master/provisioning/beetbox.sh
 dependencies:
-  pre:
-    - curl -fsSL $BEET_DEPENDENCIES | bash
+  override:
+    - bash <(curl -fsSL http://bit.ly/beetbuild)
 test:
   override:
     #- /path/to/tests.sh
