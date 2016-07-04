@@ -51,6 +51,8 @@ drupal_account_name: admin
 drupal_account_pass: admin
 ```
 
+For PHP 7 add `php_version: "7.0"` then `vagrant provision`
+
 ## Documentation
 
 http://beetbox.rtfd.org
