@@ -49,6 +49,7 @@ beetbox_setup()
     sudo chown -R $BEET_USER:$BEET_USER $BEET_HOME
     echo "==> Checking out beetbox from $BEET_REPO"
     git clone $BEET_REPO $BEET_HOME
+    rm -f $BEET_HOME/.beetbox/config.yml
     [ ! -d "$BEET_HOME" ] && exit 1
   fi
 
