@@ -11,6 +11,7 @@
     conf_files:
       - beetbox.config.yml
       - project.config.yml
+      - host.config.yml
       - config.yml
       - local.config.yml
 
