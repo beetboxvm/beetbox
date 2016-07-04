@@ -20,9 +20,6 @@ php_memory_limit: "284M"
 # Beetbox debug.
 beet_debug: yes
 
-# Beetbox tests.
-beet_run_tests: yes
-
 #
 # Examples.
 #

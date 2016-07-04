@@ -10,5 +10,26 @@
     - config/config.yml
     - config/local.config.yml
 
-  roles:
-    - { role: beetbox-tests, when: beet_run_tests }
+  tasks:
+
+    - name: Test ansible is running as beet_user.
+      shell: >
+        whoami
+      register: beet_ansible_user
+      become: no
+      changed_when: false
+      failed_when: beet_ansible_user.stdout != beet_user
+
+    - name: Test xdebug is available.
+      shell: >
+        php -m
+      register: php_modules
+      changed_when: false
+      failed_when: "'xdebug' not in php_modules.stdout"
+      when: "{{ installed_extras_xdebug }}"
+
+    - name: Test mailhog is responding on port 8025.
+      uri:
+        url: "http://{{ beet_domain }}:8025/"
+        status_code: 200
+      when: "{{ installed_extras_mailhog }}"
