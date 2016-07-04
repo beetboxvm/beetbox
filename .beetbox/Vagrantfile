@@ -5,7 +5,7 @@ require 'yaml'
 
 Vagrant.require_version '>= 1.8.0'
 
-cwd = "#{__dir__}"
+cwd = ENV['BEET_ROOT_DIR'] || "#{__dir__}"
 config_dir = ENV['BEET_CONFIG_DIR'] || "#{cwd}/.beetbox"
 project_root = config_dir.gsub('/.beetbox', '')
 project_config = "#{config_dir}/config.yml"
