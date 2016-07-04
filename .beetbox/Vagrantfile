@@ -32,7 +32,8 @@ if !File.exist?(project_config)
 end
 
 # Create .gitignore file.
-open("#{config_dir}/.gitignore", "w+") << "local.config.yml\nVagrantfile\nVagrantfile.local\n"
+git_ignore = "local.config.yml\nVagrantfile\nVagrantfile.local\n"
+open("#{config_dir}/.gitignore", "w+") << git_ignore if !File.exist?("#{config_dir}/.gitignore")
 
 pconfig = YAML::load_file(project_config) || nil
 vconfig = vconfig.merge pconfig if !pconfig.nil?
