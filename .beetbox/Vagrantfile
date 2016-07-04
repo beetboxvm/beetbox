@@ -192,5 +192,8 @@ ALIAS
 end
 
 # Load local Vagrantfile, if exists.
-include_vagrantfile = "#{cwd}/Vagrantfile.local"
-load include_vagrantfile if File.exist?(include_vagrantfile)
+include_vagrantfile_root = "#{cwd}/Vagrantfile.local"
+load include_vagrantfile_root if File.exist?(include_vagrantfile_root)
+include_vagrantfile_conf = "#{config_dir}/Vagrantfile.local"
+load include_vagrantfile_conf if File.exist?(include_vagrantfile_conf)
+
