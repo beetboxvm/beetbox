@@ -5,9 +5,8 @@ require 'yaml'
 
 Vagrant.require_version '>= 1.8.0'
 
-cwd = ENV['BEET_ROOT_DIR'] || "#{__dir__}"
-config_dir = ENV['BEET_CONFIG_DIR'] || "#{cwd}/.beetbox"
-project_root = config_dir.gsub('/.beetbox', '')
+beet_root = ENV['BEET_ROOT_DIR'] || "#{__dir__}"
+config_dir = ENV['BEET_CONFIG_DIR'] || "#{beet_root}/.beetbox"
 project_config = "#{config_dir}/config.yml"
 local_config = "#{config_dir}/local.config.yml"
 
@@ -20,7 +19,7 @@ vconfig = {
   'vagrant_cpus' => 2,
   'beet_home' => '/beetbox',
   'beet_base' => '/var/beetbox',
-  'beet_domain' => project_root.split('/').last.gsub(/[\._]/, '-') + ".local",
+  'beet_domain' => beet_root.split('/').last.gsub(/[\._]/, '-') + ".local",
   'beet_aliases' => [],
   'drush_create_alias' => true
 }
@@ -31,6 +30,9 @@ if !File.exist?(project_config)
   FileUtils::mkdir_p config_dir
   open(project_config, "w+") << "---\nbeet_domain: #{vconfig['beet_domain']}\n"
 end
+
+# Create .gitignore file.
+open("#{config_dir}/.gitignore", "w+") << "local.config.yml\nVagrantfile\nVagrantfile.local\n"
 
 pconfig = YAML::load_file(project_config) || nil
 vconfig = vconfig.merge pconfig if !pconfig.nil?
@@ -192,8 +194,7 @@ ALIAS
 end
 
 # Load local Vagrantfile, if exists.
-include_vagrantfile_root = "#{cwd}/Vagrantfile.local"
+include_vagrantfile_root = "#{beet_root}/Vagrantfile.local"
 load include_vagrantfile_root if File.exist?(include_vagrantfile_root)
 include_vagrantfile_conf = "#{config_dir}/Vagrantfile.local"
 load include_vagrantfile_conf if File.exist?(include_vagrantfile_conf)
-
