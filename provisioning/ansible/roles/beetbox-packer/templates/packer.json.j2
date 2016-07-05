@@ -47,6 +47,13 @@
   ],
   "provisioners": [
     {
+      "type": "shell",
+      "execute_command": "echo '{{ item.ssh_pass }}' | sudo -E -S sh '{{ '{{' }} .Path {{ '}}' }}'",
+      "inline": [
+        "echo '{{ item.ssh_name }} ALL=(ALL) NOPASSWD: ALL' | sudo tee /etc/sudoers.d/{{ item.ssh_name }}"
+      ]
+    },
+    {
       "environment_vars": [
         "SSH_USERNAME={{ item.ssh_name }}",
         "SSH_PASSWORD={{ item.ssh_pass }}",
@@ -58,11 +65,17 @@
       ],
       "type": "shell",
       "scripts": [
-        "beetbox.sh",
+        "beetbox.sh"
+      ],
+      "execute_command": "{{ '{{' }} .Vars {{ '}}' }} bash '{{ '{{' }} .Path {{ '}}' }}'"
+    },
+    {
+      "type": "shell",
+      "scripts": [
         "packer/scripts/minimize.sh",
         "packer/scripts/cleanup.sh"
       ],
-      "execute_command": "echo '{{ item.ssh_pass }}' | {{ '{{' }} .Vars {{ '}}' }} sudo -S -E bash '{{ '{{' }} .Path {{ '}}' }}'"
+      "execute_command": "sudo -E bash '{{ '{{' }} .Path {{ '}}' }}'"
     }
   ],
   "post-processors": [
