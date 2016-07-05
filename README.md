@@ -37,7 +37,7 @@ To get a simple Drupal site up and running with Beetbox, run the following comma
 
 ```
 drush dl drupal-8.1.2 && cd $_
-wget https://raw.githubusercontent.com/beetboxvm/beetbox/master/Vagrantfile
+curl https://raw.githubusercontent.com/beetboxvm/beetbox/master/Vagrantfile > Vagrantfile
 vagrant up
 ```
 
