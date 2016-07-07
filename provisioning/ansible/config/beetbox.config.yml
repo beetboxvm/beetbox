@@ -59,6 +59,8 @@ galaxy_roles:
     repo: https://github.com/beetboxvm/ansible-role-beetbox-upload-progress.git
   - name: beetboxvm.wordpress
     repo: https://github.com/beetboxvm/ansible-role-beetbox-wordpress.git
+  - name: angstwad.docker_ubuntu
+    repo: https://github.com/angstwad/docker.ubuntu.git
   - name: ANXS.postgresql
     repo: https://github.com/ANXS/postgresql
   - name: franklinkim.newrelic
@@ -188,6 +190,7 @@ installed_extras_drush: yes
 installed_extras_upload_progress: yes
 
 # Disabled by default.
+installed_extras_docker: no
 installed_extras_selenium: no
 installed_extras_firewall: no
 installed_extras_postfix: no
@@ -238,6 +241,10 @@ nginx_hosts:
     server_name: "{{ beet_domain }}"
     root: "{{ beet_web }}"
     is_php: true
+
+# Docker config.
+docker_group_members:
+  - "{{ beet_user }}"
 
 # PHP config.
 php_version: "5.6"
