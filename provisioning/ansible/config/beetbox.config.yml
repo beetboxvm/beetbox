@@ -135,6 +135,8 @@ galaxy_roles:
     repo: https://github.com/arknoll/ansible-role-selenium.git
   - name: rvm_io.rvm1-ruby
     repo: https://github.com/rvm/rvm1-ansible.git
+  - name: thebinary.lxd
+    repo: https://github.com/thebinary/ansible-role-lxd.git
 
 # Symlinks.
 symlinks: no
@@ -191,6 +193,7 @@ installed_extras_upload_progress: yes
 
 # Disabled by default.
 installed_extras_docker: no
+installed_extras_lxd: no
 installed_extras_selenium: no
 installed_extras_firewall: no
 installed_extras_postfix: no
