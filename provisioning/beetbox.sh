@@ -34,22 +34,20 @@ beetbox_setup()
 {
   # Create BEET_USER and setup sudo.
   [ -z "$(getent passwd $BEET_USER)" ] && sudo useradd -d /home/$BEET_USER -m $BEET_USER > /dev/null 2>&1
-  echo "$BEET_USER ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$BEET_USER
+  echo "$BEET_USER ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$BEET_USER > /dev/null 2>&1
 
   # Install ansible.
-  sudo apt-get -qq -y install software-properties-common
+  sudo apt-get -qq -y install software-properties-common > /dev/null 2>&1
   sudo apt-add-repository -y ppa:ansible/ansible > /dev/null 2>&1
-  sudo apt-get -qq update
-  sudo apt-get -qq -y install ansible
+  sudo apt-get -qq update > /dev/null 2>&1
+  sudo apt-get -qq -y install ansible > /dev/null 2>&1
 
   # Clone beetbox if BEET_HOME doesn't exist.
   if [ ! -d "$BEET_HOME" ]; then
-    sudo apt-get -y install git
-    sudo mkdir -p $BEET_HOME
-    sudo chown -R $BEET_USER:$BEET_USER $BEET_HOME
-    echo "==> Checking out beetbox from $BEET_REPO"
-    git clone $BEET_REPO $BEET_HOME
-    rm -f $BEET_HOME/.beetbox/config.yml
+    beetbox_adhoc apt "name=git state=installed"
+    beetbox_adhoc git "repo=$BEET_REPO dest=$BEET_HOME"
+    beetbox_adhoc file "path=$BEET_HOME owner=$BEET_USER group=$BEET_USER"
+    beetbox_adhoc file "path=$BEET_HOME/.beetbox/config.yml state=absent"
     [ ! -d "$BEET_HOME" ] && exit 1
   fi
 
@@ -60,12 +58,17 @@ beetbox_setup()
   beetbox_play setup
 
   # Create $BEET_HOME/.beetbox_installed
-  sudo touch $BEET_HOME/.beetbox/installed
+  beetbox_adhoc file "path=$BEET_HOME/.beetbox/installed state=touch"
+}
+
+beetbox_adhoc()
+{
+  ANSIBLE_FORCE_COLOR=1 PYTHONUNBUFFERED=1 ansible localhost -m $1 -a "$2" -i 'localhost,' --become -c local
 }
 
 beetbox_play()
 {
-  ANSIBLE_FORCE_COLOR=1 PYTHONUNBUFFERED=1 ansible-playbook $ANSIBLE_DEBUG $ANSIBLE_HOME/playbook-$1.yml -i 'localhost,'
+  ANSIBLE_FORCE_COLOR=1 PYTHONUNBUFFERED=1 ansible-playbook $ANSIBLE_DEBUG $ANSIBLE_HOME/playbook-$1.yml -i 'localhost,' -c local
 }
 
 # Initialise beetbox.
