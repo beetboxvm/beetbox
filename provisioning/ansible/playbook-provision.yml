@@ -33,6 +33,7 @@
     - geerlingguy.composer
     - pwelch.avahi
     - { role: angstwad.docker_ubuntu, when: "{{ installed_extras_docker }}" }
+    - { role: thebinary.lxd, when: "{{ installed_extras_lxd }}" }
     - { role: ANXS.postgresql, when: "{{ installed_extras_postgresql }}" }
     - { role: geerlingguy.memcached, when: "{{ installed_extras_memcached }}" }
     - { role: geerlingguy.php-memcached, when: "{{ installed_extras_memcached }}" }
