@@ -3,11 +3,14 @@
 A VM for local L*MP development, built with Packer, Vagrant + Ansible
 
 Beetbox is essentially a pre-provisioned version of [Drupal VM](http://www.drupalvm.com/) mainly to speed up initial build time but also reduces the size of each VM by leveraging [linked clones](https://www.hashicorp.com/blog/vagrant-1-8.html).
+
 Whilst it contains a set of default features it is extremely extensable and almost anything can be overridden/extended with a simple YAML config file.
-It is designed to have an instance (VM) per project and be integrated into a VCS like git, so config is easily shared within a team and setup of a new project should be as simple as `git clone ... vagrant up`.
+
+It is designed to have an instance (VM) per project and be integrated into a VCS like git, so config is easily shared within a team and setup of a new project should be as simple as `git clone ...; vagrant up`.
+
 This particular project contains the plumbing to manage the automated build of the pre-provisioned Vagrant base box so almost all functionality is provided by ansible roles external to this project.
 
-[![Circle CI](https://circleci.com/gh/beetboxvm/beetbox.svg?style=svg)](https://circleci.com/gh/beetboxvm/beetbox) [![Documentation Status](https://readthedocs.org/projects/beetbox/badge/?version=stable)](http://beetbox.readthedocs.org/en/stable/?badge=stable)
+[![Circle CI](https://circleci.com/gh/beetboxvm/beetbox.svg?style=shield)](https://circleci.com/gh/beetboxvm/beetbox) [![Documentation Status](https://readthedocs.org/projects/beetbox/badge/?version=stable)](http://beetbox.readthedocs.org/en/stable/?badge=stable)
 
 ## Why not use Drupal VM / Vlad?
 
@@ -29,7 +32,7 @@ This particular project contains the plumbing to manage the automated build of t
 
 Include this [Vagrantfile](https://raw.githubusercontent.com/beetboxvm/beetbox/master/Vagrantfile) in the root of your project (usually the one which contains index.php) and `vagrant up`.
 This will automatically generate the `.beetbox` directory which will contain a `config.yml` file used to configure overrides.
-You can see some examples here - [`config.yml`](https://github.com/thom8/beetbox/blob/readme/.beetbox/config.yml)
+You can see some examples here - [`config.yml`](https://github.com/thom8/beetbox/blob/master/.beetbox/config.yml)
 
 ## Drupal Quickstart
 
@@ -59,8 +62,8 @@ http://beetbox.rtfd.org
 
 ## Support
 
-* Feature requests should be created on [FeatHub](http://feathub.com/beetboxvm/beetbox)
-* Bugs should be reported in the [GitHub Beetbox Issue Queue](https://github.com/beetboxvm/beetbox/issues)
+* Feature requests should be created on [FeatHub](http://feathub.com/beetboxvm/beetbox).
+* Bugs should be reported in the [GitHub Beetbox Issue Queue](https://github.com/beetboxvm/beetbox/issues).
 * Use pull requests (PRs) to contribute to Beetbox.
 
 
