@@ -12,7 +12,7 @@
 
 Include this [Vagrantfile](https://raw.githubusercontent.com/beetboxvm/beetbox/master/Vagrantfile) in the root of your project (usually the one which contains index.php) and `vagrant up`.
 This will automatically generate the `.beetbox` directory which will contain a `config.yml` file used to configure overrides.
-You can see some examples here - [`config.yml`](https://github.com/thom8/beetbox/blob/readme/.beetbox/config.yml)
+You can see some examples here - [`config.yml`](https://github.com/beetboxvm/beetbox/blob/master/.beetbox/config.yml)
 
 ## Drupal Quickstart
 
@@ -33,3 +33,5 @@ drupal_install_site: yes
 drupal_account_name: admin
 drupal_account_pass: admin
 ```
+
+For PHP 7 add `php_version: "7.0"` then `vagrant provision`
