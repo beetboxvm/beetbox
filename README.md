@@ -56,6 +56,19 @@ drupal_account_pass: admin
 
 For PHP 7 add `php_version: "7.0"` then `vagrant provision`
 
+## Project roles.
+| Project | Build status |
+| --- | --- |
+| [Backdrop](https://github.com/beetboxvm/ansible-role-beetbox-backdrop) | [![Circle CI](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-backdrop.svg?style=svg)](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-backdrop) |
+| [CakePHP](https://github.com/beetboxvm/ansible-role-beetbox-cakephp) | [![CircleCI](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-cakephp.svg?style=svg)](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-cakephp) |
+| [Concrete5](https://github.com/beetboxvm/ansible-role-beetbox-concrete5) | [![CircleCI](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-concrete5.svg?style=svg)](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-conc rete5) |
+| [Drupal](https://github.com/beetboxvm/ansible-role-beetbox-drupal) | [![CircleCI](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-drupal.svg?style=svg)](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-drupal) |
+| [Kohana](https://github.com/beetboxvm/ansible-role-beetbox-kohana) | [![CircleCI](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-kohana.svg?style=svg)](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-kohana) |
+| [Modx](https://github.com/beetboxvm/ansible-role-beetbox-modx) | [![CircleCI](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-modx.svg?style=svg)](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-modx) |
+| [Silverstripe](https://github.com/beetboxvm/ansible-role-beetbox-silverstripe) | [![CircleCI](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-silverstripe.svg?style=svg)](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-silverstripe) |
+| [Slim](https://github.com/beetboxvm/ansible-role-beetbox-slim) | [![CircleCI](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-slim.svg?style=svg)](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-slim) |
+| [Wordpress](https://github.com/beetboxvm/ansible-role-beetbox-wordpress) | [![CircleCI](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-wordpress.svg?style=svg)](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-wordpress) |
+
 ## Documentation
 
 http://beetbox.readthedocs.io/en/latest/
