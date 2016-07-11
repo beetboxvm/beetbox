@@ -105,3 +105,5 @@
     repo: https://github.com/rvm/rvm1-ansible.git
   - name: thebinary.lxd
     repo: https://github.com/thebinary/ansible-role-lxd.git
+  - name: alexdesignworks.dcr
+    repo: https://github.com/alexdesignworks/ansible-role-dcr.git

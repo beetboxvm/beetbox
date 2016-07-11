@@ -75,6 +75,7 @@
     - { role: beetbox-apparmor }
     - { role: beetboxvm.symlinks, when: symlinks }
     - { role: beetbox-php-nginx }
+    - { role: alexdesignworks.dcr, when: "{{ installed_extras_dcr }}" }
 
   tasks:
 
