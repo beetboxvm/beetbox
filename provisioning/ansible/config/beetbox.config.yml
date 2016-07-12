@@ -137,6 +137,8 @@ galaxy_roles:
     repo: https://github.com/rvm/rvm1-ansible.git
   - name: thebinary.lxd
     repo: https://github.com/thebinary/ansible-role-lxd.git
+  - name: alexdesignworks.dcr
+    repo: https://github.com/alexdesignworks/ansible-role-dcr.git
 
 # Symlinks.
 symlinks: no
@@ -210,6 +212,7 @@ installed_extras_blackfire: no
 installed_extras_newrelic: no
 installed_extras_wp_cli: no
 installed_extras_phantomjs: no
+installed_extras_dcr: no
 
 # Extra packages.
 extra_packages:
@@ -362,6 +365,9 @@ selenium_version: 2.46.0
 
 # Mailhog.
 mailhog_daemonize_bin_path: /usr/sbin/daemonize
+
+# DCR config.
+dcr_install_dir: "{{ beet_root }}"
 
 # Other config.
 known_hosts_path: ~/.ssh/known_hosts
