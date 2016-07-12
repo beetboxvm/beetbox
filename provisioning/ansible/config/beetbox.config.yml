@@ -55,8 +55,6 @@ galaxy_roles:
     repo: https://github.com/beetboxvm/ansible-role-beetbox-slim.git
   - name: beetboxvm.symlinks
     repo: https://github.com/beetboxvm/ansible-role-beetbox-symlinks.git
-  - name: beetboxvm.upload-progress
-    repo: https://github.com/beetboxvm/ansible-role-beetbox-upload-progress.git
   - name: beetboxvm.wordpress
     repo: https://github.com/beetboxvm/ansible-role-beetbox-wordpress.git
   - name: angstwad.docker_ubuntu
@@ -137,6 +135,8 @@ galaxy_roles:
     repo: https://github.com/rvm/rvm1-ansible.git
   - name: thebinary.lxd
     repo: https://github.com/thebinary/ansible-role-lxd.git
+  - name: thom8.php-upload-progress
+    repo: https://github.com/thom8/ansible-role-php-upload-progress.git
   - name: alexdesignworks.dcr
     repo: https://github.com/alexdesignworks/ansible-role-dcr.git
 
