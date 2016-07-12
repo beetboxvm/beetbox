@@ -39,7 +39,7 @@
     - { role: geerlingguy.php-memcached, when: "{{ installed_extras_memcached }}" }
     - { role: geerlingguy.drush, when: "{{ installed_extras_drush }}" }
     - { role: geerlingguy.drupal-console, when: "{{ installed_extras_drupal_console }}" }
-    - { role: beetboxvm.upload-progress, when: "{{ installed_extras_upload_progress }}" }
+    - { role: thom8.php-upload-progress, when: "{{ installed_extras_upload_progress }}" }
     - { role: geerlingguy.php-xdebug, when: "{{ installed_extras_xdebug }}" }
     - { role: geerlingguy.php-xhprof, when: "{{ installed_extras_xhprof }}" }
     - { role: geerlingguy.blackfire, when: "{{ installed_extras_blackfire }}" }
