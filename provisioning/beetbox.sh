@@ -6,7 +6,6 @@ BEET_BASE=${BEET_BASE:-"/var/beetbox"}
 BEET_USER=${BEET_USER:-"vagrant"}
 BEET_REPO=${BEET_REPO:-"https://github.com/beetboxvm/beetbox.git"}
 BEET_VERSION=${BEET_VERSION:-"master"}
-BEET_TAG=${BEET_TAG:-""}
 BEET_DEBUG=${BEET_DEBUG:-false}
 CIRCLECI=${CIRCLECI:-false}
 ANSIBLE_HOME="$BEET_HOME/provisioning/ansible"
@@ -16,11 +15,14 @@ ANSIBLE_DEBUG=""
 export DISPLAY_SKIPPED_HOSTS=${DISPLAY_SKIPPED_HOSTS:-False}
 export ANSIBLE_DEPRECATION_WARNINGS=${ANSIBLE_DEPRECATION_WARNINGS:-False}
 export ANSIBLE_REMOTE_TEMP=${ANSIBLE_REMOTE_TEMP:-/tmp}
+export ANSIBLE_RETRY_FILES_ENABLED=${ANSIBLE_RETRY_FILES_ENABLED:-False}
+export ANSIBLE_FORCE_COLOR=${ANSIBLE_FORCE_COLOR:-True}
+export ANSIBLE_INVENTORY=${ANSIBLE_INVENTORY:-"localhost,"}
+export PYTHONUNBUFFERED=${PYTHONUNBUFFERED:-True}
 
 # Enable debug mode?
 if [ $BEET_DEBUG = "true" ]; then
-  set -x
-  ANSIBLE_DEPRECATION_WARNINGS=True
+  export ANSIBLE_DEPRECATION_WARNINGS=True
   ANSIBLE_DEBUG="-vvv"
 fi
 
@@ -30,8 +32,7 @@ if [ "$CIRCLECI" == "true" ]; then
   [ $BEET_USER == "vagrant" ] && export BEET_USER="ubuntu"
 fi
 
-beetbox_setup()
-{
+beetbox_setup() {
   # Create BEET_USER and setup sudo.
   [ -z "$(getent passwd $BEET_USER)" ] && sudo useradd -d /home/$BEET_USER -m $BEET_USER > /dev/null 2>&1
   echo "$BEET_USER ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$BEET_USER > /dev/null 2>&1
@@ -61,14 +62,12 @@ beetbox_setup()
   beetbox_adhoc file "path=$BEET_HOME/.beetbox/installed state=touch"
 }
 
-beetbox_adhoc()
-{
-  ANSIBLE_FORCE_COLOR=1 PYTHONUNBUFFERED=1 ansible localhost -m $1 -a "$2" -i 'localhost,' --become -c local
+beetbox_adhoc() {
+  ansible $ANSIBLE_DEBUG localhost -m $1 -a "$2" --become -c local
 }
 
-beetbox_play()
-{
-  ANSIBLE_FORCE_COLOR=1 PYTHONUNBUFFERED=1 ansible-playbook $ANSIBLE_DEBUG $ANSIBLE_HOME/playbook-$1.yml -i 'localhost,' -c local
+beetbox_play() {
+  ansible-playbook $ANSIBLE_DEBUG $ANSIBLE_HOME/playbook-$1.yml
 }
 
 # Initialise beetbox.
