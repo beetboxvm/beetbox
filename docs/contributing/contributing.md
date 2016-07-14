@@ -2,7 +2,7 @@
 
 Contributing is easy, the hardest part is knowing which project to add your pull request to.
 
-The main knowledgement required is [Ansible](https://www.ansible.com/) it's pretty easy to pick up and they have some good docs available -- http://docs.ansible.com/
+The main knowledge required is [Ansible](https://www.ansible.com/) it's pretty easy to pick up and they have some good docs available -- http://docs.ansible.com/
 
 The main project beetbox core (https://github.com/beetboxvm/beetbox) is essentially some plumbing to initiate a set of external roles hosted on [Ansible galaxy](https://galaxy.ansible.com)
 
@@ -18,6 +18,7 @@ vagrant up
 ```
 
 This has been modified to use a debug mode which will :-
+
 - show more details when provisioning
 - mount the provisioning directory into the VM (so it's editable)
 - checkout the ansible roles from their source repo (rather than from ansible galaxy)
