@@ -79,6 +79,8 @@ galaxy_roles:
     repo: https://github.com/geerlingguy/ansible-role-drupal-console.git
   - name: geerlingguy.drush
     repo: https://github.com/geerlingguy/ansible-role-drush.git
+  - name: geerlingguy.elasticsearch
+    repo: https://github.com/geerlingguy/ansible-role-elasticsearch.git
   - name: geerlingguy.firewall
     repo: https://github.com/geerlingguy/ansible-role-firewall.git
   - name: geerlingguy.git
@@ -197,6 +199,7 @@ installed_extras_upload_progress: yes
 installed_extras_docker: no
 installed_extras_lxd: no
 installed_extras_selenium: no
+installed_extras_elasticsearch: no
 installed_extras_firewall: no
 installed_extras_postfix: no
 installed_extras_pantheon_cli: no
