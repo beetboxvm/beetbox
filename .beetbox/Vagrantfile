@@ -1,6 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+require 'fileutils'
 require 'yaml'
 
 Vagrant.require_version '>= 1.8.0'
@@ -26,14 +27,19 @@ vconfig = {
 
 # Create default config file.
 if !File.exist?(project_config)
-  require 'fileutils'
-  FileUtils::mkdir_p config_dir
+  FileUtils.mkdir_p config_dir
   open(project_config, "w+") << "---\nbeet_domain: #{vconfig['beet_domain']}\n"
 end
 
 # Create .gitignore file.
-git_ignore = "local.config.yml\nVagrantfile\nVagrantfile.local\n"
+git_ignore = "host.config.yml\nlocal.config.yml\nVagrantfile\nVagrantfile.local\n"
 open("#{config_dir}/.gitignore", "w+") << git_ignore if !File.exist?("#{config_dir}/.gitignore")
+
+# Copy config from host.
+host_config = "#{Dir.home}/.beetbox/config.yml"
+if File.exist?(host_config)
+  FileUtils.cp(host_config, "#{config_dir}/host.config.yml")
+end
 
 pconfig = YAML::load_file(project_config) || nil
 vconfig = vconfig.merge pconfig if !pconfig.nil?
