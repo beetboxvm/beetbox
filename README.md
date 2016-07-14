@@ -86,3 +86,7 @@ We encourage you to support him by buying his book [Ansible for DevOps](http://a
 
 Beetbox is primarily maintained by the Drupal Melbourne (Australia) community.
 Please follow [@beetboxvm](https://twitter.com/beetboxvm) for announcements.
+
+## License
+
+This project is licensed under the MIT open source license.
