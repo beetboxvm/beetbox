@@ -136,9 +136,8 @@ Vagrant.configure("2") do |config|
 
       # Provision box
       beet_sh = "#{vconfig['beet_home']}/provisioning/beetbox.sh"
-      remote_sh = "https://raw.githubusercontent.com/beetboxvm/beetbox/master/provisioning/beetbox.sh"
       local_provision = "sudo chmod +x #{beet_sh} && #{debug_mode} #{beet_sh}"
-      remote_provision = "sudo apt-get -qq update && curl -fsSL #{remote_sh} | sudo bash"
+      remote_provision = "curl -fsSL http://bit.ly/beetbuild | UBUNTU_INIT=true bash -Ee"
       node.vm.provision "ansible", type: "shell" do |s|
         s.privileged = false
         s.inline = "if [ -f #{beet_sh} ]; then #{local_provision}; else #{remote_provision}; fi"
@@ -156,6 +155,24 @@ Vagrant.configure("2") do |config|
           "--vrde", "off"
         ]
       end
+
+      # VMware Fusion.
+      config.vm.provider :vmware_fusion do |v, override|
+        override.vm.box = "ubuntu/trusty64"
+        v.gui = false
+        v.vmx['memsize'] = vconfig['vagrant_memory']
+        v.vmx['numvcpus'] = vconfig['vagrant_cpus']
+      end
+
+      # Parallels.
+      config.vm.provider :parallels do |p, override|
+        override.vm.box = "ubuntu/trusty64"
+        p.name = "#{node.vm.hostname}.#{Time.now.to_i}"
+        p.memory = vconfig['vagrant_memory']
+        p.cpus = vconfig['vagrant_cpus']
+        p.update_guest_tools = true
+      end
+
     end
   end
 end
