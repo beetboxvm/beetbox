@@ -381,7 +381,7 @@ welcome_template: "templates/welcome.txt.j2"
 packer_templates:
   - atlas_username: beet
     atlas_build_name: dev
-    box_version: "0.2.{{ lookup('env','CIRCLE_BUILD_NUM') | default('0',true) }}"
+    box_version: "0.3.{{ lookup('env','CIRCLE_BUILD_NUM') | default('0',true) }}"
     beet_version: master
     ssh_name: vagrant
     ssh_pass: vagrant
