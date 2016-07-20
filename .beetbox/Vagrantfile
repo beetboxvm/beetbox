@@ -166,7 +166,7 @@ Vagrant.configure("2") do |config|
 
       # Parallels.
       config.vm.provider :parallels do |p, override|
-        override.vm.box = "ubuntu/trusty64"
+        override.vm.box = "parallels/ubuntu-14.04"
         p.name = "#{node.vm.hostname}.#{Time.now.to_i}"
         p.memory = vconfig['vagrant_memory']
         p.cpus = vconfig['vagrant_cpus']
