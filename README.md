@@ -26,8 +26,13 @@ This particular project contains the plumbing to manage the automated build of t
 * [Vagrant](https://www.vagrantup.com/) >= 1.8
 * [Virtualbox](https://www.virtualbox.org/)
 * [Vagrant Hostsupdater](https://github.com/cogitatio/vagrant-hostsupdater)
+```
+vagrant plugin install vagrant-hostsupdater
+```
 * [Vagrant Auto-network](https://github.com/oscar-stack/vagrant-auto_network)
-
+```
+vagrant plugin install vagrant-auto_network
+```
 
 ## Quickstart
 
