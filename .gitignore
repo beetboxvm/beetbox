@@ -9,8 +9,6 @@ projects/
 .beetbox/installed
 provisioning/ansible/config/*
 !provisioning/ansible/config/beetbox.config.yml
-provisioning/ansible/roles/*
-!provisioning/ansible/roles/beetbox-*
 .beetbox/*
 !.beetbox/config.yml
 workspace/

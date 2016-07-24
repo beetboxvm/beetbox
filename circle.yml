@@ -10,6 +10,10 @@ machine:
     VAGRANT_INIT: true
     UBUNTU_INIT: true
     INSTALL_PACKER: true
+checkout:
+  post:
+    - git submodule sync
+    - git submodule update --init
 dependencies:
   cache_directories:
     - "~/.cache/beetbox"
