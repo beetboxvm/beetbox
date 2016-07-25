@@ -1,0 +1,165 @@
+[submodule "provisioning/ansible/roles/alexdesignworks.dcr"]
+	path = provisioning/ansible/roles/alexdesignworks.dcr
+	url = https://github.com/alexdesignworks/ansible-role-dcr.git
+[submodule "provisioning/ansible/roles/beetboxvm.backdrop"]
+	path = provisioning/ansible/roles/beetboxvm.backdrop
+	url = https://github.com/beetboxvm/ansible-role-beetbox-backdrop.git
+[submodule "provisioning/ansible/roles/beetboxvm.cakephp"]
+	path = provisioning/ansible/roles/beetboxvm.cakephp
+	url = https://github.com/beetboxvm/ansible-role-beetbox-cakephp.git
+[submodule "provisioning/ansible/roles/beetboxvm.concrete5"]
+	path = provisioning/ansible/roles/beetboxvm.concrete5
+	url = https://github.com/beetboxvm/ansible-role-beetbox-concrete5.git
+[submodule "provisioning/ansible/roles/beetboxvm.drupal"]
+	path = provisioning/ansible/roles/beetboxvm.drupal
+	url = https://github.com/beetboxvm/ansible-role-beetbox-drupal.git
+[submodule "provisioning/ansible/roles/beetboxvm.known-hosts"]
+	path = provisioning/ansible/roles/beetboxvm.known-hosts
+	url = https://github.com/beetboxvm/ansible-role-beetbox-known-hosts.git
+[submodule "provisioning/ansible/roles/beetboxvm.kohana"]
+	path = provisioning/ansible/roles/beetboxvm.kohana
+	url = https://github.com/beetboxvm/ansible-role-beetbox-kohana.git
+[submodule "provisioning/ansible/roles/beetboxvm.modx"]
+	path = provisioning/ansible/roles/beetboxvm.modx
+	url = https://github.com/beetboxvm/ansible-role-beetbox-modx.git
+[submodule "provisioning/ansible/roles/beetboxvm.packages"]
+	path = provisioning/ansible/roles/beetboxvm.packages
+	url = https://github.com/beetboxvm/ansible-role-beetbox-packages.git
+[submodule "provisioning/ansible/roles/beetboxvm.phantomjs"]
+	path = provisioning/ansible/roles/beetboxvm.phantomjs
+	url = https://github.com/beetboxvm/ansible-role-beetbox-phantomjs.git
+[submodule "provisioning/ansible/roles/beetboxvm.silverstripe"]
+	path = provisioning/ansible/roles/beetboxvm.silverstripe
+	url = https://github.com/beetboxvm/ansible-role-beetbox-silverstripe.git
+[submodule "provisioning/ansible/roles/beetboxvm.slim"]
+	path = provisioning/ansible/roles/beetboxvm.slim
+	url = https://github.com/beetboxvm/ansible-role-beetbox-slim.git
+[submodule "provisioning/ansible/roles/beetboxvm.symlinks"]
+	path = provisioning/ansible/roles/beetboxvm.symlinks
+	url = https://github.com/beetboxvm/ansible-role-beetbox-symlinks.git
+[submodule "provisioning/ansible/roles/beetboxvm.wordpress"]
+	path = provisioning/ansible/roles/beetboxvm.wordpress
+	url = https://github.com/beetboxvm/ansible-role-beetbox-wordpress.git
+[submodule "provisioning/ansible/roles/angstwad.docker_ubuntu"]
+	path = provisioning/ansible/roles/angstwad.docker_ubuntu
+	url = https://github.com/angstwad/docker.ubuntu.git
+[submodule "provisioning/ansible/roles/ANXS.postgresql"]
+	path = provisioning/ansible/roles/ANXS.postgresql
+	url = https://github.com/ANXS/postgresql
+[submodule "provisioning/ansible/roles/franklinkim.newrelic"]
+	path = provisioning/ansible/roles/franklinkim.newrelic
+	url = https://github.com/weareinteractive/ansible-newrelic.git
+[submodule "provisioning/ansible/roles/geerlingguy.adminer"]
+	path = provisioning/ansible/roles/geerlingguy.adminer
+	url = https://github.com/geerlingguy/ansible-role-adminer.git
+[submodule "provisioning/ansible/roles/geerlingguy.apache"]
+	path = provisioning/ansible/roles/geerlingguy.apache
+	url = https://github.com/geerlingguy/ansible-role-apache.git
+[submodule "provisioning/ansible/roles/geerlingguy.apache-php-fpm"]
+	path = provisioning/ansible/roles/geerlingguy.apache-php-fpm
+	url = https://github.com/geerlingguy/ansible-role-apache-php-fpm.git
+[submodule "provisioning/ansible/roles/geerlingguy.blackfire"]
+	path = provisioning/ansible/roles/geerlingguy.blackfire
+	url = https://github.com/geerlingguy/ansible-role-blackfire.git
+[submodule "provisioning/ansible/roles/geerlingguy.composer"]
+	path = provisioning/ansible/roles/geerlingguy.composer
+	url = https://github.com/geerlingguy/ansible-role-composer.git
+[submodule "provisioning/ansible/roles/geerlingguy.daemonize"]
+	path = provisioning/ansible/roles/geerlingguy.daemonize
+	url = https://github.com/geerlingguy/ansible-role-daemonize.git
+[submodule "provisioning/ansible/roles/geerlingguy.drupal-console"]
+	path = provisioning/ansible/roles/geerlingguy.drupal-console
+	url = https://github.com/geerlingguy/ansible-role-drupal-console.git
+[submodule "provisioning/ansible/roles/geerlingguy.drush"]
+	path = provisioning/ansible/roles/geerlingguy.drush
+	url = https://github.com/geerlingguy/ansible-role-drush.git
+[submodule "provisioning/ansible/roles/geerlingguy.elasticsearch"]
+	path = provisioning/ansible/roles/geerlingguy.elasticsearch
+	url = https://github.com/geerlingguy/ansible-role-elasticsearch.git
+[submodule "provisioning/ansible/roles/geerlingguy.firewall"]
+	path = provisioning/ansible/roles/geerlingguy.firewall
+	url = https://github.com/geerlingguy/ansible-role-firewall.git
+[submodule "provisioning/ansible/roles/geerlingguy.git"]
+	path = provisioning/ansible/roles/geerlingguy.git
+	url = https://github.com/geerlingguy/ansible-role-git.git
+[submodule "provisioning/ansible/roles/geerlingguy.java"]
+	path = provisioning/ansible/roles/geerlingguy.java
+	url = https://github.com/geerlingguy/ansible-role-java.git
+[submodule "provisioning/ansible/roles/geerlingguy.mailhog"]
+	path = provisioning/ansible/roles/geerlingguy.mailhog
+	url = https://github.com/geerlingguy/ansible-role-mailhog.git
+[submodule "provisioning/ansible/roles/geerlingguy.memcached"]
+	path = provisioning/ansible/roles/geerlingguy.memcached
+	url = https://github.com/geerlingguy/ansible-role-memcached.git
+[submodule "provisioning/ansible/roles/geerlingguy.mysql"]
+	path = provisioning/ansible/roles/geerlingguy.mysql
+	url = https://github.com/geerlingguy/ansible-role-mysql.git
+[submodule "provisioning/ansible/roles/geerlingguy.nginx"]
+	path = provisioning/ansible/roles/geerlingguy.nginx
+	url = https://github.com/geerlingguy/ansible-role-nginx.git
+[submodule "provisioning/ansible/roles/geerlingguy.nodejs"]
+	path = provisioning/ansible/roles/geerlingguy.nodejs
+	url = https://github.com/geerlingguy/ansible-role-nodejs.git
+[submodule "provisioning/ansible/roles/geerlingguy.php"]
+	path = provisioning/ansible/roles/geerlingguy.php
+	url = https://github.com/geerlingguy/ansible-role-php.git
+[submodule "provisioning/ansible/roles/geerlingguy.php-memcached"]
+	path = provisioning/ansible/roles/geerlingguy.php-memcached
+	url = https://github.com/geerlingguy/ansible-role-php-memcached.git
+[submodule "provisioning/ansible/roles/geerlingguy.php-mysql"]
+	path = provisioning/ansible/roles/geerlingguy.php-mysql
+	url = https://github.com/geerlingguy/ansible-role-php-mysql.git
+[submodule "provisioning/ansible/roles/geerlingguy.php-pecl"]
+	path = provisioning/ansible/roles/geerlingguy.php-pecl
+	url = https://github.com/geerlingguy/ansible-role-php-pecl.git
+[submodule "provisioning/ansible/roles/geerlingguy.php-redis"]
+	path = provisioning/ansible/roles/geerlingguy.php-redis
+	url = https://github.com/geerlingguy/ansible-role-php-redis.git
+[submodule "provisioning/ansible/roles/geerlingguy.php-xdebug"]
+	path = provisioning/ansible/roles/geerlingguy.php-xdebug
+	url = https://github.com/geerlingguy/ansible-role-php-xdebug.git
+[submodule "provisioning/ansible/roles/geerlingguy.php-xhprof"]
+	path = provisioning/ansible/roles/geerlingguy.php-xhprof
+	url = https://github.com/geerlingguy/ansible-role-php-xhprof.git
+[submodule "provisioning/ansible/roles/geerlingguy.pimpmylog"]
+	path = provisioning/ansible/roles/geerlingguy.pimpmylog
+	url = https://github.com/geerlingguy/ansible-role-pimpmylog.git
+[submodule "provisioning/ansible/roles/geerlingguy.postfix"]
+	path = provisioning/ansible/roles/geerlingguy.postfix
+	url = https://github.com/geerlingguy/ansible-role-postfix.git
+[submodule "provisioning/ansible/roles/geerlingguy.redis"]
+	path = provisioning/ansible/roles/geerlingguy.redis
+	url = https://github.com/geerlingguy/ansible-role-redis.git
+[submodule "provisioning/ansible/roles/geerlingguy.ruby"]
+	path = provisioning/ansible/roles/geerlingguy.ruby
+	url = https://github.com/geerlingguy/ansible-role-ruby.git
+[submodule "provisioning/ansible/roles/geerlingguy.security"]
+	path = provisioning/ansible/roles/geerlingguy.security
+	url = https://github.com/geerlingguy/ansible-role-security.git
+[submodule "provisioning/ansible/roles/geerlingguy.solr"]
+	path = provisioning/ansible/roles/geerlingguy.solr
+	url = https://github.com/geerlingguy/ansible-role-solr.git
+[submodule "provisioning/ansible/roles/geerlingguy.varnish"]
+	path = provisioning/ansible/roles/geerlingguy.varnish
+	url = https://github.com/geerlingguy/ansible-role-varnish.git
+[submodule "provisioning/ansible/roles/hashbangcode.pantheon-cli"]
+	path = provisioning/ansible/roles/hashbangcode.pantheon-cli
+	url = https://github.com/hashbangcode/ansible-role-pantheon-cli.git
+[submodule "provisioning/ansible/roles/heskethm.wp-cli"]
+	path = provisioning/ansible/roles/heskethm.wp-cli
+	url = https://github.com/heskethm/ansible-role-wp-cli.git
+[submodule "provisioning/ansible/roles/pwelch.avahi"]
+	path = provisioning/ansible/roles/pwelch.avahi
+	url = https://github.com/pwelch/ansible-avahi.git
+[submodule "provisioning/ansible/roles/arknoll.selenium"]
+	path = provisioning/ansible/roles/arknoll.selenium
+	url = https://github.com/arknoll/ansible-role-selenium.git
+[submodule "provisioning/ansible/roles/rvm_io.rvm1-ruby"]
+	path = provisioning/ansible/roles/rvm_io.rvm1-ruby
+	url = https://github.com/rvm/rvm1-ansible.git
+[submodule "provisioning/ansible/roles/thebinary.lxd"]
+	path = provisioning/ansible/roles/thebinary.lxd
+	url = https://github.com/thebinary/ansible-role-lxd.git
+[submodule "provisioning/ansible/roles/thom8.php-upload-progress"]
+	path = provisioning/ansible/roles/thom8.php-upload-progress
+	url = https://github.com/thom8/ansible-role-php-upload-progress.git
