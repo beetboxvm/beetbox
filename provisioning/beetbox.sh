@@ -45,8 +45,8 @@ beetbox_setup() {
 
   # Clone beetbox if BEET_HOME doesn't exist.
   if [ ! -d "$BEET_HOME" ]; then
-    beetbox_adhoc apt "name=git state=installed depth=1 recursive=yes"
-    beetbox_adhoc git "repo=$BEET_REPO dest=$BEET_HOME"
+    beetbox_adhoc apt "name=git state=installed"
+    beetbox_adhoc git "repo=$BEET_REPO dest=$BEET_HOME depth=1 recursive=yes"
     beetbox_adhoc file "path=$BEET_HOME owner=$BEET_USER group=$BEET_USER"
     beetbox_adhoc file "path=$BEET_HOME/.beetbox/config.yml state=absent"
     [ ! -d "$BEET_HOME" ] && exit 1
