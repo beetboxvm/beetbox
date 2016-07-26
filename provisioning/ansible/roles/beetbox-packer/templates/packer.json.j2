@@ -83,10 +83,6 @@
       {
         "type": "vagrant",
         "compression_level": 9,
-        "vagrantfile_template": "packer/includes/Vagrantfile",
-        "include": [
-          "packer/includes/drush.alias.erb"
-        ],
         "output": "{{ item.atlas_username }}-{{ item.atlas_build_name }}-{{ '{{' }} .Provider {{ '}}' }}.box"
       },
       {
