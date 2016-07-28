@@ -70,6 +70,7 @@
     - { role: beetboxvm.modx, when: beet_project == 'modx' }
     - { role: beetboxvm.silverstripe, when: beet_project == 'silverstripe' }
     - { role: beetboxvm.slim, when: beet_project == 'slim' }
+    - { role: beetboxvm.symfony, when: beet_project == 'symfony' }
     - { role: beetboxvm.wordpress, when: beet_project == 'wordpress' }
     - { role: beetboxvm.packages }
     - { role: beetbox-web }

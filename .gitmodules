@@ -163,3 +163,6 @@
 [submodule "provisioning/ansible/roles/thom8.php-upload-progress"]
 	path = provisioning/ansible/roles/thom8.php-upload-progress
 	url = https://github.com/thom8/ansible-role-php-upload-progress.git
+[submodule "provisioning/ansible/roles/beetboxvm.symfony"]
+	path = provisioning/ansible/roles/beetboxvm.symfony
+	url = https://github.com/beetboxvm/ansible-role-beetbox-symfony.git
