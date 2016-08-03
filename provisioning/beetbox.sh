@@ -38,10 +38,12 @@ beetbox_setup() {
   echo "$BEET_USER ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$BEET_USER > /dev/null 2>&1
 
   # Install ansible.
-  sudo apt-get -qq -y install software-properties-common > /dev/null 2>&1
-  sudo apt-add-repository -y ppa:ansible/ansible > /dev/null 2>&1
-  sudo apt-get -qq update > /dev/null 2>&1
-  sudo apt-get -qq -y install ansible > /dev/null 2>&1
+  if [ ! -d "/etc/ansible" ]; then
+    sudo apt-get -qq -y install software-properties-common > /dev/null 2>&1
+    sudo apt-add-repository -y ppa:ansible/ansible > /dev/null 2>&1
+    sudo apt-get -qq update > /dev/null 2>&1
+    sudo apt-get -qq -y install ansible > /dev/null 2>&1
+  fi
 
   # Clone beetbox if BEET_HOME doesn't exist.
   if [ ! -d "$BEET_HOME" ]; then
@@ -49,6 +51,7 @@ beetbox_setup() {
     beetbox_adhoc git "repo=$BEET_REPO dest=$BEET_HOME depth=1 recursive=yes"
     beetbox_adhoc file "path=$BEET_HOME owner=$BEET_USER group=$BEET_USER"
     beetbox_adhoc file "path=$BEET_HOME/.beetbox/config.yml state=absent"
+    beetbox_adhoc file "src=$BEET_HOME/provisioning/beetbox.sh dest=/usr/local/bin/beetbox state=link mode=755"
     [ ! -d "$BEET_HOME" ] && exit 1
   fi
 
