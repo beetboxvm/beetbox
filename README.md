@@ -4,7 +4,7 @@ A VM for local L*MP development, built with Packer, Vagrant + Ansible
 
 Beetbox is essentially a pre-provisioned version of [Drupal VM](http://www.drupalvm.com/) mainly to speed up initial build time, but also to reduce the size of each VM by leveraging [linked clones](https://www.hashicorp.com/blog/vagrant-1-8.html).
 
-Whilst it contains a set of default features, it is extremely extensable and almost anything can be overridden/extended with a simple YAML config file.
+Whilst it contains a set of default features, it is extremely extensible and almost anything can be overridden/extended with a simple YAML config file.
 
 It is designed to have an instance (VM) per project and be integrated into a VCS like git, so that configuration can be easily shared within a team and a setup of a new project should be as simple as `git clone ...; vagrant up`.
 
