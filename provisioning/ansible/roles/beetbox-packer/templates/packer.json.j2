@@ -83,6 +83,11 @@
       {
         "type": "vagrant",
         "compression_level": 9,
+        "vagrantfile_template": "packer/includes/Vagrantfile",
+        "include": [
+          "packer/includes/Vagrantfile.box",
+          "packer/includes/Vagrantfile.stub"
+        ],
         "output": "{{ item.atlas_username }}-{{ item.atlas_build_name }}-{{ '{{' }} .Provider {{ '}}' }}.box"
       },
       {

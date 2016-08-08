@@ -9,6 +9,8 @@ projects/
 .beetbox/installed
 provisioning/ansible/config/*
 !provisioning/ansible/config/beetbox.config.yml
+provisioning/packer/includes/*
+!provisioning/packer/includes/Vagrantfile
 .beetbox/*
 !.beetbox/config.yml
 workspace/
