@@ -14,3 +14,13 @@
   with_items:
     - "{{ packer_templates }}"
   when: packer_templates is defined
+
+- name: Copy Vagrantfile stub to includes.
+  copy:
+    src: "{{ beet_home }}/Vagrantfile"
+    dest: "{{ beet_home }}/provisioning/packer/includes/Vagrantfile.stub"
+
+- name: Copy Vagrantfile to includes.
+  copy:
+    src: "{{ beet_home }}/.beetbox/Vagrantfile"
+    dest: "{{ beet_home }}/provisioning/packer/includes/Vagrantfile.box"

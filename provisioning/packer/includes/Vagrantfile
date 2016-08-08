@@ -1,0 +1,73 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Find the Vagrant ID if supplied.
+id = nil
+ARGV.each do |arg|
+  id = arg[/\h{7}/] ? arg : id
+end
+
+# Determine the current working directory and vagrantfile.
+cwd = nil
+vagrantfile = ENV['VAGRANT_VAGRANTFILE'] || 'Vagrantfile'
+if id != nil
+  require 'json'
+  vagrant_home = ENV['VAGRANT_HOME'] || "#{Dir.home}/.vagrant.d"
+  JSON.parse(File.read("#{vagrant_home}/data/machine-index/index"))['machines'].each do |hash, data|
+    if hash[0..6] == id
+      cwd = data['vagrantfile_path']
+      vagrantfile = data['vagrantfile_name'] != nil ? data['vagrantfile_name'] : vagrantfile
+      break
+    end
+  end
+else
+  paths = Dir.pwd.split('/')
+  while cwd == nil && !paths.empty?
+    dir = paths.join('/')
+    current = paths.pop
+    if File.exists?("#{dir}/#{vagrantfile}")
+      cwd = dir
+    end
+  end
+end
+
+# Ensure project Vagrantfile hasn't been customized.
+# @TODO - Add secondary check that parses the Vagrantfile if the MD5 is changed.
+md5s = [
+  "ef550c44b71ef09513fe24c4b564c8a9",
+  "d7016a4bfd74cd7411580491dc3fe376",
+  "6f921adc43a690623d0eb1565ae7c3c2"
+]
+if cwd != nil && File.exist?("#{cwd}/#{vagrantfile}")
+  if md5s.include?(Digest::MD5.file("#{cwd}/#{vagrantfile}").hexdigest)
+
+    ENV['BEET_ROOT_DIR'] = ENV['BEET_ROOT_DIR'] || "#{cwd}"
+    ENV['BEET_CONFIG_DIR'] = ENV['BEET_CONFIG_DIR'] || "#{ENV['BEET_ROOT_DIR']}/.beetbox"
+    r_vagrantfile = ENV['BEET_VAGRANTFILE'] || "https://raw.githubusercontent.com/beetboxvm/beetbox/master/.beetbox/Vagrantfile"
+    b_vagrantfile_stub = "#{__dir__}/Vagrantfile.stub"
+    b_vagrantfile = "#{__dir__}/Vagrantfile.box"
+    l_vagrantfile = "#{ENV['BEET_ROOT_DIR']}/Vagrantfile"
+
+    # Update box Vagrantfile.
+    require 'open-uri'
+    begin
+      vfile = open(r_vagrantfile).read
+    rescue
+      # Create .beetbox config dir.
+      FileUtils::mkdir_p ENV['BEET_CONFIG_DIR']
+      # Copy box Vagrantfile to project.
+      open(l_vagrantfile, 'w+') << open(b_vagrantfile).read
+    else
+      f = open(b_vagrantfile, 'w+') << vfile
+      f.close
+    end
+
+    # Copy box Vagrantfile stub to project.
+    f = open(l_vagrantfile, 'w+') << open(b_vagrantfile).read
+    f.close
+
+    puts "beetbox successfullly initialised."
+    exit
+
+  end
+end
