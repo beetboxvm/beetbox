@@ -38,6 +38,18 @@
       with_items: conf_files
       changed_when: false
 
+    - name: Check if project roles directory exists
+      stat: "path={{ conf_dir }}/roles"
+      register: project_roles
+
+    - name: Copy project roles from config directory.
+      copy:
+        src: "{{ conf_dir }}/roles/"
+        dest: "{{ ansible_home }}/roles"
+        force: yes
+      when: "{{ project_roles.stat.exists }}"
+      changed_when: false
+
     - name: "Ensure {{ beet_user }} has ownership of {{ ansible_home }}."
       file:
         path: "{{ ansible_home }}"
