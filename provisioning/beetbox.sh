@@ -85,9 +85,6 @@ beetbox_play update
 # Provision VM.
 beetbox_play provision
 
-# Run tests on Circle CI.
-([ "$CIRCLECI" == "true" ] || [ "$BEET_DEBUG" == "true" ]) && beetbox_play tests
-
 # Print welcome message.
 sudo touch $BEET_HOME/.beetbox/welcome.txt
 sudo cat $BEET_HOME/.beetbox/welcome.txt
