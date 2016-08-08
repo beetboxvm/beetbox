@@ -40,7 +40,7 @@
       changed_when: false
 
     - name: Check if playbook override directory exists
-      stat: "path={{ conf_dir }}/roles"
+      stat: "path={{ conf_dir }}/playbooks"
       register: project_plays
 
     - name: Copy playbook overrides from config directory.
