@@ -3,15 +3,16 @@
   connection: local
   become: yes
 
+  vars:
+    beet_profile: "{{ lookup('env','BEET_PROFILE') | default('beetbox',true) }}"
+    circleci: "{{ lookup('env','CIRCLECI') == 'true' }}"
+
   vars_files:
-    - config/beetbox.config.yml
+    - "config/profiles/{{ beet_profile }}.config.yml"
     - config/project.config.yml
     - config/host.config.yml
     - config/config.yml
     - config/local.config.yml
-
-  vars:
-    circleci: "{{ lookup('env','CIRCLECI') == 'true' }}"
 
   roles:
     - { role: beetbox-circleci, when: "{{ circleci }}"}
