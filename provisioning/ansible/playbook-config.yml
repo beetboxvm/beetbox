@@ -22,7 +22,7 @@
       with_items: "{{ conf_files }}"
       register: available_conf
 
-    - name: Copy config files from home directory.
+    - name: Copy config files from config directory.
       copy:
         src: "{{ conf_dir }}/{{ item.item }}"
         dest: "{{ ansible_home }}/config/{{ item.item }}"
@@ -36,6 +36,18 @@
         path: "{{ ansible_home }}/config/{{ item }}"
         state: touch
       with_items: conf_files
+      changed_when: false
+
+    - name: Check if playbook override directory exists
+      stat: "path={{ conf_dir }}/roles"
+      register: project_plays
+
+    - name: Copy playbook overrides from config directory.
+      copy:
+        src: "{{ conf_dir }}/playbooks/"
+        dest: "{{ ansible_home }}"
+        force: yes
+      when: "{{ project_plays.stat.exists }}"
       changed_when: false
 
     - name: Check if project roles directory exists
