@@ -116,6 +116,7 @@ installed_extras_dcr: no
 # Extra packages.
 extra_packages:
   - imagemagick
+  - nginx
   - php5-sqlite
   - unzip
 
