@@ -25,7 +25,7 @@ vconfig = {
   'beet_domain' => beet_root.split('/').last.gsub(/[\._]/, '-') + ".local",
   'beet_aliases' => [],
   'beet_provision' => true,
-  'drush_create_alias' => true
+  'drush_create_alias' => false
 }
 
 # Create default config file.
