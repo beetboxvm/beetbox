@@ -1,6 +1,7 @@
 #!/bin/bash -eu
 
 # Set default environment variables.
+BEET_PLAYBOOK=${1:-provision}
 BEET_HOME=${BEET_HOME:-"/beetbox"}
 BEET_BASE=${BEET_BASE:-"/var/beetbox"}
 BEET_USER=${BEET_USER:-"vagrant"}
@@ -83,7 +84,7 @@ beetbox_play config
 beetbox_play update
 
 # Provision VM.
-beetbox_play provision
+beetbox_play $BEET_PLAYBOOK
 
 # Print welcome message.
 sudo touch $BEET_HOME/.beetbox/welcome.txt
