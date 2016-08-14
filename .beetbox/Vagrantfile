@@ -4,7 +4,7 @@
 require 'fileutils'
 require 'yaml'
 
-Vagrant.require_version '>= 1.8.0'
+Vagrant.require_version '>= 1.8.5'
 
 beet_root = ENV['BEET_ROOT_DIR'] || "#{__dir__}"
 config_dir = ENV['BEET_CONFIG_DIR'] || "#{beet_root}/.beetbox"
