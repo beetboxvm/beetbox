@@ -46,7 +46,8 @@ if cwd != nil && File.exist?("#{cwd}/#{vagrantfile}")
     r_vagrantfile = ENV['BEET_VAGRANTFILE'] || "https://raw.githubusercontent.com/beetboxvm/beetbox/master/.beetbox/Vagrantfile"
     b_vagrantfile_stub = "#{__dir__}/Vagrantfile.stub"
     b_vagrantfile = "#{__dir__}/Vagrantfile.box"
-    l_vagrantfile = "#{ENV['BEET_ROOT_DIR']}/Vagrantfile"
+    l_vagrantfile_stub = "#{ENV['BEET_ROOT_DIR']}/Vagrantfile"
+    l_vagrantfile = "#{ENV['BEET_CONFIG_DIR']}/Vagrantfile"
 
     # Update box Vagrantfile.
     require 'open-uri'
@@ -63,7 +64,7 @@ if cwd != nil && File.exist?("#{cwd}/#{vagrantfile}")
     end
 
     # Copy box Vagrantfile stub to project.
-    f = open(l_vagrantfile, 'w+') << open(b_vagrantfile).read
+    f = open(l_vagrantfile_stub, 'w+') << open(b_vagrantfile_stub).read
     f.close
 
     puts "beetbox successfullly initialised."
