@@ -87,5 +87,5 @@ beetbox_play update
 beetbox_play $BEET_PLAYBOOK
 
 # Print welcome message.
-sudo touch $BEET_HOME/.beetbox/welcome.txt
-sudo cat $BEET_HOME/.beetbox/welcome.txt
+sudo touch $BEET_HOME/.beetbox/results-$BEET_PLAYBOOK.txt
+sudo cat $BEET_HOME/.beetbox/results-$BEET_PLAYBOOK.txt
