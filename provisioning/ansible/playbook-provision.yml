@@ -15,6 +15,26 @@
 
   pre_tasks:
 
+    - name: Install Personal Package Archives.
+      apt_repository:
+        repo: "{{ item }}"
+        mode: 644
+      with_items: "{{ beet_ppa }}"
+      when: "{{ beet_ppa | length }}"
+      register: ppa
+
+    - name: Update apt cache if PPAs have changed.
+      apt: update_cache=yes cache_valid_time=86400
+      when: ppa.changed
+      failed_when: false
+
+    - name: Install packages.
+      package:
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ beet_packages }}"
+      when: "{{ beet_packages | length }}"
+
     - include: "{{ item }}"
       with_fileglob:
         - "{{ beet_custom_pre_tasks }}"
