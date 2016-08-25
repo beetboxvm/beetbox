@@ -234,6 +234,7 @@ drush_create_alias: yes
 drush_alias_name: "{{ beet_domain }}"
 
 # MySQL config.
+mysql_port: "3306"
 mysql_root_password: ""
 mysql_slow_query_log_enabled: true
 mysql_slow_query_time: 2
