@@ -35,6 +35,16 @@ symlinks: no
 # Known hosts.
 known_hosts: no
 
+# PPAs.
+beet_ppa:
+  - ppa:ondrej/php
+
+# Packages.
+beet_packages:
+  - imagemagick
+  - php5-sqlite
+  - unzip
+
 # Apache config.
 apache_daemon: apache2
 apache_remove_default_vhost: true
@@ -114,12 +124,6 @@ installed_extras_newrelic: no
 installed_extras_wp_cli: no
 installed_extras_phantomjs: no
 installed_extras_dcr: no
-
-# Extra packages.
-extra_packages:
-  - imagemagick
-  - php5-sqlite
-  - unzip
 
 # git config.
 git_packages:
