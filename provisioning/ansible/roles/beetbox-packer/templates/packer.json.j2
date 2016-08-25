@@ -71,9 +71,11 @@
     },
     {
       "type": "shell",
-      "scripts": [
-        "packer/scripts/minimize.sh",
-        "packer/scripts/cleanup.sh"
+      "inline": [
+        "export PACKER_SCRIPTS=/beetbox/provisioning/packer/scripts",
+        "chmod -R 755 $PACKER_SCRIPTS",
+        "$PACKER_SCRIPTS/minimize.sh",
+        "$PACKER_SCRIPTS/cleanup.sh"
       ],
       "execute_command": "sudo -E bash '{{ '{{' }} .Path {{ '}}' }}'"
     }
