@@ -2,6 +2,7 @@
 
 # Set default environment variables.
 BEET_PLAYBOOK=${1:-provision}
+BEET_TAGS=${2:-all}
 BEET_HOME=${BEET_HOME:-"/beetbox"}
 BEET_BASE=${BEET_BASE:-"/var/beetbox"}
 BEET_USER=${BEET_USER:-"vagrant"}
@@ -71,7 +72,7 @@ beetbox_adhoc() {
 }
 
 beetbox_play() {
-  ansible-playbook $ANSIBLE_DEBUG $ANSIBLE_HOME/playbook-$1.yml
+  ansible-playbook $ANSIBLE_DEBUG $ANSIBLE_HOME/playbook-$1.yml --tags "${2:-all}"
 }
 
 # Initialise beetbox.
@@ -84,7 +85,7 @@ beetbox_play config
 beetbox_play update
 
 # Provision VM.
-beetbox_play $BEET_PLAYBOOK
+beetbox_play $BEET_PLAYBOOK $BEET_TAGS
 
 # Print welcome message.
 sudo touch $BEET_HOME/.beetbox/results-$BEET_PLAYBOOK.txt
