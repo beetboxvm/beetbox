@@ -37,7 +37,7 @@
     state: directory
     mode: 0775
   become: no
-  when: beet_root is defined
+  when: "beet_root is defined and {{ beet_root_create }}"
 
 - name: Ensure workspace directory exists.
   file:
