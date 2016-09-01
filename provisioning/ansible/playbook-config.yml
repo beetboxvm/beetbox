@@ -10,6 +10,7 @@
     ansible_home: "{{ lookup('env','ANSIBLE_HOME') | default('/beetbox/provisioning/ansible',true) }}"
     conf_dir: "{{ beet_base }}/.beetbox"
     conf_files:
+      - default.config.yml
       - "profiles/{{ beet_profile }}.config.yml"
       - project.config.yml
       - host.config.yml
