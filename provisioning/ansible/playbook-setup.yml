@@ -8,6 +8,7 @@
     circleci: "{{ lookup('env','CIRCLECI') == 'true' }}"
 
   vars_files:
+    - config/default.config.yml
     - "config/profiles/{{ beet_profile }}.config.yml"
     - config/project.config.yml
     - config/host.config.yml
