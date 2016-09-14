@@ -130,7 +130,7 @@ varnish_storage: "malloc,256m"
 nodejs_version: "0.12"
 nodejs_npm_global_packages: []
 nodejs_install_npm_user: "{{ beet_user }}"
-npm_config_prefix: "home/{{ beet_user }}/.npm-global"
+npm_config_prefix: "/home/{{ beet_user }}/.npm-global"
 
 # Ruby config.
 ruby_install_gems_user: "vagrant"
