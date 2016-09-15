@@ -72,7 +72,6 @@ These roles are mantained by Beetbox team.
 | --- | --- |
 | [Backdrop](https://github.com/beetboxvm/ansible-role-beetbox-backdrop) | [![Circle CI](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-backdrop.svg?style=shield)](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-backdrop) |
 | [CakePHP](https://github.com/beetboxvm/ansible-role-beetbox-cakephp) | [![CircleCI](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-cakephp.svg?style=shield)](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-cakephp) |
-| [Concrete5](https://github.com/beetboxvm/ansible-role-beetbox-concrete5) | [![CircleCI](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-concrete5.svg?style=shield)](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-conc rete5) |
 | [Drupal](https://github.com/beetboxvm/ansible-role-beetbox-drupal) | [![CircleCI](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-drupal.svg?style=shield)](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-drupal) |
 | [Kohana](https://github.com/beetboxvm/ansible-role-beetbox-kohana) | [![CircleCI](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-kohana.svg?style=shield)](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-kohana) |
 | [Modx](https://github.com/beetboxvm/ansible-role-beetbox-modx) | [![CircleCI](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-modx.svg?style=shield)](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-modx) |
