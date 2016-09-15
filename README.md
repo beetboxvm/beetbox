@@ -78,6 +78,7 @@ These roles are mantained by Beetbox team.
 | [Modx](https://github.com/beetboxvm/ansible-role-beetbox-modx) | [![CircleCI](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-modx.svg?style=shield)](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-modx) |
 | [Silverstripe](https://github.com/beetboxvm/ansible-role-beetbox-silverstripe) | [![CircleCI](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-silverstripe.svg?style=shield)](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-silverstripe) |
 | [Slim](https://github.com/beetboxvm/ansible-role-beetbox-slim) | [![CircleCI](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-slim.svg?style=shield)](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-slim) |
+| [Symfony](https://github.com/beetboxvm/ansible-role-beetbox-symfony) | [![Circle CI](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-symfony.svg?style=shield)](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-symfony) |
 | [Wordpress](https://github.com/beetboxvm/ansible-role-beetbox-wordpress) | [![CircleCI](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-wordpress.svg?style=shield)](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-wordpress) |
 
 ## Documentation

@@ -85,6 +85,12 @@ beet_debug: yes
 #slim_add_example: yes
 #slim_add_htaccess: yes
 
+# Symfony
+#beet_project: symfony
+#beet_web: "{{ beet_root }}/{{ symfony_project_name }}/web"
+#symfony_project_create: yes
+#symfony_project_name: beetbox
+
 # WordPress.
 #beet_project: wordpress
 #wp_download_core: yes
