@@ -164,6 +164,9 @@
     - role: beetboxvm.symlinks
       when: "{{ symlinks }}"
       tags: extras
+    - role: beetboxvm.composer
+      when: "'{{ beet_project }}' == 'composer'"
+      tags: project
     - role: beetboxvm.drupal
       when: "'{{ beet_project }}' == 'drupal'"
       tags: project
