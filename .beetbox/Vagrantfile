@@ -24,6 +24,7 @@ vconfig = {
   'beet_base' => '/var/beetbox',
   'beet_domain' => beet_root.split('/').last.gsub(/[\._]/, '-') + ".local",
   'beet_aliases' => [],
+  'beet_provision' => true,
   'drush_create_alias' => true
 }
 
@@ -136,15 +137,17 @@ Vagrant.configure("2") do |config|
         debug_mode = "BEET_DEBUG=true"
       end
 
-      # Provision box
-      beet_sh = "#{vconfig['beet_home']}/provisioning/beetbox.sh"
-      beet_sh_playbook = ENV['BEET_PLAY'] || "#{vconfig['beet_provision_playbook']}"
-      beet_sh_tags = ENV['BEET_TAGS'] || "#{vconfig['beet_provision_tags']}"
-      local_provision = "sudo chmod +x #{beet_sh} && #{debug_mode} #{beet_sh} #{beet_sh_playbook} #{beet_sh_tags}"
-      remote_provision = "sudo apt-get -y install curl && curl -fsSL http://bit.ly/beetbuild | UBUNTU_INIT=true bash -Ee"
-      node.vm.provision "ansible", type: "shell" do |s|
-        s.privileged = false
-        s.inline = "if [ -f #{beet_sh} ]; then #{local_provision}; else #{remote_provision}; fi"
+      if vconfig['beet_provision']
+        # Provision box
+        beet_sh = "#{vconfig['beet_home']}/provisioning/beetbox.sh"
+        beet_sh_playbook = ENV['BEET_PLAY'] || "#{vconfig['beet_provision_playbook']}"
+        beet_sh_tags = ENV['BEET_TAGS'] || "#{vconfig['beet_provision_tags']}"
+        local_provision = "sudo chmod +x #{beet_sh} && #{debug_mode} #{beet_sh} #{beet_sh_playbook} #{beet_sh_tags}"
+        remote_provision = "sudo apt-get -y install curl && curl -fsSL http://bit.ly/beetbuild | UBUNTU_INIT=true bash -Ee"
+        node.vm.provision "ansible", type: "shell" do |s|
+          s.privileged = false
+          s.inline = "if [ -f #{beet_sh} ]; then #{local_provision}; else #{remote_provision}; fi"
+        end
       end
 
       # VirtualBox.
