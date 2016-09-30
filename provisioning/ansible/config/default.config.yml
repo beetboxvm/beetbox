@@ -200,11 +200,13 @@ php56_packages:
   - php5.6-gd
   - php5.6-intl
   - php5.6-json
+  - php5.6-mcrypt
   - php5.6-mbstring
   - php5.6-mysql
   - php5.6-opcache
   - php5.6-readline
   - php5.6-xml
+  - php5.6-zip
   - libapache2-mod-php5.6
 php70_packages:
   - php7.0
