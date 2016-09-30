@@ -17,7 +17,7 @@ vconfig = {
   'vagrant_box_version' => '>= 0.2.7',
   'vagrant_ip' => '0.0.0.0',
   'vagrant_memory' => 1024,
-  'vagrant_cpus' => 2,
+  'vagrant_cpus' => 1,
   'beet_provision_playbook' => 'provision',
   'beet_provision_tags' => 'all',
   'beet_home' => '/beetbox',
