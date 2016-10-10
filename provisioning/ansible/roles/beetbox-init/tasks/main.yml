@@ -55,3 +55,30 @@
     line: "SSH_HOME={{ beet_ssh_home }} && [ -e $SSH_HOME ] && cd $SSH_HOME"
   become: no
   when: beet_ssh_home is defined
+
+- name: Set PATH for Composer vendor binaries.
+  lineinfile:
+    dest: "/home/{{ beet_user }}/.bashrc"
+    state: present
+    create: yes
+    regexp: "^\\s*export PATH=\"{{ path_item | regex_escape() }}:\\$PATH\""
+    line: |
+      # Add Composer vendor binaries to PATH.
+      if [ -d "{{ path_item }}" ]; then
+        export PATH="{{ path_item }}:$PATH";
+      fi
+    owner: "{{ beet_user }}"
+    group: "{{ beet_user }}"
+    mode: 0644
+  with_first_found:
+    - files:
+      - "vendor/bin"
+      paths:
+      - "{{ beet_base }}"
+      - "{{ beet_root }}"
+      - "{{ beet_web }}"
+      - "{{ composer_home_path }}"
+      skip: true
+  loop_control:
+    loop_var: path_item
+  when: "{{ installed_extras_composer }}"
