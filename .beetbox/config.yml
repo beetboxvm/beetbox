@@ -15,6 +15,7 @@ drupal_build_makefile: yes
 drupal_install_site: yes
 drupal_account_name: admin
 drupal_account_pass: admin
+drush_create_alias: yes
 php_memory_limit: "284M"
 
 # Beetbox debug.
