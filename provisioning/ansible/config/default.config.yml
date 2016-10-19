@@ -181,6 +181,7 @@ php_fpm_conf_path: "/etc/php/{{ php_version }}/fpm"
 php_fpm_pool_conf_path: "{{ php_fpm_conf_path }}/pool.d/www.conf"
 php_mysql_package: "php{{ php_version }}-mysql"
 php_memcached_package: "php-memcache"
+php_install_recommends: no
 php55_packages:
   - php5.5
   - php5.5-curl
