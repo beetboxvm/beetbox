@@ -166,3 +166,6 @@
 [submodule "provisioning/ansible/roles/beetboxvm.symfony"]
 	path = provisioning/ansible/roles/beetboxvm.symfony
 	url = https://github.com/beetboxvm/ansible-role-beetbox-symfony.git
+[submodule "provisioning/ansible/roles/beetboxvm.composer"]
+	path = provisioning/ansible/roles/beetboxvm.composer
+	url = https://github.com/beetboxvm/ansible-role-beetbox-composer.git
