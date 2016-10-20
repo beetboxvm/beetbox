@@ -47,12 +47,12 @@ You can see some examples in [`config.yml`](https://github.com/beetboxvm/beetbox
 To get a simple Drupal site up and running with Beetbox, run the following commands:
 
 ```
-drush dl drupal-8.1.8 && cd $_
+drush dl drupal-8.2.1 && cd $_
 curl https://raw.githubusercontent.com/beetboxvm/beetbox/master/Vagrantfile > Vagrantfile
 vagrant up
 ```
 
-After which you can install the site at [http://drupal-8.1.8.local/install.php](http://drupal-8.1.8.local/install.php)
+After which you can install the site at [http://drupal-8.2.1.local/install.php](http://drupal-8.2.1.local/install.php)
 
 or add the following to `./beetbox/config.yml` and run `vagrant provision` to automatically install drupal:
 
