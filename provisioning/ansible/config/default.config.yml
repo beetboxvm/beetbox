@@ -229,8 +229,8 @@ composer_global_packages:
   - { name: hirak/prestissimo, release: '^0.3' }
 
 # Drush config.
-drush_version: "8.1.2"
-drush_keep_updated: "{{ (drush_version != '8.1.2') }}"
+drush_version: "8.1.6"
+drush_keep_updated: "{{ (drush_version != '8.1.6') }}"
 drush_composer_cli_options: "--prefer-dist --no-interaction"
 drush_create_alias: yes
 drush_alias_name: "{{ beet_domain }}"
