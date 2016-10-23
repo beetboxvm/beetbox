@@ -107,3 +107,5 @@
     repo: https://github.com/thebinary/ansible-role-lxd.git
   - name: alexdesignworks.dcr
     repo: https://github.com/alexdesignworks/ansible-role-dcr.git
+  - name: ansible-role-grunt
+    repo: https://github.com/AsianChris/ansible-role-grunt.git

@@ -164,7 +164,7 @@
     - role: beetboxvm.symlinks
       when: "{{ symlinks }}"
       tags: extras
-    - role: grunt_tools
+    - role: ansible-role-grunt
       when: "{{ installed_extras_grunt }}"
       tags: extras
     - role: beetboxvm.composer
