@@ -1,0 +1,25 @@
+---
+- name: install php code sniffer
+  pear: name=PHP_CodeSniffer state=present
+
+- name: get the drupal php codesniffer standards
+  git: repo=http://git.drupal.org/project/coder.git
+       dest=~/coder
+       version=8.x-2.x
+  notify: move drupal cs
+
+- name: download and run version 5 of nodejs
+  get_url: url=https://deb.nodesource.com/setup_5.x dest=~/setup_5.x force=no
+  notify: update to version 5 of nodejs
+
+- name: install nodejs setup chmod
+  file: path=/root/setup_5.x mode=0755
+
+- name: install nodejs setup
+  shell: bash ~/setup_5.x
+
+- name: install nodejs
+  apt: name=nodejs state=present
+
+- name: install grunt-cli node.js package globally.
+  npm: name=grunt-cli global=yes
