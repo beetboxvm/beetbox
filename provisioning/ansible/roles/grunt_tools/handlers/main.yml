@@ -1,6 +1,0 @@
----
-- name: update to version 5 of nodejs
-  shell: 'bash ~/setup_5.x'
-
-- name: move drupal cs
-  shell: 'mv ~/coder/coder_sniffer/Drupal /usr/share/php/PHP/CodeSniffer/Standards/'
