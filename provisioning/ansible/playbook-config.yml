@@ -37,7 +37,7 @@
       file:
         path: "{{ ansible_home }}/config/{{ item }}"
         state: touch
-      with_items: conf_files
+      with_items: "{{ conf_files }}"
       changed_when: false
 
     - name: Check if playbook override directory exists
