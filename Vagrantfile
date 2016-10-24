@@ -3,8 +3,7 @@
 
 ENV['BEET_ROOT_DIR'] = "#{__dir__}"
 ENV['BEET_CONFIG_DIR'] = ENV['BEET_CONFIG_DIR'] || "#{ENV['BEET_ROOT_DIR']}/.beetbox"
-# r_vagrantfile = ENV['BEET_VAGRANTFILE'] || "https://raw.githubusercontent.com/beetboxvm/beetbox/master/.beetbox/Vagrantfile"
-r_vagrantfile = ENV['BEET_VAGRANTFILE'] || "https://github.com/salsadigitalauorg/beetbox/blob/master/.beetbox/Vagrantfile"
+r_vagrantfile = ENV['BEET_VAGRANTFILE'] || "https://raw.githubusercontent.com/beetboxvm/beetbox/master/.beetbox/Vagrantfile"
 l_vagrantfile = "#{ENV['BEET_CONFIG_DIR']}/Vagrantfile"
 
 # Create local Vagrantfile.
