@@ -169,3 +169,7 @@
 [submodule "provisioning/ansible/roles/beetboxvm.composer"]
 	path = provisioning/ansible/roles/beetboxvm.composer
 	url = https://github.com/beetboxvm/ansible-role-beetbox-composer.git
+[submodule "provisioning/ansible/roles/ansible-role-grunt"]
+	path = provisioning/ansible/roles/ansible-role-grunt
+	url = https://github.com/AsianChris/ansible-role-grunt.git
+	branch = master
