@@ -15,6 +15,8 @@ beet_project: drupal
 beet_debug: no
 beet_domain: "{{ ansible_hostname }}.local"
 beet_aliases: []
+beet_env_name: BB_ENVIRONMENT
+beet_env: vagrant
 beet_user: "{{ lookup('env','BEET_USER') | default('vagrant',true) }}"
 beet_base: "{{ lookup('env','BEET_BASE') | default('/var/beetbox',true) }}"
 beet_root: "{{ beet_base }}"
@@ -45,6 +47,7 @@ apache_vhosts:
     documentroot: "{{ beet_web }}"
     extra_parameters: |
       ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ beet_web }}"
+      SetEnv {{ beet_env_name }} {{ beet_env }}
 apache_listen_port_ssl: "{{ (beet_webserver == 'apache') | ternary('443','444') }}"
 apache_vhosts_ssl:
   - servername: "{{ beet_domain }}"
@@ -53,6 +56,7 @@ apache_vhosts_ssl:
     certificate_key_file: "/etc/ssl/private/ssl-cert-snakeoil.key"
     extra_parameters: |
       ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ beet_web }}"
+      SetEnv {{ beet_env_name }} {{ beet_env }}
 apache_mods_enabled:
   - authn_core.load
   - expires.load
