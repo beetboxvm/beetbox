@@ -132,7 +132,7 @@ varnish_listen_port: 81
 varnish_storage: "malloc,256m"
 
 # Nodejs config.
-nodejs_version: "0.12"
+nodejs_version: "4.x"
 nodejs_npm_global_packages: []
 nodejs_install_npm_user: "{{ beet_user }}"
 npm_config_prefix: "/home/{{ beet_user }}/.npm-global"
