@@ -11,7 +11,6 @@ installed_extras_apparmor: yes
 installed_extras_avahi: yes
 installed_extras_composer: yes
 installed_extras_drupal_console: yes
-installed_extras_drush: yes
 installed_extras_git: yes
 installed_extras_mailhog: yes
 installed_extras_memcached: yes
