@@ -8,7 +8,6 @@ installed_extras_init: yes
 installed_extras_apache: yes
 installed_extras_avahi: yes
 installed_extras_composer: yes
-installed_extras_drush: yes
 installed_extras_git: yes
 installed_extras_mailhog: yes
 installed_extras_nginx: yes
