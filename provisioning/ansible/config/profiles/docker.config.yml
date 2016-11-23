@@ -14,3 +14,10 @@ installed_extras_nginx: yes
 installed_extras_php: yes
 installed_extras_upload_progress: yes
 installed_extras_web: yes
+
+# Extra packages.
+extra_packages:
+  - imagemagick
+  - mysql-client
+  - php5-sqlite
+  - unzip
