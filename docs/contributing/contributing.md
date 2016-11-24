@@ -25,7 +25,7 @@ This has been modified to use a debug mode which will:
 
 From this point you can modify anything inside the [`provisioning`](https://github.com/beetboxvm/beetbox/tree/master/provisioning) directory and apply changes with `vagrant provision`.
 
-*Note: sometimes it's easier to disable (comment out) all roles when debugging, but be careful as there can be role dependencies.
+**Note:** sometimes it's easier to disable (comment out) all roles when debugging, but be careful as there can be role dependencies.
 
 # Forking the project
 
