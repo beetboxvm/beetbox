@@ -2,9 +2,9 @@
 
 Contributing is easy, the hardest part is knowing which project to add your pull request to.
 
-The main knowledge required is [Ansible](https://www.ansible.com/): it's pretty easy to pick up and they have some good docs available &mdash; http://docs.ansible.com/.
+The main knowledge required is [Ansible](https://www.ansible.com/): it's pretty easy to pick up and there is very good [Ansible documentation](http://docs.ansible.com/) available.
 
-The main project Beetbox core (https://github.com/beetboxvm/beetbox) is essentially some plumbing to initiate a set of external roles hosted on [Ansible galaxy](https://galaxy.ansible.com).
+The [Beetbox project](https://github.com/beetboxvm/beetbox) is essentially some plumbing to initiate a set of external roles hosted on [Ansible galaxy](https://galaxy.ansible.com).
 
 We have a few internal ansible tasks, but these are only for low level setup and a few features like custom tasks and the welcome message you see at the end of provisioning.
 
@@ -29,7 +29,7 @@ From this point you can modify anything inside the [`provisioning`](https://gith
 
 # Forking the project
 
-Please follow these instructions to fork the project: https://help.github.com/articles/fork-a-repo/
+Please follow these instructions to [Fork a project on Github](https://help.github.com/articles/fork-a-repo/).
 
 Next, you'll want to change you local repo to use the fork
 ```
@@ -40,7 +40,7 @@ Now you should be able to branch and push changes to your fork of the project.
  
 # Creating a PR
 
-We use pull requests to accept changes to the project. There's already good docs for doing this on github: https://help.github.com/articles/using-pull-requests/
+We use pull requests to accept changes to the project. Please read this article about [using pull requests on Github](https://help.github.com/articles/using-pull-requests/).
 
 # Roles
 
