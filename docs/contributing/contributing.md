@@ -6,7 +6,7 @@ The main knowledge required is [Ansible](https://www.ansible.com/): it's pretty 
 
 The [Beetbox project](https://github.com/beetboxvm/beetbox) is essentially some plumbing to initiate a set of external roles hosted on [Ansible galaxy](https://galaxy.ansible.com).
 
-We have a few internal ansible tasks, but these are only for low level setup and a few features like custom tasks and the welcome message you see at the end of provisioning.
+We have a few internal Ansible tasks, but these are only for low level setup and a few features like custom tasks and the welcome message you see at the end of provisioning.
 
 # Setup
 
@@ -21,7 +21,7 @@ This has been modified to use a debug mode which will:
 
 - show more details when provisioning
 - mount [`provisioning`](https://github.com/beetboxvm/beetbox/tree/master/provisioning) directory into the VM, so it's editable and changes could be picked up by `vagrant provision`
-- checkout the ansible roles from their source repo, rather than from ansible galaxy
+- checkout the Ansible roles from their source repo, rather than from Ansible galaxy
 
 From this point you can modify anything inside the [`provisioning`](https://github.com/beetboxvm/beetbox/tree/master/provisioning) directory and apply changes with `vagrant provision`.
 
