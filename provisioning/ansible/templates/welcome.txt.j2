@@ -28,7 +28,7 @@ Drupal
 {% if (drush_create_alias) %}
 Drush alias: @{{ drush_alias_name }}
 {% endif %}
-{% if (drupal_drush_login.rc == 0) %}
+{% if (drupal_drush_login is defined and drupal_drush_login.rc == 0) %}
 Login link: {{ drupal_drush_login.stdout }}
 {% endif %}
 {% endif %}
