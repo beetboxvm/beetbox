@@ -1,0 +1,4 @@
+#!/bin/bash
+if [ -f "{{ beet_home }}/.beetbox/results-provision.txt" ]; then
+  sed '1d;s/^/    /' {{ beet_home }}/.beetbox/results-provision.txt
+fi

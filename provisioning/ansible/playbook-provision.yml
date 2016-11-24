@@ -231,3 +231,11 @@
         force: yes
         mode: 0644
       become: no
+
+    - name: Create dynamic message of the day.
+      template:
+        dest: "/etc/update-motd.d/15-beetbox"
+        src: "templates/motd.sh.j2"
+        force: yes
+        mode: 0755
+      become: yes
