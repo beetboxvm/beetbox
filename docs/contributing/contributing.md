@@ -31,10 +31,14 @@ From this point you can modify anything inside the [`provisioning`](https://gith
 
 Please follow these instructions to [Fork a project on Github](https://help.github.com/articles/fork-a-repo/).
 
-Next, you'll want to change you local repo to use the fork
+Next, you'll want to change your local repository to point at your new remote fork and add an upstream remote to keep it up-to-date.
+```sh
+git remote set-url origin https://github.com/YOUR_USERNAME/beetbox.git
+git remote add upstream https://github.com/beetboxvm/beetbox.git
+git fetch --all
 ```
-git remote set-url origin [git URL of fork]
-```
+
+Please follow these instructions to [Sync a fork and keep it up-to-date](https://help.github.com/articles/syncing-a-fork/).
 
 Now you should be able to branch and push changes to your fork of the project.
  
