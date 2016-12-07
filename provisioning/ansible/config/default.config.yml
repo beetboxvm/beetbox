@@ -232,12 +232,11 @@ composer_home_group: "{{ beet_user }}"
 composer_global_packages:
   - name: hirak/prestissimo
     release: '^0.3'
-  - name: drush/drush
-    release: "{{ drush_version }}"
 
 # Drush config.
-drush_path: "{{ composer_home_path }}/vendor/bin/drush"
-drush_version: "^8.1"
+drush_version: "8.x"
+drush_clone_depth: ~
+drush_keep_updated: "{{ (drush_version != '8.x') }}"
 drush_create_alias: yes
 drush_alias_name: "{{ beet_domain }}"
 
