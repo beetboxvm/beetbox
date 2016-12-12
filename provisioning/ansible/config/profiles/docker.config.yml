@@ -10,7 +10,7 @@ installed_extras_avahi: yes
 installed_extras_composer: yes
 installed_extras_git: yes
 installed_extras_mailhog: yes
-installed_extras_nginx: yes
+installed_extras_nodejs: yes
 installed_extras_php: yes
 installed_extras_upload_progress: yes
 installed_extras_web: yes
