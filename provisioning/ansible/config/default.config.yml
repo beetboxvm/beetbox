@@ -185,6 +185,7 @@ php_fpm_pool_conf_path: "{{ php_fpm_conf_path }}/pool.d/www.conf"
 php_mysql_package: "php{{ php_version }}-mysql"
 php_memcached_package: "php-memcache"
 php_install_recommends: no
+php_module_path: "/usr/lib/php{{ php_version }}/modules"
 php55_packages:
   - php5.5
   - php5.5-curl
@@ -258,10 +259,15 @@ php_xdebug_max_nesting_level: 256
 # IDE key for debug.
 php_xdebug_idekey: PHPSTORM
 # php_xdebug_idekey: sublime.xdebug
+php_xdebug_module_path: "{{ php_module_path }}"
 
 # Xhprof config.
 xhprof_download_url: https://github.com/phacility/xhprof/archive/master.tar.gz
 xhprof_download_folder_name: xhprof-master
+php_xhprof_module_path: "{{ php_module_path }}"
+
+# uploadprogress config.
+php_uploadprogress_module_path: "{{ php_module_path }}"
 
 # Solr config.
 solr_version: "4.10.4"
