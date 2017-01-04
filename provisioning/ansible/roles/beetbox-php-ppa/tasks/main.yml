@@ -1,10 +1,4 @@
 ---
-- name: Add repository for PHP.
-  apt_repository:
-    repo: "ppa:ondrej/php"
-    mode: 644
-    update_cache: yes
-
 - name: Purge PHP version packages.
   apt:
     name: "{{ item }}"

@@ -1,0 +1,8 @@
+---
+- name: Add apt repositories (if any are configured).
+  apt_repository:
+    repo: "{{ item }}"
+    mode: 644
+    update_cache: yes
+  with_items: "{{ apt_repos }}"
+  when: "{{ apt_repos | length }}"

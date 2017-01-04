@@ -27,6 +27,9 @@
     - role: beetbox-init
       when: "{{ installed_extras_init }}"
       tags: beetbox
+    - role: beetbox-apt-repos
+      when: "{{ apt_repos | length }}"
+      tags: beetbox
     - role: geerlingguy.apache
       when: "{{ installed_extras_apache }}"
       tags: beetbox
