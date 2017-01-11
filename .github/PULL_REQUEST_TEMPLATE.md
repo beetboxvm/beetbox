@@ -11,4 +11,3 @@
 ## Notify
 
 - @octocat
-- @beetboxvm/octoteam
