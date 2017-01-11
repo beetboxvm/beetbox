@@ -4,12 +4,15 @@ This is the main method to customise the VM.
 
 In this file you can override any ansible variables provided by beetbox or by the galaxy roles.
 
+See the [beetbox.config.yml](https://github.com/beetboxvm/beetbox/blob/master/provisioning/ansible/config/default.config.yml) for a full list of variables.
+And each role can include their own specific variables, see [the list of roles](https://github.com/beetboxvm/beetbox/blob/master/docs/configuration/ansible/galaxy-roles.md) for more info.
 
-# Common overrides.
+
+# Common overrides
 
   `vagrant_ip`
   
-The IP of the VM, by default this is `0.0.0.0` and the auto network plugin will auto assign an IP.
+The IP of the VM, by default this is `0.0.0.0` and the `auto-network` plugin will auto assign an IP.
 
   `vagrant_memory`
   
@@ -17,7 +20,7 @@ The memory given to the VM.
 
   `beet_project` (string)
   
-The beetbox project role to invoke, by default this is drupal but you can also set this to `custom` to skip any project specific role.
+The beetbox project role to invoke, by default this is `drupal` but you can also set this to `custom` to skip any project specific role.
 
   `beet_domain` (string)
   
@@ -38,12 +41,7 @@ If your docroot was at `/docroot` inside the repo you would add `beet_root: "{{ 
 
   `beet_web` (string)
   
-In some cases the web root is not the same as the project root or the root of the repo so you can override this to be the default docroot for apache. 
-  
-
-See the beetbox.config.yml for a full list of variables.
-And each role can include their own specific variables, see the list of rles for more info.
-
+In some cases the web root is not the same as the project root or the root of the repo so you can override this to be the default docroot for Apache.  
 
 # local.config.yml
 
