@@ -14,7 +14,7 @@ If you haven't already, please take the time to read through the complete [Contr
 Proposing Changes
 -----------------
 
-Please submit a [GitHub Pull Request to Beetbox][] with a clear list of what you've done.
+Please submit a [GitHub Pull Request][] with a clear list of what you've done.
 
 When you send a pull request with a new or changed feature, we will love you forever if you also include documentation or tests.
 
