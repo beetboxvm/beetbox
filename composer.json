@@ -1,0 +1,29 @@
+{
+  "name": "beet/box",
+  "description": "A pre-provisioned L*MP stack VM",
+  "homepage": "https://github.com/beetboxvm/beetbox",
+  "type": "composer-plugin",
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/beetboxvm/beetbox/issues",
+    "source": "https://github.com/beetboxvm/beetbox",
+    "docs": "http://beetbox.readthedocs.io/en/latest"
+  },
+  "require": {
+    "composer-plugin-api": "^1.0"
+  },
+  "require-dev": {
+    "composer/composer": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "Beet\\Box\\": "composer/src/"
+    }
+  },
+  "extra": {
+    "class": "Beet\\Box\\Plugin",
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
+  }
+}
