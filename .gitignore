@@ -7,7 +7,6 @@ projects/
 # Prevent composer related files.
 
 vendor/
-composer.lock
 
 # Prevent Ansible related files.
 
