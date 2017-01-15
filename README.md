@@ -37,7 +37,7 @@ vagrant plugin install vagrant-auto_network
 ## Quickstart
 
 ```
-composer require -dev beet/box
+composer require --dev beet/box
 vagrant up
 ```
 

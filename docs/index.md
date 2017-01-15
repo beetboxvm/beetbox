@@ -11,7 +11,7 @@
 ## Quickstart
 
 ```
-composer require -dev beet/box
+composer require --dev beet/box
 vagrant up
 ```
 
