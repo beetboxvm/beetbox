@@ -10,21 +10,26 @@
 
 ## Quickstart
 
-Include this [Vagrantfile](https://raw.githubusercontent.com/beetboxvm/beetbox/master/Vagrantfile) in the root of your project (usually the one which contains index.php) and `vagrant up`.
-This will automatically generate the `.beetbox` directory which will contain a `config.yml` file used to configure overrides.
-You can see some examples here - [`config.yml`](https://github.com/beetboxvm/beetbox/blob/master/.beetbox/config.yml)
-
-## Drupal Quickstart
-
-To get a simple Drupal site up and running with Beetbox, run the following commands:
-
 ```
-drush dl drupal-8.2.1 && cd $_
-wget https://raw.githubusercontent.com/beetboxvm/beetbox/master/Vagrantfile
+composer require -dev beet/box
 vagrant up
 ```
 
-After which you can install the site at [http://drupal-8.2.1.local/install.php](http://drupal-8.2.1.local/install.php)
+This will automatically generate a Vagrantfile and the `.beetbox` directory, which will contain a `config.yml` file used to configure overrides.
+
+You can see some examples in [`config.yml`](https://github.com/beetboxvm/beetbox/blob/master/.beetbox/config.yml)
+
+## Drupal Quickstart
+
+To get a simple Drupal 8 site up and running with Beetbox, run the following commands:
+
+```
+drush dl drupal --drupal-project-rename=drupal8 && cd drupal8
+curl https://raw.githubusercontent.com/beetboxvm/beetbox/master/Vagrantfile > Vagrantfile
+vagrant up
+```
+
+After which you can install the site at [http://drupal8.local/install.php](http://drupal8.local/install.php)
 
 or add the following to `./beetbox/config.yml` and run `vagrant provision` to automatically install drupal.
 

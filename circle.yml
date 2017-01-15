@@ -15,13 +15,13 @@ checkout:
     - git submodule sync
     - git submodule update --init
 dependencies:
-  cache_directories:
-    - "~/.cache/beetbox"
   override:
+    - composer install
     - sudo cp -rf ~/$CIRCLE_PROJECT_REPONAME $BEET_HOME
     - sudo rm -rf $BEET_HOME/.beetbox/config.yml
 test:
   override:
+    - vendor/bin/phpunit
     - sudo chmod +x $BEET_HOME/$BEET_PROVISION && $BEET_HOME/$BEET_PROVISION
     - sudo $BEET_HOME/provisioning/packer/scripts/minimize.sh
 deployment:
