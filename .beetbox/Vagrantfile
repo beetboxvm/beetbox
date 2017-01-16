@@ -2,6 +2,7 @@
 # vi: set ft=ruby :
 
 require 'fileutils'
+require 'json'
 require 'yaml'
 
 Vagrant.require_version '>= 1.8.5'
@@ -10,6 +11,7 @@ beet_root = ENV['BEET_ROOT_DIR'] || "#{__dir__}"
 config_dir = ENV['BEET_CONFIG_DIR'] || "#{beet_root}/.beetbox"
 project_config = "#{config_dir}/config.yml"
 local_config = "#{config_dir}/local.config.yml"
+composer_json = "#{beet_root}/composer.json"
 
 # Default vagrant config.
 vconfig = {
@@ -29,11 +31,18 @@ vconfig = {
   'drush_create_alias' => true
 }
 
-# Create default config file.
-if !File.exist?(project_config)
-  FileUtils.mkdir_p config_dir
-  open(project_config, "w+") << "---\nbeet_domain: #{vconfig['beet_domain']}\n"
+# Create config directory.
+FileUtils.mkdir_p config_dir
+
+# Create config.yml from composer config.
+if File.exist?(composer_json)
+  composer_conf = JSON.parse(File.read(composer_json))
+  cconfig = composer_conf['extra']['beetbox']['config'] rescue nil
+  open(project_config, "w+") << cconfig.to_yaml if cconfig.is_a?(Hash)
 end
+
+# Create default config file.
+open(project_config, "w+") << "---\nbeet_domain: #{vconfig['beet_domain']}\n" if !File.exist?(project_config)
 
 # Create .gitignore file.
 git_ignore = "host.config.yml\nlocal.config.yml\nVagrantfile\nVagrantfile.local\n"
