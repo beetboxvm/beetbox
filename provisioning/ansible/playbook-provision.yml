@@ -16,9 +16,15 @@
 
   pre_tasks:
 
+    - name: Check pre tasks directory exists.
+      stat:
+        path: "{{ beet_custom_pre_tasks }}"
+      register: pre_tasks_dir
+
     - include: "{{ item }}"
       with_fileglob:
         - "{{ beet_custom_pre_tasks }}"
+      when: pre_tasks_dir.stat.exists
       tags:
         - pre
         - custom
@@ -220,9 +226,15 @@
         group: "{{ beet_user }}"
         recurse: yes
 
+    - name: Check post tasks directory exists.
+      stat:
+        path: "{{ beet_custom_post_tasks }}"
+      register: post_tasks_dir
+
     - include: "{{ item }}"
       with_fileglob:
         - "{{ beet_custom_post_tasks }}"
+      when: post_tasks_dir.stat.exists
       tags:
         - post
         - custom
