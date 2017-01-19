@@ -117,6 +117,7 @@ installed_extras_newrelic: no
 installed_extras_wp_cli: no
 installed_extras_phantomjs: no
 installed_extras_dcr: no
+installed_extras_grunt: no
 
 # apt repositories.
 apt_repos:
