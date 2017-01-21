@@ -38,15 +38,16 @@ FileUtils.mkdir_p config_dir
 if File.exist?(composer_json)
   composer_conf = JSON.parse(File.read(composer_json))
   cconfig = composer_conf['extra']['beetbox']['config'] rescue nil
-  open(project_config, "w+") << cconfig.to_yaml if cconfig.is_a?(Hash)
+  File.open(project_config, "w") { |f| f.write(cconfig.to_yaml) } if cconfig.is_a?(Hash)
 end
 
 # Create default config file.
-open(project_config, "w+") << "---\nbeet_domain: #{vconfig['beet_domain']}\n" if !File.exist?(project_config)
+default_config = "---\nbeet_domain: #{vconfig['beet_domain']}\n"
+File.open(project_config, "w") { |f| f.write(default_config) } if !File.exist?(project_config)
 
 # Create .gitignore file.
 git_ignore = "host.config.yml\nlocal.config.yml\nVagrantfile\nVagrantfile.local\n"
-open("#{config_dir}/.gitignore", "w+") << git_ignore if !File.exist?("#{config_dir}/.gitignore")
+File.open("#{config_dir}/.gitignore", "w") { |f| f.write(git_ignore) } if !File.exist?("#{config_dir}/.gitignore")
 
 # Copy config from host.
 host_config = "#{Dir.home}/.beetbox/config.yml"
