@@ -24,7 +24,7 @@ You can see some examples in [`config.yml`](https://github.com/beetboxvm/beetbox
 To get a simple Drupal 8 site up and running with Beetbox, run the following commands:
 
 ```
-drush pm-download drupal --drupal-project-rename=drupal8 && cd drupal8
+drush pm-download drupal-8 --drupal-project-rename=drupal8 && cd drupal8
 php -r "readfile('https://raw.githubusercontent.com/beetboxvm/beetbox/master/Vagrantfile');" > Vagrantfile
 vagrant up
 ```
