@@ -25,7 +25,7 @@ To get a simple Drupal 8 site up and running with Beetbox, run the following com
 
 ```
 drush dl drupal --drupal-project-rename=drupal8 && cd drupal8
-curl https://raw.githubusercontent.com/beetboxvm/beetbox/master/Vagrantfile > Vagrantfile
+php -r "readfile('https://raw.githubusercontent.com/beetboxvm/beetbox/master/Vagrantfile');" > Vagrantfile
 vagrant up
 ```
 
