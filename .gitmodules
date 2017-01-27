@@ -40,9 +40,6 @@
 [submodule "provisioning/ansible/roles/beetboxvm.wordpress"]
 	path = provisioning/ansible/roles/beetboxvm.wordpress
 	url = https://github.com/beetboxvm/ansible-role-beetbox-wordpress.git
-[submodule "provisioning/ansible/roles/angstwad.docker_ubuntu"]
-	path = provisioning/ansible/roles/angstwad.docker_ubuntu
-	url = https://github.com/angstwad/docker.ubuntu.git
 [submodule "provisioning/ansible/roles/ANXS.postgresql"]
 	path = provisioning/ansible/roles/ANXS.postgresql
 	url = https://github.com/ANXS/postgresql
