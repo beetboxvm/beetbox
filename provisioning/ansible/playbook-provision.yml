@@ -77,9 +77,6 @@
     - role: geerlingguy.git
       when: "{{ installed_extras_git }}"
       tags: extras
-    - role: angstwad.docker_ubuntu
-      when: "{{ installed_extras_docker }}"
-      tags: extras
     - role: thebinary.lxd
       when: "{{ installed_extras_lxd }}"
       tags: extras
