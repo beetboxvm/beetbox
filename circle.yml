@@ -21,7 +21,7 @@ dependencies:
     - sudo rm -rf $BEET_HOME/.beetbox/config.yml
 test:
   override:
-    - vendor/bin/phpunit
+    - composer test
     - sudo chmod +x $BEET_HOME/$BEET_PROVISION && $BEET_HOME/$BEET_PROVISION
     - sudo $BEET_HOME/provisioning/packer/scripts/minimize.sh
 deployment:

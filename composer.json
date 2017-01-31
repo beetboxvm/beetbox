@@ -21,6 +21,9 @@
       "Beet\\Box\\": "composer/src/"
     }
   },
+  "scripts": {
+    "test": "phpunit"
+  },
   "extra": {
     "class": "Beet\\Box\\Plugin",
     "branch-alias": {
