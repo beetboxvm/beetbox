@@ -155,6 +155,9 @@
     - role: geerlingguy.varnish
       when: "{{ installed_extras_varnish }}"
       tags: extras
+    - role: pixelart.platformsh-cli
+      when: "{{ installed_extras_platform_cli }}"
+      tags: extras
     - role: hashbangcode.pantheon-cli
       when: "{{ installed_extras_pantheon_cli }}"
       tags: extras
