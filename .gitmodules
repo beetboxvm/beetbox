@@ -166,3 +166,6 @@
 [submodule "provisioning/ansible/roles/beetboxvm.composer"]
 	path = provisioning/ansible/roles/beetboxvm.composer
 	url = https://github.com/beetboxvm/ansible-role-beetbox-composer.git
+[submodule "provisioning/ansible/roles/pixelart.platformsh-cli"]
+	path = provisioning/ansible/roles/pixelart.platformsh-cli
+	url = https://github.com/pixelart/ansible-role-platformsh-cli

@@ -102,6 +102,7 @@ installed_extras_selenium: no
 installed_extras_elasticsearch: no
 installed_extras_firewall: no
 installed_extras_postfix: no
+installed_extras_platform_cli: no
 installed_extras_pantheon_cli: no
 installed_extras_varnish: no
 installed_extras_pimpmylog: no
