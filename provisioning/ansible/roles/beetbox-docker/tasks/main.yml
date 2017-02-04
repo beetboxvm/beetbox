@@ -19,6 +19,7 @@
   with_items:
     - /var/log/supervisor
     - /var/run/sshd
+    - /run/php
 
 - name: Add supervisor configuration.
   copy:

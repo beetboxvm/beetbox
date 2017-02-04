@@ -2,8 +2,6 @@ FROM ubuntu:14.04
 
 WORKDIR /beetbox
 
-EXPOSE 80
-
 VOLUME ["/var/beetbox"]
 
 # Copy source files into the build context.
