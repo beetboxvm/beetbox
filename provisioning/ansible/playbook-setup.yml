@@ -16,8 +16,9 @@
     - config/local.config.yml
 
   roles:
-    - { role: beetbox-circleci, when: "{{ circleci }}"}
-    - { role: beetbox-vagrant, when: "{{ lookup('env','VAGRANT_INIT') == 'true' }}"}
-    - { role: beetbox-ubuntu, when: "{{ lookup('env','UBUNTU_INIT') == 'true' }}"}
-    - { role: beetbox-virtualbox, when: "{{ lookup('env','VIRTUALBOX_INIT') == 'true' }}"}
-    - { role: beetbox-packer, when: "{{ lookup('env','INSTALL_PACKER') == 'true' }}"}
+    - { role: beetbox-circleci, when: "{{ circleci }}" }
+    - { role: beetbox-docker, when: ansible_virtualization_type == 'docker' }
+    - { role: beetbox-vagrant }
+    - { role: beetbox-ubuntu }
+    - { role: beetbox-virtualbox, when: "{{ lookup('env','VIRTUALBOX_INIT') == 'true' }}" }
+    - { role: beetbox-packer, when: "{{ lookup('env','INSTALL_PACKER') == 'true' }}" }

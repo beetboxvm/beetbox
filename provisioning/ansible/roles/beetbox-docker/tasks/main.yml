@@ -1,0 +1,40 @@
+---
+- name: Ensure apt cache is updated.
+  apt: update_cache=yes cache_valid_time=3600
+
+- name: Install docker packages
+  apt: "name={{ item }} state=installed"
+  with_items:
+    - mysql-server
+    - openssh-server
+    - supervisor
+    - python-pycurl
+    - build-essential
+
+- name: Ensure directories exists.
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0644
+  with_items:
+    - /var/log/supervisor
+    - /var/run/sshd
+
+- name: Add supervisor configuration.
+  copy:
+    src: supervisord.conf
+    dest: /etc/supervisor/conf.d/supervisord.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Add docker startup script.
+  copy:
+    src: start.sh
+    dest: /start.sh
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Start MySQL service.
+  command: "service mysql start"

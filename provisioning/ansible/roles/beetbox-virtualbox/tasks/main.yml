@@ -1,4 +1,13 @@
 ---
+- name: Get current kernel version.
+  shell: uname -r
+  register: current_kernel
+
+- name: Ensure correct kernel headers are installed.
+  apt:
+    name: "linux-headers-{{ current_kernel.stdout }}"
+    state: installed
+
 # VirtualBox tools installation.
 - name: Check if VirtualBox is running the guest VM.
   stat: path=/home/vagrant/.vbox_version

@@ -2,15 +2,6 @@
 - name: Ensure apt cache is updated.
   apt: update_cache=yes cache_valid_time=3600
 
-- name: Get current kernel version.
-  shell: uname -r
-  register: current_kernel
-
-- name: Ensure correct kernel headers are installed.
-  apt:
-    name: "linux-headers-{{ current_kernel.stdout }}"
-    state: installed
-
 - name: Disable release upgrade prompt.
   lineinfile:
     dest: /etc/update-manager/release-upgrades
@@ -47,7 +38,3 @@
   with_items:
     - { regexp: '^UseDNS', line: 'UseDNS no' }
     - { regexp: '^GSSAPIAuthentication', line: 'GSSAPIAuthentication no' }
-
-- name: Disable the ufw firewall (since we use a simple iptables firewall).
-  command: >
-    ufw disable
