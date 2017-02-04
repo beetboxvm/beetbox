@@ -10,7 +10,7 @@ vendor/
 
 # Prevent Ansible related files.
 
-.beetbox/installed
+installed
 provisioning/ansible/config/*
 !provisioning/ansible/config/beetbox.config.yml
 provisioning/packer/includes/*

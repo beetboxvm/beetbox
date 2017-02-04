@@ -242,7 +242,7 @@
     - name: Create welcome message.
       template:
         src: "{{ welcome_template }}"
-        dest: "{{ beet_home }}/.beetbox/results-provision.txt"
+        dest: "{{ beet_home }}/results-provision.txt"
         force: yes
         mode: 0644
       become: no
