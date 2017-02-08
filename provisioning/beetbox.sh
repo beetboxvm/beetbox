@@ -1,8 +1,9 @@
 #!/bin/bash -eu
 
 # Set default environment variables.
-BEET_PLAYBOOK=${1:-provision}
-BEET_TAGS=${2:-all}
+export BEET_PROFILE=${BEET_PROFILE:-beetbox}
+BEET_PLAYBOOK=${BEET_PLAYBOOK:-provision}
+BEET_TAGS=${BEET_TAGS:-all}
 BEET_HOME=${BEET_HOME:-"/beetbox"}
 BEET_BASE=${BEET_BASE:-"/var/beetbox"}
 BEET_USER=${BEET_USER:-"vagrant"}
