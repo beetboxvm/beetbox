@@ -1,0 +1,28 @@
+---
+#
+# Acquia PHP 5.6 profile.
+#
+
+# Enabled roles.
+installed_extras_init: yes
+installed_extras_adminer: yes
+installed_extras_apache: yes
+installed_extras_apparmor: yes
+installed_extras_avahi: yes
+installed_extras_composer: yes
+installed_extras_drush: yes
+installed_extras_drupal_console: yes
+installed_extras_git: yes
+installed_extras_mailhog: yes
+installed_extras_memcached: yes
+installed_extras_mysql: yes
+installed_extras_nodejs: yes
+installed_extras_pecl: yes
+installed_extras_php: yes
+installed_extras_upload_progress: yes
+installed_extras_web: yes
+installed_extras_xdebug: yes
+installed_extras_xhprof: yes
+
+# Config.
+beet_root: "{{ beet_base }}/docroot"
