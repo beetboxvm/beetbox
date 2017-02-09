@@ -21,6 +21,7 @@ vconfig = {
   'vagrant_memory' => 1024,
   'vagrant_cpus' => 1,
   'beet_project' => 'drupal',
+  'beet_profile' => 'beetbox',
   'beet_provision_playbook' => 'provision',
   'beet_provision_tags' => 'all',
   'beet_home' => '/beetbox',
@@ -151,9 +152,10 @@ Vagrant.configure("2") do |config|
       if vconfig['beet_provision']
         # Provision box
         beet_sh = "#{vconfig['beet_home']}/provisioning/beetbox.sh"
+        beet_profile = ENV['BEET_PROFILE'] || "#{vconfig['beet_profile']}"
         beet_sh_playbook = ENV['BEET_PLAY'] || "#{vconfig['beet_provision_playbook']}"
         beet_sh_tags = ENV['BEET_TAGS'] || "#{vconfig['beet_provision_tags']}"
-        local_provision = "sudo chmod +x #{beet_sh} && #{debug_mode} #{beet_sh} #{beet_sh_playbook} #{beet_sh_tags}"
+        local_provision = "sudo chmod +x #{beet_sh} && #{debug_mode} BEET_PROFILE=#{beet_profile} BEET_PLAYBOOK=#{beet_sh_playbook} BEET_TAGS=#{beet_sh_tags} #{beet_sh}"
         remote_provision = "sudo apt-get -y install curl && curl -fsSL http://bit.ly/beetbuild | UBUNTU_INIT=true bash -Ee"
         node.vm.provision "ansible", type: "shell" do |s|
           s.privileged = false
