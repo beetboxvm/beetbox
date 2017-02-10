@@ -12,7 +12,7 @@ vendor/
 
 installed
 provisioning/ansible/config/*
-!provisioning/ansible/config/beetbox.config.yml
+!provisioning/ansible/config/profiles/
 provisioning/packer/includes/*
 !provisioning/packer/includes/Vagrantfile
 .beetbox/*
