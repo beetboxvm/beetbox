@@ -2,7 +2,7 @@
 - name: Set hostname.
   hostname:
     name: "{{ beet_domain }}"
-  when: ansible_virtualization_type != 'docker'
+  failed_when: false
 
 - name: Add domains and aliases to hosts file.
   lineinfile:

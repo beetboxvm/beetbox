@@ -10,6 +10,7 @@
     - supervisor
     - python-pycurl
     - build-essential
+    - unzip
 
 - name: Ensure directories exists.
   file:

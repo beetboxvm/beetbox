@@ -5,7 +5,6 @@
 
   vars:
     beet_profile: "{{ lookup('env','BEET_PROFILE') | default('beetbox',true) }}"
-    circleci: "{{ lookup('env','CIRCLECI') == 'true' }}"
 
   vars_files:
     - config/default.config.yml
@@ -16,9 +15,8 @@
     - config/local.config.yml
 
   roles:
-    - { role: beetbox-circleci, when: "{{ circleci }}" }
-    - { role: beetbox-docker, when: ansible_virtualization_type == 'docker' }
+    - { role: beetbox-docker, when: ansible_virtualization_type != 'virtualbox' }
     - { role: beetbox-vagrant }
     - { role: beetbox-ubuntu }
-    - { role: beetbox-virtualbox, when: "{{ lookup('env','VIRTUALBOX_INIT') == 'true' }}" }
+    - { role: beetbox-virtualbox, when: ansible_virtualization_type == 'virtualbox' }
     - { role: beetbox-packer, when: "{{ lookup('env','INSTALL_PACKER') == 'true' }}" }
