@@ -1,37 +1,33 @@
 ---
 machine:
-  hosts:
-    beetbox.local: 127.0.0.1
-  environment:
-    BEET_BOX: beet/box
-    BEET_HOME: /beetbox
-    BEET_BASE: /home/ubuntu/.cache/beetbox/build
-    BEET_PROVISION: provisioning/beetbox.sh
-    VAGRANT_INIT: true
-    UBUNTU_INIT: true
-    INSTALL_PACKER: true
+  services:
+    - docker
 checkout:
   post:
     - git submodule sync
     - git submodule update --init
 dependencies:
+  cache_directories:
+    - ~/.composer/cache
   override:
+    - composer validate
     - composer install
-    - sudo cp -rf ~/$CIRCLE_PROJECT_REPONAME $BEET_HOME
-    - sudo rm -rf $BEET_HOME/.beetbox/config.yml
 test:
   override:
-    - composer test
-    - sudo chmod +x $BEET_HOME/$BEET_PROVISION && $BEET_HOME/$BEET_PROVISION
-    - sudo $BEET_HOME/provisioning/packer/scripts/minimize.sh
+    - phpunit
+    - vendor/bin/robo provision ubuntu:14.04 beet_test
 deployment:
   dev:
     branch: master
     owner: beetboxvm
     commands:
-      - packer push -token=$ATLAS_TOKEN -name="beet/dev" $BEET_HOME/provisioning/beet-dev.json
+      - >
+        docker run -i -v $(pwd):/beetbox -i beet_test
+        packer push -token=$ATLAS_TOKEN -name="beet/dev" /beetbox/provisioning/beet-dev.json
   release:
     tag: /[0-9]+\.[0-9]+\.[0-9]+/
     owner: beetboxvm
     commands:
-      - packer push -token=$ATLAS_TOKEN -name="beet/box" $BEET_HOME/provisioning/beet-box.json
+      - >
+        docker run -i -v $(pwd):/beetbox -i beet_test
+        packer push -token=$ATLAS_TOKEN -name="beet/box" /beetbox/provisioning/beet-box.json

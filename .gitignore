@@ -11,6 +11,7 @@ vendor/
 # Prevent Ansible related files.
 
 installed
+results-provision.txt
 provisioning/ansible/config/*
 !provisioning/ansible/config/profiles/
 provisioning/packer/includes/*

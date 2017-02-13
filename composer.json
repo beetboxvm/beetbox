@@ -9,8 +9,12 @@
     "source": "https://github.com/beetboxvm/beetbox",
     "docs": "http://beetbox.readthedocs.io/en/latest"
   },
+  "config": {
+    "process-timeout": 1200
+  },
   "require": {
-    "composer-plugin-api": "^1.0"
+    "composer-plugin-api": "^1.0",
+    "consolidation/robo": "~1"
   },
   "require-dev": {
     "composer/composer": "dev-master",
@@ -22,7 +26,10 @@
     }
   },
   "scripts": {
-    "test": "phpunit"
+    "test": [
+      "phpunit --colors=always",
+      "robo provision ubuntu:14.04 beet_test --ansi"
+    ]
   },
   "extra": {
     "class": "Beet\\Box\\Plugin",
