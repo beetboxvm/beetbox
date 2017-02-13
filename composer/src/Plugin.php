@@ -55,8 +55,10 @@ class Plugin implements PluginInterface, EventSubscriberInterface {
         $source = __DIR__ . '/../../.beetbox/Vagrantfile';
         $target =  $baseDir . '/Vagrantfile';
 
-        if (!file_exists($target) || md5_file($source) != md5_file($target)) {
-            copy($source, $target);
+        if (file_exists($source)) {
+            if (!file_exists($target) || md5_file($source) != md5_file($target)) {
+                copy($source, $target);
+            }
         }
     }
 
