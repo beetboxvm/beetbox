@@ -31,12 +31,14 @@ class RoboFile extends \Robo\Tasks
             $this->taskDockerCommit($build['cid'])
                 ->name($name)
                 ->run();
-        }
 
-        // Remove build container.
-        $this->taskDockerRemove($name)
-            ->printed(FALSE)
-            ->run();
+            // Remove build container.
+            $this->taskDockerRemove($name)
+                ->printed(FALSE)
+                ->option('force')
+                ->option('volumes')
+                ->run();
+        }
 
         return $build;
     }

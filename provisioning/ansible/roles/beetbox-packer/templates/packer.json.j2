@@ -1,4 +1,8 @@
 {
+  "variables": {
+    "box_version": "",
+    "beet_version": ""
+  },
   "builders": [
     {
       "type": "virtualbox-iso",
@@ -42,7 +46,7 @@
       "shutdown_command": "echo '{{ item.ssh_pass }}'|sudo -S shutdown -P now",
       "guest_additions_path": "VBoxGuestAdditions_{{ '{{' }} .Version {{ '}}' }}.iso",
       "virtualbox_version_file": ".vbox_version",
-      "vm_name": "beetbox_{{ item.box_version | default(0.0.0,true) }}"
+      "vm_name": "beetbox_{{ '{{' }} user `box_version` {{ '}}' }}"
     }
   ],
   "provisioners": [
@@ -56,12 +60,8 @@
     {
       "environment_vars": [
         "SSH_USERNAME={{ item.ssh_name }}",
-        "SSH_PASSWORD={{ item.ssh_pass }}",
         "BEET_REPO={{ beet_repo }}",
-        "BEET_VERSION={{ item.beet_version }}",
-        "VAGRANT_INIT=true",
-        "UBUNTU_INIT=true",
-        "VIRTUALBOX_INIT=true"
+        "BEET_VERSION={{ '{{' }} user `beet_version` {{ '}}' }}"
       ],
       "type": "shell",
       "scripts": [
@@ -97,7 +97,7 @@
         "metadata": {
           "provider": "virtualbox",
           "created_at": "{{ '{{' }} timestamp {{ '}}' }}",
-          "version": "{{ item.box_version | default(0.0.0,true) }}"
+          "version": "{{ '{{' }} user `box_version` {{ '}}' }}"
         }
       }
     ]

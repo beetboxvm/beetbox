@@ -23,11 +23,21 @@ deployment:
     commands:
       - >
         docker run -i -v $(pwd):/beetbox -i beet_test
-        packer push -token=$ATLAS_TOKEN -name="beet/dev" /beetbox/provisioning/beet-dev.json
+        packer push
+        -token=$ATLAS_TOKEN
+        -name="beet/dev"
+        -var "beet_version=master"
+        -var "box_version=0.4.$CIRCLE_BUILD_NUM"
+        /beetbox/provisioning/beet-dev.json
   release:
     tag: /[0-9]+\.[0-9]+\.[0-9]+/
     owner: beetboxvm
     commands:
       - >
         docker run -i -v $(pwd):/beetbox -i beet_test
-        packer push -token=$ATLAS_TOKEN -name="beet/box" /beetbox/provisioning/beet-box.json
+        packer push
+        -token=$ATLAS_TOKEN
+        -name="beet/box"
+        -var "beet_version=$CIRCLE_TAG"
+        -var "box_version=$CIRCLE_TAG"
+        /beetbox/provisioning/beet-box.json

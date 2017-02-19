@@ -10,7 +10,6 @@ BEET_USER=${BEET_USER:-"vagrant"}
 BEET_REPO=${BEET_REPO:-"https://github.com/beetboxvm/beetbox.git"}
 BEET_VERSION=${BEET_VERSION:-"master"}
 BEET_DEBUG=${BEET_DEBUG:-false}
-CIRCLECI=${CIRCLECI:-false}
 ANSIBLE_HOME="$BEET_HOME/provisioning/ansible"
 ANSIBLE_DEBUG=""
 
@@ -27,12 +26,6 @@ export PYTHONUNBUFFERED=${PYTHONUNBUFFERED:-True}
 if [ $BEET_DEBUG = "true" ]; then
   export ANSIBLE_DEPRECATION_WARNINGS=True
   ANSIBLE_DEBUG="-vvv"
-fi
-
-# Circle CI defaults.
-if [ "$CIRCLECI" == "true" ]; then
-  [ $BEET_BASE == "/var/beetbox" ] && export BEET_BASE="/home/ubuntu/$CIRCLE_PROJECT_REPONAME"
-  [ $BEET_USER == "vagrant" ] && export BEET_USER="ubuntu"
 fi
 
 beetbox_setup() {
