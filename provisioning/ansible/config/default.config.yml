@@ -298,8 +298,6 @@ welcome_template: "templates/welcome.txt.j2"
 packer_templates:
   - atlas_username: beet
     atlas_build_name: dev
-    box_version: "0.4.{{ lookup('env','CIRCLE_BUILD_NUM') | default('0',true) }}"
-    beet_version: master
     ssh_name: vagrant
     ssh_pass: vagrant
     hostname: "beetbox.local"
@@ -307,8 +305,6 @@ packer_templates:
     iso_checksum: "07e4bb5569814eab41fafac882ba127893e3ff0bdb7ec931c9b2d040e3e94e7a"
   - atlas_username: beet
     atlas_build_name: box
-    box_version: "{{ lookup('env','CIRCLE_TAG') | default('0.1.1',true) }}"
-    beet_version: "{{ lookup('env','CIRCLE_TAG') | default('0.1.1',true) }}"
     ssh_name: vagrant
     ssh_pass: vagrant
     hostname: "beetbox.local"
