@@ -8,11 +8,12 @@
 namespace Beet\Box\Tests;
 
 use Composer\Util\Filesystem;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests composer plugin functionality.
  */
-class PluginTest extends \PHPUnit_Framework_TestCase {
+class StackTest extends TestCase {
 
     /**
      * @var \Composer\Util\Filesystem
