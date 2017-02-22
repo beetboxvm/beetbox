@@ -1,0 +1,45 @@
+---
+#
+# Acquia BLT profile - https://github.com/acquia/blt
+#
+
+# Project webroot.
+beet_root: "{{ beet_base }}/docroot"
+
+# Database config.
+beet_mysql_user: drupal
+beet_mysql_password: drupal
+beet_mysql_database: drupal
+
+# beetbox automatically creates a drush alias file in your ~/.drush folder if
+# this variable is 'true'.
+drush_create_alias: false
+
+php_version: '5.6'
+php_packages_extra:
+- php{{ php_version }}-bz2
+
+# This is required for front-end building tools.
+nodejs_version: "4.x"
+nodejs_npm_global_packages:
+  - name: bower
+  - name: gulp-cli
+nodejs_install_npm_user: "{{ beet_user }}"
+npm_config_prefix: "/home/{{ beet_user }}/.npm-global"
+
+# XDebug configuration.
+# Change this value to 1 in order to enable xdebug by default.
+php_xdebug_default_enable: 0
+php_xdebug_coverage_enable: 0
+# Change this value to 1 in order to enable xdebug on the cli.
+php_xdebug_cli_enable: 0
+php_xdebug_remote_enable: 1
+php_xdebug_remote_connect_back: 1
+# Use PHPSTORM for PHPStorm, sublime.xdebug for Sublime Text.
+php_xdebug_idekey: PHPSTORM
+php_xdebug_max_nesting_level: 256
+php_xdebug_remote_port: "9000"
+
+# PhantomJS.
+phantomjs_webdriver: yes
+phantomjs_webdriver_port: 4444
