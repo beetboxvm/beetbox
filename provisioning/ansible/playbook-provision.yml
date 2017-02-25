@@ -16,6 +16,38 @@
 
   pre_tasks:
 
+    - name: Check if index.php exists in beet_root.
+      stat:
+        path: "{{ beet_root }}/index.php"
+      register: root_index_found
+
+    - name: Get list of sub directories.
+      find:
+        paths: "{{ beet_base }}"
+        file_type: directory
+      register: sub_directories
+      when:
+        - "'{{ beet_root }}' == '{{ beet_base }}'"
+        - not root_index_found.stat.exists
+
+    - name: Look for index.php in project sub directories.
+      stat:
+        path: "{{ item.path }}/index.php"
+      with_items: "{{ sub_directories.files }}"
+      register: possible_root_paths
+      when:
+        - "'{{ beet_root }}' == '{{ beet_base }}'"
+        - not root_index_found.stat.exists
+
+    - name: Override beet_root if index.php found.
+      set_fact:
+        beet_root: "{{ item.item.path }}"
+      with_items: "{{ possible_root_paths.results }}"
+      when:
+        - "'{{ beet_root }}' == '{{ beet_base }}'"
+        - item.stat.exists
+        - not root_index_found.stat.exists
+
     - name: Check pre tasks directory exists.
       stat:
         path: "{{ beet_custom_pre_tasks }}"
