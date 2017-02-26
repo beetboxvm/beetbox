@@ -13,11 +13,11 @@
     "process-timeout": 1200
   },
   "require": {
-    "composer-plugin-api": "^1.0",
-    "consolidation/robo": "~1"
+    "composer-plugin-api": "^1.0"
   },
   "require-dev": {
     "composer/composer": "dev-master",
+    "consolidation/robo": "~1",
     "phpunit/phpunit": "^6.0"
   },
   "autoload": {
