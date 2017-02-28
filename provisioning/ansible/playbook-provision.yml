@@ -55,7 +55,7 @@
 
     - include: "{{ item }}"
       with_fileglob:
-        - "{{ beet_custom_pre_tasks }}"
+        - "{{ beet_custom_pre_tasks }}/*"
       when: pre_tasks_dir.stat.exists
       tags:
         - pre
@@ -265,7 +265,7 @@
 
     - include: "{{ item }}"
       with_fileglob:
-        - "{{ beet_custom_post_tasks }}"
+        - "{{ beet_custom_post_tasks }}/*"
       when: post_tasks_dir.stat.exists
       tags:
         - post
