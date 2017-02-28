@@ -50,8 +50,9 @@ You can see some examples in [`config.yml`](https://github.com/beetboxvm/beetbox
 To get a simple Drupal 8 site up and running with Beetbox, run the following commands:
 
 ```
-drush pm-download drupal-8 --drupal-project-rename=drupal8 && cd drupal8
-php -r "readfile('https://raw.githubusercontent.com/beetboxvm/beetbox/master/Vagrantfile');" > Vagrantfile
+composer create-project drupal-composer/drupal-project:8.x-dev drupal8 --stability dev --no-interaction
+cd drupal8
+composer require --dev beet/box
 vagrant up
 ```
 
