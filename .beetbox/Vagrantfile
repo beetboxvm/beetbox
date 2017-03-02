@@ -38,7 +38,7 @@ FileUtils.mkdir_p config_dir
 # Create config.yml from composer config.
 if File.exist?(composer_json)
   composer_conf = JSON.parse(File.read(composer_json))
-  cconfig = composer_conf['extra']['beetbox']['config'] rescue nil
+  cconfig = composer_conf['extra']['beetbox'] rescue nil
   File.open(project_config, "w") { |f| f.write(cconfig.to_yaml) } if cconfig.is_a?(Hash)
 end
 
