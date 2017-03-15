@@ -241,6 +241,7 @@ composer_global_packages:
     release: '^0.3'
 
 # Drush config.
+drush_install_from_source: yes
 drush_version: "8.x"
 drush_clone_depth: ~
 drush_keep_updated: "{{ (drush_version != '8.x') }}"
