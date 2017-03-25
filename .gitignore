@@ -14,10 +14,12 @@ installed
 results-provision.txt
 provisioning/ansible/config/*
 !provisioning/ansible/config/profiles/
+!provisioning/ansible/config/default.config.yml
 provisioning/packer/includes/*
 !provisioning/packer/includes/Vagrantfile
 .beetbox/*
 !.beetbox/config.yml
+!.beetbox/Vagrantfile
 workspace/
 
 # Prevent Packer related files.
