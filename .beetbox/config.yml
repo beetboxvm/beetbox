@@ -1,6 +1,7 @@
 ---
 # Vagrant config.
 vagrant_ip: 192.168.88.88
+vagrant_box: beet/dev
 
 # Beetbox settings.
 beet_project: drupal

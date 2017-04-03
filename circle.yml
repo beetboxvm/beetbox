@@ -28,9 +28,10 @@ deployment:
         packer push
         -token=$ATLAS_TOKEN
         -name="beet/dev"
-        -var "beet_version=master"
+        -var "atlas_build_name=dev"
+        -var "beet_repo=$CIRCLE_REPOSITORY_URL.git"
         -var "box_version=0.5.$CIRCLE_BUILD_NUM"
-        /beetbox/provisioning/beet-dev.json
+        /beetbox/provisioning/ubuntu-14.04.5.json
   release:
     tag: /[0-9]+\.[0-9]+\.[0-9]+/
     owner: beetboxvm
@@ -40,6 +41,8 @@ deployment:
         packer push
         -token=$ATLAS_TOKEN
         -name="beet/box"
+        -var "atlas_build_name=box"
+        -var "beet_repo=$CIRCLE_REPOSITORY_URL.git"
         -var "beet_version=$CIRCLE_TAG"
         -var "box_version=$CIRCLE_TAG"
-        /beetbox/provisioning/beet-box.json
+        /beetbox/provisioning/ubuntu-14.04.5.json

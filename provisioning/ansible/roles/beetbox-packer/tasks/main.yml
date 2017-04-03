@@ -5,22 +5,3 @@
     dest: "{{ packer_install_dir }}"
     copy: no
     creates: "{{ packer_install_dir }}/packer"
-
-- name: Create Packer templates.
-  template:
-    src: templates/packer.json.j2
-    dest: "{{ beet_home }}/provisioning/{{ item.atlas_username }}-{{ item.atlas_build_name }}.json"
-    force: yes
-  with_items:
-    - "{{ packer_templates }}"
-  when: packer_templates is defined
-
-- name: Copy Vagrantfile stub to includes.
-  copy:
-    src: "{{ beet_home }}/Vagrantfile"
-    dest: "{{ beet_home }}/provisioning/packer/includes/Vagrantfile.stub"
-
-- name: Copy Vagrantfile to includes.
-  copy:
-    src: "{{ beet_home }}/.beetbox/Vagrantfile"
-    dest: "{{ beet_home }}/provisioning/packer/includes/Vagrantfile.box"
