@@ -1,7 +1,5 @@
 #!/bin/bash -eux
 
-SSH_USER=${SSH_USERNAME:-vagrant}
-
 # Make sure udev does not block our network - http://6.ptmc.org/?p=164
 echo "==> Cleaning up udev rules"
 rm -rf /dev/.udev/
@@ -36,7 +34,7 @@ DISK_USAGE_BEFORE_CLEANUP=$(df -h)
 # Remove Bash history
 unset HISTFILE
 rm -f /root/.bash_history
-rm -f /home/${SSH_USER}/.bash_history
+rm -f /home/vagrant/.bash_history
 
 # Clean up log files
 find /var/log -type f | while read f; do echo -ne '' > $f; done;

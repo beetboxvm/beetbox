@@ -52,7 +52,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface {
     public function addVagrantfile(Event $event) {
 
         $baseDir = dirname(Factory::getComposerFile());
-        $source = __DIR__ . '/../../.beetbox/Vagrantfile';
+        $source = __DIR__ . '/../../Vagrantfile';
         $target =  $baseDir . '/Vagrantfile';
 
         if (file_exists($source)) {
