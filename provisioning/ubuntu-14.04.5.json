@@ -3,8 +3,8 @@
     "atlas_build_name": "dev",
     "atlas_username": "beet",
     "beet_repo": "https://github.com/beetboxvm/beetbox.git",
-    "box_version": "master",
-    "beet_version": "0.0.1",
+    "box_version": "0.0.1",
+    "beet_version": "master",
     "hostname": "beetbox.local",
     "ssh_user": "vagrant",
     "ssh_pass": "vagrant"
