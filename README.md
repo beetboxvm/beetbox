@@ -11,6 +11,9 @@ It is designed to have an instance (VM) per project and be integrated into a VCS
 This particular project contains the plumbing to manage the automated build of the pre-provisioned Vagrant base box, so almost all functionality is provided by ansible roles external to this project.
 
 [![Circle CI](https://circleci.com/gh/beetboxvm/beetbox.svg?style=shield)](https://circleci.com/gh/beetboxvm/beetbox) [![Documentation Status](https://readthedocs.org/projects/beetbox/badge/?version=stable)](http://beetbox.readthedocs.org/en/stable/?badge=stable)
+[![Latest Stable Version](https://poser.pugx.org/beet/box/v/stable)](https://packagist.org/packages/beet/box)
+[![Total Downloads](https://poser.pugx.org/beet/box/downloads)](https://packagist.org/packages/beet/box)
+[![License](https://poser.pugx.org/beet/box/license)](https://packagist.org/packages/beet/box)
 
 ## Why not use Drupal VM / Vlad?
 
