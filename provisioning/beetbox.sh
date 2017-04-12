@@ -23,18 +23,18 @@ export ANSIBLE_INVENTORY=${ANSIBLE_INVENTORY:-"localhost,"}
 export PYTHONUNBUFFERED=${PYTHONUNBUFFERED:-True}
 
 # Enable debug mode?
-if [ $BEET_DEBUG = "true" ]; then
+if [[ "$BEET_DEBUG" = "true" ]]; then
   export ANSIBLE_DEPRECATION_WARNINGS=True
   ANSIBLE_DEBUG="-vvv"
 fi
 
 beetbox_setup() {
   # Create BEET_USER and setup sudo.
-  [ -z "$(getent passwd $BEET_USER)" ] && sudo useradd -d /home/$BEET_USER -m $BEET_USER > /dev/null 2>&1
-  echo "$BEET_USER ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$BEET_USER > /dev/null 2>&1
+  [[ -z "$(getent passwd "$BEET_USER")" ]] && sudo useradd -d "/home/$BEET_USER" -m "$BEET_USER" > /dev/null 2>&1
+  echo "$BEET_USER ALL=(ALL) NOPASSWD: ALL" | sudo tee "/etc/sudoers.d/$BEET_USER" > /dev/null 2>&1
 
   # Install ansible.
-  if [ ! -d "/etc/ansible" ]; then
+  if [[ ! -d "/etc/ansible" ]]; then
     sudo apt-get -qq update
     sudo apt-get -y install software-properties-common
     sudo apt-add-repository -y ppa:ansible/ansible
@@ -43,13 +43,13 @@ beetbox_setup() {
   fi
 
   # Clone beetbox if BEET_HOME doesn't exist.
-  if [ ! -d "$BEET_HOME" ]; then
+  if [[ ! -d "$BEET_HOME" ]]; then
     beetbox_adhoc apt "name=git state=installed"
     beetbox_adhoc git "repo=$BEET_REPO dest=$BEET_HOME depth=1 recursive=yes"
     beetbox_adhoc file "path=$BEET_HOME owner=$BEET_USER group=$BEET_USER"
     beetbox_adhoc file "path=$BEET_HOME/.beetbox/config.yml state=absent"
     beetbox_adhoc file "src=$BEET_HOME/provisioning/beetbox.sh dest=/usr/local/bin/beetbox state=link mode=755"
-    [ ! -d "$BEET_HOME" ] && exit 1
+    [[ ! -d "$BEET_HOME" ]] && exit 1
   fi
 
   # Check version.
@@ -63,15 +63,15 @@ beetbox_setup() {
 }
 
 beetbox_adhoc() {
-  ansible $ANSIBLE_DEBUG localhost -m $1 -a "$2" --become -c local
+  ansible ${ANSIBLE_DEBUG} localhost -m "${1}" -a "${2}" --become -c local
 }
 
 beetbox_play() {
-  ansible-playbook $ANSIBLE_DEBUG $ANSIBLE_HOME/playbook-$1.yml --tags "${2:-all}"
+  ansible-playbook ${ANSIBLE_DEBUG} "${ANSIBLE_HOME}/playbook-${1}.yml" --tags "${2:-all}"
 }
 
 # Initialise beetbox.
-[ ! -f "$BEET_HOME/installed" ] && beetbox_setup
+[[ ! -f "$BEET_HOME/installed" ]] && beetbox_setup
 
 # Create default config files.
 beetbox_play config
@@ -80,8 +80,8 @@ beetbox_play config
 beetbox_play update
 
 # Provision VM.
-beetbox_play $BEET_PLAYBOOK $BEET_TAGS
+beetbox_play "$BEET_PLAYBOOK" "$BEET_TAGS"
 
 # Print welcome message.
-sudo touch $BEET_HOME/results-$BEET_PLAYBOOK.txt
-sudo cat $BEET_HOME/results-$BEET_PLAYBOOK.txt
+sudo touch "$BEET_HOME/results-$BEET_PLAYBOOK.txt"
+sudo cat "$BEET_HOME/results-$BEET_PLAYBOOK.txt"
