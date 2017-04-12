@@ -12,10 +12,14 @@ dependencies:
   cache_directories:
     - ~/.composer/cache
   override:
+    - sudo apt-add-repository "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe"
+    - sudo apt-get update -qq
+    - sudo apt-get install shellcheck
     - composer validate
     - composer install
 test:
   override:
+    - shellcheck provisioning/beetbox.sh
     - phpunit
     - vendor/bin/robo provision ubuntu:14.04 beet_test
 deployment:
