@@ -20,6 +20,7 @@ dependencies:
 test:
   override:
     - shellcheck provisioning/beetbox.sh
+    - composer security
     - phpunit
     - vendor/bin/robo provision ubuntu:14.04 beet_test
 deployment:
