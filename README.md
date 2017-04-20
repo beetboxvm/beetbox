@@ -2,9 +2,9 @@
 
 A VM for local L*MP development, built with Packer, Vagrant + Ansible
 
-Beetbox is essentially a pre-provisioned version of [Drupal VM](http://www.drupalvm.com/) mainly to speed up initial build time, but also to reduce the size of each VM by leveraging [linked clones](https://www.hashicorp.com/blog/vagrant-1-8.html).
+Beetbox is essentially a pre-provisioned version of [Drupal VM](http://www.drupalvm.com/) mainly to speed up initial virtual machine build time, but also to reduce the size of each VM by leveraging [linked clones](https://www.hashicorp.com/blog/vagrant-1-8.html).
 
-Whilst it contains a set of default features, it is extremely extensible and almost anything can be overridden/extended with a simple YAML config file.
+Whilst it contains a set of default feature configuration, it is extremely extensible and almost anything can be overridden/extended with a simple YAML config file.
 
 It is designed to have an instance (VM) per project and be integrated into a VCS like git, so that configuration can be easily shared within a team and a setup of a new project should be as simple as `git clone ...; vagrant up`.
 
@@ -15,8 +15,9 @@ This particular project contains the plumbing to manage the automated build of t
 [![Total Downloads](https://poser.pugx.org/beet/box/downloads)](https://packagist.org/packages/beet/box)
 [![License](https://poser.pugx.org/beet/box/license)](https://packagist.org/packages/beet/box)
 
-## Why not use Drupal VM / Vlad?
+## What's different about this project?
 
+* It's a composer plugin which automatically creates a Vagrantfile.
 * You only add config to your project and don't need to manage a fork of the whole provisioning system.
 * It uses a pre-provisioned base box so it’s much faster to provision.
 * Each new version of the box gets published to Atlas only if all roles are provisioned making the box always stable.
@@ -26,6 +27,7 @@ This particular project contains the plumbing to manage the automated build of t
 
 ## Requirements
 
+* [Composer](https://getcomposer.org/download/)
 * [Vagrant](https://www.vagrantup.com/) >= 1.8
 * [Virtualbox](https://www.virtualbox.org/)
 * [Vagrant Hostsupdater](https://github.com/cogitatio/vagrant-hostsupdater)
@@ -47,6 +49,16 @@ vagrant up
 This will automatically generate a Vagrantfile and the `.beetbox` directory, which will contain a `config.yml` file used to configure overrides.
 
 You can see some examples in [`config.yml`](https://github.com/beetboxvm/beetbox/blob/master/.beetbox/config.yml)
+
+## Updating
+
+```
+composer update beet/box
+```
+
+Version constraints should automatically keep you to the same minor release. `(0.0.x)`
+However, you may need to update your configuation when upgrading minor releases. `(0.x.0)`
+See the release notes for more information.
 
 ## Drupal Quickstart
 
@@ -97,7 +109,7 @@ http://beetbox.readthedocs.io/en/latest/contributing/contributing/
 
 ## Support
 
-* Feature requests should be created on [FeatHub](http://feathub.com/beetboxvm/beetbox).
+* Feature requests should be created in the [GitHub Beetbox Issue Queue](https://github.com/beetboxvm/beetbox/issues).
 * Bugs should be reported in the [GitHub Beetbox Issue Queue](https://github.com/beetboxvm/beetbox/issues).
 * Use pull requests (PRs) to [contribute](http://beetbox.readthedocs.io/en/latest/contributing/contributing/) to Beetbox.
 

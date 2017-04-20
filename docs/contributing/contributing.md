@@ -13,7 +13,7 @@ We have a few internal Ansible tasks, but these are only for low level setup and
 The first step to contributing is to bring up the example project:
 
 ```
-git clone https://github.com/beetboxvm/beetbox && cd $_
+git clone --recusive https://github.com/beetboxvm/beetbox && cd $_
 vagrant up
 ```
 
