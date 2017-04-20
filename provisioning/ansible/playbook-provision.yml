@@ -1,4 +1,4 @@
----
+`---
 - hosts: localhost
   connection: local
   become: yes
@@ -45,7 +45,7 @@
       with_items: "{{ possible_root_paths.results }}"
       when:
         - not root_index_found.stat.exists
-        - "'beet_root' == 'beet_base'"
+        - beet_root == beet_base
         - item.stat.exists
 
     - name: Check pre tasks directory exists.
