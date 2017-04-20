@@ -10,11 +10,11 @@ And each role can include their own specific variables, see [the list of roles](
 
 # Common overrides
 
-  `vagrant_ip`
+  `vagrant_ip` (string)
   
 The IP of the VM, by default this is `0.0.0.0` and the `auto-network` plugin will auto assign an IP.
 
-  `vagrant_memory`
+  `vagrant_memory` (string)
   
 The memory given to the VM.
 
