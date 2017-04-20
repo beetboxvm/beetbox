@@ -37,11 +37,11 @@
 
     - set_fact:
         beet_update: yes
-      when: "{{ beet_repo != 'https://github.com/beetboxvm/beetbox.git' }}"
+      when: beet_repo != 'https://github.com/beetboxvm/beetbox.git'
 
     - set_fact:
         beet_update: yes
-      when: "{{ beet_version != 'master' }}"
+      when: beet_version != 'master'
 
     - set_fact:
         beet_update: no
