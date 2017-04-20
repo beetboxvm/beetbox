@@ -29,7 +29,7 @@
         src: "{{ conf_dir }}/{{ item.item }}"
         dest: "{{ ansible_home }}/config/{{ item.item }}"
         force: yes
-      when: "{{ item.stat.exists }}"
+      when: item.stat.exists
       with_items: "{{ available_conf.results }}"
       changed_when: false
 
@@ -49,7 +49,7 @@
         src: "{{ conf_dir }}/playbooks/"
         dest: "{{ ansible_home }}"
         force: yes
-      when: "{{ project_plays.stat.exists }}"
+      when: project_plays.stat.exists
       changed_when: false
 
     - name: Check if project roles directory exists
@@ -61,7 +61,7 @@
         src: "{{ conf_dir }}/roles/"
         dest: "{{ ansible_home }}/roles"
         force: yes
-      when: "{{ project_roles.stat.exists }}"
+      when: project_roles.stat.exists
       changed_when: false
 
     - name: "Ensure {{ beet_user }} has ownership of {{ ansible_home }}."

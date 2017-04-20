@@ -25,4 +25,4 @@ installed_extras_xdebug: yes
 installed_extras_xhprof: yes
 
 # Conditional roles.
-installed_extras_nginx: "{{ (beet_webserver == 'nginx') }}"
+installed_extras_nginx: "beet_webserver == 'nginx'"

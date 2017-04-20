@@ -27,7 +27,7 @@
         file_type: directory
       register: sub_directories
       when:
-        - "'{{ beet_root }}' == '{{ beet_base }}'"
+        - beet_root == beet_base
         - not root_index_found.stat.exists
 
     - name: Look for index.php in project sub directories.
@@ -36,7 +36,7 @@
       with_items: "{{ sub_directories.files }}"
       register: possible_root_paths
       when:
-        - "'{{ beet_root }}' == '{{ beet_base }}'"
+        - beet_root == beet_base
         - not root_index_found.stat.exists
 
     - name: Override beet_root if index.php found.
@@ -44,9 +44,9 @@
         beet_root: "{{ item.item.path }}"
       with_items: "{{ possible_root_paths.results }}"
       when:
-        - "'{{ beet_root }}' == '{{ beet_base }}'"
-        - item.stat.exists
         - not root_index_found.stat.exists
+        - "'beet_root' == 'beet_base'"
+        - item.stat.exists
 
     - name: Check pre tasks directory exists.
       stat:
@@ -63,189 +63,191 @@
 
   roles:
     - role: beetbox-init
-      when: "{{ installed_extras_init }}"
+      when: installed_extras_init
       tags: beetbox
     - role: beetbox-apt-repos
       when: "{{ apt_repos | length }}"
       tags: beetbox
     - role: geerlingguy.apache
-      when: "{{ installed_extras_apache }}"
+      when: installed_extras_apache
       tags: beetbox
     - role: geerlingguy.apache-php-fpm
-      when: "{{ installed_extras_php }}"
+      when: installed_extras_php
       tags: beetbox
     - role: geerlingguy.nginx
-      when: "{{ installed_extras_nginx }}"
+      when: installed_extras_nginx
       tags: beetbox
     - role: geerlingguy.mysql
-      when: "{{ installed_extras_mysql }}"
+      when: installed_extras_mysql
       tags: beetbox
     - role: beetbox-php-ppa
-      when: "{{ installed_extras_php }}"
+      when: installed_extras_php
       tags: beetbox
     - role: beetbox-php-7.0
-      when: "'{{ installed_extras_php }}' and '{{ php_version }}' == '7.0'"
+      when:
+        - installed_extras_php
+        - php_version == '7.0'
       tags: beetbox
     - role: geerlingguy.php
-      when: "{{ installed_extras_php }}"
+      when: installed_extras_php
       tags: beetbox
     - role: geerlingguy.php-pecl
-      when: "{{ installed_extras_pecl }}"
+      when: installed_extras_pecl
       tags: beetbox
     - role: geerlingguy.php-mysql
-      when: "{{ installed_extras_mysql }}"
+      when: installed_extras_mysql
       tags: beetbox
     - role: geerlingguy.composer
-      when: "{{ installed_extras_composer }}"
+      when: installed_extras_composer
       tags: beetbox
     - role: pwelch.avahi
-      when: "{{ installed_extras_avahi }}"
+      when: installed_extras_avahi
     - role: beetboxvm.known-hosts
-      when: "{{ known_hosts }}"
+      when: known_hosts
       tags: extras
     - role: geerlingguy.firewall
-      when: "{{ installed_extras_firewall }}"
+      when: installed_extras_firewall
       tags: extras
     - role: geerlingguy.git
-      when: "{{ installed_extras_git }}"
+      when: installed_extras_git
       tags: extras
     - role: thebinary.lxd
-      when: "{{ installed_extras_lxd }}"
+      when: installed_extras_lxd
       tags: extras
     - role: ANXS.postgresql
-      when: "{{ installed_extras_postgresql }}"
+      when: installed_extras_postgresql
       tags: extras
     - role: geerlingguy.memcached
-      when: "{{ installed_extras_memcached }}"
+      when: installed_extras_memcached
       tags: extras
     - role: geerlingguy.php-memcached
-      when: "{{ installed_extras_memcached }}"
+      when: installed_extras_memcached
       tags: extras
     - role: geerlingguy.drush
-      when: "{{ installed_extras_drush }}"
+      when: installed_extras_drush
       tags: extras
     - role: geerlingguy.drupal-console
-      when: "{{ installed_extras_drupal_console }}"
+      when: installed_extras_drupal_console
       tags: extras
     - role: thom8.php-upload-progress
-      when: "{{ installed_extras_upload_progress }}"
+      when: installed_extras_upload_progress
       tags: extras
     - role: geerlingguy.php-xdebug
-      when: "{{ installed_extras_xdebug }}"
+      when: installed_extras_xdebug
       tags: extras
     - role: geerlingguy.php-xhprof
-      when: "{{ installed_extras_xhprof }}"
+      when: installed_extras_xhprof
       tags: extras
     - role: geerlingguy.blackfire
-      when: "{{ installed_extras_blackfire }}"
+      when: installed_extras_blackfire
       tags: extras
     - role: geerlingguy.adminer
-      when: "{{ installed_extras_adminer }}"
+      when: installed_extras_adminer
       tags: extras
     - role: geerlingguy.pimpmylog
-      when: "{{ installed_extras_pimpmylog }}"
+      when: installed_extras_pimpmylog
       tags: extras
     - role: geerlingguy.daemonize
-      when: "{{ installed_extras_mailhog }}"
+      when: installed_extras_mailhog
       tags: extras
     - role: geerlingguy.postfix
-      when: "{{ installed_extras_postfix }}"
+      when: installed_extras_postfix
       tags: extras
     - role: geerlingguy.mailhog
-      when: "{{ installed_extras_mailhog }}"
+      when: installed_extras_mailhog
       tags: extras
     - role: franklinkim.newrelic
-      when: "{{ installed_extras_newrelic }}"
+      when: installed_extras_newrelic
       tags: extras
     - role: geerlingguy.nodejs
-      when: "{{ installed_extras_nodejs }}"
+      when: installed_extras_nodejs
       tags: extras
     - role: geerlingguy.redis
-      when: "{{ installed_extras_redis }}"
+      when: installed_extras_redis
       tags: extras
     - role: geerlingguy.php-redis
-      when: "{{ installed_extras_redis }}"
+      when: installed_extras_redis
       tags: extras
     - role: geerlingguy.ruby
-      when: "{{ installed_extras_ruby }}"
+      when: installed_extras_ruby
       tags: extras
     - role: rvm_io.rvm1-ruby
-      when: "{{ installed_extras_rvm }}"
+      when: installed_extras_rvm
       tags: extras
     - role: geerlingguy.java
-      when: "{{ installed_extras_solr }} or {{ installed_extras_selenium }} or {{ installed_extras_elasticsearch }}"
+      when: installed_extras_solr or installed_extras_selenium or installed_extras_elasticsearch
       tags: extras
     - role: geerlingguy.solr
-      when: "{{ installed_extras_solr }}"
+      when: installed_extras_solr
       tags: extras
     - role: arknoll.selenium
-      when: "{{ installed_extras_selenium }}"
+      when: installed_extras_selenium
       tags: extras
     - role: geerlingguy.elasticsearch
-      when: "{{ installed_extras_elasticsearch }}"
+      when: installed_extras_elasticsearch
       tags: extras
     - role: geerlingguy.varnish
-      when: "{{ installed_extras_varnish }}"
+      when: installed_extras_varnish
       tags: extras
     - role: pixelart.platformsh-cli
-      when: "{{ installed_extras_platform_cli }}"
+      when: installed_extras_platform_cli
       tags: extras
     - role: hashbangcode.pantheon-cli
-      when: "{{ installed_extras_pantheon_cli }}"
+      when: installed_extras_pantheon_cli
       tags: extras
     - role: beetboxvm.phantomjs
-      when: "{{ installed_extras_phantomjs }}"
+      when: installed_extras_phantomjs
       tags: extras
     - role: heskethm.wp-cli
-      when: "{{ installed_extras_wp_cli }}"
+      when: installed_extras_wp_cli
       tags: extras
     - role: alexdesignworks.dcr
-      when: "{{ installed_extras_dcr }}"
+      when: installed_extras_dcr
       tags: extras
     - role: beetboxvm.symlinks
-      when: "{{ symlinks }}"
+      when: symlinks
       tags: extras
     - role: beetboxvm.composer
-      when: "'{{ beet_project }}' == 'composer'"
+      when: beet_project == 'composer'
       tags: project
     - role: beetboxvm.drupal
-      when: "'{{ beet_project }}' == 'drupal'"
+      when: beet_project == 'drupal'
       tags: project
     - role: beetboxvm.backdrop
-      when: "'{{ beet_project }}' == 'backdrop'"
+      when: beet_project == 'backdrop'
       tags: project
     - role: beetboxvm.cakephp
-      when: "'{{ beet_project }}' == 'cakephp'"
+      when: beet_project == 'cakephp'
       tags: project
     - role: beetboxvm.kohana
-      when: "'{{ beet_project }}' == 'kohana'"
+      when: beet_project == 'kohana'
       tags: project
     - role: beetboxvm.modx
-      when: "'{{ beet_project }}' == 'modx'"
+      when: beet_project == 'modx'
       tags: project
     - role: beetboxvm.silverstripe
-      when: "'{{ beet_project }}' == 'silverstripe'"
+      when: beet_project == 'silverstripe'
       tags: project
     - role: beetboxvm.slim
-      when: "'{{ beet_project }}' == 'slim'"
+      when: beet_project == 'slim'
       tags: project
     - role: beetboxvm.symfony
-      when: "'{{ beet_project }}' == 'symfony'"
+      when: beet_project == 'symfony'
       tags: project
     - role: beetboxvm.wordpress
-      when: "'{{ beet_project }}' == 'wordpress'"
+      when: beet_project == 'wordpress'
       tags: project
     - role: beetboxvm.packages
-      when: "{{ extra_packages }}"
+      when: extra_packages
       tags: beetbox
     - role: beetbox-web
-      when: "{{ installed_extras_web }}"
+      when: installed_extras_web
       tags: beetbox
     - role: beetbox-apparmor
-      when: "{{ installed_extras_apparmor }}"
+      when: installed_extras_apparmor
       tags: beetbox
     - role: beetbox-php-nginx
-      when: "{{ installed_extras_nginx }}"
+      when: installed_extras_nginx
       tags: beetbox
 
   tasks:
