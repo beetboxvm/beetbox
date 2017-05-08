@@ -32,7 +32,7 @@
       "@composer validate",
       "@security",
       "phpunit --colors=always",
-      "robo provision ubuntu:14.04 beet_test --ansi"
+      "robo provision ubuntu:16.04 beet_test --ansi"
     ],
     "security": "security-checker security:check"
   },

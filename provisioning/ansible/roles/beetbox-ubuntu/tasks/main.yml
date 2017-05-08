@@ -20,6 +20,7 @@
     owner: root
     group: root
     mode: 0644
+  failed_when: false
 
 - name: Add configuration to update apt cache on boot.
   copy:

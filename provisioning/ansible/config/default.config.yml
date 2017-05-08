@@ -126,7 +126,6 @@ apt_repos:
 # Extra packages.
 extra_packages:
   - imagemagick
-  - php5-sqlite
   - unzip
 
 # git config.
