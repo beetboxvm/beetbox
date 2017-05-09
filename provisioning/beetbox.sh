@@ -29,6 +29,9 @@ if [[ "$BEET_DEBUG" = "true" ]]; then
 fi
 
 beetbox_setup() {
+  # Install sudo in docker.
+  [[ -f /.dockerenv ]] && apt-get -qq update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*
+
   # Create BEET_USER and setup sudo.
   [[ -z "$(getent passwd "$BEET_USER")" ]] && sudo useradd -d "/home/$BEET_USER" -m "$BEET_USER" > /dev/null 2>&1
   echo "$BEET_USER ALL=(ALL) NOPASSWD: ALL" | sudo tee "/etc/sudoers.d/$BEET_USER" > /dev/null 2>&1

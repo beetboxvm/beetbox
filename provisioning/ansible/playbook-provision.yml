@@ -65,6 +65,9 @@
     - role: beetbox-init
       when: installed_extras_init
       tags: beetbox
+    - role: beetboxvm.packages
+      when: extra_packages
+      tags: beetbox
     - role: beetbox-apt-repos
       when: "{{ apt_repos | length }}"
       tags: beetbox
@@ -237,9 +240,6 @@
     - role: beetboxvm.wordpress
       when: beet_project == 'wordpress'
       tags: project
-    - role: beetboxvm.packages
-      when: extra_packages
-      tags: beetbox
     - role: beetbox-web
       when: installed_extras_web
       tags: beetbox

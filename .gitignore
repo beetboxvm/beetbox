@@ -22,6 +22,7 @@ provisioning/packer/includes/*
 !.beetbox/config.yml
 !.beetbox/Vagrantfile
 workspace/
+provisioning/packer_cache
 
 # Prevent miscellaneous/system files.
 
