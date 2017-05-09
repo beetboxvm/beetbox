@@ -16,7 +16,7 @@ composer_json = "#{beet_root}/composer.json"
 # Default vagrant config.
 vconfig = {
   'vagrant_box' => 'beet/box',
-  'vagrant_box_version' => '~> 0.5.0',
+  'vagrant_box_version' => '~> 0.6.0',
   'vagrant_ip' => '0.0.0.0',
   'vagrant_memory' => 1024,
   'vagrant_cpus' => 1,
