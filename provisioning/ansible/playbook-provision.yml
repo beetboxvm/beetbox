@@ -65,12 +65,18 @@
     - role: beetbox-init
       when: installed_extras_init
       tags: beetbox
-    - role: beetboxvm.packages
+    - role: beetbox-known-hosts
+      when: known_hosts
+      tags: extras
+    - role: beetbox-packages
       when: extra_packages
       tags: beetbox
     - role: beetbox-apt-repos
-      when: "{{ apt_repos | length }}"
+      when: apt_repos
       tags: beetbox
+    - role: beetbox-symlinks
+      when: symlinks
+      tags: extras
     - role: geerlingguy.apache
       when: installed_extras_apache
       tags: beetbox
@@ -105,9 +111,6 @@
       tags: beetbox
     - role: pwelch.avahi
       when: installed_extras_avahi
-    - role: beetboxvm.known-hosts
-      when: known_hosts
-      tags: extras
     - role: geerlingguy.firewall
       when: installed_extras_firewall
       tags: extras
@@ -206,9 +209,6 @@
       tags: extras
     - role: alexdesignworks.dcr
       when: installed_extras_dcr
-      tags: extras
-    - role: beetboxvm.symlinks
-      when: symlinks
       tags: extras
     - role: beetboxvm.composer
       when: beet_project == 'composer'
