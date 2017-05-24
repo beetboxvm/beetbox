@@ -89,13 +89,8 @@
     - role: geerlingguy.mysql
       when: installed_extras_mysql
       tags: beetbox
-    - role: beetbox-php-ppa
+    - role: geerlingguy.php-versions
       when: installed_extras_php
-      tags: beetbox
-    - role: beetbox-php-7.0
-      when:
-        - installed_extras_php
-        - php_version == '7.0'
       tags: beetbox
     - role: geerlingguy.php
       when: installed_extras_php
