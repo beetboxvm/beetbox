@@ -292,20 +292,3 @@ dcr_install_dir: "{{ beet_root }}"
 known_hosts_path: ~/.ssh/known_hosts
 workspace: "{{ beet_home }}/workspace/{{ php_version }}"
 welcome_template: "templates/welcome.txt.j2"
-
-# Packer config.
-packer_templates:
-  - atlas_username: beet
-    atlas_build_name: dev
-    ssh_name: vagrant
-    ssh_pass: vagrant
-    hostname: "beetbox.local"
-    iso_url: "http://releases.ubuntu.com/trusty/ubuntu-14.04.5-server-amd64.iso"
-    iso_checksum: "dde07d37647a1d2d9247e33f14e91acb10445a97578384896b4e1d985f754cc1"
-  - atlas_username: beet
-    atlas_build_name: box
-    ssh_name: vagrant
-    ssh_pass: vagrant
-    hostname: "beetbox.local"
-    iso_url: "http://releases.ubuntu.com/trusty/ubuntu-14.04.5-server-amd64.iso"
-    iso_checksum: "dde07d37647a1d2d9247e33f14e91acb10445a97578384896b4e1d985f754cc1"

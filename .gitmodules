@@ -13,18 +13,12 @@
 [submodule "provisioning/ansible/roles/beetboxvm.drupal"]
 	path = provisioning/ansible/roles/beetboxvm.drupal
 	url = https://github.com/beetboxvm/ansible-role-beetbox-drupal.git
-[submodule "provisioning/ansible/roles/beetboxvm.known-hosts"]
-	path = provisioning/ansible/roles/beetboxvm.known-hosts
-	url = https://github.com/beetboxvm/ansible-role-beetbox-known-hosts.git
 [submodule "provisioning/ansible/roles/beetboxvm.kohana"]
 	path = provisioning/ansible/roles/beetboxvm.kohana
 	url = https://github.com/beetboxvm/ansible-role-beetbox-kohana.git
 [submodule "provisioning/ansible/roles/beetboxvm.modx"]
 	path = provisioning/ansible/roles/beetboxvm.modx
 	url = https://github.com/beetboxvm/ansible-role-beetbox-modx.git
-[submodule "provisioning/ansible/roles/beetboxvm.packages"]
-	path = provisioning/ansible/roles/beetboxvm.packages
-	url = https://github.com/beetboxvm/ansible-role-beetbox-packages.git
 [submodule "provisioning/ansible/roles/beetboxvm.phantomjs"]
 	path = provisioning/ansible/roles/beetboxvm.phantomjs
 	url = https://github.com/beetboxvm/ansible-role-beetbox-phantomjs.git
@@ -34,9 +28,6 @@
 [submodule "provisioning/ansible/roles/beetboxvm.slim"]
 	path = provisioning/ansible/roles/beetboxvm.slim
 	url = https://github.com/beetboxvm/ansible-role-beetbox-slim.git
-[submodule "provisioning/ansible/roles/beetboxvm.symlinks"]
-	path = provisioning/ansible/roles/beetboxvm.symlinks
-	url = https://github.com/beetboxvm/ansible-role-beetbox-symlinks.git
 [submodule "provisioning/ansible/roles/beetboxvm.wordpress"]
 	path = provisioning/ansible/roles/beetboxvm.wordpress
 	url = https://github.com/beetboxvm/ansible-role-beetbox-wordpress.git

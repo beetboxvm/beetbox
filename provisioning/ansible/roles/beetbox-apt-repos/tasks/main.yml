@@ -5,4 +5,4 @@
     mode: 644
     update_cache: yes
   with_items: "{{ apt_repos }}"
-  when: "{{ apt_repos | length }}"
+  when: apt_repos
