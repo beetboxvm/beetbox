@@ -160,3 +160,6 @@
 [submodule "provisioning/ansible/roles/pixelart.platformsh-cli"]
 	path = provisioning/ansible/roles/pixelart.platformsh-cli
 	url = https://github.com/pixelart/ansible-role-platformsh-cli
+[submodule "provisioning/ansible/roles/geerlingguy.php-versions"]
+	path = provisioning/ansible/roles/geerlingguy.php-versions
+	url = https://github.com/geerlingguy/ansible-role-php-versions.git

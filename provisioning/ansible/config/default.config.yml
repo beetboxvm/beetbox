@@ -122,6 +122,7 @@ installed_extras_dcr: no
 apt_repos:
   - ppa:ondrej/apache2
   - ppa:ondrej/php
+  - ppa:ondrej/php5-compat
 
 # Extra packages.
 extra_packages:
@@ -160,73 +161,18 @@ docker_group_members:
 
 # PHP config.
 php_version: "5.6"
+php_install_recommends: no
 php_memory_limit: "192M"
-php_date_timezone: "Australia/Melbourne"
 php_display_errors: "On"
 php_display_startup_errors: "On"
 php_realpath_cache_size: "1024K"
 php_sendmail_path: "/opt/mailhog/mhsendmail"
-php_enable_apc: no
 php_opcache_enabled_in_ini: true
 php_opcache_memory_consumption: "192"
 php_opcache_max_accelerated_files: 4096
-php_opcache_conf_filename: "10-opcache.ini"
 php_max_input_vars: "4000"
-php_conf_paths:
-  - "/etc/php/{{ php_version }}/fpm"
-  - "/etc/php/{{ php_version }}/apache2"
-  - "/etc/php/{{ php_version }}/cli"
-php_extension_conf_paths:
-  - "/etc/php/{{ php_version }}/fpm/conf.d"
-  - "/etc/php/{{ php_version }}/apache2/conf.d"
-  - "/etc/php/{{ php_version }}/cli/conf.d"
-php_enable_php_fpm: true
-php_fpm_listen: "127.0.0.1:9000"
-php_fpm_daemon: "php{{ php_version }}-fpm"
-php_fpm_conf_path: "/etc/php/{{ php_version }}/fpm"
-php_fpm_pool_conf_path: "{{ php_fpm_conf_path }}/pool.d/www.conf"
-php_mysql_package: "php{{ php_version }}-mysql"
-php_memcached_package: "php-memcache"
-php_install_recommends: no
+php_enable_apc: no
 php_module_path: "/usr/lib/php{{ php_version }}/modules"
-php55_packages:
-  - php5.5
-  - php5.5-curl
-  - php5.5-dev
-  - php5.5-fpm
-  - php5.5-gd
-  - php5.5-intl
-  - php5.5-mbstring
-  - php5.5-xml
-  - libapache2-mod-php5.5
-php56_packages:
-  - php5.6
-  - php5.6-cli
-  - php5.6-common
-  - php5.6-curl
-  - php5.6-dev
-  - php5.6-fpm
-  - php5.6-gd
-  - php5.6-intl
-  - php5.6-json
-  - php5.6-mcrypt
-  - php5.6-mbstring
-  - php5.6-mysql
-  - php5.6-opcache
-  - php5.6-readline
-  - php5.6-xml
-  - php5.6-zip
-  - libapache2-mod-php5.6
-php70_packages:
-  - php7.0
-  - php7.0-curl
-  - php7.0-dev
-  - php7.0-fpm
-  - php7.0-gd
-  - php7.0-mbstring
-  - php7.0-sqlite3
-  - php7.0-xml
-  - libapache2-mod-php7.0
 
 # Composer config.
 composer_path: /usr/bin/composer
@@ -267,8 +213,6 @@ php_xdebug_idekey: PHPSTORM
 php_xdebug_module_path: "{{ php_module_path }}"
 
 # Xhprof config.
-xhprof_download_url: https://github.com/phacility/xhprof/archive/master.tar.gz
-xhprof_download_folder_name: xhprof-master
 php_xhprof_module_path: "{{ php_module_path }}"
 
 # uploadprogress config.
