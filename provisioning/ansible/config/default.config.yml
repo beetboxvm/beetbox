@@ -173,6 +173,8 @@ php_opcache_max_accelerated_files: 4096
 php_max_input_vars: "4000"
 php_enable_apc: no
 php_module_path: "/usr/lib/php{{ php_version }}/modules"
+php_enable_php_fpm: true
+php_fpm_listen: "127.0.0.1:9000"
 
 # Composer config.
 composer_path: /usr/bin/composer
