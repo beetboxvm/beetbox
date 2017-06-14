@@ -11,44 +11,25 @@ beet_root = ENV['BEET_ROOT_DIR'] || "#{__dir__}"
 config_dir = ENV['BEET_CONFIG_DIR'] || "#{beet_root}/.beetbox"
 project_config = "#{config_dir}/config.yml"
 local_config = "#{config_dir}/local.config.yml"
-composer_json = "#{beet_root}/composer.json"
+composer_conf = JSON.parse(File.read("#{beet_root}/composer.json"))
+vendor_dir = composer_conf['config']['vendor-dir'] || 'vendor'
+default_config = "#{vendor_dir}/beet/box/provisioning/ansible/config/default.config.yml"
+default_config = "provisioning/ansible/config/default.config.yml" if !File.exist?(default_config)
 
 # Default vagrant config.
-vconfig = {
-  'vagrant_box' => 'beet/box',
-  'vagrant_box_version' => '~> 0.6.0',
-  'vagrant_ip' => '0.0.0.0',
-  'vagrant_memory' => 1024,
-  'vagrant_cpus' => 1,
-  'beet_project' => 'drupal',
-  'beet_profile' => 'beetbox',
-  'beet_provision_playbook' => 'provision',
-  'beet_provision_tags' => 'all',
-  'beet_home' => '/beetbox',
-  'beet_base' => '/var/beetbox',
-  'beet_domain' => beet_root.split('/').last.gsub(/[\._]/, '-') + ".local",
-  'beet_aliases' => [],
-  'beet_provision' => true,
-  'drush_create_alias' => true
-}
+vconfig = YAML::load_file(default_config)
+vconfig['beet_domain'] = beet_root.split('/').last.gsub(/[\._]/, '-') + ".local"
 
 # Create config directory.
 FileUtils.mkdir_p config_dir
 
 # Create config.yml from composer config.
-if File.exist?(composer_json)
-  composer_conf = JSON.parse(File.read(composer_json))
-  cconfig = composer_conf['extra']['beetbox'] rescue nil
-  File.open(project_config, "w") { |f| f.write(cconfig.to_yaml) } if cconfig.is_a?(Hash)
-end
+cconfig = composer_conf['extra']['beetbox'] rescue nil
+File.open(project_config, "w") { |f| f.write(cconfig.to_yaml) } if cconfig.is_a?(Hash)
 
 # Create default config file.
 default_config = "---\nbeet_domain: #{vconfig['beet_domain']}\n"
 File.open(project_config, "w") { |f| f.write(default_config) } if !File.exist?(project_config)
-
-# Create .gitignore file.
-git_ignore = "host.config.yml\nlocal.config.yml\nVagrantfile\nVagrantfile.local\n"
-File.open("#{config_dir}/.gitignore", "w") { |f| f.write(git_ignore) } if !File.exist?("#{config_dir}/.gitignore")
 
 # Copy config from host.
 host_config = "#{Dir.home}/.beetbox/config.yml"
