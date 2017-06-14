@@ -19,4 +19,4 @@
     - { role: beetbox-vagrant }
     - { role: beetbox-ubuntu }
     - { role: beetbox-virtualbox, when: ansible_virtualization_type == 'virtualbox' }
-    - { role: beetbox-packer, when: "{{ lookup('env','INSTALL_PACKER') == 'true' }}" }
+    - { role: beetbox-packer }

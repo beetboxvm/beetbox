@@ -19,7 +19,6 @@ class RoboFile extends \Robo\Tasks
         // Create build container.
         $build = $this->taskDockerRun($image)
             ->name($name)
-            ->env('INSTALL_PACKER', 'true')
             ->exec('/beetbox/provisioning/beetbox.sh')
             ->volume(__DIR__ . '/', '/beetbox/')
             ->volume(__DIR__, '/var/beetbox')
