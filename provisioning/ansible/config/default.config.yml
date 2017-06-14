@@ -6,10 +6,18 @@
 # Copy any of these settings to the custom config file to override.
 #
 
+# Vagrant config.
+vagrant_box: beet/box
+vagrant_box_version: "~> 0.5.0"
+vagrant_ip: "0.0.0.0"
+vagrant_memory: "1024"
+vagrant_cpus: 1
+
 # Beetbox config.
+beet_profile: beetbox
 beet_repo: "{{ lookup('env','BEET_REPO') | default('https://github.com/beetboxvm/beetbox.git',true) }}"
 beet_version: "{{ lookup('env','BEET_VERSION') | default('master',true) }}"
-beet_home: "{{ lookup('env','BEET_HOME') | default('/beetbox',true) }}"
+beet_home: "/beetbox"
 beet_role_dir: "{{ beet_home }}/provisioning/ansible/roles"
 beet_project: drupal
 beet_debug: no
@@ -18,7 +26,7 @@ beet_aliases: []
 beet_env_name: BB_ENVIRONMENT
 beet_env: vagrant
 beet_user: "{{ lookup('env','BEET_USER') | default('vagrant',true) }}"
-beet_base: "{{ lookup('env','BEET_BASE') | default('/var/beetbox',true) }}"
+beet_base: "/var/beetbox"
 beet_root: "{{ beet_base }}"
 beet_web: "{{ beet_root }}"
 beet_ssh_home: "{{ beet_root }}"
@@ -30,6 +38,8 @@ beet_mysql_database: "beetbox"
 beet_custom_pre_tasks: "{{ beet_base }}/.beetbox/tasks/pre"
 beet_custom_post_tasks: "{{ beet_base }}/.beetbox/tasks/post"
 beet_root_create: yes
+beet_provision_playbook: provision
+beet_provision_tags: all
 beet_provision: yes
 
 # Symlinks.
