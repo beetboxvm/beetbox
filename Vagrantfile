@@ -12,7 +12,7 @@ config_dir = ENV['BEET_CONFIG_DIR'] || "#{beet_root}/.beetbox"
 project_config = "#{config_dir}/config.yml"
 local_config = "#{config_dir}/local.config.yml"
 composer_conf = JSON.parse(ENV['COMPOSER'] || File.read("#{beet_root}/composer.json"))
-vendor_dir = ENV['COMPOSER_VENDOR_DIR'] ||= composer_conf['config']['vendor-dir'] ||= 'vendor'
+vendor_dir = ENV['COMPOSER_VENDOR_DIR'] || composer_conf.fetch('config', {}).fetch('vendor-dir', 'vendor')
 default_config = "#{beet_root}/#{vendor_dir}/beet/box/provisioning/ansible/config/default.config.yml"
 default_config = "#{beet_root}/provisioning/ansible/config/default.config.yml" if !File.exist?(default_config)
 
