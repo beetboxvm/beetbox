@@ -1,7 +1,8 @@
 {
   "variables": {
-    "atlas_build_name": "dev",
-    "atlas_username": "beet",
+    "cloud_build_name": "dev",
+    "cloud_username": "beet",
+    "cloud_token": "",
     "beet_repo": "https://github.com/beetboxvm/beetbox.git",
     "box_version": "0.0.1",
     "beet_version": "master",
@@ -46,7 +47,7 @@
       "iso_checksum": "737ae7041212c628de5751d15c3016058b0e833fdc32e7420209b76ca3d0a535",
       "iso_checksum_type": "sha256",
       "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04.2-server-amd64.iso",
-      "output_directory": "output-{{ user `atlas_build_name` }}-virtualbox-iso",
+      "output_directory": "output-{{ user `cloud_build_name` }}-virtualbox-iso",
       "ssh_username": "{{ user `ssh_user` }}",
       "ssh_password": "{{ user `ssh_pass` }}",
       "ssh_port": 22,
@@ -97,17 +98,13 @@
       {
         "type": "vagrant",
         "compression_level": 9,
-        "output": "{{ user `atlas_username` }}-{{ user `atlas_build_name` }}-{{ .Provider }}.box"
+        "output": "{{ user `cloud_username` }}-{{ user `cloud_build_name` }}-{{ .Provider }}.box"
       },
       {
-        "type": "atlas",
-        "artifact": "{{ user `atlas_username` }}/{{ user `atlas_build_name` }}",
-        "artifact_type": "vagrant.box",
-        "metadata": {
-          "provider": "virtualbox",
-          "created_at": "{{ timestamp }}",
-          "version": "{{ user `box_version` }}"
-        }
+        "type": "vagrant-cloud",
+        "box_tag": "{{ user `cloud_username` }}/{{ user `cloud_build_name` }}",
+        "access_token": "{{user `cloud_token`}}",
+        "version": "{{user `box_version`}}"
       }
     ]
   ]
