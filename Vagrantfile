@@ -99,6 +99,10 @@ Vagrant.configure("2") do |config|
     }
   end
 
+  if Vagrant.has_plugin?('vagrant-exec')
+    config.exec.commands "*", directory: "#{vconfig['beet_base']}"
+  end
+
   branches.each do |branch|
     active_node = (branch == current_branch) ? true : false
     config.vm.define branch, autostart: active_node, primary: active_node do |node|
