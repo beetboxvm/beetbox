@@ -34,7 +34,8 @@
       "phpunit --colors=always",
       "robo provision ubuntu:16.04 beet_test --ansi"
     ],
-    "security": "security-checker security:check"
+    "security": "security-checker security:check",
+    "role-update": "git submodule foreach git pull origin master"
   },
   "extra": {
     "class": "Beet\\Box\\Plugin",
