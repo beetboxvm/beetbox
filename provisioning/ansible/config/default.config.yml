@@ -8,7 +8,7 @@
 
 # Vagrant config.
 vagrant_box: beet/box
-vagrant_box_version: "~> 0.6.0"
+vagrant_box_version: "~> 0.7.0"
 vagrant_ip: "0.0.0.0"
 vagrant_memory: "1024"
 vagrant_cpus: 1
@@ -166,7 +166,7 @@ nginx_hosts:
     is_php: true
 
 # PHP config.
-php_version: "5.6"
+php_version: "7.1"
 php_install_recommends: no
 php_display_errors: "On"
 php_display_startup_errors: "On"
