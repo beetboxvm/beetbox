@@ -9,6 +9,7 @@ installed_extras_adminer: yes
 installed_extras_apache: yes
 installed_extras_apparmor: yes
 installed_extras_avahi: yes
+installed_extras_chrome: yes
 installed_extras_composer: yes
 installed_extras_drush: yes
 installed_extras_git: yes

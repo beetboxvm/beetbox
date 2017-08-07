@@ -108,6 +108,7 @@ installed_extras_web: no
 installed_extras_xdebug: no
 installed_extras_xhprof: no
 installed_extras_lxd: no
+installed_extras_chrome: no
 installed_extras_selenium: no
 installed_extras_elasticsearch: no
 installed_extras_firewall: no
