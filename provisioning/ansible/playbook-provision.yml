@@ -181,6 +181,9 @@
     - role: geerlingguy.solr
       when: installed_extras_solr
       tags: extras
+    - role: cmprescott.chrome
+      when: installed_extras_chrome
+      tags: extras
     - role: arknoll.selenium
       when: installed_extras_selenium
       tags: extras
