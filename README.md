@@ -73,7 +73,7 @@ vagrant up
 
 After which you can install the site at [http://drupal8.local/install.php](http://drupal8.local/install.php)
 
-or add the following to `./beetbox/config.yml` and run `vagrant provision` to automatically install drupal:
+or add the following to `./.beetbox/config.yml` and run `vagrant provision` to automatically install drupal:
 
 ```
 drupal_install_site: yes
@@ -81,7 +81,7 @@ drupal_account_name: admin
 drupal_account_pass: admin
 ```
 
-For PHP 7 add `php_version: "7.0"` to `./beetbox/config.yml`, then run `vagrant provision`.
+For PHP 7 add `php_version: "7.0"` to `./.beetbox/config.yml`, then run `vagrant provision`.
 
 ## Project roles.
 
