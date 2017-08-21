@@ -4,9 +4,6 @@
 [submodule "provisioning/ansible/roles/beetboxvm.backdrop"]
 	path = provisioning/ansible/roles/beetboxvm.backdrop
 	url = https://github.com/beetboxvm/ansible-role-beetbox-backdrop.git
-[submodule "provisioning/ansible/roles/beetboxvm.cakephp"]
-	path = provisioning/ansible/roles/beetboxvm.cakephp
-	url = https://github.com/beetboxvm/ansible-role-beetbox-cakephp.git
 [submodule "provisioning/ansible/roles/beetboxvm.concrete5"]
 	path = provisioning/ansible/roles/beetboxvm.concrete5
 	url = https://github.com/beetboxvm/ansible-role-beetbox-concrete5.git
