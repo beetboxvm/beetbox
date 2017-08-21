@@ -19,7 +19,6 @@
     "composer/composer": "dev-master",
     "consolidation/robo": "~1",
     "phpunit/phpunit": "^6.0",
-    "joestewart/robo-vagrant": "^1.0",
     "sensiolabs/security-checker": "^4.0"
   },
   "autoload": {
