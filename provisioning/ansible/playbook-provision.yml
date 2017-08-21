@@ -217,9 +217,6 @@
     - role: beetboxvm.backdrop
       when: beet_project == 'backdrop'
       tags: project
-    - role: beetboxvm.cakephp
-      when: beet_project == 'cakephp'
-      tags: project
     - role: beetboxvm.kohana
       when: beet_project == 'kohana'
       tags: project
