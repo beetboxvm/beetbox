@@ -81,7 +81,7 @@ drupal_account_name: admin
 drupal_account_pass: admin
 ```
 
-For PHP 7 add `php_version: "7.0"` to `./.beetbox/config.yml`, then run `vagrant provision`.
+For PHP 5.6 add `php_version: "5.6"` to `./.beetbox/config.yml`, then run `vagrant provision`.
 
 ## Project roles.
 
