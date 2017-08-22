@@ -14,6 +14,7 @@ This particular project contains the plumbing to manage the automated build of t
 [![Latest Stable Version](https://poser.pugx.org/beet/box/v/stable)](https://packagist.org/packages/beet/box)
 [![Total Downloads](https://poser.pugx.org/beet/box/downloads)](https://packagist.org/packages/beet/box)
 [![License](https://poser.pugx.org/beet/box/license)](https://packagist.org/packages/beet/box)
+[![Docker](https://img.shields.io/docker/build/beet/box.svg)](https://hub.docker.com/r/beet/box/builds/)
 
 ## What's different about this project?
 
