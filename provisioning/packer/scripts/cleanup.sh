@@ -76,8 +76,8 @@ fi
 # Delete beet_base.
 rm -rf /var/beetbox
 
-# Run apt-get update before zeroing the disk.
-apt-get update
+# Clean the APT directory.
+rm -rf /var/lib/apt/lists/*
 
 # Zero out the free space to save space in the final image
 dd if=/dev/zero of=/EMPTY bs=1M  || echo "dd exit code $? is suppressed"
