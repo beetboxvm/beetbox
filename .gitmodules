@@ -160,6 +160,6 @@
 [submodule "provisioning/ansible/roles/geerlingguy.php-versions"]
 	path = provisioning/ansible/roles/geerlingguy.php-versions
 	url = https://github.com/geerlingguy/ansible-role-php-versions.git
-[submodule "provisioning/ansible/roles/cmprescott.chrome"]
-	path = provisioning/ansible/roles/cmprescott.chrome
-	url = https://github.com/cmprescott/ansible-role-chrome.git
+[submodule "provisioning/ansible/roles/cmprescott.chrome-fork"]
+	path = provisioning/ansible/roles/cmprescott.chrome-fork
+	url = https://github.com/thom8/ansible-role-chrome.git
