@@ -8,7 +8,6 @@ BEET_HOME=${BEET_HOME:-"/beetbox"}
 BEET_BASE=${BEET_BASE:-"/var/beetbox"}
 BEET_USER=${BEET_USER:-"vagrant"}
 BEET_REPO=${BEET_REPO:-"https://github.com/beetboxvm/beetbox.git"}
-BEET_VERSION=${BEET_VERSION:-"master"}
 BEET_DEBUG=${BEET_DEBUG:-false}
 ANSIBLE_HOME="$BEET_HOME/provisioning/ansible"
 ANSIBLE_DEBUG=""
@@ -56,7 +55,7 @@ beetbox_setup() {
   fi
 
   # Check version.
-  beetbox_play config && beetbox_play update
+  beetbox_play config
 
   # Beetbox setup.
   beetbox_play setup
@@ -78,9 +77,6 @@ beetbox_play() {
 
 # Create default config files.
 beetbox_play config
-
-# Check for updates.
-beetbox_play update
 
 # Provision VM.
 beetbox_play "$BEET_PLAYBOOK" "$BEET_TAGS"
