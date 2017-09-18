@@ -8,7 +8,7 @@
 
 # Vagrant config.
 vagrant_box: beet/box
-vagrant_box_version: "~> 0.7.0"
+vagrant_box_version: "~> 0.8.0"
 vagrant_ip: "0.0.0.0"
 vagrant_memory: "1024"
 vagrant_cpus: 1
