@@ -79,6 +79,10 @@ rm -rf /var/beetbox
 # Clean the APT directory.
 rm -rf /var/lib/apt/lists/*
 
+# Invalidate APT cache.
+rm -rf /var/lib/apt/periodic/update-success-stamp
+touch -d "2 days ago" /var/lib/apt/lists
+
 # Zero out the free space to save space in the final image
 dd if=/dev/zero of=/EMPTY bs=1M  || echo "dd exit code $? is suppressed"
 rm -f /EMPTY
