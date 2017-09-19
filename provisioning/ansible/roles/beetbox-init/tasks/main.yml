@@ -32,6 +32,13 @@
   service: name=ufw state=stopped
   failed_when: false
 
+- name: Ensure beet_base directory exists.
+  file:
+    path: "{{ beet_base }}"
+    owner: "{{ beet_user }}"
+    group: "{{ beet_user }}"
+    state: directory
+
 - name: Ensure beet_root directory exists.
   file:
     path: "{{ beet_root }}"

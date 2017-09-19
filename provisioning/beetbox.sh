@@ -8,6 +8,7 @@ BEET_HOME=${BEET_HOME:-"/beetbox"}
 BEET_BASE=${BEET_BASE:-"/var/beetbox"}
 BEET_USER=${BEET_USER:-"vagrant"}
 BEET_REPO=${BEET_REPO:-"https://github.com/beetboxvm/beetbox.git"}
+BEET_VERSION=${BEET_VERSION:-"master"}
 BEET_DEBUG=${BEET_DEBUG:-false}
 ANSIBLE_HOME="$BEET_HOME/provisioning/ansible"
 ANSIBLE_DEBUG=""
@@ -47,7 +48,7 @@ beetbox_setup() {
   # Clone beetbox if BEET_HOME doesn't exist.
   if [[ ! -d "$BEET_HOME" ]]; then
     beetbox_adhoc apt "name=git state=installed"
-    beetbox_adhoc git "repo=$BEET_REPO dest=$BEET_HOME depth=1 recursive=yes"
+    beetbox_adhoc git "repo=$BEET_REPO version=$BEET_VERSION dest=$BEET_HOME depth=1 recursive=yes"
     beetbox_adhoc file "path=$BEET_HOME owner=$BEET_USER group=$BEET_USER"
     beetbox_adhoc file "path=$BEET_HOME/.beetbox/config.yml state=absent"
     beetbox_adhoc file "src=$BEET_HOME/provisioning/beetbox.sh dest=/usr/local/bin/beetbox state=link mode=755"

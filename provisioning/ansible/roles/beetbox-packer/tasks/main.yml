@@ -1,4 +1,9 @@
 ---
+- name: Ensure unzip is installed.
+  apt:
+    name: "unzip"
+    state: installed
+
 - name: Install Packer
   unarchive:
     src: "https://releases.hashicorp.com/packer/{{ packer_version }}/packer_{{ packer_version }}_linux_amd64.zip"
