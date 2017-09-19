@@ -35,9 +35,8 @@
 - name: Ensure beet_base directory exists.
   file:
     path: "{{ beet_base }}"
-    owner: "{{ beet_user }}"
-    group: "{{ beet_user }}"
     state: directory
+    mode: 0775
 
 - name: Ensure beet_root directory exists.
   file:
