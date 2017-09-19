@@ -274,6 +274,7 @@
         dest: "{{ beet_home }}/results-provision.txt"
         force: yes
         mode: 0644
+      changed_when: no
       become: no
 
     - name: Create dynamic message of the day.
