@@ -17,6 +17,7 @@ drupal_install_site: yes
 drupal_account_name: admin
 drupal_account_pass: admin
 drush_create_alias: yes
+drupal_install_site_args: "install_configure_form.enable_update_status_module=NULL install_configure_form.enable_update_status_emails=NULL"
 php_memory_limit: "284M"
 
 # Beetbox debug.
