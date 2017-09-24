@@ -48,15 +48,14 @@
         - beet_root == beet_base
         - item.stat.exists
 
-    - name: Check pre tasks directory exists.
-      stat:
-        path: "{{ beet_custom_pre_tasks }}"
-      register: pre_tasks_dir
+    - name: Ensure pre tasks directory exists
+      file:
+        dest: "{{ beet_custom_pre_tasks }}"
+        state: directory
 
     - include: "{{ item }}"
       with_fileglob:
         - "{{ beet_custom_pre_tasks }}/*"
-      when: pre_tasks_dir.stat.exists
       tags:
         - pre
         - custom
@@ -255,15 +254,14 @@
         group: "{{ beet_user }}"
         recurse: yes
 
-    - name: Check post tasks directory exists.
-      stat:
-        path: "{{ beet_custom_post_tasks }}"
-      register: post_tasks_dir
+    - name: Ensure post tasks directory exists
+      file:
+        dest: "{{ beet_custom_post_tasks }}"
+        state: directory
 
     - include: "{{ item }}"
       with_fileglob:
         - "{{ beet_custom_post_tasks }}/*"
-      when: post_tasks_dir.stat.exists
       tags:
         - post
         - custom
