@@ -53,6 +53,8 @@
       "ssh_port": 22,
       "ssh_wait_timeout": "10000s",
       "shutdown_command": "echo '{{ user `ssh_pass` }}'|sudo -S shutdown -P now",
+      "guest_additions_url": "http://download.virtualbox.org/virtualbox/5.1.28/VBoxGuestAdditions_5.1.28.iso",
+      "guest_additions_sha256": "66824ee3a0373da62b15f6687a68e2305d7e62d700e538cf32705227bb38c46d",
       "guest_additions_path": "VBoxGuestAdditions_{{ .Version }}.iso",
       "virtualbox_version_file": ".vbox_version",
       "vm_name": "beetbox_{{ user `box_version` }}",
