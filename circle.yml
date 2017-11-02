@@ -1,7 +1,7 @@
 ---
 machine:
   php:
-    version: 7.1.0
+    version: 7.1.9 # https://circleci.com/docs/1.0/build-image-trusty/#php
   services:
     - docker
 checkout:
