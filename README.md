@@ -117,6 +117,8 @@ http://beetbox.readthedocs.io/en/latest/contributing/contributing/
 This project would not be possible without [geerlingguy's](https://github.com/geerlingguy) awesome Ansible roles from [Drupal VM](https://github.com/geerlingguy/drupal-vm).
 We encourage you to support him by buying his book [Ansible for DevOps](http://ansiblefordevops.com/).
 
+[JetBrains](https://www.jetbrains.com/phpstorm/) generously offer an Open source licence.
+
 Beetbox is primarily maintained by the Drupal Melbourne (Australia) community.
 
 Please follow [@beetboxvm](https://twitter.com/beetboxvm) for announcements.
