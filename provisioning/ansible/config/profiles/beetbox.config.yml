@@ -22,7 +22,6 @@ installed_extras_php: yes
 installed_extras_upload_progress: yes
 installed_extras_web: yes
 installed_extras_xdebug: yes
-installed_extras_xhprof: yes
 
 # Conditional roles.
 installed_extras_nginx: "beet_webserver == 'nginx'"
