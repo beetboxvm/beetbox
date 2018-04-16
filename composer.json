@@ -19,7 +19,7 @@
   "require-dev": {
     "composer/composer": "1.6.3",
     "consolidation/robo": "1.2.3",
-    "phpunit/phpunit": "6.5.4",
+    "phpunit/phpunit": "6.5.8",
     "sensiolabs/security-checker": "^4.0"
   },
   "autoload": {
