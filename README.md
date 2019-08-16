@@ -86,7 +86,7 @@ For PHP 5.6 add `php_version: "5.6"` to `./.beetbox/config.yml`, then run `vagra
 
 ## Project roles.
 
-These roles are mantained by Beetbox team.
+These roles are maintained by Beetbox team.
 
 | Project | Build status |
 | --- | --- |
